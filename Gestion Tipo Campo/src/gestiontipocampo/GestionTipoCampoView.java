@@ -1,5 +1,6 @@
 /*
  * GestionTipoCampoView.java
+ * prueba de cambio  con subversion 
  */
 
 package gestiontipocampo;
