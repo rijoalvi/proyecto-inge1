@@ -1,6 +1,5 @@
 /*
- * GestionTipoCampoView.java cfgjhdfyjfyuj
- * prueba de cambio  con subversion 
+ * GestionTipoCampoView.java
  */
 
 package gestiontipocampo;
@@ -118,7 +117,6 @@ public class GestionTipoCampoView extends FrameView {
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
         javax.swing.JMenu helpMenu = new javax.swing.JMenu();
         javax.swing.JMenuItem aboutMenuItem = new javax.swing.JMenuItem();
@@ -182,15 +180,13 @@ public class GestionTipoCampoView extends FrameView {
 
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getActionMap(GestionTipoCampoView.class, this);
         jMenuItem1.setAction(actionMap.get("mostrarVentanaManejoCampos")); // NOI18N
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem1.setText(resourceMap.getString("jMenuItem1.text")); // NOI18N
         jMenuItem1.setName("jMenuItem1"); // NOI18N
         fileMenu.add(jMenuItem1);
 
-        jMenuItem2.setText(resourceMap.getString("jMenuItem2.text")); // NOI18N
-        jMenuItem2.setName("jMenuItem2"); // NOI18N
-        fileMenu.add(jMenuItem2);
-
         exitMenuItem.setAction(actionMap.get("quit")); // NOI18N
+        exitMenuItem.setText(resourceMap.getString("exitMenuItem.text")); // NOI18N
         exitMenuItem.setName("exitMenuItem"); // NOI18N
         fileMenu.add(exitMenuItem);
 
@@ -200,6 +196,8 @@ public class GestionTipoCampoView extends FrameView {
         helpMenu.setName("helpMenu"); // NOI18N
 
         aboutMenuItem.setAction(actionMap.get("showAboutBox")); // NOI18N
+        aboutMenuItem.setIcon(resourceMap.getIcon("aboutMenuItem.icon")); // NOI18N
+        aboutMenuItem.setText(resourceMap.getString("aboutMenuItem.text")); // NOI18N
         aboutMenuItem.setName("aboutMenuItem"); // NOI18N
         helpMenu.add(aboutMenuItem);
 
@@ -253,7 +251,6 @@ public class GestionTipoCampoView extends FrameView {
     private java.awt.Canvas canvas3;
     private java.awt.Canvas canvas4;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JProgressBar progressBar;
