@@ -17,9 +17,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="canvas1" min="-2" pref="0" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                                  <Component id="jOptionPane1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="81" max="32767" attributes="0"/>
+                                  <EmptySpace pref="388" max="32767" attributes="0"/>
                                   <Component id="canvas3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="canvas2" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -46,17 +44,9 @@
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
-                                  <Component id="canvas3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
-                                  <Component id="jOptionPane1" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <EmptySpace pref="79" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
+                          <Component id="canvas3" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="130" max="32767" attributes="0"/>
                           <Component id="canvas4" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -84,11 +74,6 @@
         <Component class="java.awt.Canvas" name="canvas4">
           <Properties>
             <Property name="name" type="java.lang.String" value="canvas4" noResource="true"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JOptionPane" name="jOptionPane1">
-          <Properties>
-            <Property name="name" type="java.lang.String" value="jOptionPane1" noResource="true"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -119,6 +104,12 @@
                 </Property>
                 <Property name="text" type="java.lang.String" resourceKey="jMenuItem1.text"/>
                 <Property name="name" type="java.lang.String" value="jMenuItem1" noResource="true"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="jMenuItem2.text"/>
+                <Property name="name" type="java.lang.String" value="jMenuItem2" noResource="true"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="exitMenuItem">
