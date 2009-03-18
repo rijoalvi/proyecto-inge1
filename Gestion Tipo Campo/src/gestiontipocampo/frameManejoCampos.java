@@ -451,7 +451,6 @@ private void comboTipoCampoActionPerformed(java.awt.event.ActionEvent evt) {//GE
     panePrincipal.setVisible(true);
     if (comboTipoCampo.getSelectedItem().toString() == "Número") {
         
-        //otro cambio lksajdfkljaslkñf
         paneNumero.setVisible(true);
         paneBinario.setVisible(false);
         paneFechaHora.setVisible(false);
@@ -460,8 +459,6 @@ private void comboTipoCampoActionPerformed(java.awt.event.ActionEvent evt) {//GE
         panelVacio.setVisible(false);
     } else {
         //Se escogio la opcion de binario
-        //Test de modificación.
-        //Donde esta la nota?
         if (comboTipoCampo.getSelectedItem().toString() == ("Binario")) {
             paneNumero.setVisible(false);
             paneBinario.setVisible(true);
