@@ -39,6 +39,7 @@ public class GestionTipoCampoAboutBox extends javax.swing.JDialog {
 
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getActionMap(GestionTipoCampoAboutBox.class, this);
         closeButton.setAction(actionMap.get("closeAboutBox")); // NOI18N
+        closeButton.setText(resourceMap.getString("closeButton.text")); // NOI18N
         closeButton.setName("closeButton"); // NOI18N
 
         appTitleLabel.setFont(appTitleLabel.getFont().deriveFont(appTitleLabel.getFont().getStyle() | java.awt.Font.BOLD, appTitleLabel.getFont().getSize()+4));
@@ -57,13 +58,13 @@ public class GestionTipoCampoAboutBox extends javax.swing.JDialog {
                 .add(appTitleLabel)
                 .addContainerGap(112, Short.MAX_VALUE))
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(322, Short.MAX_VALUE)
+                .addContainerGap(330, Short.MAX_VALUE)
                 .add(closeButton)
                 .add(59, 59, 59))
             .add(layout.createSequentialGroup()
                 .add(93, 93, 93)
                 .add(jLabel1)
-                .addContainerGap(246, Short.MAX_VALUE))
+                .addContainerGap(254, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -76,6 +77,8 @@ public class GestionTipoCampoAboutBox extends javax.swing.JDialog {
                 .add(closeButton)
                 .addContainerGap(29, Short.MAX_VALUE))
         );
+
+        closeButton.getAccessibleContext().setAccessibleName(resourceMap.getString("closeButton.AccessibleContext.accessibleName")); // NOI18N
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
