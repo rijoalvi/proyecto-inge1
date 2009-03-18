@@ -449,7 +449,7 @@ String[] opciones = {"Si", "No"};
 private void comboTipoCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoCampoActionPerformed
     //Se escogio la opcion de numero
     panePrincipal.setVisible(true);
-    if (comboTipoCampo.getSelectedItem().toString() == "Número") {
+    if (comboTipoCampo.getSelectedItem().toString().equalsIgnoreCase("Número")) {
         
         paneNumero.setVisible(true);
         paneBinario.setVisible(false);
@@ -459,7 +459,7 @@ private void comboTipoCampoActionPerformed(java.awt.event.ActionEvent evt) {//GE
         panelVacio.setVisible(false);
     } else {
         //Se escogio la opcion de binario
-        if (comboTipoCampo.getSelectedItem().toString() == ("Binario")) {
+        if (comboTipoCampo.getSelectedItem().toString().equalsIgnoreCase("Binario")) {
             paneNumero.setVisible(false);
             paneBinario.setVisible(true);
             paneFechaHora.setVisible(false);
@@ -468,7 +468,7 @@ private void comboTipoCampoActionPerformed(java.awt.event.ActionEvent evt) {//GE
             panelVacio.setVisible(false);
         } else {
             //Se escogio la opcion de fechaHora
-            if (comboTipoCampo.getSelectedItem().toString() == ("FechaHora")) {
+            if (comboTipoCampo.getSelectedItem().toString().equalsIgnoreCase("FechaHora")) {
                 paneNumero.setVisible(false);
                 paneBinario.setVisible(false);
                 paneFechaHora.setVisible(true);
@@ -477,7 +477,7 @@ private void comboTipoCampoActionPerformed(java.awt.event.ActionEvent evt) {//GE
                 panelVacio.setVisible(false);
             } else {
                 //Se escogio la opcion de texto
-                if (comboTipoCampo.getSelectedItem().toString() == ("Texto")) {
+                if (comboTipoCampo.getSelectedItem().toString().equalsIgnoreCase("Texto")) {
                     paneNumero.setVisible(false);
                     paneBinario.setVisible(false);
                     paneFechaHora.setVisible(false);
@@ -486,7 +486,7 @@ private void comboTipoCampoActionPerformed(java.awt.event.ActionEvent evt) {//GE
                     panelVacio.setVisible(false);
                 } else {
                     //Se escogio la opcion de incremental
-                    if (comboTipoCampo.getSelectedItem().toString() == ("Incremental")) {
+                    if (comboTipoCampo.getSelectedItem().toString().equalsIgnoreCase("Incremental")) {
                         paneNumero.setVisible(false);
                         paneBinario.setVisible(false);
                         paneFechaHora.setVisible(false);
