@@ -406,7 +406,6 @@ public class frameManejoCampos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 private void botonBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBusquedaActionPerformed
-    System.out.print("buscó!");
     frameBusqueda ventanaBusqueda = new frameBusqueda();
     //  JFrame mainFrame = frameManejoCampos.getApplication().getMainFrame();
     //coloca el frame segun como este ubicada la ventana principal
