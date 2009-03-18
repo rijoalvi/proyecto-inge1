@@ -149,7 +149,6 @@ public class GestionTipoCampoView extends FrameView {
         fileMenu.add(jMenuItem1);
 
         exitMenuItem.setAction(actionMap.get("quit")); // NOI18N
-        exitMenuItem.setText(resourceMap.getString("exitMenuItem.text")); // NOI18N
         exitMenuItem.setName("exitMenuItem"); // NOI18N
         fileMenu.add(exitMenuItem);
 
