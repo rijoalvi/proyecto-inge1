@@ -450,6 +450,8 @@ private void comboTipoCampoActionPerformed(java.awt.event.ActionEvent evt) {//GE
     //Se escogio la opcion de numero
     panePrincipal.setVisible(true);
     if (comboTipoCampo.getSelectedItem().toString() == "Número") {
+        
+        //otro cambio lksajdfkljaslkñf
         paneNumero.setVisible(true);
         paneBinario.setVisible(false);
         paneFechaHora.setVisible(false);
