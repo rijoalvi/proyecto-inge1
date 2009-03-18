@@ -56,7 +56,7 @@ public class GestionTipoCampoAboutBox extends javax.swing.JDialog {
             .add(layout.createSequentialGroup()
                 .add(71, 71, 71)
                 .add(appTitleLabel)
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(123, Short.MAX_VALUE))
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(330, Short.MAX_VALUE)
                 .add(closeButton)
@@ -64,7 +64,7 @@ public class GestionTipoCampoAboutBox extends javax.swing.JDialog {
             .add(layout.createSequentialGroup()
                 .add(93, 93, 93)
                 .add(jLabel1)
-                .addContainerGap(254, Short.MAX_VALUE))
+                .addContainerGap(265, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
