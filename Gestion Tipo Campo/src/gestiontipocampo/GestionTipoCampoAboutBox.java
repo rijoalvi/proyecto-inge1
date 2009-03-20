@@ -39,7 +39,6 @@ public class GestionTipoCampoAboutBox extends javax.swing.JDialog {
 
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getActionMap(GestionTipoCampoAboutBox.class, this);
         closeButton.setAction(actionMap.get("closeAboutBox")); // NOI18N
-        closeButton.setText(resourceMap.getString("closeButton.text")); // NOI18N
         closeButton.setName("closeButton"); // NOI18N
 
         appTitleLabel.setFont(appTitleLabel.getFont().deriveFont(appTitleLabel.getFont().getStyle() | java.awt.Font.BOLD, appTitleLabel.getFont().getSize()+4));
@@ -56,15 +55,15 @@ public class GestionTipoCampoAboutBox extends javax.swing.JDialog {
             .add(layout.createSequentialGroup()
                 .add(71, 71, 71)
                 .add(appTitleLabel)
-                .addContainerGap(125, Short.MAX_VALUE))
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(330, Short.MAX_VALUE)
-                .add(closeButton)
-                .add(59, 59, 59))
+                .addContainerGap(352, Short.MAX_VALUE))
             .add(layout.createSequentialGroup()
                 .add(93, 93, 93)
                 .add(jLabel1)
                 .addContainerGap(267, Short.MAX_VALUE))
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(342, Short.MAX_VALUE)
+                .add(closeButton)
+                .add(60, 60, 60))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -73,12 +72,12 @@ public class GestionTipoCampoAboutBox extends javax.swing.JDialog {
                 .add(appTitleLabel)
                 .add(18, 18, 18)
                 .add(jLabel1)
-                .add(18, 18, 18)
+                .addContainerGap(70, Short.MAX_VALUE))
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(118, Short.MAX_VALUE)
                 .add(closeButton)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .add(47, 47, 47))
         );
-
-        closeButton.getAccessibleContext().setAccessibleName(resourceMap.getString("closeButton.AccessibleContext.accessibleName")); // NOI18N
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
