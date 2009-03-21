@@ -22,7 +22,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
         paneFechaHora.setVisible(false);
         paneTexto.setVisible(false);
         paneIncremental.setVisible(false);
-        panelVacio.setVisible(true);
+        //panelVacio.setVisible(true);
     }
 
     /** Creates new form frameManejoCampos */
@@ -34,7 +34,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
         paneFechaHora.setVisible(false);
         paneTexto.setVisible(false);
         paneIncremental.setVisible(false);
-        panelVacio.setVisible(true);
+     //   panelVacio.setVisible(true);*/
 
         //Se revisa si se debe abrir con algun valor o si es para ingresar valores nuevos
         if(tipo.equalsIgnoreCase("nuevo")){
@@ -93,9 +93,10 @@ public class frameManejoCampos extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         valorFechaDefecto = new javax.swing.JFormattedTextField();
         jLabel14 = new javax.swing.JLabel();
-        valorFormatoDespligue = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        comboVencimiento = new javax.swing.JComboBox();
+        radioFechaHoraSi = new javax.swing.JRadioButton();
+        radioFechaHoraNo = new javax.swing.JRadioButton();
+        jComboBox1 = new javax.swing.JComboBox();
         paneTexto = new javax.swing.JLayeredPane();
         jLabel16 = new javax.swing.JLabel();
         valorLargo = new javax.swing.JTextField();
@@ -106,12 +107,11 @@ public class frameManejoCampos extends javax.swing.JFrame {
         valorValorInicial = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         valorIncremento = new javax.swing.JTextField();
-        panelVacio = new javax.swing.JLayeredPane();
         botonGuardar = new javax.swing.JButton();
-        comboTipoCampo = new javax.swing.JComboBox();
         botonGuardarComo = new javax.swing.JButton();
         botonBorrar = new javax.swing.JButton();
         botonCerrar = new javax.swing.JButton();
+        comboTipos = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setName("Form"); // NOI18N
@@ -143,198 +143,210 @@ public class frameManejoCampos extends javax.swing.JFrame {
 
         valorNota.setName("valorNota"); // NOI18N
 
+        panePrincipal.setAutoscrolls(true);
         panePrincipal.setName("panePrincipal"); // NOI18N
 
         paneBinario.setName("paneBinario"); // NOI18N
 
         jLabel7.setText(resourceMap.getString("jLabel7.text")); // NOI18N
         jLabel7.setName("jLabel7"); // NOI18N
-        jLabel7.setBounds(10, 10, 100, -1);
+        jLabel7.setBounds(10, 10, 100, 14);
         paneBinario.add(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorNombre1.setName("valorNombre1"); // NOI18N
-        valorNombre1.setBounds(10, 30, 80, -1);
+        valorNombre1.setBounds(10, 30, 80, 19);
         paneBinario.add(valorNombre1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel8.setText(resourceMap.getString("jLabel8.text")); // NOI18N
         jLabel8.setName("jLabel8"); // NOI18N
-        jLabel8.setBounds(130, 10, 100, -1);
+        jLabel8.setBounds(130, 10, 100, 14);
         paneBinario.add(jLabel8, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorNum1.setName("valorNum1"); // NOI18N
-        valorNum1.setBounds(130, 30, 80, -1);
+        valorNum1.setBounds(130, 30, 80, 19);
         paneBinario.add(valorNum1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel9.setText(resourceMap.getString("jLabel9.text")); // NOI18N
         jLabel9.setName("jLabel9"); // NOI18N
-        jLabel9.setBounds(250, 60, 100, -1);
+        jLabel9.setBounds(250, 60, 100, 14);
         paneBinario.add(jLabel9, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorValorDefecto.setText(resourceMap.getString("valorValorDefecto.text")); // NOI18N
         valorValorDefecto.setName("valorValorDefecto"); // NOI18N
-        valorValorDefecto.setBounds(250, 80, 80, -1);
+        valorValorDefecto.setBounds(250, 80, 80, 19);
         paneBinario.add(valorValorDefecto, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel10.setText(resourceMap.getString("jLabel10.text")); // NOI18N
         jLabel10.setName("jLabel10"); // NOI18N
-        jLabel10.setBounds(10, 60, 100, -1);
+        jLabel10.setBounds(10, 60, 100, 14);
         paneBinario.add(jLabel10, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorNombre2.setName("valorNombre2"); // NOI18N
-        valorNombre2.setBounds(10, 80, 80, -1);
+        valorNombre2.setBounds(10, 80, 80, 19);
         paneBinario.add(valorNombre2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel11.setText(resourceMap.getString("jLabel11.text")); // NOI18N
         jLabel11.setName("jLabel11"); // NOI18N
-        jLabel11.setBounds(130, 60, 100, -1);
+        jLabel11.setBounds(130, 60, 100, 14);
         paneBinario.add(jLabel11, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorNum2.setName("valorNum2"); // NOI18N
-        valorNum2.setBounds(130, 80, 80, -1);
+        valorNum2.setBounds(130, 80, 80, 19);
         paneBinario.add(valorNum2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        paneBinario.setBounds(10, -10, 370, 130);
+        paneBinario.setBounds(10, 10, 370, 130);
         panePrincipal.add(paneBinario, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneNumero.setName("paneNumero"); // NOI18N
 
         jLabel4.setText(resourceMap.getString("jLabel4.text")); // NOI18N
         jLabel4.setName("jLabel4"); // NOI18N
-        jLabel4.setBounds(10, 10, 110, -1);
+        jLabel4.setBounds(10, 10, 110, 14);
         paneNumero.add(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorNumDecimales.setName("valorNumDecimales"); // NOI18N
-        valorNumDecimales.setBounds(10, 30, 80, -1);
+        valorNumDecimales.setBounds(10, 30, 80, 19);
         paneNumero.add(valorNumDecimales, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel5.setText(resourceMap.getString("jLabel5.text")); // NOI18N
         jLabel5.setName("jLabel5"); // NOI18N
-        jLabel5.setBounds(130, 10, 50, -1);
+        jLabel5.setBounds(130, 10, 50, 14);
         paneNumero.add(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorMascara.setName("valorMascara"); // NOI18N
-        valorMascara.setBounds(130, 30, 80, -1);
+        valorMascara.setBounds(130, 30, 80, 19);
         paneNumero.add(valorMascara, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorValorDefecto1.setText(resourceMap.getString("valorValorDefecto1.text")); // NOI18N
         valorValorDefecto1.setName("valorValorDefecto1"); // NOI18N
-        valorValorDefecto1.setBounds(250, 30, 80, -1);
+        valorValorDefecto1.setBounds(250, 30, 80, 19);
         paneNumero.add(valorValorDefecto1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel12.setText(resourceMap.getString("jLabel12.text")); // NOI18N
         jLabel12.setName("jLabel12"); // NOI18N
-        jLabel12.setBounds(250, 10, 90, -1);
+        jLabel12.setBounds(250, 10, 90, 14);
         paneNumero.add(jLabel12, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        paneNumero.setBounds(10, -10, 370, 130);
+        paneNumero.setBounds(10, 10, 370, 130);
         panePrincipal.add(paneNumero, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneFechaHora.setName("paneFechaHora"); // NOI18N
 
         jLabel6.setText(resourceMap.getString("jLabel6.text")); // NOI18N
         jLabel6.setName("jLabel6"); // NOI18N
-        jLabel6.setBounds(10, 10, 100, -1);
+        jLabel6.setBounds(20, 10, 100, 14);
         paneFechaHora.add(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorPreaviso.setName("valorPreaviso"); // NOI18N
-        valorPreaviso.setBounds(130, 80, 80, -1);
+        valorPreaviso.setBounds(140, 80, 80, 19);
         paneFechaHora.add(valorPreaviso, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel13.setText(resourceMap.getString("jLabel13.text")); // NOI18N
         jLabel13.setName("jLabel13"); // NOI18N
-        jLabel13.setBounds(130, 10, 100, -1);
+        jLabel13.setBounds(140, 10, 100, 14);
         paneFechaHora.add(jLabel13, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        try {
+            valorFechaDefecto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         valorFechaDefecto.setText(resourceMap.getString("valorFechaDefecto.text")); // NOI18N
         valorFechaDefecto.setName("valorFechaDefecto"); // NOI18N
-        valorFechaDefecto.setBounds(130, 30, 80, -1);
+        valorFechaDefecto.setBounds(140, 30, 80, 21);
         paneFechaHora.add(valorFechaDefecto, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel14.setText(resourceMap.getString("jLabel14.text")); // NOI18N
         jLabel14.setName("jLabel14"); // NOI18N
-        jLabel14.setBounds(130, 60, 100, -1);
+        jLabel14.setBounds(140, 60, 100, 14);
         paneFechaHora.add(jLabel14, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        valorFormatoDespligue.setName("valorFormatoDespligue"); // NOI18N
-        valorFormatoDespligue.setBounds(10, 30, 80, -1);
-        paneFechaHora.add(valorFormatoDespligue, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel15.setText(resourceMap.getString("jLabel15.text")); // NOI18N
         jLabel15.setName("jLabel15"); // NOI18N
-        jLabel15.setBounds(10, 60, 100, -1);
+        jLabel15.setBounds(20, 60, 100, 14);
         paneFechaHora.add(jLabel15, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        comboVencimiento.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Sí", "No", " " }));
-        comboVencimiento.setName("comboVencimiento"); // NOI18N
-        comboVencimiento.setBounds(10, 80, 80, -1);
-        paneFechaHora.add(comboVencimiento, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        radioFechaHoraSi.setSelected(true);
+        radioFechaHoraSi.setText(resourceMap.getString("radioFechaHoraSi.text")); // NOI18N
+        radioFechaHoraSi.setName("radioFechaHoraSi"); // NOI18N
+        radioFechaHoraSi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioFechaHoraSiActionPerformed(evt);
+            }
+        });
+        radioFechaHoraSi.setBounds(20, 80, 33, 23);
+        paneFechaHora.add(radioFechaHoraSi, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        paneFechaHora.setBounds(10, -10, 380, 130);
+        radioFechaHoraNo.setText(resourceMap.getString("radioFechaHoraNo.text")); // NOI18N
+        radioFechaHoraNo.setName("radioFechaHoraNo"); // NOI18N
+        radioFechaHoraNo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioFechaHoraNoActionPerformed(evt);
+            }
+        });
+        radioFechaHoraNo.setBounds(20, 103, 39, 20);
+        paneFechaHora.add(radioFechaHoraNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "dd/mm/aaaa", "mm/dd/aaaa", "aaaa/dd/mm", "aaaa/mm/dd" }));
+        jComboBox1.setSelectedIndex(0);
+        jComboBox1.setName("jComboBox1"); // NOI18N
+        jComboBox1.setBounds(20, 30, 90, 22);
+        paneFechaHora.add(jComboBox1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        paneFechaHora.setBounds(10, 10, 380, 130);
         panePrincipal.add(paneFechaHora, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneTexto.setName("paneTexto"); // NOI18N
 
         jLabel16.setText(resourceMap.getString("jLabel16.text")); // NOI18N
         jLabel16.setName("jLabel16"); // NOI18N
-        jLabel16.setBounds(10, 10, 100, -1);
+        jLabel16.setBounds(10, 10, 100, 14);
         paneTexto.add(jLabel16, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorLargo.setName("valorLargo"); // NOI18N
-        valorLargo.setBounds(10, 30, 80, -1);
+        valorLargo.setBounds(10, 30, 80, 19);
         paneTexto.add(valorLargo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel18.setText(resourceMap.getString("jLabel18.text")); // NOI18N
         jLabel18.setName("jLabel18"); // NOI18N
-        jLabel18.setBounds(130, 10, 100, -1);
+        jLabel18.setBounds(130, 10, 100, 14);
         paneTexto.add(jLabel18, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorTextoDefecto.setName("valorTextoDefecto"); // NOI18N
-        valorTextoDefecto.setBounds(130, 30, 80, -1);
+        valorTextoDefecto.setBounds(130, 30, 80, 19);
         paneTexto.add(valorTextoDefecto, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        paneTexto.setBounds(10, -10, 380, 130);
+        paneTexto.setBounds(10, 10, 380, 130);
         panePrincipal.add(paneTexto, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneIncremental.setName("paneIncremental"); // NOI18N
 
         jLabel17.setText(resourceMap.getString("jLabel17.text")); // NOI18N
         jLabel17.setName("jLabel17"); // NOI18N
-        jLabel17.setBounds(10, 10, 100, -1);
+        jLabel17.setBounds(10, 10, 100, 14);
         paneIncremental.add(jLabel17, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorValorInicial.setName("valorValorInicial"); // NOI18N
-        valorValorInicial.setBounds(10, 30, 80, -1);
+        valorValorInicial.setBounds(10, 30, 80, 19);
         paneIncremental.add(valorValorInicial, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel19.setText(resourceMap.getString("jLabel19.text")); // NOI18N
         jLabel19.setName("jLabel19"); // NOI18N
-        jLabel19.setBounds(130, 10, 100, -1);
+        jLabel19.setBounds(130, 10, 100, 14);
         paneIncremental.add(jLabel19, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorIncremento.setName("valorIncremento"); // NOI18N
-        valorIncremento.setBounds(130, 30, 80, -1);
+        valorIncremento.setBounds(130, 30, 80, 19);
         paneIncremental.add(valorIncremento, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        paneIncremental.setBounds(10, -10, 380, 130);
+        paneIncremental.setBounds(10, 10, 380, 130);
         panePrincipal.add(paneIncremental, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        panelVacio.setName("panelVacio"); // NOI18N
-        panelVacio.setBounds(0, 0, 370, 130);
-        panePrincipal.add(panelVacio, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         botonGuardar.setText(resourceMap.getString("botonGuardar.text")); // NOI18N
         botonGuardar.setName("botonGuardar"); // NOI18N
         botonGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonGuardarActionPerformed(evt);
-            }
-        });
-
-        comboTipoCampo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Número", "Binario", "FechaHora", "Texto", "Incremental" }));
-        comboTipoCampo.setName("comboTipoCampo"); // NOI18N
-        comboTipoCampo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboTipoCampoActionPerformed(evt);
             }
         });
 
@@ -362,55 +374,60 @@ public class frameManejoCampos extends javax.swing.JFrame {
             }
         });
 
+        comboTipos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Número", "Binario", "FechaHora", "Texto", "Incremental" }));
+        comboTipos.setName("comboTipos"); // NOI18N
+        comboTipos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboTiposActionPerformed(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(25, 25, 25)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(layout.createSequentialGroup()
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(valorNombre, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 82, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jLabel2))
-                        .add(63, 63, 63)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jLabel3)
-                            .add(valorNota, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 199, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                    .add(layout.createSequentialGroup()
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(layout.createSequentialGroup()
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(jLabel1))
-                            .add(comboTipoCampo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 144, Short.MAX_VALUE)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(layout.createSequentialGroup()
-                                .add(valorBusqueda, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 105, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .add(14, 14, 14)
-                                .add(botonBusqueda))
-                            .add(jLabel20))))
-                .addContainerGap())
-            .add(layout.createSequentialGroup()
-                .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(118, Short.MAX_VALUE)
                         .add(botonBorrar)
                         .add(18, 18, 18)
                         .add(botonGuardarComo)
                         .add(18, 18, 18)
                         .add(botonGuardar)
                         .add(18, 18, 18)
-                        .add(botonCerrar)
-                        .add(20, 20, 20))
+                        .add(botonCerrar))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                        .add(25, 25, 25)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(layout.createSequentialGroup()
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(valorNombre, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 82, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(jLabel2))
+                                .add(63, 63, 63)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(jLabel3)
+                                    .add(valorNota, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 199, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                            .add(layout.createSequentialGroup()
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(jLabel1)
+                                    .add(comboTipos, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 95, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 144, Short.MAX_VALUE)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(layout.createSequentialGroup()
+                                        .add(valorBusqueda, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 105, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .add(14, 14, 14)
+                                        .add(botonBusqueda))
+                                    .add(jLabel20)))))
                     .add(layout.createSequentialGroup()
-                        .add(panePrincipal, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
-                        .add(11, 11, 11))))
+                        .addContainerGap()
+                        .add(panePrincipal, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(19, 19, 19)
+                .add(18, 18, 18)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel1)
                     .add(jLabel20))
@@ -418,7 +435,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(valorBusqueda, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(botonBusqueda)
-                    .add(comboTipoCampo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(comboTipos, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(15, 15, 15)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
@@ -429,8 +446,8 @@ public class frameManejoCampos extends javax.swing.JFrame {
                         .add(jLabel3)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(valorNota, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .add(18, 18, 18)
-                .add(panePrincipal, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                .add(13, 13, 13)
+                .add(panePrincipal, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(botonGuardar)
@@ -483,65 +500,83 @@ String[] opciones = {"Si", "No"};
         }
 }//GEN-LAST:event_botonBorrarActionPerformed
 
-private void comboTipoCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoCampoActionPerformed
-    
-    panePrincipal.setVisible(true);
+private void botonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarActionPerformed
+    //cierra la ventana
+    this.setVisible(false);
+}//GEN-LAST:event_botonCerrarActionPerformed
+
+private void comboTiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTiposActionPerformed
+    System.out.print("Hola!!!!");
+  //  panePrincipal.setVisible(true);
     //Se escogio la opcion de numero
-    if (comboTipoCampo.getSelectedItem().toString().equalsIgnoreCase("Número")) {
-        
+    if (comboTipos.getSelectedItem().toString().equalsIgnoreCase("Número")) {
+        System.out.println("entro!");
         paneNumero.setVisible(true);
         paneBinario.setVisible(false);
         paneFechaHora.setVisible(false);
         paneTexto.setVisible(false);
         paneIncremental.setVisible(false);
-        panelVacio.setVisible(false);
+       // panelVacio.setVisible(false);
     } else {
         //Se escogio la opcion de binario
-        if (comboTipoCampo.getSelectedItem().toString().equalsIgnoreCase("Binario")) {
+        if (comboTipos.getSelectedItem().toString().equalsIgnoreCase("Binario")) {
+            System.out.println("entro a binario!");
             paneNumero.setVisible(false);
             paneBinario.setVisible(true);
             paneFechaHora.setVisible(false);
             paneTexto.setVisible(false);
             paneIncremental.setVisible(false);
-            panelVacio.setVisible(false);
+           // panelVacio.setVisible(false);
         } else {
             //Se escogio la opcion de fechaHora
-            if (comboTipoCampo.getSelectedItem().toString().equalsIgnoreCase("FechaHora")) {
+            if (comboTipos.getSelectedItem().toString().equalsIgnoreCase("FechaHora")) {
+                System.out.println("entro a fechaHora!");
                 paneNumero.setVisible(false);
                 paneBinario.setVisible(false);
                 paneFechaHora.setVisible(true);
                 paneTexto.setVisible(false);
                 paneIncremental.setVisible(false);
-                panelVacio.setVisible(false);
+               // panelVacio.setVisible(false);
             } else {
                 //Se escogio la opcion de texto
-                if (comboTipoCampo.getSelectedItem().toString().equalsIgnoreCase("Texto")) {
+                if (comboTipos.getSelectedItem().toString().equalsIgnoreCase("Texto")) {
+                    System.out.println("entro a texto");
                     paneNumero.setVisible(false);
                     paneBinario.setVisible(false);
                     paneFechaHora.setVisible(false);
                     paneTexto.setVisible(true);
                     paneIncremental.setVisible(false);
-                    panelVacio.setVisible(false);
+                  //  panelVacio.setVisible(false);
                 } else {
                     //Se escogio la opcion de incremental
-                    if (comboTipoCampo.getSelectedItem().toString().equalsIgnoreCase("Incremental")) {
+                    if (comboTipos.getSelectedItem().toString().equalsIgnoreCase("Incremental")) {
+                        System.out.println("entro a incremental");
                         paneNumero.setVisible(false);
                         paneBinario.setVisible(false);
                         paneFechaHora.setVisible(false);
                         paneTexto.setVisible(false);
                         paneIncremental.setVisible(true);
-                        panelVacio.setVisible(false);
+                      //  panelVacio.setVisible(false);
                     }
                 }
             }
         }
     }
-}//GEN-LAST:event_comboTipoCampoActionPerformed
+}//GEN-LAST:event_comboTiposActionPerformed
 
-private void botonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarActionPerformed
-    //cierra la ventana
-    this.setVisible(false);
-}//GEN-LAST:event_botonCerrarActionPerformed
+private void radioFechaHoraSiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioFechaHoraSiActionPerformed
+    if( radioFechaHoraSi.isSelected() )
+        radioFechaHoraNo.setSelected(false);
+    else
+        radioFechaHoraSi.setSelected(true);
+}//GEN-LAST:event_radioFechaHoraSiActionPerformed
+
+private void radioFechaHoraNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioFechaHoraNoActionPerformed
+    if( radioFechaHoraNo.isSelected() )
+        radioFechaHoraSi.setSelected(false);
+    else
+        radioFechaHoraNo.setSelected(true);
+}//GEN-LAST:event_radioFechaHoraNoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -561,8 +596,8 @@ private void botonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private javax.swing.JButton botonCerrar;
     private javax.swing.JButton botonGuardar;
     private javax.swing.JButton botonGuardarComo;
-    private javax.swing.JComboBox comboTipoCampo;
-    private javax.swing.JComboBox comboVencimiento;
+    private javax.swing.JComboBox comboTipos;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -589,10 +624,10 @@ private void botonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private javax.swing.JLayeredPane paneNumero;
     private javax.swing.JLayeredPane panePrincipal;
     private javax.swing.JLayeredPane paneTexto;
-    private javax.swing.JLayeredPane panelVacio;
+    private javax.swing.JRadioButton radioFechaHoraNo;
+    private javax.swing.JRadioButton radioFechaHoraSi;
     private javax.swing.JTextField valorBusqueda;
     private javax.swing.JFormattedTextField valorFechaDefecto;
-    private javax.swing.JTextField valorFormatoDespligue;
     private javax.swing.JTextField valorIncremento;
     private javax.swing.JTextField valorLargo;
     private javax.swing.JTextField valorMascara;
