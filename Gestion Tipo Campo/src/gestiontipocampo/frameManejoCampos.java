@@ -526,11 +526,13 @@ String[] opciones = {"Si", "No"};
 private void botonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarActionPerformed
     //cierra la ventana
     this.setVisible(false);
+    this.dispose();
 }//GEN-LAST:event_botonCerrarActionPerformed
 
 private void comboTiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTiposActionPerformed
+    //La version vieja de if else, por ahora se queda por si acaso
     //Se escogio la opcion de numero
-    if (comboTipos.getSelectedItem().toString().equalsIgnoreCase("Número")) {
+    /*if (comboTipos.getSelectedItem().toString().equalsIgnoreCase("Número")) {
         paneNumero.setVisible(true);
         paneBinario.setVisible(false);
         paneFechaHora.setVisible(false);
@@ -572,6 +574,55 @@ private void comboTiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
                 }
             }
         }
+    }*/
+    /*
+    //Esta linea es para ver el hashCode de las nuevas opciones, no la borren.
+    JOptionPane.showMessageDialog(null, comboTipos.getSelectedItem().toString().hashCode());
+    */
+    //La version nueva que usa case, se ve mejor que if anidado y mas facil para agregar nuevas opciones.
+    switch(comboTipos.getSelectedItem().toString().hashCode()){
+        case -1827665343: //HashCode para Número
+            paneNumero.setVisible(true);
+            paneBinario.setVisible(false);
+            paneFechaHora.setVisible(false);
+            paneTexto.setVisible(false);
+            paneIncremental.setVisible(false);
+        break;
+        case -1541726278: //HashCode para Incremental
+            paneNumero.setVisible(false);
+            paneBinario.setVisible(false);
+            paneFechaHora.setVisible(false);
+            paneTexto.setVisible(false);
+            paneIncremental.setVisible(true);
+            break;
+        case -1299756429: //HashCode para FechaHora
+            paneNumero.setVisible(false);
+            paneBinario.setVisible(false);
+            paneFechaHora.setVisible(true);
+            paneTexto.setVisible(false);
+            paneIncremental.setVisible(false);
+            break;
+        case 80703682: //HashCode para Texto
+            paneNumero.setVisible(false);
+            paneBinario.setVisible(false);
+            paneFechaHora.setVisible(false);
+            paneTexto.setVisible(true);
+            paneIncremental.setVisible(false);
+            break;
+        case 1556351614: //HashCode para Binario
+            paneNumero.setVisible(false);
+            paneBinario.setVisible(true);
+            paneFechaHora.setVisible(false);
+            paneTexto.setVisible(false);
+            paneIncremental.setVisible(false);
+            break;
+        default: //Si se selecciona algo raro o el campito en blanco.
+            paneNumero.setVisible(false);
+            paneBinario.setVisible(false);
+            paneFechaHora.setVisible(false);
+            paneTexto.setVisible(false);
+            paneIncremental.setVisible(false);
+            break;
     }
 }//GEN-LAST:event_comboTiposActionPerformed
 
