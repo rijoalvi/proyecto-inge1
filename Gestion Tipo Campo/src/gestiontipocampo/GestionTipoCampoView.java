@@ -1,7 +1,6 @@
 /*
  * GestionTipoCampoView.java
  */
-
 package gestiontipocampo;
 
 import org.jdesktop.application.Action;
@@ -31,6 +30,7 @@ public class GestionTipoCampoView extends FrameView {
         ResourceMap resourceMap = getResourceMap();
         int messageTimeout = resourceMap.getInteger("StatusBar.messageTimeout");
         messageTimer = new Timer(messageTimeout, new ActionListener() {
+
             public void actionPerformed(ActionEvent e) {
                 statusMessageLabel.setText("");
             }
@@ -41,6 +41,7 @@ public class GestionTipoCampoView extends FrameView {
             busyIcons[i] = resourceMap.getIcon("StatusBar.busyIcons[" + i + "]");
         }
         busyIconTimer = new Timer(busyAnimationRate, new ActionListener() {
+
             public void actionPerformed(ActionEvent e) {
                 busyIconIndex = (busyIconIndex + 1) % busyIcons.length;
                 statusAnimationLabel.setIcon(busyIcons[busyIconIndex]);
@@ -53,6 +54,7 @@ public class GestionTipoCampoView extends FrameView {
         // connecting action tasks to status bar via TaskMonitor
         TaskMonitor taskMonitor = new TaskMonitor(getApplication().getContext());
         taskMonitor.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 String propertyName = evt.getPropertyName();
                 if ("started".equals(propertyName)) {
@@ -69,11 +71,11 @@ public class GestionTipoCampoView extends FrameView {
                     progressBar.setVisible(false);
                     progressBar.setValue(0);
                 } else if ("message".equals(propertyName)) {
-                    String text = (String)(evt.getNewValue());
+                    String text = (String) (evt.getNewValue());
                     statusMessageLabel.setText((text == null) ? "" : text);
                     messageTimer.restart();
                 } else if ("progress".equals(propertyName)) {
-                    int value = (Integer)(evt.getNewValue());
+                    int value = (Integer) (evt.getNewValue());
                     progressBar.setVisible(true);
                     progressBar.setIndeterminate(false);
                     progressBar.setValue(value);
@@ -91,7 +93,7 @@ public class GestionTipoCampoView extends FrameView {
         }
         GestionTipoCampoApp.getApplication().show(aboutBox);
     }
-    
+
     @Action
     public void mostrarVentanaManejoCampos() {
         frameManejoCampos ventanaManejoCampos = new frameManejoCampos("nuevo");
@@ -355,29 +357,29 @@ public class GestionTipoCampoView extends FrameView {
 
     private void botonAbrirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAbrirMouseClicked
         // TODO add your handling code here:
-        ControladorBD miPrueba= new ControladorBD();
-     //   miPrueba.hacerConsulta("select * from Profesional");
+        ControladorBD miPrueba = new ControladorBD();
+        //   miPrueba.hacerConsulta("select * from Profesional");
         System.out.print("prueba de base de datos");
-        try{
-        ResultSet resultado=miPrueba.getResultSet("select * from TIPOCAMPO");
+        try {
+            ResultSet resultado = miPrueba.getResultSet("select * from TIPOCAMPO");
 
-        while (resultado.next()) {
+            while (resultado.next()) {
                 System.out.println(resultado.getString("Nombre") + " : " + resultado.getString("descripcion"));
-         }
-                } catch (SQLException e) {
-            System.out.println("*SQL Exception: *"+ e.toString());
+            }
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception: *" + e.toString());
         }
     }//GEN-LAST:event_botonAbrirMouseClicked
 
     private void mainPanelComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_mainPanelComponentShown
-    frameConexiones ventanaConexiones = new frameConexiones();
-    //  JFrame mainFrame = frameManejoCampos.getApplication().getMainFrame();
-    //coloca el frame segun como este ubicada la ventana principal
-    // ventanaBusqueda.setLocationRelativeTo(mainFrame);
-    ventanaConexiones.setVisible(true);        // TODO add your handling code here:
+        frameConexiones ventanaConexiones = new frameConexiones();
+        //  JFrame mainFrame = frameManejoCampos.getApplication().getMainFrame();
+        //coloca el frame segun como este ubicada la ventana principal
+        // ventanaBusqueda.setLocationRelativeTo(mainFrame);
+        ventanaConexiones.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_mainPanelComponentShown
 
-    public void abrirUnCampo(){
+    public void abrirUnCampo() {
         frameManejoCampos ventanaManejoCampos = new frameManejoCampos("abrir");
         JFrame mainFrame = GestionTipoCampoApp.getApplication().getMainFrame();
         //coloca el frame segun como este ubicada la ventana principal
@@ -410,12 +412,10 @@ public class GestionTipoCampoView extends FrameView {
     private javax.swing.JLabel statusMessageLabel;
     private javax.swing.JPanel statusPanel;
     // End of variables declaration//GEN-END:variables
-
     private final Timer messageTimer;
     private final Timer busyIconTimer;
     private final Icon idleIcon;
     private final Icon[] busyIcons = new Icon[15];
     private int busyIconIndex = 0;
-
     private JDialog aboutBox;
 }

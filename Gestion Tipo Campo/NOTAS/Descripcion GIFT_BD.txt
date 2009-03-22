@@ -1,0 +1,48 @@
+Tablas de la base de datos GIFT_BD
+		
+					
+							Tipo							Nulo?		Llave?
+
+BINARIO
+|-> correlativo 			(int) 							(no nulo)	(FK)
+|-> nombre1					(varchar 20)					(no nulo)
+|-> valor1					(varchar 20)					(no nulo)
+|-> nombre2					(varchar 20)					(no nulo)
+|-> valor2					(varchar 20)					(no nulo)
+|-> valorDefecto			(varchar 20)					(no nulo)
+
+FECHAHORA
+|-> correlativo 			(int)		 					(no nulo)	(FK)
+|-> despliegue				(varchar 8)						(no nulo)	
+|-> fechaDefecto			(timestamp without time zone)	(no nulo)	
+|-> vencimiento				(timestamp without time zone)	(no nulo)	
+|-> preaviso				(timestamp without time zone)	(no nulo)	
+
+INCREMENTAL
+|-> correlativo 			(int) 							(no nulo)	(FK)
+|-> valInicial				(int)							(no nulo)
+|-> incremento				(int)							(no nulo)
+
+NUMERO
+|-> correlativo 			(int) 							(no nulo)	(PK)
+|-> numeroDecimales 		(int)							(no nulo)
+|-> mascara					(varchar 10)					(no nulo)
+|-> valorDefecto			(int)							(no nulo)
+
+TEXTO	
+|-> correlativo 			(int) 							(no nulo)	(FK)
+|-> tamano					(int)							(no nulo)
+|-> textoDefecto			(varchar 20)					(no nulo)
+
+
+
+
+
+
+Clase Padre
+
+TIPOCAMPO	
+|-> correlativo 			(int) 							(no nulo)	(PK)
+|-> nombre      			(varchar 20) 					(no nulo)
+|-> descripcion 			(varchar 150)
+|-> ultimaActualizacion		(timestamp without time zone) 	(no nulo)

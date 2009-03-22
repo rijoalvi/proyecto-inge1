@@ -16,8 +16,16 @@ import java.text.ParseException;
  */
 public class frameManejoCampos extends javax.swing.JFrame {
 
+    //Son los macros que se usan para seleccion del combo box.
+    static final int NUMERO = -1827665343;
+    static final int INCREMENTAL = -1541726278;
+    static final int FECHAHORA = -1299756429;
+    static final int TEXTO = 80703682;
+    static final int BINARIO = 1556351614;
+    ControladorBD conexion = new ControladorBD();
+
     /** Creates new form frameManejoCampos */
-    public frameManejoCampos( ) {
+    public frameManejoCampos() {
         initComponents();
         panePrincipal.setVisible(true);
         paneNumero.setVisible(false);
@@ -38,13 +46,12 @@ public class frameManejoCampos extends javax.swing.JFrame {
         paneIncremental.setVisible(false);
 
         //Se revisa si se debe abrir con algun valor o si es para ingresar valores nuevos
-        if(tipo.equalsIgnoreCase("nuevo")){
+        if (tipo.equalsIgnoreCase("nuevo")) {
             //No se deben mostrar los botones de borrar ni guardar como
             botonBorrar.setVisible(false);
             botonGuardarComo.setVisible(false);
-        }
-        else{
-            if(tipo.equalsIgnoreCase("abrir")){
+        } else {
+            if (tipo.equalsIgnoreCase("abrir")) {
                 //Se deben mostrar los botones de borrar ni guardar como
                 botonBorrar.setVisible(true);
                 botonGuardarComo.setVisible(true);
@@ -67,28 +74,38 @@ public class frameManejoCampos extends javax.swing.JFrame {
         botonBusqueda = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        valorNombre = new javax.swing.JTextField();
+        valorNombreGeneral = new javax.swing.JTextField();
         valorNota = new javax.swing.JTextField();
         panePrincipal = new javax.swing.JLayeredPane();
+        paneBinario = new javax.swing.JLayeredPane();
+        jLabel7 = new javax.swing.JLabel();
+        valorNombreBinario1 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        valorOpcionBinaria1 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        valorNombreBinario2 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        valorOpcionBinaria2 = new javax.swing.JTextField();
+        radioOpcionBinaria1 = new javax.swing.JRadioButton();
+        radioOpcionBinaria2 = new javax.swing.JRadioButton();
+        paneIncremental = new javax.swing.JLayeredPane();
+        jLabel17 = new javax.swing.JLabel();
+        valorValorInicial = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        valorIncremento = new javax.swing.JTextField();
         paneNumero = new javax.swing.JLayeredPane();
         jLabel4 = new javax.swing.JLabel();
         valorNumDecimales = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        valorMascara = new javax.swing.JTextField();
-        valorValorDefecto1 = new javax.swing.JTextField();
+        valorNumeroMascara = new javax.swing.JTextField();
+        valorValorDefectoNumero = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        paneBinario = new javax.swing.JLayeredPane();
-        jLabel7 = new javax.swing.JLabel();
-        valorNombre1 = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        valorNum1 = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        valorNombre2 = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        valorNum2 = new javax.swing.JTextField();
-        radioOpcion1 = new javax.swing.JRadioButton();
-        radioOpcion2 = new javax.swing.JRadioButton();
+        paneTexto = new javax.swing.JLayeredPane();
+        jLabel16 = new javax.swing.JLabel();
+        valorTextoLargo = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        valorTextoDefecto = new javax.swing.JTextField();
         paneFechaHora = new javax.swing.JLayeredPane();
         jLabel6 = new javax.swing.JLabel();
         valorPreaviso = new javax.swing.JTextField();
@@ -99,16 +116,6 @@ public class frameManejoCampos extends javax.swing.JFrame {
         radioFechaHoraSi = new javax.swing.JRadioButton();
         radioFechaHoraNo = new javax.swing.JRadioButton();
         comboFormatoFecha = new javax.swing.JComboBox();
-        paneTexto = new javax.swing.JLayeredPane();
-        jLabel16 = new javax.swing.JLabel();
-        valorLargo = new javax.swing.JTextField();
-        jLabel18 = new javax.swing.JLabel();
-        valorTextoDefecto = new javax.swing.JTextField();
-        paneIncremental = new javax.swing.JLayeredPane();
-        jLabel17 = new javax.swing.JLabel();
-        valorValorInicial = new javax.swing.JTextField();
-        jLabel19 = new javax.swing.JLabel();
-        valorIncremento = new javax.swing.JTextField();
         botonGuardar = new javax.swing.JButton();
         botonGuardarComo = new javax.swing.JButton();
         botonBorrar = new javax.swing.JButton();
@@ -144,12 +151,99 @@ public class frameManejoCampos extends javax.swing.JFrame {
         jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
         jLabel3.setName("jLabel3"); // NOI18N
 
-        valorNombre.setName("valorNombre"); // NOI18N
+        valorNombreGeneral.setName("valorNombreGeneral"); // NOI18N
 
         valorNota.setName("valorNota"); // NOI18N
 
         panePrincipal.setAutoscrolls(true);
         panePrincipal.setName("panePrincipal"); // NOI18N
+
+        paneBinario.setName("paneBinario"); // NOI18N
+
+        jLabel7.setText(resourceMap.getString("jLabel7.text")); // NOI18N
+        jLabel7.setName("jLabel7"); // NOI18N
+        jLabel7.setBounds(10, 10, 100, 14);
+        paneBinario.add(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        valorNombreBinario1.setName("valorNombreBinario1"); // NOI18N
+        valorNombreBinario1.setBounds(10, 30, 80, 20);
+        paneBinario.add(valorNombreBinario1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel8.setText(resourceMap.getString("jLabel8.text")); // NOI18N
+        jLabel8.setName("jLabel8"); // NOI18N
+        jLabel8.setBounds(130, 10, 100, 14);
+        paneBinario.add(jLabel8, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        valorOpcionBinaria1.setName("valorOpcionBinaria1"); // NOI18N
+        valorOpcionBinaria1.setBounds(130, 30, 80, 20);
+        paneBinario.add(valorOpcionBinaria1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel9.setText(resourceMap.getString("jLabel9.text")); // NOI18N
+        jLabel9.setName("jLabel9"); // NOI18N
+        jLabel9.setBounds(240, 10, 100, 14);
+        paneBinario.add(jLabel9, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel10.setText(resourceMap.getString("jLabel10.text")); // NOI18N
+        jLabel10.setName("jLabel10"); // NOI18N
+        jLabel10.setBounds(10, 60, 100, 14);
+        paneBinario.add(jLabel10, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        valorNombreBinario2.setName("valorNombreBinario2"); // NOI18N
+        valorNombreBinario2.setBounds(10, 80, 80, 20);
+        paneBinario.add(valorNombreBinario2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel11.setText(resourceMap.getString("jLabel11.text")); // NOI18N
+        jLabel11.setName("jLabel11"); // NOI18N
+        jLabel11.setBounds(130, 60, 100, 14);
+        paneBinario.add(jLabel11, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        valorOpcionBinaria2.setName("valorOpcionBinaria2"); // NOI18N
+        valorOpcionBinaria2.setBounds(130, 80, 80, 20);
+        paneBinario.add(valorOpcionBinaria2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        radioOpcionBinaria1.setSelected(true);
+        radioOpcionBinaria1.setText(resourceMap.getString("radioOpcionBinaria1.text")); // NOI18N
+        radioOpcionBinaria1.setName("radioOpcionBinaria1"); // NOI18N
+        radioOpcionBinaria1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioOpcionBinaria1ActionPerformed(evt);
+            }
+        });
+        radioOpcionBinaria1.setBounds(240, 30, 67, 23);
+        paneBinario.add(radioOpcionBinaria1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        radioOpcionBinaria2.setText(resourceMap.getString("radioOpcionBinaria2.text")); // NOI18N
+        radioOpcionBinaria2.setName("radioOpcionBinaria2"); // NOI18N
+        radioOpcionBinaria2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioOpcionBinaria2ActionPerformed(evt);
+            }
+        });
+        radioOpcionBinaria2.setBounds(240, 60, 93, 23);
+        paneBinario.add(radioOpcionBinaria2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        paneIncremental.setName("paneIncremental"); // NOI18N
+
+        jLabel17.setText(resourceMap.getString("jLabel17.text")); // NOI18N
+        jLabel17.setName("jLabel17"); // NOI18N
+        jLabel17.setBounds(10, 10, 100, 14);
+        paneIncremental.add(jLabel17, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        valorValorInicial.setName("valorValorInicial"); // NOI18N
+        valorValorInicial.setBounds(10, 30, 80, 20);
+        paneIncremental.add(valorValorInicial, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel19.setText(resourceMap.getString("jLabel19.text")); // NOI18N
+        jLabel19.setName("jLabel19"); // NOI18N
+        jLabel19.setBounds(130, 10, 100, 14);
+        paneIncremental.add(jLabel19, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        valorIncremento.setName("valorIncremento"); // NOI18N
+        valorIncremento.setBounds(130, 30, 80, 20);
+        paneIncremental.add(valorIncremento, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        paneIncremental.setBounds(0, -70, 380, 130);
+        paneBinario.add(paneIncremental, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneNumero.setName("paneNumero"); // NOI18N
 
@@ -167,104 +261,60 @@ public class frameManejoCampos extends javax.swing.JFrame {
         jLabel5.setBounds(130, 10, 50, 14);
         paneNumero.add(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        valorMascara.setName("valorMascara"); // NOI18N
-        valorMascara.setBounds(130, 30, 80, 20);
-        paneNumero.add(valorMascara, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        valorNumeroMascara.setName("valorNumeroMascara"); // NOI18N
+        valorNumeroMascara.setBounds(130, 30, 80, 20);
+        paneNumero.add(valorNumeroMascara, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        valorValorDefecto1.setText(resourceMap.getString("valorValorDefecto1.text")); // NOI18N
-        valorValorDefecto1.setName("valorValorDefecto1"); // NOI18N
-        valorValorDefecto1.setBounds(250, 30, 80, 20);
-        paneNumero.add(valorValorDefecto1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        valorValorDefectoNumero.setText(resourceMap.getString("valorValorDefectoNumero.text")); // NOI18N
+        valorValorDefectoNumero.setName("valorValorDefectoNumero"); // NOI18N
+        valorValorDefectoNumero.setBounds(250, 30, 80, 20);
+        paneNumero.add(valorValorDefectoNumero, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel12.setText(resourceMap.getString("jLabel12.text")); // NOI18N
         jLabel12.setName("jLabel12"); // NOI18N
         jLabel12.setBounds(250, 10, 90, 14);
         paneNumero.add(jLabel12, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        paneBinario.setName("paneBinario"); // NOI18N
+        paneTexto.setName("paneTexto"); // NOI18N
 
-        jLabel7.setText(resourceMap.getString("jLabel7.text")); // NOI18N
-        jLabel7.setName("jLabel7"); // NOI18N
-        jLabel7.setBounds(10, 10, 100, 14);
-        paneBinario.add(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLabel16.setText(resourceMap.getString("jLabel16.text")); // NOI18N
+        jLabel16.setName("jLabel16"); // NOI18N
+        jLabel16.setBounds(10, 10, 100, 14);
+        paneTexto.add(jLabel16, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        valorNombre1.setName("valorNombre1"); // NOI18N
-        valorNombre1.setBounds(10, 30, 80, 20);
-        paneBinario.add(valorNombre1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        valorTextoLargo.setName("valorTextoLargo"); // NOI18N
+        valorTextoLargo.setBounds(10, 30, 80, 20);
+        paneTexto.add(valorTextoLargo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel8.setText(resourceMap.getString("jLabel8.text")); // NOI18N
-        jLabel8.setName("jLabel8"); // NOI18N
-        jLabel8.setBounds(130, 10, 100, 14);
-        paneBinario.add(jLabel8, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLabel18.setText(resourceMap.getString("jLabel18.text")); // NOI18N
+        jLabel18.setName("jLabel18"); // NOI18N
+        jLabel18.setBounds(130, 10, 100, 14);
+        paneTexto.add(jLabel18, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        valorNum1.setName("valorNum1"); // NOI18N
-        valorNum1.setBounds(130, 30, 80, 20);
-        paneBinario.add(valorNum1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        valorTextoDefecto.setName("valorTextoDefecto"); // NOI18N
+        valorTextoDefecto.setBounds(130, 30, 80, 20);
+        paneTexto.add(valorTextoDefecto, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel9.setText(resourceMap.getString("jLabel9.text")); // NOI18N
-        jLabel9.setName("jLabel9"); // NOI18N
-        jLabel9.setBounds(240, 10, 100, 14);
-        paneBinario.add(jLabel9, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        paneTexto.setBounds(0, 0, 380, 130);
+        paneNumero.add(paneTexto, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel10.setText(resourceMap.getString("jLabel10.text")); // NOI18N
-        jLabel10.setName("jLabel10"); // NOI18N
-        jLabel10.setBounds(10, 60, 100, 14);
-        paneBinario.add(jLabel10, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        valorNombre2.setName("valorNombre2"); // NOI18N
-        valorNombre2.setBounds(10, 80, 80, 20);
-        paneBinario.add(valorNombre2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jLabel11.setText(resourceMap.getString("jLabel11.text")); // NOI18N
-        jLabel11.setName("jLabel11"); // NOI18N
-        jLabel11.setBounds(130, 60, 100, 14);
-        paneBinario.add(jLabel11, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        valorNum2.setName("valorNum2"); // NOI18N
-        valorNum2.setBounds(130, 80, 80, 20);
-        paneBinario.add(valorNum2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        radioOpcion1.setSelected(true);
-        radioOpcion1.setText(resourceMap.getString("radioOpcion1.text")); // NOI18N
-        radioOpcion1.setName("radioOpcion1"); // NOI18N
-        radioOpcion1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioOpcion1ActionPerformed(evt);
-            }
-        });
-        radioOpcion1.setBounds(240, 30, 67, 23);
-        paneBinario.add(radioOpcion1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        radioOpcion2.setText(resourceMap.getString("radioOpcion2.text")); // NOI18N
-        radioOpcion2.setName("radioOpcion2"); // NOI18N
-        radioOpcion2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioOpcion2ActionPerformed(evt);
-            }
-        });
-        radioOpcion2.setBounds(240, 60, 93, 23);
-        paneBinario.add(radioOpcion2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        paneBinario.setBounds(20, 10, 370, 130);
-        paneNumero.add(paneBinario, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        paneNumero.setBounds(10, 10, 370, 130);
-        panePrincipal.add(paneNumero, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        paneNumero.setBounds(0, 0, 370, 130);
+        paneBinario.add(paneNumero, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneFechaHora.setName("paneFechaHora"); // NOI18N
 
         jLabel6.setText(resourceMap.getString("jLabel6.text")); // NOI18N
         jLabel6.setName("jLabel6"); // NOI18N
-        jLabel6.setBounds(20, 10, 100, -1);
+        jLabel6.setBounds(20, 10, 100, 14);
         paneFechaHora.add(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorPreaviso.setName("valorPreaviso"); // NOI18N
-        valorPreaviso.setBounds(140, 80, 80, -1);
+        valorPreaviso.setBounds(140, 80, 80, 20);
         paneFechaHora.add(valorPreaviso, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel13.setText(resourceMap.getString("jLabel13.text")); // NOI18N
         jLabel13.setName("jLabel13"); // NOI18N
-        jLabel13.setBounds(140, 10, 100, -1);
+        jLabel13.setBounds(140, 10, 100, 14);
         paneFechaHora.add(jLabel13, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         try {
@@ -274,17 +324,17 @@ public class frameManejoCampos extends javax.swing.JFrame {
         }
         valorFechaDefecto.setText(resourceMap.getString("valorFechaDefecto.text")); // NOI18N
         valorFechaDefecto.setName("valorFechaDefecto"); // NOI18N
-        valorFechaDefecto.setBounds(140, 30, 80, -1);
+        valorFechaDefecto.setBounds(140, 30, 80, 20);
         paneFechaHora.add(valorFechaDefecto, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel14.setText(resourceMap.getString("jLabel14.text")); // NOI18N
         jLabel14.setName("jLabel14"); // NOI18N
-        jLabel14.setBounds(140, 60, 100, -1);
+        jLabel14.setBounds(140, 60, 100, 14);
         paneFechaHora.add(jLabel14, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel15.setText(resourceMap.getString("jLabel15.text")); // NOI18N
         jLabel15.setName("jLabel15"); // NOI18N
-        jLabel15.setBounds(20, 60, 100, -1);
+        jLabel15.setBounds(20, 60, 100, 14);
         paneFechaHora.add(jLabel15, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         radioFechaHoraSi.setSelected(true);
@@ -295,7 +345,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 radioFechaHoraSiActionPerformed(evt);
             }
         });
-        radioFechaHoraSi.setBounds(20, 80, -1, -1);
+        radioFechaHoraSi.setBounds(20, 80, 33, 23);
         paneFechaHora.add(radioFechaHoraSi, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         radioFechaHoraNo.setText(resourceMap.getString("radioFechaHoraNo.text")); // NOI18N
@@ -305,7 +355,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 radioFechaHoraNoActionPerformed(evt);
             }
         });
-        radioFechaHoraNo.setBounds(20, 103, -1, 20);
+        radioFechaHoraNo.setBounds(20, 103, 39, 20);
         paneFechaHora.add(radioFechaHoraNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         comboFormatoFecha.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "dd/mm/aaaa", "mm/dd/aaaa", "aaaa/dd/mm", "aaaa/mm/dd" }));
@@ -315,57 +365,14 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 comboFormatoFechaActionPerformed(evt);
             }
         });
-        comboFormatoFecha.setBounds(20, 30, 90, -1);
+        comboFormatoFecha.setBounds(20, 30, 90, 20);
         paneFechaHora.add(comboFormatoFecha, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        paneFechaHora.setBounds(10, 10, 380, 130);
-        panePrincipal.add(paneFechaHora, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        paneFechaHora.setBounds(0, 0, 380, 130);
+        paneBinario.add(paneFechaHora, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        paneTexto.setName("paneTexto"); // NOI18N
-
-        jLabel16.setText(resourceMap.getString("jLabel16.text")); // NOI18N
-        jLabel16.setName("jLabel16"); // NOI18N
-        jLabel16.setBounds(10, 10, 100, -1);
-        paneTexto.add(jLabel16, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        valorLargo.setName("valorLargo"); // NOI18N
-        valorLargo.setBounds(10, 30, 80, -1);
-        paneTexto.add(valorLargo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jLabel18.setText(resourceMap.getString("jLabel18.text")); // NOI18N
-        jLabel18.setName("jLabel18"); // NOI18N
-        jLabel18.setBounds(130, 10, 100, -1);
-        paneTexto.add(jLabel18, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        valorTextoDefecto.setName("valorTextoDefecto"); // NOI18N
-        valorTextoDefecto.setBounds(130, 30, 80, -1);
-        paneTexto.add(valorTextoDefecto, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        paneTexto.setBounds(10, 10, 380, 130);
-        panePrincipal.add(paneTexto, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        paneIncremental.setName("paneIncremental"); // NOI18N
-
-        jLabel17.setText(resourceMap.getString("jLabel17.text")); // NOI18N
-        jLabel17.setName("jLabel17"); // NOI18N
-        jLabel17.setBounds(10, 10, 100, -1);
-        paneIncremental.add(jLabel17, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        valorValorInicial.setName("valorValorInicial"); // NOI18N
-        valorValorInicial.setBounds(10, 30, 80, -1);
-        paneIncremental.add(valorValorInicial, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jLabel19.setText(resourceMap.getString("jLabel19.text")); // NOI18N
-        jLabel19.setName("jLabel19"); // NOI18N
-        jLabel19.setBounds(130, 10, 100, -1);
-        paneIncremental.add(jLabel19, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        valorIncremento.setName("valorIncremento"); // NOI18N
-        valorIncremento.setBounds(130, 30, 80, -1);
-        paneIncremental.add(valorIncremento, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        paneIncremental.setBounds(10, 10, 380, 130);
-        panePrincipal.add(paneIncremental, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        paneBinario.setBounds(0, 0, 370, 130);
+        panePrincipal.add(paneBinario, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         botonGuardar.setText(resourceMap.getString("botonGuardar.text")); // NOI18N
         botonGuardar.setName("botonGuardar"); // NOI18N
@@ -427,7 +434,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(layout.createSequentialGroup()
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(valorNombre, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 82, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(valorNombreGeneral, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 82, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                     .add(jLabel2))
                                 .add(63, 63, 63)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -466,7 +473,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                     .add(layout.createSequentialGroup()
                         .add(jLabel2)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(valorNombre, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(valorNombreGeneral, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(layout.createSequentialGroup()
                         .add(jLabel3)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -485,6 +492,13 @@ public class frameManejoCampos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Muestra una ventana que dice que para realizar esta operacion tiene que llenar todos los campos.
+     */
+    private void alertaCamposSinLlenar() {
+        JOptionPane.showMessageDialog(this, "Hay Campos sin llenar", "Warning", ERROR);
+    }
+
 private void botonBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBusquedaActionPerformed
     frameBusqueda ventanaBusqueda = new frameBusqueda();
     //  JFrame mainFrame = frameManejoCampos.getApplication().getMainFrame();
@@ -494,35 +508,65 @@ private void botonBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN
 }//GEN-LAST:event_botonBusquedaActionPerformed
 
 private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
-String[] opciones = {"Si", "No"};
-        int respuesta = JOptionPane.showOptionDialog(null, "¿Seguro que desea guardar este campo?", "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opciones, "No");
+    String[] opciones = {"Si", "No"};
+    int respuesta = JOptionPane.showOptionDialog(null, "¿Seguro que desea guardar este campo?", "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opciones, "No");
 
-        switch (respuesta) {
-            case 0:
-                /*Si quiere modificar el campo*/
+    switch (respuesta) {
+        case 0:
+            /*Si quiere modificar el campo*/
+            botonGuardarActionAccepted();
+            break;
+        case 1:
+            /*No quiere modificar el campo*/
+            break;
+    }
+}//GEN-LAST:event_botonGuardarActionPerformed
+
+    /**
+     * Esta clase determina sobre cual frame se realiza la accion de guardar y
+     * hace lo necesario para guardar los cambios en la base de datos.
+     */
+    private void botonGuardarActionAccepted() {
+        switch (comboTipos.getSelectedItem().toString().hashCode()) {
+            case NUMERO: //HashCode para Número
+                //if(this.valorNombre)
                 break;
-            case 1:
-                /*No quiere modificar el campo*/
+            case INCREMENTAL: //HashCode para Incremental
+
+                break;
+            case FECHAHORA: //HashCode para FechaHora
+
+                break;
+            case TEXTO: //HashCode para Texto
+
+                break;
+            case BINARIO: //HashCode para Binario
+
+                break;
+            default: //Si se selecciona algo raro o el campito en blanco.
+
                 break;
         }
-}//GEN-LAST:event_botonGuardarActionPerformed
+    }
 
 private void botonGuardarComoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarComoActionPerformed
 // TODO add your handling code here:
 }//GEN-LAST:event_botonGuardarComoActionPerformed
 
 private void botonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarActionPerformed
-String[] opciones = {"Si", "No"};
-        int respuesta = JOptionPane.showOptionDialog(null, "¿Realmente desea borrar este campo?", "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opciones, "No");
+    String[] opciones = {"Si", "No"};
+    int respuesta = JOptionPane.showOptionDialog(null, "¿Realmente desea borrar este campo?", "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opciones, "No");
 
-        switch (respuesta) {
-            case 0:
-                /*Si quiere borrar el campo*/
-                break;
-            case 1:
-                /*No quiere borrar el campo*/
-                break;
-        }
+    switch (respuesta) {
+        case 0:
+            /*Si quiere borrar el campo*/
+            break;
+        case 1:
+            /*No quiere borrar el campo*/
+            break;
+        default:
+            break;
+    }
 }//GEN-LAST:event_botonBorrarActionPerformed
 
 private void botonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarActionPerformed
@@ -532,86 +576,41 @@ private void botonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
 }//GEN-LAST:event_botonCerrarActionPerformed
 
 private void comboTiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTiposActionPerformed
-    //La version vieja de if else, por ahora se queda por si acaso
-    //Se escogio la opcion de numero
-    /*if (comboTipos.getSelectedItem().toString().equalsIgnoreCase("Número")) {
-        paneNumero.setVisible(true);
-        paneBinario.setVisible(false);
-        paneFechaHora.setVisible(false);
-        paneTexto.setVisible(false);
-        paneIncremental.setVisible(false);
-    } else {
-        //Se escogio la opcion de binario
-        if (comboTipos.getSelectedItem().toString().equalsIgnoreCase("Binario")) {
-            paneNumero.setVisible(false);
-            paneBinario.setVisible(true);
-            paneFechaHora.setVisible(false);
-            paneTexto.setVisible(false);
-            paneIncremental.setVisible(false);
-        } else {
-            //Se escogio la opcion de fechaHora
-            if (comboTipos.getSelectedItem().toString().equalsIgnoreCase("FechaHora")) {
-                paneNumero.setVisible(false);
-                paneBinario.setVisible(false);
-                paneFechaHora.setVisible(true);
-                paneTexto.setVisible(false);
-                paneIncremental.setVisible(false);
-            } else {
-                //Se escogio la opcion de texto
-                if (comboTipos.getSelectedItem().toString().equalsIgnoreCase("Texto")) {
-                    paneNumero.setVisible(false);
-                    paneBinario.setVisible(false);
-                    paneFechaHora.setVisible(false);
-                    paneTexto.setVisible(true);
-                    paneIncremental.setVisible(false);
-                } else {
-                    //Se escogio la opcion de incremental
-                    if (comboTipos.getSelectedItem().toString().equalsIgnoreCase("Incremental")) {
-                        paneNumero.setVisible(false);
-                        paneBinario.setVisible(false);
-                        paneFechaHora.setVisible(false);
-                        paneTexto.setVisible(false);
-                        paneIncremental.setVisible(true);
-                    }
-                }
-            }
-        }
-    }*/
     /*
     //Esta linea es para ver el hashCode de las nuevas opciones, no la borren.
     JOptionPane.showMessageDialog(null, comboTipos.getSelectedItem().toString().hashCode());
-    */
+     */
     //La version nueva que usa case, se ve mejor que if anidado y mas facil para agregar nuevas opciones.
-    switch(comboTipos.getSelectedItem().toString().hashCode()){
-        case -1827665343: //HashCode para Número
+    switch (comboTipos.getSelectedItem().toString().hashCode()) {
+        case NUMERO: //HashCode para Número
             paneNumero.setVisible(true);
             paneBinario.setVisible(false);
             paneFechaHora.setVisible(false);
             paneTexto.setVisible(false);
             paneIncremental.setVisible(false);
-        break;
-        case -1541726278: //HashCode para Incremental
+            break;
+        case INCREMENTAL: //HashCode para Incremental
             paneNumero.setVisible(false);
             paneBinario.setVisible(false);
             paneFechaHora.setVisible(false);
             paneTexto.setVisible(false);
             paneIncremental.setVisible(true);
             break;
-        case -1299756429: //HashCode para FechaHora
+        case FECHAHORA: //HashCode para FechaHora
             paneNumero.setVisible(false);
             paneBinario.setVisible(false);
             paneFechaHora.setVisible(true);
             paneTexto.setVisible(false);
             paneIncremental.setVisible(false);
             break;
-        case 80703682: //HashCode para Texto
+        case TEXTO: //HashCode para Texto
             paneNumero.setVisible(false);
             paneBinario.setVisible(false);
             paneFechaHora.setVisible(false);
             paneTexto.setVisible(true);
             paneIncremental.setVisible(false);
             break;
-        case 1556351614: //HashCode para Binario
+        case BINARIO: //HashCode para Binario
             paneNumero.setVisible(false);
             paneBinario.setVisible(true);
             paneFechaHora.setVisible(false);
@@ -629,17 +628,19 @@ private void comboTiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 }//GEN-LAST:event_comboTiposActionPerformed
 
 private void radioFechaHoraSiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioFechaHoraSiActionPerformed
-    if( radioFechaHoraSi.isSelected() )
+    if (radioFechaHoraSi.isSelected()) {
         radioFechaHoraNo.setSelected(false);
-    else
+    } else {
         radioFechaHoraSi.setSelected(true);
+    }
 }//GEN-LAST:event_radioFechaHoraSiActionPerformed
 
 private void radioFechaHoraNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioFechaHoraNoActionPerformed
-    if( radioFechaHoraNo.isSelected() )
+    if (radioFechaHoraNo.isSelected()) {
         radioFechaHoraSi.setSelected(false);
-    else
+    } else {
         radioFechaHoraNo.setSelected(true);
+    }
 }//GEN-LAST:event_radioFechaHoraNoActionPerformed
 
 private void comboFormatoFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboFormatoFechaActionPerformed
@@ -647,18 +648,15 @@ private void comboFormatoFechaActionPerformed(java.awt.event.ActionEvent evt) {/
     if (comboFormatoFecha.getSelectedItem().toString().equalsIgnoreCase("dd/mm/aaaa")) {
         //cambia formato del campo fecha
         formatoFecha("##/##/####", "31012009");
-    }
-    else {
+    } else {
         if (comboFormatoFecha.getSelectedItem().toString().equalsIgnoreCase("mm/dd/aaaa")) {
             //cambia formato del campo fecha
             formatoFecha("##/##/####", "01312009");
-        }
-        else {
+        } else {
             if (comboFormatoFecha.getSelectedItem().toString().equalsIgnoreCase("aaaa/dd/mm")) {
                 //cambia formato del campo fecha
                 formatoFecha("####/##/##", "20093101");
-            }
-            else {
+            } else {
                 if (comboFormatoFecha.getSelectedItem().toString().equalsIgnoreCase("aaaa/mm/dd")) {
                     //cambia formato del campo fecha
                     formatoFecha("####/##/##", "20090131");
@@ -668,37 +666,39 @@ private void comboFormatoFechaActionPerformed(java.awt.event.ActionEvent evt) {/
     }
 }//GEN-LAST:event_comboFormatoFechaActionPerformed
 
-private void radioOpcion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioOpcion1ActionPerformed
-    if( radioOpcion1.isSelected() )
-        radioOpcion2.setSelected(false);
-    else
-        radioOpcion1.setSelected(true);
-}//GEN-LAST:event_radioOpcion1ActionPerformed
-
-private void radioOpcion2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioOpcion2ActionPerformed
-    if( radioOpcion2.isSelected() )
-        radioOpcion1.setSelected(false);
-    else
-        radioOpcion2.setSelected(true);
-}//GEN-LAST:event_radioOpcion2ActionPerformed
-
-/**
- * Cambia la mascara del valorFechaDefecto
- * @param formato String que indica el formato de la máscara. I.E. ##/##/####
- */
-public void formatoFecha(String formato, String valorDefecto){
-    MaskFormatter mascara;
-   try{
-        valorFechaDefecto.setValue(""); // if the value is on then formatting won't occur, haven't figured it why but it might have something to do with below commented method call.
-        mascara = new MaskFormatter(formato); // forma de la máscara
-        mascara.setPlaceholderCharacter('_'); // use this to show __/__/____instead of empty.
-        DefaultFormatterFactory factory = new DefaultFormatterFactory(mascara);  // here is the change, you transform the formatter to a factory.
-        valorFechaDefecto.setFormatterFactory(factory); // and reset the text field with that!
-        valorFechaDefecto.setText(valorDefecto);
-   } catch (ParseException pe) {
-        pe.printStackTrace();
+private void radioOpcionBinaria1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioOpcionBinaria1ActionPerformed
+    if (radioOpcionBinaria1.isSelected()) {
+        radioOpcionBinaria2.setSelected(false);
+    } else {
+        radioOpcionBinaria1.setSelected(true);
     }
-}   
+}//GEN-LAST:event_radioOpcionBinaria1ActionPerformed
+
+private void radioOpcionBinaria2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioOpcionBinaria2ActionPerformed
+    if (radioOpcionBinaria2.isSelected()) {
+        radioOpcionBinaria1.setSelected(false);
+    } else {
+        radioOpcionBinaria2.setSelected(true);
+    }
+}//GEN-LAST:event_radioOpcionBinaria2ActionPerformed
+
+    /**
+     * Cambia la mascara del valorFechaDefecto
+     * @param formato String que indica el formato de la máscara. I.E. ##/##/####
+     */
+    public void formatoFecha(String formato, String valorDefecto) {
+        MaskFormatter mascara;
+        try {
+            valorFechaDefecto.setValue(""); // if the value is on then formatting won't occur, haven't figured it why but it might have something to do with below commented method call.
+            mascara = new MaskFormatter(formato); // forma de la máscara
+            mascara.setPlaceholderCharacter('_'); // use this to show __/__/____instead of empty.
+            DefaultFormatterFactory factory = new DefaultFormatterFactory(mascara);  // here is the change, you transform the formatter to a factory.
+            valorFechaDefecto.setFormatterFactory(factory); // and reset the text field with that!
+            valorFechaDefecto.setText(valorDefecto);
+        } catch (ParseException pe) {
+            pe.printStackTrace();
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -751,23 +751,23 @@ public void formatoFecha(String formato, String valorDefecto){
     private javax.swing.JLayeredPane paneTexto;
     private javax.swing.JRadioButton radioFechaHoraNo;
     private javax.swing.JRadioButton radioFechaHoraSi;
-    private javax.swing.JRadioButton radioOpcion1;
-    private javax.swing.JRadioButton radioOpcion2;
+    private javax.swing.JRadioButton radioOpcionBinaria1;
+    private javax.swing.JRadioButton radioOpcionBinaria2;
     private javax.swing.JTextField valorBusqueda;
     private javax.swing.JFormattedTextField valorFechaDefecto;
     private javax.swing.JTextField valorIncremento;
-    private javax.swing.JTextField valorLargo;
-    private javax.swing.JTextField valorMascara;
-    private javax.swing.JTextField valorNombre;
-    private javax.swing.JTextField valorNombre1;
-    private javax.swing.JTextField valorNombre2;
+    private javax.swing.JTextField valorNombreBinario1;
+    private javax.swing.JTextField valorNombreBinario2;
+    private javax.swing.JTextField valorNombreGeneral;
     private javax.swing.JTextField valorNota;
-    private javax.swing.JTextField valorNum1;
-    private javax.swing.JTextField valorNum2;
     private javax.swing.JTextField valorNumDecimales;
+    private javax.swing.JTextField valorNumeroMascara;
+    private javax.swing.JTextField valorOpcionBinaria1;
+    private javax.swing.JTextField valorOpcionBinaria2;
     private javax.swing.JTextField valorPreaviso;
     private javax.swing.JTextField valorTextoDefecto;
-    private javax.swing.JTextField valorValorDefecto1;
+    private javax.swing.JTextField valorTextoLargo;
+    private javax.swing.JTextField valorValorDefectoNumero;
     private javax.swing.JTextField valorValorInicial;
     // End of variables declaration//GEN-END:variables
 }
