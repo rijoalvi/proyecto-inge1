@@ -26,7 +26,7 @@ public class GestionTipoCampoView extends FrameView {
         super(app);
 
         initComponents();
-        ControladorBD.connectionUrl = "jdbc:mysql://lucachaco.bluechiphosting.com/lucachac_db?user=lucachac_user&password=todosepuede";
+        ControladorBD.connectionUrl = "jdbc:mysql://grupoingegift5.bluechiphosting.com/grupoin2_GiftBD?user=grupoin2_user&password=Qwerty123";
         // status bar initialization - message timeout, idle icon and busy animation, etc
         ResourceMap resourceMap = getResourceMap();
         int messageTimeout = resourceMap.getInteger("StatusBar.messageTimeout");
@@ -359,10 +359,10 @@ public class GestionTipoCampoView extends FrameView {
      //   miPrueba.hacerConsulta("select * from Profesional");
         System.out.print("prueba de base de datos");
         try{
-        ResultSet resultado=miPrueba.getResultSet("select * from Profesional");
+        ResultSet resultado=miPrueba.getResultSet("select * from TIPOCAMPO");
 
         while (resultado.next()) {
-                System.out.println(resultado.getString("Nombre") + " : " + resultado.getString("Apellido1"));
+                System.out.println(resultado.getString("Nombre") + " : " + resultado.getString("descripcion"));
          }
                 } catch (SQLException e) {
             System.out.println("*SQL Exception: *"+ e.toString());
