@@ -15,6 +15,7 @@ import javax.swing.Timer;
 import javax.swing.Icon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import java.sql.*;
 
 /**
  * The application's main frame.
@@ -25,7 +26,7 @@ public class GestionTipoCampoView extends FrameView {
         super(app);
 
         initComponents();
-
+        ControladorBD.connectionUrl = "jdbc:mysql://lucachaco.bluechiphosting.com/lucachac_db?user=lucachac_user&password=todosepuede";
         // status bar initialization - message timeout, idle icon and busy animation, etc
         ResourceMap resourceMap = getResourceMap();
         int messageTimeout = resourceMap.getInteger("StatusBar.messageTimeout");
@@ -139,6 +140,11 @@ public class GestionTipoCampoView extends FrameView {
         progressBar = new javax.swing.JProgressBar();
 
         mainPanel.setName("mainPanel"); // NOI18N
+        mainPanel.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                mainPanelComponentShown(evt);
+            }
+        });
 
         canvas1.setName("canvas1"); // NOI18N
 
@@ -158,6 +164,11 @@ public class GestionTipoCampoView extends FrameView {
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(GestionTipoCampoView.class);
         botonAbrir.setText(resourceMap.getString("botonAbrir.text")); // NOI18N
         botonAbrir.setName("botonAbrir"); // NOI18N
+        botonAbrir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonAbrirMouseClicked(evt);
+            }
+        });
         botonAbrir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonAbrirActionPerformed(evt);
@@ -172,7 +183,7 @@ public class GestionTipoCampoView extends FrameView {
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(botonAbrir)
                     .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 174, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(209, Short.MAX_VALUE))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -195,8 +206,8 @@ public class GestionTipoCampoView extends FrameView {
                             .add(mainPanelLayout.createSequentialGroup()
                                 .add(canvas1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 132, Short.MAX_VALUE)
                                 .add(canvas3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                             .add(org.jdesktop.layout.GroupLayout.TRAILING, canvas2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                     .add(mainPanelLayout.createSequentialGroup()
@@ -215,10 +226,10 @@ public class GestionTipoCampoView extends FrameView {
                                 .add(105, 105, 105)
                                 .add(canvas3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                             .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 364, Short.MAX_VALUE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 345, Short.MAX_VALUE)
                         .add(canvas4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(canvas2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(canvas1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 603, Short.MAX_VALUE))
+                    .add(canvas1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -309,7 +320,7 @@ public class GestionTipoCampoView extends FrameView {
             .add(statusPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .add(statusMessageLabel)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 299, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 253, Short.MAX_VALUE)
                 .add(progressBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(statusAnimationLabel)
@@ -338,7 +349,33 @@ public class GestionTipoCampoView extends FrameView {
 
     private void botonAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAbrirActionPerformed
         abrirUnCampo();
+
+
 }//GEN-LAST:event_botonAbrirActionPerformed
+
+    private void botonAbrirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAbrirMouseClicked
+        // TODO add your handling code here:
+        ControladorBD miPrueba= new ControladorBD();
+     //   miPrueba.hacerConsulta("select * from Profesional");
+        System.out.print("prueba de base de datos");
+        try{
+        ResultSet resultado=miPrueba.getResultSet("select * from Profesional");
+
+        while (resultado.next()) {
+                System.out.println(resultado.getString("Nombre") + " : " + resultado.getString("Apellido1"));
+         }
+                } catch (SQLException e) {
+            System.out.println("*SQL Exception: *"+ e.toString());
+        }
+    }//GEN-LAST:event_botonAbrirMouseClicked
+
+    private void mainPanelComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_mainPanelComponentShown
+    frameConexiones ventanaConexiones = new frameConexiones();
+    //  JFrame mainFrame = frameManejoCampos.getApplication().getMainFrame();
+    //coloca el frame segun como este ubicada la ventana principal
+    // ventanaBusqueda.setLocationRelativeTo(mainFrame);
+    ventanaConexiones.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_mainPanelComponentShown
 
     public void abrirUnCampo(){
         frameManejoCampos ventanaManejoCampos = new frameManejoCampos("abrir");
