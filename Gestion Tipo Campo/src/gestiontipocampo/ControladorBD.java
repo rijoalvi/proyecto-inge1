@@ -12,7 +12,7 @@ import java.sql.*;
  */
 public class ControladorBD {
 
-    protected static String connectionUrl;// = "jdbc:mysql://lucachaco.bluechiphosting.com/lucachac_db?user=lucachac_user&password=todosepuede";
+    protected static String connectionUrl;
     private Connection conexion;
     private ResultSet resultado = null;
 
