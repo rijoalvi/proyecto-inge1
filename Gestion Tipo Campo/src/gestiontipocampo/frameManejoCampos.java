@@ -77,6 +77,18 @@ public class frameManejoCampos extends javax.swing.JFrame {
         valorNombreGeneral = new javax.swing.JTextField();
         valorNota = new javax.swing.JTextField();
         panePrincipal = new javax.swing.JLayeredPane();
+        paneTexto = new javax.swing.JLayeredPane();
+        jLabel16 = new javax.swing.JLabel();
+        valorTextoLargo = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        valorTextoDefecto = new javax.swing.JTextField();
+        paneNumero = new javax.swing.JLayeredPane();
+        jLabel4 = new javax.swing.JLabel();
+        valorNumDecimales = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        valorNumeroMascara = new javax.swing.JTextField();
+        valorValorDefectoNumero = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
         paneBinario = new javax.swing.JLayeredPane();
         jLabel7 = new javax.swing.JLabel();
         valorNombreBinario1 = new javax.swing.JTextField();
@@ -94,18 +106,6 @@ public class frameManejoCampos extends javax.swing.JFrame {
         valorValorInicial = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         valorIncremento = new javax.swing.JTextField();
-        paneNumero = new javax.swing.JLayeredPane();
-        jLabel4 = new javax.swing.JLabel();
-        valorNumDecimales = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        valorNumeroMascara = new javax.swing.JTextField();
-        valorValorDefectoNumero = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        paneTexto = new javax.swing.JLayeredPane();
-        jLabel16 = new javax.swing.JLabel();
-        valorTextoLargo = new javax.swing.JTextField();
-        jLabel18 = new javax.swing.JLabel();
-        valorTextoDefecto = new javax.swing.JTextField();
         paneFechaHora = new javax.swing.JLayeredPane();
         jLabel6 = new javax.swing.JLabel();
         valorPreaviso = new javax.swing.JTextField();
@@ -126,6 +126,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
         botonBorrar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(200, 200));
         setName("Form"); // NOI18N
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameManejoCampos.class);
@@ -158,92 +159,28 @@ public class frameManejoCampos extends javax.swing.JFrame {
         panePrincipal.setAutoscrolls(true);
         panePrincipal.setName("panePrincipal"); // NOI18N
 
-        paneBinario.setName("paneBinario"); // NOI18N
+        paneTexto.setName("paneTexto"); // NOI18N
 
-        jLabel7.setText(resourceMap.getString("jLabel7.text")); // NOI18N
-        jLabel7.setName("jLabel7"); // NOI18N
-        jLabel7.setBounds(10, 10, 100, 14);
-        paneBinario.add(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLabel16.setText(resourceMap.getString("jLabel16.text")); // NOI18N
+        jLabel16.setName("jLabel16"); // NOI18N
+        jLabel16.setBounds(10, 10, 100, 20);
+        paneTexto.add(jLabel16, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        valorNombreBinario1.setName("valorNombreBinario1"); // NOI18N
-        valorNombreBinario1.setBounds(10, 30, 80, 20);
-        paneBinario.add(valorNombreBinario1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        valorTextoLargo.setName("valorTextoLargo"); // NOI18N
+        valorTextoLargo.setBounds(10, 30, 100, 20);
+        paneTexto.add(valorTextoLargo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel8.setText(resourceMap.getString("jLabel8.text")); // NOI18N
-        jLabel8.setName("jLabel8"); // NOI18N
-        jLabel8.setBounds(130, 10, 100, 14);
-        paneBinario.add(jLabel8, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLabel18.setText(resourceMap.getString("jLabel18.text")); // NOI18N
+        jLabel18.setName("jLabel18"); // NOI18N
+        jLabel18.setBounds(130, 10, 100, 20);
+        paneTexto.add(jLabel18, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        valorOpcionBinaria1.setName("valorOpcionBinaria1"); // NOI18N
-        valorOpcionBinaria1.setBounds(130, 30, 80, 20);
-        paneBinario.add(valorOpcionBinaria1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        valorTextoDefecto.setName("valorTextoDefecto"); // NOI18N
+        valorTextoDefecto.setBounds(130, 30, 100, 20);
+        paneTexto.add(valorTextoDefecto, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel9.setText(resourceMap.getString("jLabel9.text")); // NOI18N
-        jLabel9.setName("jLabel9"); // NOI18N
-        jLabel9.setBounds(240, 10, 100, 14);
-        paneBinario.add(jLabel9, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jLabel10.setText(resourceMap.getString("jLabel10.text")); // NOI18N
-        jLabel10.setName("jLabel10"); // NOI18N
-        jLabel10.setBounds(10, 60, 100, 14);
-        paneBinario.add(jLabel10, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        valorNombreBinario2.setName("valorNombreBinario2"); // NOI18N
-        valorNombreBinario2.setBounds(10, 80, 80, 20);
-        paneBinario.add(valorNombreBinario2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jLabel11.setText(resourceMap.getString("jLabel11.text")); // NOI18N
-        jLabel11.setName("jLabel11"); // NOI18N
-        jLabel11.setBounds(130, 60, 100, 14);
-        paneBinario.add(jLabel11, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        valorOpcionBinaria2.setName("valorOpcionBinaria2"); // NOI18N
-        valorOpcionBinaria2.setBounds(130, 80, 80, 20);
-        paneBinario.add(valorOpcionBinaria2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        radioOpcionBinaria1.setSelected(true);
-        radioOpcionBinaria1.setText(resourceMap.getString("radioOpcionBinaria1.text")); // NOI18N
-        radioOpcionBinaria1.setName("radioOpcionBinaria1"); // NOI18N
-        radioOpcionBinaria1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioOpcionBinaria1ActionPerformed(evt);
-            }
-        });
-        radioOpcionBinaria1.setBounds(240, 30, 67, 23);
-        paneBinario.add(radioOpcionBinaria1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        radioOpcionBinaria2.setText(resourceMap.getString("radioOpcionBinaria2.text")); // NOI18N
-        radioOpcionBinaria2.setName("radioOpcionBinaria2"); // NOI18N
-        radioOpcionBinaria2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioOpcionBinaria2ActionPerformed(evt);
-            }
-        });
-        radioOpcionBinaria2.setBounds(240, 60, 93, 23);
-        paneBinario.add(radioOpcionBinaria2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        paneIncremental.setName("paneIncremental"); // NOI18N
-
-        jLabel17.setText(resourceMap.getString("jLabel17.text")); // NOI18N
-        jLabel17.setName("jLabel17"); // NOI18N
-        jLabel17.setBounds(10, 10, 100, 14);
-        paneIncremental.add(jLabel17, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        valorValorInicial.setName("valorValorInicial"); // NOI18N
-        valorValorInicial.setBounds(10, 30, 80, 20);
-        paneIncremental.add(valorValorInicial, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jLabel19.setText(resourceMap.getString("jLabel19.text")); // NOI18N
-        jLabel19.setName("jLabel19"); // NOI18N
-        jLabel19.setBounds(130, 10, 100, 14);
-        paneIncremental.add(jLabel19, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        valorIncremento.setName("valorIncremento"); // NOI18N
-        valorIncremento.setBounds(130, 30, 80, 20);
-        paneIncremental.add(valorIncremento, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        paneIncremental.setBounds(0, -70, 380, 130);
-        paneBinario.add(paneIncremental, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        paneTexto.setBounds(10, 0, 370, 130);
+        panePrincipal.add(paneTexto, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneNumero.setName("paneNumero"); // NOI18N
 
@@ -275,31 +212,98 @@ public class frameManejoCampos extends javax.swing.JFrame {
         jLabel12.setBounds(250, 10, 90, 14);
         paneNumero.add(jLabel12, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        paneTexto.setName("paneTexto"); // NOI18N
+        paneNumero.setBounds(20, 0, 400, 160);
+        panePrincipal.add(paneNumero, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel16.setText(resourceMap.getString("jLabel16.text")); // NOI18N
-        jLabel16.setName("jLabel16"); // NOI18N
-        jLabel16.setBounds(10, 10, 100, 14);
-        paneTexto.add(jLabel16, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        paneBinario.setName("paneBinario"); // NOI18N
 
-        valorTextoLargo.setName("valorTextoLargo"); // NOI18N
-        valorTextoLargo.setBounds(10, 30, 80, 20);
-        paneTexto.add(valorTextoLargo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLabel7.setText(resourceMap.getString("jLabel7.text")); // NOI18N
+        jLabel7.setName("jLabel7"); // NOI18N
+        jLabel7.setBounds(10, 4, 100, 20);
+        paneBinario.add(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel18.setText(resourceMap.getString("jLabel18.text")); // NOI18N
-        jLabel18.setName("jLabel18"); // NOI18N
-        jLabel18.setBounds(130, 10, 100, 14);
-        paneTexto.add(jLabel18, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        valorNombreBinario1.setName("valorNombreBinario1"); // NOI18N
+        valorNombreBinario1.setBounds(10, 30, 100, 20);
+        paneBinario.add(valorNombreBinario1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        valorTextoDefecto.setName("valorTextoDefecto"); // NOI18N
-        valorTextoDefecto.setBounds(130, 30, 80, 20);
-        paneTexto.add(valorTextoDefecto, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLabel8.setText(resourceMap.getString("jLabel8.text")); // NOI18N
+        jLabel8.setName("jLabel8"); // NOI18N
+        jLabel8.setBounds(130, 4, 100, 20);
+        paneBinario.add(jLabel8, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        paneTexto.setBounds(0, 0, 380, 130);
-        paneNumero.add(paneTexto, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        valorOpcionBinaria1.setName("valorOpcionBinaria1"); // NOI18N
+        valorOpcionBinaria1.setBounds(130, 30, 100, 20);
+        paneBinario.add(valorOpcionBinaria1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        paneNumero.setBounds(0, 0, 370, 130);
-        paneBinario.add(paneNumero, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLabel9.setText(resourceMap.getString("jLabel9.text")); // NOI18N
+        jLabel9.setName("jLabel9"); // NOI18N
+        jLabel9.setBounds(260, 10, 100, 20);
+        paneBinario.add(jLabel9, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel10.setText(resourceMap.getString("jLabel10.text")); // NOI18N
+        jLabel10.setName("jLabel10"); // NOI18N
+        jLabel10.setBounds(10, 60, 100, 20);
+        paneBinario.add(jLabel10, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        valorNombreBinario2.setName("valorNombreBinario2"); // NOI18N
+        valorNombreBinario2.setBounds(10, 80, 100, 20);
+        paneBinario.add(valorNombreBinario2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel11.setText(resourceMap.getString("jLabel11.text")); // NOI18N
+        jLabel11.setName("jLabel11"); // NOI18N
+        jLabel11.setBounds(130, 60, 100, 20);
+        paneBinario.add(jLabel11, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        valorOpcionBinaria2.setName("valorOpcionBinaria2"); // NOI18N
+        valorOpcionBinaria2.setBounds(130, 80, 100, 20);
+        paneBinario.add(valorOpcionBinaria2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        radioOpcionBinaria1.setSelected(true);
+        radioOpcionBinaria1.setText(resourceMap.getString("radioOpcionBinaria1.text")); // NOI18N
+        radioOpcionBinaria1.setName("radioOpcionBinaria1"); // NOI18N
+        radioOpcionBinaria1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioOpcionBinaria1ActionPerformed(evt);
+            }
+        });
+        radioOpcionBinaria1.setBounds(260, 30, 100, 20);
+        paneBinario.add(radioOpcionBinaria1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        radioOpcionBinaria2.setText(resourceMap.getString("radioOpcionBinaria2.text")); // NOI18N
+        radioOpcionBinaria2.setName("radioOpcionBinaria2"); // NOI18N
+        radioOpcionBinaria2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioOpcionBinaria2ActionPerformed(evt);
+            }
+        });
+        radioOpcionBinaria2.setBounds(260, 60, 100, 20);
+        paneBinario.add(radioOpcionBinaria2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        paneBinario.setBounds(10, 0, 410, 160);
+        panePrincipal.add(paneBinario, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        paneIncremental.setName("paneIncremental"); // NOI18N
+
+        jLabel17.setText(resourceMap.getString("jLabel17.text")); // NOI18N
+        jLabel17.setName("jLabel17"); // NOI18N
+        jLabel17.setBounds(10, 10, 100, 20);
+        paneIncremental.add(jLabel17, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        valorValorInicial.setName("valorValorInicial"); // NOI18N
+        valorValorInicial.setBounds(10, 30, 100, 20);
+        paneIncremental.add(valorValorInicial, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel19.setText(resourceMap.getString("jLabel19.text")); // NOI18N
+        jLabel19.setName("jLabel19"); // NOI18N
+        jLabel19.setBounds(130, 10, 100, 20);
+        paneIncremental.add(jLabel19, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        valorIncremento.setName("valorIncremento"); // NOI18N
+        valorIncremento.setBounds(130, 30, 100, 20);
+        paneIncremental.add(valorIncremento, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        paneIncremental.setBounds(10, 0, 370, 130);
+        panePrincipal.add(paneIncremental, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneFechaHora.setName("paneFechaHora"); // NOI18N
 
@@ -355,7 +359,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 radioFechaHoraNoActionPerformed(evt);
             }
         });
-        radioFechaHoraNo.setBounds(20, 103, 39, 20);
+        radioFechaHoraNo.setBounds(20, 100, 39, 20);
         paneFechaHora.add(radioFechaHoraNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         comboFormatoFecha.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "dd/mm/aaaa", "mm/dd/aaaa", "aaaa/dd/mm", "aaaa/mm/dd" }));
@@ -369,10 +373,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
         paneFechaHora.add(comboFormatoFecha, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneFechaHora.setBounds(0, 0, 380, 130);
-        paneBinario.add(paneFechaHora, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        paneBinario.setBounds(0, 0, 370, 130);
-        panePrincipal.add(paneBinario, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        panePrincipal.add(paneFechaHora, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         botonGuardar.setText(resourceMap.getString("botonGuardar.text")); // NOI18N
         botonGuardar.setName("botonGuardar"); // NOI18N
@@ -421,7 +422,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
             .add(layout.createSequentialGroup()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(118, Short.MAX_VALUE)
+                        .addContainerGap(98, Short.MAX_VALUE)
                         .add(botonBorrar)
                         .add(18, 18, 18)
                         .add(botonGuardarComo)
@@ -429,13 +430,14 @@ public class frameManejoCampos extends javax.swing.JFrame {
                         .add(botonGuardar)
                         .add(18, 18, 18)
                         .add(botonCerrar))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, panePrincipal, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                         .add(25, 25, 25)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(layout.createSequentialGroup()
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(valorNombreGeneral, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 82, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .add(jLabel2))
+                                    .add(jLabel2)
+                                    .add(valorNombreGeneral, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 100, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                                 .add(63, 63, 63)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                     .add(jLabel3)
@@ -444,25 +446,22 @@ public class frameManejoCampos extends javax.swing.JFrame {
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                     .add(jLabel1)
                                     .add(comboTipos, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 95, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 144, Short.MAX_VALUE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 124, Short.MAX_VALUE)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                     .add(layout.createSequentialGroup()
                                         .add(valorBusqueda, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 105, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                         .add(14, 14, 14)
                                         .add(botonBusqueda))
-                                    .add(jLabel20)))))
-                    .add(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .add(panePrincipal, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)))
+                                    .add(jLabel20))))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .add(18, 18, 18)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(18, Short.MAX_VALUE)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel1)
-                    .add(jLabel20))
+                    .add(jLabel20)
+                    .add(jLabel1))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(valorBusqueda, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -473,13 +472,13 @@ public class frameManejoCampos extends javax.swing.JFrame {
                     .add(layout.createSequentialGroup()
                         .add(jLabel2)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(valorNombreGeneral, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(valorNombreGeneral, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(layout.createSequentialGroup()
                         .add(jLabel3)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(valorNota, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .add(13, 13, 13)
-                .add(panePrincipal, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(panePrincipal, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 162, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(botonGuardar)
@@ -581,48 +580,28 @@ private void comboTiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     JOptionPane.showMessageDialog(null, comboTipos.getSelectedItem().toString().hashCode());
      */
     //La version nueva que usa case, se ve mejor que if anidado y mas facil para agregar nuevas opciones.
+    paneNumero.setVisible(false);
+    paneBinario.setVisible(false);
+    paneFechaHora.setVisible(false);
+    paneTexto.setVisible(false);
+    paneIncremental.setVisible(false);
     switch (comboTipos.getSelectedItem().toString().hashCode()) {
         case NUMERO: //HashCode para Número
-            paneNumero.setVisible(true);
-            paneBinario.setVisible(false);
-            paneFechaHora.setVisible(false);
-            paneTexto.setVisible(false);
-            paneIncremental.setVisible(false);
+            paneNumero.setVisible(true);          
             break;
         case INCREMENTAL: //HashCode para Incremental
-            paneNumero.setVisible(false);
-            paneBinario.setVisible(false);
-            paneFechaHora.setVisible(false);
-            paneTexto.setVisible(false);
             paneIncremental.setVisible(true);
             break;
         case FECHAHORA: //HashCode para FechaHora
-            paneNumero.setVisible(false);
-            paneBinario.setVisible(false);
             paneFechaHora.setVisible(true);
-            paneTexto.setVisible(false);
-            paneIncremental.setVisible(false);
             break;
         case TEXTO: //HashCode para Texto
-            paneNumero.setVisible(false);
-            paneBinario.setVisible(false);
-            paneFechaHora.setVisible(false);
             paneTexto.setVisible(true);
-            paneIncremental.setVisible(false);
             break;
         case BINARIO: //HashCode para Binario
-            paneNumero.setVisible(false);
             paneBinario.setVisible(true);
-            paneFechaHora.setVisible(false);
-            paneTexto.setVisible(false);
-            paneIncremental.setVisible(false);
             break;
         default: //Si se selecciona algo raro o el campito en blanco.
-            paneNumero.setVisible(false);
-            paneBinario.setVisible(false);
-            paneFechaHora.setVisible(false);
-            paneTexto.setVisible(false);
-            paneIncremental.setVisible(false);
             break;
     }
 }//GEN-LAST:event_comboTiposActionPerformed
