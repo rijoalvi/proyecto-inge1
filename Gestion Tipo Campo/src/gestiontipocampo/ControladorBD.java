@@ -13,7 +13,8 @@ import java.sql.*;
 public class ControladorBD {
 
     private String conexionString1 = "jdbc:mysql://grupoingegift5.bluechiphosting.com/grupoin2_GiftBD?user=grupoin2_user&password=Qwerty123";
-    private String conexionString2 = "Aquí va a ir la conexión con de la ECCI";
+    private String conexionString23 = "jdbc:sqlserver://bd;databaseName=bdInge1g2_g2;user=usuarioInge1_g2;password=ui1_g2";
+    private String conexionString2 = "jdbc:sqlserver://bd;databaseName=bdInge1g2_g2;user=usuarioInge1_g2;password=ui1_g2";
     protected static int conexionSeleccionada;
     private Connection conexion = null;
     private ResultSet resultado = null;
@@ -32,7 +33,8 @@ public class ControladorBD {
 
         int estado=1;// en caso de exito se retorna1
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            //Class.forName("com.microsoft.sqlserver.jdbc.Driver");
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             conexion = DriverManager.getConnection(conexionStringAProbar);
         }
         catch (SQLException e) {
@@ -42,7 +44,7 @@ public class ControladorBD {
             System.out.println("--Class Not Found Exception: --" + cE.toString());
             estado=-1;//error producido
         }
-        System.out.println("Probada conexion 1\n");
+        System.out.println("Probada conexion "+numeroConexion+"\n");
         return estado;
 
 

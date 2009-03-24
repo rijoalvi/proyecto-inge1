@@ -1,0 +1,57 @@
+--tabla: "BINARIO"
+CREATE TABLE BINARIO(
+  correlativo   int NOT NULL,
+  nombre1       varchar(20) NOT NULL,
+  valor1        varchar(20) NOT NULL,
+  nombre2       varchar(20) NOT NULL,
+  valor2        varchar(20) NOT NULL,
+  valorDefecto  varchar(20) NOT NULL,
+  PRIMARY KEY (correlativo)
+);
+
+-- Tabla "FECHAHORA"
+CREATE TABLE FECHAHORA(
+  correlativo int NOT NULL,
+  despliegue varchar(8) NOT NULL,
+  fechaDefecto datetime,
+  vencimiento datetime,
+  preaviso datetime,
+  PRIMARY KEY (correlativo)
+);
+
+-- Tabla: "INCREMENTAL"
+CREATE TABLE INCREMENTAL(
+  correlativo int NOT NULL,
+  valInicial int NOT NULL,
+  incremento int NOT NULL,
+  PRIMARY KEY (correlativo)
+);
+
+-- Tabla: "NUMERO"
+CREATE TABLE NUMERO(
+  correlativo int NOT NULL,
+  numeroDecimales int NOT NULL DEFAULT 0,
+  mascara varchar(10) NOT NULL,
+  valorDefecto int NOT NULL,
+  PRIMARY KEY (correlativo)
+);
+
+-- Tabla: "TEXTO"
+CREATE TABLE TEXTO(
+  correlativo int NOT NULL,
+  textoDefecto varchar(20) NOT NULL,
+  tamano int NOT NULL,
+  PRIMARY KEY (correlativo)
+);
+
+-- Tabla: "TIPOCAMPO"
+CREATE TABLE TIPOCAMPO(
+  correlativo int identity (1,1) NOT NULL,
+  nombre varchar(20) NOT NULL,
+  descripcion varchar(150),
+  ultimaActualizacion timestamp,
+  PRIMARY KEY (correlativo)
+);
+
+insert into TIPOCAMPO (nombre,descripcion) values ('pruebaNombre','PruebaDescripsion')
+select * from TIPOCAMPO
