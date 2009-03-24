@@ -25,7 +25,7 @@ public class GestionTipoCampoView extends FrameView {
         super(app);
 
         initComponents();
-        ControladorBD.connectionUrl = "jdbc:mysql://grupoingegift5.bluechiphosting.com/grupoin2_GiftBD?user=grupoin2_user&password=Qwerty123";
+
         // status bar initialization - message timeout, idle icon and busy animation, etc
         ResourceMap resourceMap = getResourceMap();
         int messageTimeout = resourceMap.getInteger("StatusBar.messageTimeout");
@@ -82,6 +82,12 @@ public class GestionTipoCampoView extends FrameView {
                 }
             }
         });
+
+                        frameConexiones ventanaConexiones = new frameConexiones();
+        //  JFrame mainFrame = frameManejoCampos.getApplication().getMainFrame();
+        //coloca el frame segun como este ubicada la ventana principal
+        // ventanaBusqueda.setLocationRelativeTo(mainFrame);
+        ventanaConexiones.setVisible(true);
     }
 
     @Action
@@ -369,14 +375,16 @@ public class GestionTipoCampoView extends FrameView {
         } catch (SQLException e) {
             System.out.println("*SQL Exception: *" + e.toString());
         }
-    }//GEN-LAST:event_botonAbrirMouseClicked
 
-    private void mainPanelComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_mainPanelComponentShown
-        frameConexiones ventanaConexiones = new frameConexiones();
+              /*  frameConexiones ventanaConexiones = new frameConexiones();
         //  JFrame mainFrame = frameManejoCampos.getApplication().getMainFrame();
         //coloca el frame segun como este ubicada la ventana principal
         // ventanaBusqueda.setLocationRelativeTo(mainFrame);
-        ventanaConexiones.setVisible(true);        // TODO add your handling code here:
+        ventanaConexiones.setVisible(true); */
+    }//GEN-LAST:event_botonAbrirMouseClicked
+
+    private void mainPanelComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_mainPanelComponentShown
+
     }//GEN-LAST:event_mainPanelComponentShown
 
     public void abrirUnCampo() {
