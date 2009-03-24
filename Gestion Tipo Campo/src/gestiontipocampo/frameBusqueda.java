@@ -8,8 +8,13 @@
  *
  * Created on 13-mar-2009, 19:45:31
  */
-
 package gestiontipocampo;
+
+import javax.swing.*;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import java.sql.*;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -62,10 +67,19 @@ public class frameBusqueda extends javax.swing.JFrame {
         });
         jTable1.setName("jTable1"); // NOI18N
         jScrollPane1.setViewportView(jTable1);
-
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameBusqueda.class);
+        jTable1.getColumnModel().getColumn(0).setHeaderValue(resourceMap.getString("jTable1.columnModel.title0")); // NOI18N
+        jTable1.getColumnModel().getColumn(1).setHeaderValue(resourceMap.getString("jTable1.columnModel.title1")); // NOI18N
+        jTable1.getColumnModel().getColumn(2).setHeaderValue(resourceMap.getString("jTable1.columnModel.title2")); // NOI18N
+        jTable1.getColumnModel().getColumn(3).setHeaderValue(resourceMap.getString("jTable1.columnModel.title3")); // NOI18N
+
         botonOK.setText(resourceMap.getString("botonOK.text")); // NOI18N
         botonOK.setName("botonOK"); // NOI18N
+        botonOK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonOKActionPerformed(evt);
+            }
+        });
 
         botonCancelar.setText(resourceMap.getString("botonCancelar.text")); // NOI18N
         botonCancelar.setName("botonCancelar"); // NOI18N
@@ -110,11 +124,44 @@ public class frameBusqueda extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_botonCancelarActionPerformed
 
+    private void botonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonOKActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonOKActionPerformed
+
+    public void llenarTabla(JTextField campo) {
+        ControladorBD miPrueba = new ControladorBD();
+        System.out.print("prueba de base de datos");
+
+        int contador;
+        int contadorFila;
+        TableModel modelo = jTable1.getModel();
+        Object[] fila = new Object[4];
+        contador = 0;
+        contadorFila=0;
+
+        try {
+            ResultSet resultado = miPrueba.getResultSet("select * from TIPOCAMPO where nombre like '%"+campo.getText()+"%' or descripcion like '%"+campo.getText()+"%';");
+            while (resultado.next()) {
+                fila[(contador % 4)] = resultado.getObject((contador % 4) + 1);
+                if (((contador % 4) == 0) && (contador != 0)) {
+                    modelo.setValueAt(fila, (contador % 4), contadorFila);
+                    ++contadorFila;
+                }
+                ++contador;
+            }
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception: *" + e.toString());
+        }
+        jTable1.setModel(modelo);
+
+    }
+
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 new frameBusqueda().setVisible(true);
             }
@@ -127,5 +174,4 @@ public class frameBusqueda extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
-
 }

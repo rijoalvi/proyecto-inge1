@@ -64,7 +64,12 @@ public class ControladorBD {
     public ResultSet getResultSet(String consulta) {
         String conexionAUtilizar=getConexionEstablecida();
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            if(getConexionEstablecida()=="conexionString1"){
+                Class.forName("com.mysql.jdbc.Driver");
+            }
+            else{
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            }
             conexion = DriverManager.getConnection(conexionAUtilizar);
             Statement query = null;
             String SQL = consulta;
