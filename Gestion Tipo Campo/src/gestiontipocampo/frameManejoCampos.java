@@ -5,6 +5,7 @@
  */
 package gestiontipocampo;
 
+import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
@@ -22,7 +23,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
     static final int FECHAHORA = -1299756429;
     static final int TEXTO = 80703682;
     static final int BINARIO = 1556351614;
-    ControladorBD conexion = new ControladorBD();
+    ControladorBD conexionBD = new ControladorBD();
 
     /** Creates new form frameManejoCampos */
     public frameManejoCampos() {
@@ -186,30 +187,30 @@ public class frameManejoCampos extends javax.swing.JFrame {
 
         jLabel4.setText(resourceMap.getString("jLabel4.text")); // NOI18N
         jLabel4.setName("jLabel4"); // NOI18N
-        jLabel4.setBounds(10, 10, 110, 14);
+        jLabel4.setBounds(10, 10, 110, -1);
         paneNumero.add(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorNumDecimales.setName("valorNumDecimales"); // NOI18N
-        valorNumDecimales.setBounds(10, 30, 80, 20);
+        valorNumDecimales.setBounds(10, 30, 80, -1);
         paneNumero.add(valorNumDecimales, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel5.setText(resourceMap.getString("jLabel5.text")); // NOI18N
         jLabel5.setName("jLabel5"); // NOI18N
-        jLabel5.setBounds(130, 10, 50, 14);
+        jLabel5.setBounds(130, 10, 50, -1);
         paneNumero.add(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorNumeroMascara.setName("valorNumeroMascara"); // NOI18N
-        valorNumeroMascara.setBounds(130, 30, 80, 20);
+        valorNumeroMascara.setBounds(130, 30, 80, -1);
         paneNumero.add(valorNumeroMascara, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorValorDefectoNumero.setText(resourceMap.getString("valorValorDefectoNumero.text")); // NOI18N
         valorValorDefectoNumero.setName("valorValorDefectoNumero"); // NOI18N
-        valorValorDefectoNumero.setBounds(250, 30, 80, 20);
+        valorValorDefectoNumero.setBounds(250, 30, 80, -1);
         paneNumero.add(valorValorDefectoNumero, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel12.setText(resourceMap.getString("jLabel12.text")); // NOI18N
         jLabel12.setName("jLabel12"); // NOI18N
-        jLabel12.setBounds(250, 10, 90, 14);
+        jLabel12.setBounds(250, 10, 90, -1);
         paneNumero.add(jLabel12, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneNumero.setBounds(20, 0, 400, 160);
@@ -309,16 +310,16 @@ public class frameManejoCampos extends javax.swing.JFrame {
 
         jLabel6.setText(resourceMap.getString("jLabel6.text")); // NOI18N
         jLabel6.setName("jLabel6"); // NOI18N
-        jLabel6.setBounds(20, 10, 100, 14);
+        jLabel6.setBounds(20, 10, 100, -1);
         paneFechaHora.add(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorPreaviso.setName("valorPreaviso"); // NOI18N
-        valorPreaviso.setBounds(140, 80, 80, 20);
+        valorPreaviso.setBounds(140, 80, 80, -1);
         paneFechaHora.add(valorPreaviso, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel13.setText(resourceMap.getString("jLabel13.text")); // NOI18N
         jLabel13.setName("jLabel13"); // NOI18N
-        jLabel13.setBounds(140, 10, 100, 14);
+        jLabel13.setBounds(140, 10, 100, -1);
         paneFechaHora.add(jLabel13, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         try {
@@ -328,17 +329,17 @@ public class frameManejoCampos extends javax.swing.JFrame {
         }
         valorFechaDefecto.setText(resourceMap.getString("valorFechaDefecto.text")); // NOI18N
         valorFechaDefecto.setName("valorFechaDefecto"); // NOI18N
-        valorFechaDefecto.setBounds(140, 30, 80, 20);
+        valorFechaDefecto.setBounds(140, 30, 80, -1);
         paneFechaHora.add(valorFechaDefecto, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel14.setText(resourceMap.getString("jLabel14.text")); // NOI18N
         jLabel14.setName("jLabel14"); // NOI18N
-        jLabel14.setBounds(140, 60, 100, 14);
+        jLabel14.setBounds(140, 60, 100, -1);
         paneFechaHora.add(jLabel14, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel15.setText(resourceMap.getString("jLabel15.text")); // NOI18N
         jLabel15.setName("jLabel15"); // NOI18N
-        jLabel15.setBounds(20, 60, 100, 14);
+        jLabel15.setBounds(20, 60, 100, -1);
         paneFechaHora.add(jLabel15, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         radioFechaHoraSi.setSelected(true);
@@ -349,7 +350,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 radioFechaHoraSiActionPerformed(evt);
             }
         });
-        radioFechaHoraSi.setBounds(20, 80, 33, 23);
+        radioFechaHoraSi.setBounds(20, 80, -1, -1);
         paneFechaHora.add(radioFechaHoraSi, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         radioFechaHoraNo.setText(resourceMap.getString("radioFechaHoraNo.text")); // NOI18N
@@ -359,7 +360,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 radioFechaHoraNoActionPerformed(evt);
             }
         });
-        radioFechaHoraNo.setBounds(20, 100, 39, 20);
+        radioFechaHoraNo.setBounds(20, 100, -1, 20);
         paneFechaHora.add(radioFechaHoraNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         comboFormatoFecha.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "dd/mm/aaaa", "mm/dd/aaaa", "aaaa/dd/mm", "aaaa/mm/dd" }));
@@ -369,7 +370,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 comboFormatoFechaActionPerformed(evt);
             }
         });
-        comboFormatoFecha.setBounds(20, 30, 90, 20);
+        comboFormatoFecha.setBounds(20, 30, 90, -1);
         paneFechaHora.add(comboFormatoFecha, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneFechaHora.setBounds(0, 0, 380, 130);
@@ -493,9 +494,54 @@ public class frameManejoCampos extends javax.swing.JFrame {
 
     /**
      * Muestra una ventana que dice que para realizar esta operacion tiene que llenar todos los campos.
+     * @return True - Hay campos sin llenar, False - todos los campos estan llenos.
      */
-    private void alertaCamposSinLlenar() {
-        JOptionPane.showMessageDialog(this, "Hay Campos sin llenar", "Warning", ERROR);
+    private boolean alertaCamposSinLlenar() {
+        boolean alerta = false;
+        if (this.valorNombreGeneral.getText().isEmpty() || this.valorNota.getText().isEmpty()) {
+            alerta = true;
+        }
+        switch (comboTipos.getSelectedItem().toString().hashCode()) {
+            case NUMERO: //HashCode para Número
+                if (this.valorNumDecimales.getText().isEmpty() ||
+                        this.valorNumeroMascara.getText().isEmpty() ||
+                        this.valorValorDefectoNumero.getText().isEmpty()) {
+                    alerta = true;
+                }
+                break;
+            case INCREMENTAL: //HashCode para Incremental
+                if (this.valorIncremento.getText().isEmpty() || this.valorValorInicial.getText().isEmpty()) {
+                    alerta = true;
+                }
+                break;
+            case FECHAHORA: //HashCode para FechaHora
+                if (this.valorFechaDefecto.getText().isEmpty() ||
+                        this.valorPreaviso.getText().isEmpty()) {
+                    alerta = true;
+                }
+                break;
+            case TEXTO: //HashCode para Texto
+                if (this.valorTextoLargo.getText().isEmpty() ||
+                        this.valorTextoDefecto.getText().isEmpty()) {
+                    alerta = true;
+                }
+                break;
+            case BINARIO: //HashCode para Binario
+                if (this.valorNombreBinario1.getText().isEmpty() ||
+                        this.valorNombreBinario2.getText().isEmpty() ||
+                        this.valorOpcionBinaria1.getText().isEmpty() ||
+                        this.valorOpcionBinaria2.getText().isEmpty()) {
+                    alerta = true;
+                }
+                break;
+            default: //Si se selecciona algo raro o el campito en blanco.
+
+                break;
+        }
+        if (alerta) {
+            JOptionPane.showMessageDialog(this, "Hay Campos sin llenar");
+        }
+        return alerta;
     }
 
 private void botonBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBusquedaActionPerformed
@@ -507,17 +553,20 @@ private void botonBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN
 }//GEN-LAST:event_botonBusquedaActionPerformed
 
 private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
-    String[] opciones = {"Si", "No"};
-    int respuesta = JOptionPane.showOptionDialog(null, "¿Seguro que desea guardar este campo?", "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opciones, "No");
+    if (alertaCamposSinLlenar()) {
+    } else {
+        String[] opciones = {"Si", "No"};
+        int respuesta = JOptionPane.showOptionDialog(null, "¿Seguro que desea guardar este campo?", "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opciones, "No");
 
-    switch (respuesta) {
-        case 0:
-            /*Si quiere modificar el campo*/
-            botonGuardarActionAccepted();
-            break;
-        case 1:
-            /*No quiere modificar el campo*/
-            break;
+        switch (respuesta) {
+            case 0:
+                /*Si quiere modificar el campo*/
+                botonGuardarActionAccepted();
+                break;
+            case 1:
+                /*No quiere modificar el campo*/
+                break;
+        }
     }
 }//GEN-LAST:event_botonGuardarActionPerformed
 
@@ -526,24 +575,77 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
      * hace lo necesario para guardar los cambios en la base de datos.
      */
     private void botonGuardarActionAccepted() {
+        boolean existe = false;
+        int ID = 0;
+        
+        try { //Primero se busca en la base de datos si ya existe este campo
+            ResultSet resultado = conexionBD.getResultSet("select correlativo from TIPOCAMPO where nombre = '" + this.valorNombreGeneral.getText() + "';");
+            if (resultado.next()) {
+                ID = resultado.getInt("correlativo");
+                existe = true;
+            }
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception: *" + e.toString());
+        }
+        //Si este tipocampo ya existe en la base de datos hay que actualizar los campos solamente
+        if (existe) {
+            conexionBD.getResultSet("Update TIPOCAMPO set nombre = '" + this.valorNombreGeneral.getText() + "', descripcion = '" + this.valorNota.getText() + "' where correlativo = " + ID);
+        } else { //Si no existe en la base hay que agregar una entrada nueva
+            conexionBD.getResultSet("Insert Into TIPOCAMPO (nombre, descripcion) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "')");
+            try { //Se busca el ID de los datos que acaba de insertar
+                ResultSet resultado = conexionBD.getResultSet("select correlativo from TIPOCAMPO where nombre = '" + this.valorNombreGeneral.getText() + "'");
+
+                if (resultado.next()) {
+                    ID = resultado.getInt("correlativo");
+                }
+            } catch (SQLException e) {
+                System.out.println("*SQL Exception: *" + e.toString());
+            }
+        }
+        
         switch (comboTipos.getSelectedItem().toString().hashCode()) {
             case NUMERO: //HashCode para Número
-                //if(this.valorNombre)
+                if(existe){
+                    conexionBD.getResultSet("Update NUMERO set numeroDecimal = " + this.valorNumDecimales.getText() + ", mascara = '" + this.valorNumeroMascara.getText() + "', valorDefecto = " + this.valorValorDefectoNumero.getText() + " where correlativo = " + ID);
+                }
+                else{
+                    conexionBD.getResultSet("Insert Into NUMERO (correlativo, numeroDecimal, mascara, valorDefecto) VALUES (" + ID + ", " + this.valorNumDecimales.getText() + ", '" + this.valorNumeroMascara.getText() + "', " + this.valorValorDefectoNumero.getText() + ")");
+                }
                 break;
             case INCREMENTAL: //HashCode para Incremental
-
+                if(existe){
+                    
+                }
+                else{
+                    
+                }
                 break;
             case FECHAHORA: //HashCode para FechaHora
-
+                if(existe){
+                    
+                }
+                else{
+                    
+                }
                 break;
             case TEXTO: //HashCode para Texto
-
+                if(existe){
+                    conexionBD.getResultSet("Update TEXTO set tamano = " + this.valorTextoLargo.getText() + ", textoDefecto = '" + this.valorTextoDefecto.getText() + "' where correlativo = " + ID);
+                }
+                else{
+                    conexionBD.getResultSet("Insert Into TEXTO (correlativo, tamano, textoDefecto) VALUES (" + ID + ", " + this.valorTextoLargo.getText() + ", '" + this.valorTextoDefecto.getText() + "')");
+                }
                 break;
             case BINARIO: //HashCode para Binario
-
+                if(existe){
+                    
+                }
+                else{
+                    
+                }
                 break;
             default: //Si se selecciona algo raro o el campito en blanco.
-
+                //Nada supongo
                 break;
         }
     }
@@ -587,7 +689,7 @@ private void comboTiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     paneIncremental.setVisible(false);
     switch (comboTipos.getSelectedItem().toString().hashCode()) {
         case NUMERO: //HashCode para Número
-            paneNumero.setVisible(true);          
+            paneNumero.setVisible(true);
             break;
         case INCREMENTAL: //HashCode para Incremental
             paneIncremental.setVisible(true);
