@@ -64,7 +64,7 @@ public class ControladorBD {
     public ResultSet getResultSet(String consulta) {
         String conexionAUtilizar=getConexionEstablecida();
         try {
-            if(getConexionEstablecida()=="conexionString1"){
+            if(getConexionEstablecida() == conexionString1){
                 Class.forName("com.mysql.jdbc.Driver");
             }
             else{

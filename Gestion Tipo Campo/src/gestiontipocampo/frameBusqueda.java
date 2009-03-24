@@ -21,6 +21,7 @@ import javax.swing.table.TableModel;
  * @author Alberto
  */
 public class frameBusqueda extends javax.swing.JFrame {
+    private TableModel DefaultTableModel;
 
     /** Creates new form frameBusqueda */
     public frameBusqueda() {
@@ -48,10 +49,7 @@ public class frameBusqueda extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Incremental", "Nombre", "Nota", "Fecha última actualización"
@@ -134,7 +132,10 @@ public class frameBusqueda extends javax.swing.JFrame {
 
         int contador;
         int contadorFila;
-        TableModel modelo = jTable1.getModel();
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo = (DefaultTableModel) jTable1.getModel();
+
+        //jTable1 = new JTable(modelo);
         Object[] fila = new Object[4];
         contador = 0;
         contadorFila=0;
@@ -142,17 +143,29 @@ public class frameBusqueda extends javax.swing.JFrame {
         try {
             ResultSet resultado = miPrueba.getResultSet("select * from TIPOCAMPO where nombre like '%"+campo.getText()+"%' or descripcion like '%"+campo.getText()+"%';");
             while (resultado.next()) {
-                fila[(contador % 4)] = resultado.getObject((contador % 4) + 1);
-                if (((contador % 4) == 0) && (contador != 0)) {
-                    modelo.setValueAt(fila, (contador % 4), contadorFila);
+                System.out.print("\nEntre en el ciclo!!"+resultado.getObject(2).toString());
+               // fila[(contador % 4)] = resultado.getObject((contador % 4) + 1);
+                //if (((contador % 4) == 0) && (contador != 0)) {
+                    //modelo.setValueAt(fila, (contador % 4), contadorFila);
+                    for(int i=0;i<4;i++){
+                        fila[i] = resultado.getObject(i+1).toString();
+                        JOptionPane.showMessageDialog(null, fila[i]);
+
+                    }
+                    modelo.addRow(fila);
+                    System.out.print("Contenido tabla " +/*jTable1.getModel()*/modelo.getRowCount());
+
+
                     ++contadorFila;
-                }
+                //}
                 ++contador;
             }
+            jTable1.setModel(modelo);
+            
         } catch (SQLException e) {
             System.out.println("*SQL Exception: *" + e.toString());
         }
-        jTable1.setModel(modelo);
+        
 
     }
 
