@@ -11,7 +11,7 @@
 package gestiontipocampo;
 
 import javax.swing.*;
-import javax.swing.JTable;
+//import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
 import javax.swing.table.TableModel;
@@ -22,10 +22,15 @@ import javax.swing.table.TableModel;
  */
 public class frameBusqueda extends javax.swing.JFrame {
     private TableModel DefaultTableModel;
-
+    private frameManejoCampos madre;
     /** Creates new form frameBusqueda */
     public frameBusqueda() {
         initComponents();
+    }
+
+    public frameBusqueda(frameManejoCampos frameMadre) {
+        initComponents();
+        madre = frameMadre;
     }
 
     /** This method is called from within the constructor to
@@ -64,6 +69,11 @@ public class frameBusqueda extends javax.swing.JFrame {
             }
         });
         jTable1.setName("jTable1"); // NOI18N
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jTable1MouseEntered(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameBusqueda.class);
         jTable1.getColumnModel().getColumn(0).setHeaderValue(resourceMap.getString("jTable1.columnModel.title0")); // NOI18N
@@ -123,42 +133,49 @@ public class frameBusqueda extends javax.swing.JFrame {
     }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void botonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonOKActionPerformed
-        // TODO add your handling code here:
+        int filaSeleccionada = jTable1.getSelectedRow();
+        String llave = jTable1.getModel().getValueAt(filaSeleccionada, 0).toString();
+        JOptionPane.showMessageDialog(null, llave);
+        madre.llenarFormularioCampos(llave);
     }//GEN-LAST:event_botonOKActionPerformed
+
+    private void jTable1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseEntered
+
+    }//GEN-LAST:event_jTable1MouseEntered
 
     public void llenarTabla(JTextField campo) {
         ControladorBD miPrueba = new ControladorBD();
         System.out.print("prueba de base de datos");
 
-        int contador;
-        int contadorFila;
+ //       int contador;
+   //     int contadorFila;
         DefaultTableModel modelo = new DefaultTableModel();
         modelo = (DefaultTableModel) jTable1.getModel();
 
         //jTable1 = new JTable(modelo);
         Object[] fila = new Object[4];
-        contador = 0;
-        contadorFila=0;
+    //    contador = 0;
+      //  contadorFila=0;
 
         try {
             ResultSet resultado = miPrueba.getResultSet("select * from TIPOCAMPO where nombre like '%"+campo.getText()+"%' or descripcion like '%"+campo.getText()+"%';");
             while (resultado.next()) {
-                System.out.print("\nEntre en el ciclo!!"+resultado.getObject(2).toString());
+//                System.out.print("\nEntre en el ciclo!!"+resultado.getObject(2).toString());
                // fila[(contador % 4)] = resultado.getObject((contador % 4) + 1);
                 //if (((contador % 4) == 0) && (contador != 0)) {
                     //modelo.setValueAt(fila, (contador % 4), contadorFila);
                     for(int i=0;i<4;i++){
                         fila[i] = resultado.getObject(i+1).toString();
-                        JOptionPane.showMessageDialog(null, fila[i]);
+  //                      JOptionPane.showMessageDialog(null, fila[i]);
 
                     }
                     modelo.addRow(fila);
                     System.out.print("Contenido tabla " +/*jTable1.getModel()*/modelo.getRowCount());
 
 
-                    ++contadorFila;
+        //            ++contadorFila;
                 //}
-                ++contador;
+          //      ++contador;
             }
             jTable1.setModel(modelo);
             
