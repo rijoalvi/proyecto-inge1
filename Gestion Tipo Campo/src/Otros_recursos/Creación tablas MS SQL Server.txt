@@ -14,8 +14,8 @@ CREATE TABLE FECHAHORA(
   correlativo int NOT NULL,
   despliegue varchar(8) NOT NULL,
   fechaDefecto datetime,
-  vencimiento datetime,
-  preaviso datetime,
+  vencimiento bit,
+  preaviso int,
   PRIMARY KEY (correlativo)
 );
 
