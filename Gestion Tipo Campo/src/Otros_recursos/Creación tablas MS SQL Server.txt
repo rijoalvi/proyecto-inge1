@@ -51,6 +51,7 @@ CREATE TABLE TIPOCAMPO(
   descripcion varchar(150),
   ultimaActualizacion timestamp,
   PRIMARY KEY (correlativo)
+  tipo int,
 );
 
 insert into TIPOCAMPO (nombre,descripcion) values ('pruebaNombre','PruebaDescripsion')
