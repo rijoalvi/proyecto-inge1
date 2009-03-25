@@ -316,12 +316,12 @@ public class frameManejoCampos extends javax.swing.JFrame {
         paneFechaHora.add(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorPreaviso.setName("valorPreaviso"); // NOI18N
-        valorPreaviso.setBounds(130, 80, 80, 17);
+        valorPreaviso.setBounds(140, 80, 80, 17);
         paneFechaHora.add(valorPreaviso, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel13.setText(resourceMap.getString("jLabel13.text")); // NOI18N
         jLabel13.setName("jLabel13"); // NOI18N
-        jLabel13.setBounds(130, 10, 100, 13);
+        jLabel13.setBounds(140, 10, 100, 13);
         paneFechaHora.add(jLabel13, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         try {
@@ -331,17 +331,17 @@ public class frameManejoCampos extends javax.swing.JFrame {
         }
         valorFechaDefecto.setText(resourceMap.getString("valorFechaDefecto.text")); // NOI18N
         valorFechaDefecto.setName("valorFechaDefecto"); // NOI18N
-        valorFechaDefecto.setBounds(130, 30, 80, 19);
+        valorFechaDefecto.setBounds(140, 30, 80, 19);
         paneFechaHora.add(valorFechaDefecto, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel14.setText(resourceMap.getString("jLabel14.text")); // NOI18N
         jLabel14.setName("jLabel14"); // NOI18N
-        jLabel14.setBounds(130, 60, 100, 13);
+        jLabel14.setBounds(140, 60, 100, 13);
         paneFechaHora.add(jLabel14, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel15.setText(resourceMap.getString("jLabel15.text")); // NOI18N
         jLabel15.setName("jLabel15"); // NOI18N
-        jLabel15.setBounds(10, 60, 100, 13);
+        jLabel15.setBounds(20, 60, 100, 13);
         paneFechaHora.add(jLabel15, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         radioFechaHoraSi.setSelected(true);
@@ -352,7 +352,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 radioFechaHoraSiActionPerformed(evt);
             }
         });
-        radioFechaHoraSi.setBounds(10, 80, 36, 21);
+        radioFechaHoraSi.setBounds(20, 80, 36, 21);
         paneFechaHora.add(radioFechaHoraSi, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         radioFechaHoraNo.setText(resourceMap.getString("radioFechaHoraNo.text")); // NOI18N
@@ -362,7 +362,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 radioFechaHoraNoActionPerformed(evt);
             }
         });
-        radioFechaHoraNo.setBounds(10, 100, 40, 20);
+        radioFechaHoraNo.setBounds(20, 100, 40, 20);
         paneFechaHora.add(radioFechaHoraNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         comboFormatoFecha.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "dd/mm/aaaa", "mm/dd/aaaa", "aaaa/dd/mm", "aaaa/mm/dd" }));
@@ -372,7 +372,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 comboFormatoFechaActionPerformed(evt);
             }
         });
-        comboFormatoFecha.setBounds(10, 30, 90, 22);
+        comboFormatoFecha.setBounds(20, 30, 90, 22);
         paneFechaHora.add(comboFormatoFecha, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneFechaHora.setBounds(0, 0, 380, 130);
@@ -816,6 +816,19 @@ private void botonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     switch (respuesta) {
         case 0:
             /*Si quiere borrar el campo*/
+            String temp;
+             try {
+             ControladorBD control = new ControladorBD();
+                ResultSet resultado = control.getResultSet("Select * from TIPOCAMPO where nombre = "+valorNombreGeneral.getText());
+                 System.out.println("llegue "+valorNombreGeneral.getText());
+                if(resultado.next()){
+                    System.out.println("llegue");
+                     temp = resultado.getObject(1).toString();
+                     ResultSet resultado2 = control.getResultSet("Delete from TIPOCAMPO where correlativo = "+temp);
+                 }
+             } catch (SQLException e) {
+            System.out.println("*SQL Exception: *" + e.toString());
+        }
             break;
         case 1:
             /*No quiere borrar el campo*/
