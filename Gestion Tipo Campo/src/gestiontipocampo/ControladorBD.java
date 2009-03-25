@@ -13,7 +13,6 @@ import java.sql.*;
 public class ControladorBD {
 
     private String conexionString1 = "jdbc:mysql://grupoingegift5.bluechiphosting.com/grupoin2_GiftBD?user=grupoin2_user&password=Qwerty123";
-    private String conexionString23 = "jdbc:sqlserver://bd;databaseName=bdInge1g2_g2;user=usuarioInge1_g2;password=ui1_g2";
     private String conexionString2 = "jdbc:sqlserver://bd;databaseName=bdInge1g2_g2;user=usuarioInge1_g2;password=ui1_g2";
     protected static int conexionSeleccionada;
     private Connection conexion = null;
@@ -33,7 +32,7 @@ public class ControladorBD {
 
         int estado=1;// en caso de exito se retorna1
         try {
-            if(numeroConexion == 1){
+            if(1==numeroConexion ){
                 Class.forName("com.mysql.jdbc.Driver");
             }
             else{
@@ -43,15 +42,18 @@ public class ControladorBD {
             //Class.forName("com.microsoft.sqlserver.jdbc.Driver");
            // Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             conexion = DriverManager.getConnection(conexionStringAProbar);
+            System.out.println("Conexión exitosa: "+numeroConexion+"\n");
         }
         catch (SQLException e) {
-            System.out.println("*SQL Exception: *" + e.toString());
+          //  System.out.println("*SQL Exception: *" + e.toString());
+            System.out.println("No se pudo acceder a la conexion: " + numeroConexion+"\n");
             estado=-1;//error producido
         } catch (ClassNotFoundException cE) {
-            System.out.println("--Class Not Found Exception: --" + cE.toString());
+            System.out.println("No se pudo acceder a la conexion: " + numeroConexion+"\n");
+            //System.out.println("--Class Not Found Exception: --" + cE.toString());
             estado=-1;//error producido
         }
-        System.out.println("Probada conexion "+numeroConexion+"\n");
+        
         return estado;
 
 

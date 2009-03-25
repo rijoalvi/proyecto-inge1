@@ -145,7 +145,7 @@ public class frameConexiones extends javax.swing.JFrame {
     private void probarConexiones(){
             // TODO add your handling code here:
         btnEstablecerConexion.setEnabled(false);
-        System.out.print("apareció ventana");
+    //    System.out.print("apareció ventana");
         ControladorBD probadorConexiones = new ControladorBD();
 
         if(1==probadorConexiones.probarConexion(1)){
