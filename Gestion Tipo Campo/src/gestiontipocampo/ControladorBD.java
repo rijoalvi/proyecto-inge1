@@ -33,8 +33,15 @@ public class ControladorBD {
 
         int estado=1;// en caso de exito se retorna1
         try {
+            if(numeroConexion == 1){
+                Class.forName("com.mysql.jdbc.Driver");
+            }
+            else{
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            }
+
             //Class.forName("com.microsoft.sqlserver.jdbc.Driver");
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+           // Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             conexion = DriverManager.getConnection(conexionStringAProbar);
         }
         catch (SQLException e) {
