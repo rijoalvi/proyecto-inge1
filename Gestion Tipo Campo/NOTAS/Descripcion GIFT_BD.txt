@@ -14,9 +14,9 @@ BINARIO
 FECHAHORA
 |-> correlativo 			(int)		 					(no nulo)	(FK)
 |-> despliegue				(varchar 8)						(no nulo)	
-|-> fechaDefecto			(timestamp without time zone)	(no nulo)	
-|-> vencimiento				(timestamp without time zone)	(no nulo)	
-|-> preaviso				(timestamp without time zone)	(no nulo)	
+|-> fechaDefecto			(timestamp without time zone)       (no nulo)	
+|-> vencimiento				boolean                                             (no nulo)	
+|-> preaviso                                int                                                         (no nulo)	
 
 INCREMENTAL
 |-> correlativo 			(int) 							(no nulo)	(FK)
