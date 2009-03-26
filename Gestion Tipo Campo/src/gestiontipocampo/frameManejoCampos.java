@@ -498,7 +498,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
      * Muestra una ventana que dice que para realizar esta operacion tiene que llenar todos los campos.
      * @return True - Hay campos sin llenar, False - todos los campos estan llenos.
      */
-    private boolean alertaCamposSinLlenar() {
+    private boolean hayCamposSinLlenar() {
         boolean alerta = false;
         if (this.valorNombreGeneral.getText().isEmpty() || this.valorNota.getText().isEmpty()) {
             alerta = true;
@@ -546,139 +546,158 @@ public class frameManejoCampos extends javax.swing.JFrame {
         return alerta;
     }
 
-private void ocultarPanes(){
-    paneNumero.setVisible(false);
-    paneBinario.setVisible(false);
-    paneFechaHora.setVisible(false);
-    paneTexto.setVisible(false);
-    paneIncremental.setVisible(false);
-}
-
-private Object[] buscarTipoCampo(String llave){
-    ControladorBD control = new ControladorBD();
-
-    ResultSet resultado=null;
-    String tipoCampo="default";
-    Object retorno[] = new Object[2];
-    retorno[0]=tipoCampo;
-    retorno[1]=resultado;
-
-    try{
-        resultado = control.getResultSet("Select * from NUMERO where correlativo = "+llave);
-        if(resultado.next()) tipoCampo = "NUMERO";
-
-        resultado = control.getResultSet("Select * from BINARIO where correlativo = "+llave);
-        if(tipoCampo=="default"&&resultado.next()) tipoCampo = "BINARIO";
-
-        resultado = control.getResultSet("Select * from TEXTO where correlativo = "+llave);
-        if(tipoCampo=="default"&&resultado.next()) tipoCampo = "TEXTO";
-
-        resultado = control.getResultSet("Select * from FECHAHORA where correlativo = "+llave);
-        if(tipoCampo=="default"&&resultado.next()) tipoCampo = "FECHAHORA";
-
-        resultado = control.getResultSet("Select * from INCREMENTAL where correlativo = "+llave);
-        if(tipoCampo=="default"&&resultado.next()) tipoCampo = "INCREMENTAL";
-        
-        resultado = control.getResultSet("Select * from TIPOCAMPO where correlativo = "+llave);
-        if(tipoCampo=="default"&&resultado.next()) tipoCampo = "TIPOCAMPO";
-
-
-    }catch (SQLException e) {
-            System.out.println("*SQL Exception: *" + e.toString());
+    private boolean alertaCamposSinLlenar() {
+        boolean alerta = hayCamposSinLlenar();
+        if (alerta) {
+            JOptionPane.showMessageDialog(this, "Hay Campos sin llenar");
+        }
+        return alerta;
     }
 
-    mostrarPaneTipoCampo(tipoCampo);
-    return retorno;
-}
-
-void mostrarPaneTipoCampo(String tipoCampo){
-
-    switch (tipoCampo.hashCode()) {
-        case NUMERO: //HashCode para Número
-            paneNumero.setVisible(true);
-            break;
-        case INCREMENTAL: //HashCode para Incremental
-            paneIncremental.setVisible(true);
-            break;
-        case FECHAHORA: //HashCode para FechaHora
-            paneFechaHora.setVisible(true);
-            break;
-        case TEXTO: //HashCode para Texto
-            paneTexto.setVisible(true);
-            break;
-        case BINARIO: //HashCode para Binario
-            paneBinario.setVisible(true);
-            break;
-        default: //Si se selecciona algo raro o el campito en blanco.
-            break;
+    private void ocultarPanes() {
+        paneNumero.setVisible(false);
+        paneBinario.setVisible(false);
+        paneFechaHora.setVisible(false);
+        paneTexto.setVisible(false);
+        paneIncremental.setVisible(false);
     }
-}
-public void llenarFormularioCampos(String llave){
-    Object tipoEncontrado[] =  buscarTipoCampo(llave);
-    String tipoCampo = (String) tipoEncontrado[0];
-    ResultSet resultado = (ResultSet) tipoEncontrado[1];
-    try {
+
+    private Object[] buscarTipoCampo(String llave) {
         ControladorBD control = new ControladorBD();
-        ResultSet resultadoGeneral = control.getResultSet("Select * from TIPOCAMPO where Correlativo = "+llave);
 
-        JOptionPane.showMessageDialog(null, tipoCampo);
-        this.valorNombreGeneral.setText(resultadoGeneral.getObject(1).toString());
-        this.valorNota.setText(resultadoGeneral.getObject(2).toString());
-        this.comboTipos.setSelectedItem(tipoCampo);
+        ResultSet resultado = null;
+        String tipoCampo = "default";
+        Object retorno[] = new Object[2];
+        retorno[0] = tipoCampo;
+        retorno[1] = resultado;
+
+        try {
+            resultado = control.getResultSet("Select * from NUMERO where correlativo = '" + llave + "'");
+            if (resultado.next()) {
+                tipoCampo = "NUMERO";
+            }
+
+            resultado = control.getResultSet("Select * from BINARIO where correlativo = '" + llave + "'");
+            if (tipoCampo.equalsIgnoreCase("default") && resultado.next()) {
+                tipoCampo = "BINARIO";
+            }
+
+            resultado = control.getResultSet("Select * from TEXTO where correlativo = '" + llave + "'");
+            if (tipoCampo.equalsIgnoreCase("default") && resultado.next()) {
+                tipoCampo = "TEXTO";
+            }
+
+            resultado = control.getResultSet("Select * from FECHAHORA where correlativo = '" + llave + "'");
+            if (tipoCampo.equalsIgnoreCase("default") && resultado.next()) {
+                tipoCampo = "FECHAHORA";
+            }
+
+            resultado = control.getResultSet("Select * from INCREMENTAL where correlativo = '" + llave + "'");
+            if (tipoCampo.equalsIgnoreCase("default") && resultado.next()) {
+                tipoCampo = "INCREMENTAL";
+            }
+
+            resultado = control.getResultSet("Select * from TIPOCAMPO where correlativo = '" + llave + "'");
+            if (tipoCampo.equalsIgnoreCase("default") && resultado.next()) {
+                tipoCampo = "TIPOCAMPO";
+            }
+
+
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception: *" + e.toString());
+        }
+
+        mostrarPaneTipoCampo(tipoCampo);
+        return retorno;
+    }
+
+    void mostrarPaneTipoCampo(String tipoCampo) {
+
         switch (tipoCampo.hashCode()) {
             case NUMERO: //HashCode para Número
-                this.valorNumDecimales.setText(resultado.getObject(2).toString());
-                this.valorNumeroMascara.setText(resultado.getObject(3).toString());
-                this.valorValorDefectoNumero.setText(resultado.getObject(4).toString());
+                paneNumero.setVisible(true);
                 break;
             case INCREMENTAL: //HashCode para Incremental
-                this.valorValorInicial.setText(resultado.getObject(2).toString());
-                this.valorIncremento.setText(resultado.getObject(3).toString());
+                paneIncremental.setVisible(true);
                 break;
             case FECHAHORA: //HashCode para FechaHora
-                this.comboFormatoFecha.setSelectedItem(resultado.getObject(2).toString());
-                this.valorFechaDefecto.setText(resultado.getObject(3).toString());
-                if(resultado.getObject(4).toString()=="true"){
-                    this.radioFechaHoraSi.setSelected(true);
-                    this.radioFechaHoraNo.setSelected(false);
-                }else{
-                    this.radioFechaHoraSi.setSelected(false);
-                    this.radioFechaHoraNo.setSelected(true);
-                }
-                this.valorPreaviso.setText(resultado.getObject(5).toString());
+                paneFechaHora.setVisible(true);
                 break;
             case TEXTO: //HashCode para Texto
-                this.valorTextoDefecto.setText(resultado.getObject(2).toString());
-                this.valorTextoLargo.setText(resultado.getObject(3).toString());
+                paneTexto.setVisible(true);
                 break;
             case BINARIO: //HashCode para Binario
-                this.valorNombreBinario1.setText(resultado.getObject(2).toString());
-                this.valorOpcionBinaria1.setText(resultado.getObject(3).toString());
-                this.valorNombreBinario2.setText(resultado.getObject(4).toString());
-                this.valorOpcionBinaria2.setText(resultado.getObject(5).toString());
-                if(resultado.getObject(6).toString()=="false"){
-                    this.radioOpcionBinaria1.setSelected(false);
-                    this.radioOpcionBinaria2.setSelected(true);
-                }else{
-                    this.radioOpcionBinaria1.setSelected(true);
-                    this.radioOpcionBinaria2.setSelected(false);
-                }
+                paneBinario.setVisible(true);
                 break;
             default: //Si se selecciona algo raro o el campito en blanco.
                 break;
         }
-    } catch (SQLException ex) {
-            Logger.getLogger(frameManejoCampos.class.getName()).log(Level.SEVERE, null, ex);
     }
-    
-    
-    
-    
-    
-    this.valorNombreGeneral.setText(llave);
-}
+
+    public void llenarFormularioCampos(String llave) {
+        Object tipoEncontrado[] = buscarTipoCampo(llave);
+        String tipoCampo = (String) tipoEncontrado[0];
+        ResultSet resultado = (ResultSet) tipoEncontrado[1];
+        try {
+            ControladorBD control = new ControladorBD();
+            ResultSet resultadoGeneral = control.getResultSet("Select * from TIPOCAMPO where Correlativo = " + llave);
+
+            JOptionPane.showMessageDialog(null, tipoCampo);
+            this.valorNombreGeneral.setText(resultadoGeneral.getObject(1).toString());
+            this.valorNota.setText(resultadoGeneral.getObject(2).toString());
+            this.comboTipos.setSelectedItem(tipoCampo);
+            switch (tipoCampo.hashCode()) {
+                case NUMERO: //HashCode para Número
+                    this.valorNumDecimales.setText(resultado.getObject(2).toString());
+                    this.valorNumeroMascara.setText(resultado.getObject(3).toString());
+                    this.valorValorDefectoNumero.setText(resultado.getObject(4).toString());
+                    break;
+                case INCREMENTAL: //HashCode para Incremental
+                    this.valorValorInicial.setText(resultado.getObject(2).toString());
+                    this.valorIncremento.setText(resultado.getObject(3).toString());
+                    break;
+                case FECHAHORA: //HashCode para FechaHora
+                    this.comboFormatoFecha.setSelectedItem(resultado.getObject(2).toString());
+                    this.valorFechaDefecto.setText(resultado.getObject(3).toString());
+                    if (resultado.getObject(4).toString() == "true") {
+                        this.radioFechaHoraSi.setSelected(true);
+                        this.radioFechaHoraNo.setSelected(false);
+                    } else {
+                        this.radioFechaHoraSi.setSelected(false);
+                        this.radioFechaHoraNo.setSelected(true);
+                    }
+                    this.valorPreaviso.setText(resultado.getObject(5).toString());
+                    break;
+                case TEXTO: //HashCode para Texto
+                    this.valorTextoDefecto.setText(resultado.getObject(2).toString());
+                    this.valorTextoLargo.setText(resultado.getObject(3).toString());
+                    break;
+                case BINARIO: //HashCode para Binario
+                    this.valorNombreBinario1.setText(resultado.getObject(2).toString());
+                    this.valorOpcionBinaria1.setText(resultado.getObject(3).toString());
+                    this.valorNombreBinario2.setText(resultado.getObject(4).toString());
+                    this.valorOpcionBinaria2.setText(resultado.getObject(5).toString());
+                    if (resultado.getObject(6).toString() == "false") {
+                        this.radioOpcionBinaria1.setSelected(false);
+                        this.radioOpcionBinaria2.setSelected(true);
+                    } else {
+                        this.radioOpcionBinaria1.setSelected(true);
+                        this.radioOpcionBinaria2.setSelected(false);
+                    }
+                    break;
+                default: //Si se selecciona algo raro o el campito en blanco.
+                    break;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(frameManejoCampos.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
 
+
+
+
+        this.valorNombreGeneral.setText(llave);
+    }
 
 private void botonBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBusquedaActionPerformed
     frameBusqueda ventanaBusqueda = new frameBusqueda(this);
@@ -714,7 +733,7 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private void botonGuardarActionAccepted() {
         boolean existe = false;
         int ID = 0;
-        
+
         try { //Primero se busca en la base de datos si ya existe este campo
             ResultSet resultado = conexionBD.getResultSet("select correlativo from TIPOCAMPO where nombre = '" + this.valorNombreGeneral.getText() + "';");
             if (resultado.next()) {
@@ -739,18 +758,17 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 System.out.println("*SQL Exception: *" + e.toString());
             }
         }
-        
+
         switch (comboTipos.getSelectedItem().toString().hashCode()) {
             case NUMERO: //HashCode para Número
-                if(existe){
+                if (existe) {
                     conexionBD.getResultSet("Update NUMERO set numeroDecimal = " + this.valorNumDecimales.getText() + ", mascara = '" + this.valorNumeroMascara.getText() + "', valorDefecto = " + this.valorValorDefectoNumero.getText() + " where correlativo = " + ID);
                     this.valorNombreGeneral.setText("");
                     this.valorNota.setText("");
                     this.valorNumDecimales.setText("");
                     this.valorNumeroMascara.setText("");
                     this.valorValorDefectoNumero.setText("");
-                }
-                else{
+                } else {
                     conexionBD.getResultSet("Insert Into NUMERO (correlativo, numeroDecimal, mascara, valorDefecto) VALUES (" + ID + ", " + this.valorNumDecimales.getText() + ", '" + this.valorNumeroMascara.getText() + "', " + this.valorValorDefectoNumero.getText() + ")");
                     this.valorNombreGeneral.setText("");
                     this.valorNota.setText("");
@@ -760,30 +778,23 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 }
                 break;
             case INCREMENTAL: //HashCode para Incremental
-                if(existe){
-                    
-                }
-                else{
-                    
+                if (existe) {
+                } else {
                 }
                 break;
             case FECHAHORA: //HashCode para FechaHora
-                if(existe){
-                    
-                }
-                else{
-                    
+                if (existe) {
+                } else {
                 }
                 break;
             case TEXTO: //HashCode para Texto
-                if(existe){
+                if (existe) {
                     conexionBD.getResultSet("Update TEXTO set tamano = " + this.valorTextoLargo.getText() + ", textoDefecto = '" + this.valorTextoDefecto.getText() + "' where correlativo = " + ID);
                     this.valorNombreGeneral.setText("");
                     this.valorNota.setText("");
                     this.valorTextoLargo.setText("");
                     this.valorTextoDefecto.setText("");
-                }
-                else{
+                } else {
                     conexionBD.getResultSet("Insert Into TEXTO (correlativo, tamano, textoDefecto) VALUES (" + ID + ", " + this.valorTextoLargo.getText() + ", '" + this.valorTextoDefecto.getText() + "')");
                     this.valorNombreGeneral.setText("");
                     this.valorNota.setText("");
@@ -792,11 +803,8 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 }
                 break;
             case BINARIO: //HashCode para Binario
-                if(existe){
-                    
-                }
-                else{
-                    
+                if (existe) {
+                } else {
                 }
                 break;
             default: //Si se selecciona algo raro o el campito en blanco.
@@ -817,18 +825,18 @@ private void botonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         case 0:
             /*Si quiere borrar el campo*/
             String temp;
-             try {
-             ControladorBD control = new ControladorBD();
-                ResultSet resultado = control.getResultSet("Select * from TIPOCAMPO where nombre = "+valorNombreGeneral.getText());
-                 System.out.println("llegue "+valorNombreGeneral.getText());
-                if(resultado.next()){
+            try {
+                ControladorBD control = new ControladorBD();
+                ResultSet resultado = control.getResultSet("Select * from TIPOCAMPO where nombre = " + valorNombreGeneral.getText());
+                System.out.println("llegue " + valorNombreGeneral.getText());
+                if (resultado.next()) {
                     System.out.println("llegue");
-                     temp = resultado.getObject(1).toString();
-                     ResultSet resultado2 = control.getResultSet("Delete from TIPOCAMPO where correlativo = "+temp);
-                 }
-             } catch (SQLException e) {
-            System.out.println("*SQL Exception: *" + e.toString());
-        }
+                    temp = resultado.getObject(1).toString();
+                    ResultSet resultado2 = control.getResultSet("Delete from TIPOCAMPO where correlativo = " + temp);
+                }
+            } catch (SQLException e) {
+                System.out.println("*SQL Exception: *" + e.toString());
+            }
             break;
         case 1:
             /*No quiere borrar el campo*/
