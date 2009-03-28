@@ -59,9 +59,13 @@ public class ControladorBD {
 
     }
 
+    /**
+     * Constructor por omisión
+     */
     public ControladorBD() {
-        System.out.print("HOla Mundo");
+     //   System.out.print("HOla Mundo");
     }
+
     private String getConexionEstablecida(){
        if(1==conexionSeleccionada){
             return conexionString1;

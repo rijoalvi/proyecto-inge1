@@ -15,6 +15,11 @@ import javax.swing.Icon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import java.sql.*;
+import javax.swing.tree.*;
+import javax.swing.JTree;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
 
 /**
  * The application's main frame.
@@ -83,11 +88,12 @@ public class GestionTipoCampoView extends FrameView {
             }
         });
 
-                        frameConexiones ventanaConexiones = new frameConexiones();
-        //  JFrame mainFrame = frameManejoCampos.getApplication().getMainFrame();
+        frameConexiones ventanaConexiones = new frameConexiones();
+        //JFrame mainFrame = frameManejoCampos.getApplication().getMainFrame();
         //coloca el frame segun como este ubicada la ventana principal
         // ventanaBusqueda.setLocationRelativeTo(mainFrame);
         ventanaConexiones.setVisible(true);
+        //ventanaConexiones.setLocationRelativeTo();
     }
 
     @Action
@@ -109,6 +115,90 @@ public class GestionTipoCampoView extends FrameView {
         ventanaManejoCampos.setVisible(true);
     }
 
+    public void llenarTreeView(){
+        //Llena los valores del Tree View
+        String [] tiposCampo = {"Número", "Binario", "FechaHora", "Texto", "Incremental"};
+        String valores;
+        String [] valTrim;
+        DefaultMutableTreeNode nodoTipoCampo;
+        DefaultMutableTreeNode nodoTemp;
+
+        DefaultMutableTreeNode raizArbol = new DefaultMutableTreeNode("Gift");    
+
+        /*
+        for(int k = 0; k < tiposCampo.length; k++){
+            nodoTemp = new DefaultMutableTreeNode(tiposCampo[k]);
+            
+            if(k == 2){
+                DefaultMutableTreeNode nodoTmp = new DefaultMutableTreeNode("2kjojhiohjoi");
+                nodoTemp.add(nodoTmp);
+                nodoTmp = new DefaultMutableTreeNode("333333");
+                nodoTemp.add(nodoTmp);
+            }
+            raizArbol.add(nodoTemp);
+        }        
+        /* */
+
+        
+        for(int k = 0; k < tiposCampo.length; k++){
+            nodoTipoCampo = new DefaultMutableTreeNode(tiposCampo[k]);
+            //Se llenan los datos con los valores que contenga la base de datos con el tipo campo:
+            valores = buscarEnBD(tiposCampo[k]);
+           // System.out.println("valores: " + valores);
+            valTrim = valores.split(" ");        
+            for(int i= 0; i < valTrim.length; ++i){
+                nodoTemp = new DefaultMutableTreeNode(valTrim[i]);
+                nodoTipoCampo.add(nodoTemp); //agrega el nodo
+            }
+            raizArbol.add(nodoTipoCampo);
+        }
+         /* */
+
+        JTree arbolnuevo = new JTree(raizArbol);
+        arbolPrincipal.setModel(arbolnuevo.getModel());
+
+
+
+        /*
+         MouseListener ml = new MouseAdapter() {
+     public void mousePressed(MouseEvent e) {
+         int selRow = tree.getRowForLocation(e.getX(), e.getY());
+         TreePath selPath = tree.getPathForLocation(e.getX(), e.getY());
+         if(selRow != -1) {
+             if(e.getClickCount() == 1) {
+                 mySingleClick(selRow, selPath);
+             }
+             else
+                if(e.getClickCount() == 2) {
+                 myDoubleClick(selRow, selPath);
+                }
+         }
+     }
+    */
+    }
+
+    /**
+     * Encargado de buscar valores en la base de datos
+     * @param nombreTP: Indica el nombre del tipoCampo al que se le van a buscar los valores en la BD
+     */
+    public String buscarEnBD(String nombreTP){  
+        ControladorBD miPrueba = new ControladorBD();
+        Object[] fila = new Object[4];
+        String valores = "";
+        try {
+           // ResultSet resultado = miPrueba.getResultSet("select * from TIPOCAMPO where nombre = '"+ nombreTP +"' ;");
+            //devuelve todo
+            ResultSet resultado = miPrueba.getResultSet("select * from TIPOCAMPO;");
+            if(resultado != null)
+                while (resultado.next()) {
+                    valores += resultado.getObject(2).toString();
+                }
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception: *" + e.toString());
+        }
+        return valores;
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -127,6 +217,7 @@ public class GestionTipoCampoView extends FrameView {
         jScrollPane1 = new javax.swing.JScrollPane();
         arbolPrincipal = new javax.swing.JTree();
         botonAbrir = new javax.swing.JButton();
+        botonActualizarArbol = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -166,6 +257,20 @@ public class GestionTipoCampoView extends FrameView {
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("GIFT");
+        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Número");
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Binario");
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("FechaHora");
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Texto");
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Incremental");
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Jerarquía");
+        treeNode1.add(treeNode2);
+        arbolPrincipal.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         arbolPrincipal.setName("arbolPrincipal"); // NOI18N
         jScrollPane1.setViewportView(arbolPrincipal);
 
@@ -183,22 +288,36 @@ public class GestionTipoCampoView extends FrameView {
             }
         });
 
+        botonActualizarArbol.setText(resourceMap.getString("botonActualizarArbol.text")); // NOI18N
+        botonActualizarArbol.setName("botonActualizarArbol"); // NOI18N
+        botonActualizarArbol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonActualizarArbolActionPerformed(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel1Layout.createSequentialGroup()
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(botonAbrir)
-                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 174, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(87, Short.MAX_VALUE))
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                .add(104, 104, 104))
+            .add(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(botonActualizarArbol)
+                .add(18, 18, 18)
+                .add(botonAbrir)
+                .addContainerGap(123, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel1Layout.createSequentialGroup()
                 .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 199, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(botonAbrir)
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(botonActualizarArbol)
+                    .add(botonAbrir))
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -215,7 +334,7 @@ public class GestionTipoCampoView extends FrameView {
                                 .add(canvas1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 132, Short.MAX_VALUE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 108, Short.MAX_VALUE)
                                 .add(canvas3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                             .add(org.jdesktop.layout.GroupLayout.TRAILING, canvas2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                     .add(mainPanelLayout.createSequentialGroup()
@@ -234,10 +353,10 @@ public class GestionTipoCampoView extends FrameView {
                                 .add(105, 105, 105)
                                 .add(canvas3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                             .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 350, Short.MAX_VALUE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 345, Short.MAX_VALUE)
                         .add(canvas4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(canvas2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(canvas1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE))
+                    .add(canvas1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -328,7 +447,7 @@ public class GestionTipoCampoView extends FrameView {
             .add(statusPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .add(statusMessageLabel)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 239, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 253, Short.MAX_VALUE)
                 .add(progressBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(statusAnimationLabel)
@@ -357,15 +476,13 @@ public class GestionTipoCampoView extends FrameView {
 
     private void botonAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAbrirActionPerformed
         abrirUnCampo();
-
-
 }//GEN-LAST:event_botonAbrirActionPerformed
 
     private void botonAbrirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAbrirMouseClicked
         // TODO add your handling code here:
         ControladorBD miPrueba = new ControladorBD();
         //   miPrueba.hacerConsulta("select * from Profesional");
-        System.out.print("prueba de base de datos");
+       // System.out.print("prueba de base de datos");
         try {
             ResultSet resultado = miPrueba.getResultSet("select * from TIPOCAMPO");
 
@@ -387,6 +504,11 @@ public class GestionTipoCampoView extends FrameView {
 
     }//GEN-LAST:event_mainPanelComponentShown
 
+    private void botonActualizarArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarArbolActionPerformed
+        //Se actualiza el tree View
+        llenarTreeView();
+}//GEN-LAST:event_botonActualizarArbolActionPerformed
+
     public void abrirUnCampo() {
         frameManejoCampos ventanaManejoCampos = new frameManejoCampos("abrir");
         JFrame mainFrame = GestionTipoCampoApp.getApplication().getMainFrame();
@@ -398,6 +520,7 @@ public class GestionTipoCampoView extends FrameView {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTree arbolPrincipal;
     private javax.swing.JButton botonAbrir;
+    private javax.swing.JButton botonActualizarArbol;
     private java.awt.Canvas canvas1;
     private java.awt.Canvas canvas2;
     private java.awt.Canvas canvas3;

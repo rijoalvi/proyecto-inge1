@@ -43,7 +43,7 @@ public class frameBusqueda extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaBusqueda = new javax.swing.JTable();
         botonOK = new javax.swing.JButton();
         botonCancelar = new javax.swing.JButton();
 
@@ -52,7 +52,7 @@ public class frameBusqueda extends javax.swing.JFrame {
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaBusqueda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -68,18 +68,18 @@ public class frameBusqueda extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setName("jTable1"); // NOI18N
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        tablaBusqueda.setName("tablaBusqueda"); // NOI18N
+        tablaBusqueda.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jTable1MouseEntered(evt);
+                tablaBusquedaMouseEntered(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaBusqueda);
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameBusqueda.class);
-        jTable1.getColumnModel().getColumn(0).setHeaderValue(resourceMap.getString("jTable1.columnModel.title0")); // NOI18N
-        jTable1.getColumnModel().getColumn(1).setHeaderValue(resourceMap.getString("jTable1.columnModel.title1")); // NOI18N
-        jTable1.getColumnModel().getColumn(2).setHeaderValue(resourceMap.getString("jTable1.columnModel.title2")); // NOI18N
-        jTable1.getColumnModel().getColumn(3).setHeaderValue(resourceMap.getString("jTable1.columnModel.title3")); // NOI18N
+        tablaBusqueda.getColumnModel().getColumn(0).setHeaderValue(resourceMap.getString("tablaBusqueda.columnModel.title0")); // NOI18N
+        tablaBusqueda.getColumnModel().getColumn(1).setHeaderValue(resourceMap.getString("tablaBusqueda.columnModel.title1")); // NOI18N
+        tablaBusqueda.getColumnModel().getColumn(2).setHeaderValue(resourceMap.getString("tablaBusqueda.columnModel.title2")); // NOI18N
+        tablaBusqueda.getColumnModel().getColumn(3).setHeaderValue(resourceMap.getString("tablaBusqueda.columnModel.title3")); // NOI18N
 
         botonOK.setText(resourceMap.getString("botonOK.text")); // NOI18N
         botonOK.setName("botonOK"); // NOI18N
@@ -133,24 +133,24 @@ public class frameBusqueda extends javax.swing.JFrame {
     }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void botonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonOKActionPerformed
-        int filaSeleccionada = jTable1.getSelectedRow();
-        String llave = jTable1.getModel().getValueAt(filaSeleccionada, 0).toString();
+        int filaSeleccionada = tablaBusqueda.getSelectedRow();
+        String llave = tablaBusqueda.getModel().getValueAt(filaSeleccionada, 0).toString();
         JOptionPane.showMessageDialog(null, llave);
         madre.llenarFormularioCampos(llave);
     }//GEN-LAST:event_botonOKActionPerformed
 
-    private void jTable1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseEntered
+    private void tablaBusquedaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaBusquedaMouseEntered
 
-    }//GEN-LAST:event_jTable1MouseEntered
+}//GEN-LAST:event_tablaBusquedaMouseEntered
 
     public void llenarTabla(JTextField campo) {
         ControladorBD miPrueba = new ControladorBD();
-        System.out.print("prueba de base de datos");
+       // System.out.print("prueba de base de datos");
 
  //       int contador;
    //     int contadorFila;
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo = (DefaultTableModel) jTable1.getModel();
+        modelo = (DefaultTableModel) tablaBusqueda.getModel();
 
         //jTable1 = new JTable(modelo);
         Object[] fila = new Object[4];
@@ -170,14 +170,14 @@ public class frameBusqueda extends javax.swing.JFrame {
 
                     }
                     modelo.addRow(fila);
-                    System.out.print("Contenido tabla " +/*jTable1.getModel()*/modelo.getRowCount());
+                 //   System.out.print("Contenido tabla " + modelo.getRowCount());
 
 
         //            ++contadorFila;
                 //}
           //      ++contador;
             }
-            jTable1.setModel(modelo);
+            tablaBusqueda.setModel(modelo);
             
         } catch (SQLException e) {
             System.out.println("*SQL Exception: *" + e.toString());
@@ -202,6 +202,6 @@ public class frameBusqueda extends javax.swing.JFrame {
     private javax.swing.JButton botonCancelar;
     private javax.swing.JButton botonOK;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tablaBusqueda;
     // End of variables declaration//GEN-END:variables
 }
