@@ -13,9 +13,9 @@ CREATE TABLE BINARIO(
 CREATE TABLE FECHAHORA(
   correlativo int NOT NULL,
   despliegue varchar(8) NOT NULL,
-  fechaDefecto timestamp,
-  vencimiento timestamp,
-  preaviso timestamp,
+  fechaDefecto datetime,
+  vencimiento bit,
+  preaviso int,
   PRIMARY KEY (correlativo)
 );
 
@@ -46,9 +46,14 @@ CREATE TABLE TEXTO(
 
 -- Tabla: "TIPOCAMPO"
 CREATE TABLE TIPOCAMPO(
-  correlativo int AUTO_INCREMENT NOT NULL,
+  correlativo int auto_increment NOT NULL,
   nombre varchar(20) NOT NULL,
   descripcion varchar(150),
   ultimaActualizacion timestamp,
+  tipo int,
   PRIMARY KEY (correlativo)
+
 );
+
+--insert into TIPOCAMPO (nombre,descripcion) values ('pruebaNombre','PruebaDescripsion')
+--select * from TIPOCAMPO
