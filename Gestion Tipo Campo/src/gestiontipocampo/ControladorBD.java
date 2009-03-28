@@ -96,6 +96,30 @@ public class ControladorBD {
         }
         return resultado;
     }
+    
+    public int doUpdate(String consulta) {
+        String conexionAUtilizar=getConexionEstablecida();
+        int result = -1;
+        try {
+            if(getConexionEstablecida() == conexionString1){
+                Class.forName("com.mysql.jdbc.Driver");
+            }
+            else{
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            }
+            conexion = DriverManager.getConnection(conexionAUtilizar);
+            Statement query = null;
+            String SQL = consulta;
+            query = conexion.createStatement();
+            result = query.executeUpdate(SQL);
+            System.out.println("Se realizo la consula con la conexion # "+conexionSeleccionada+"");
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception: *" + e.toString());
+        } catch (ClassNotFoundException cE) {
+            System.out.println("--Class Not Found Exception: --" + cE.toString());
+        }
+        return result;
+    }
 
     /*public ResultSet hacerConsulta(String consulta) {
         String conexionAUtilizar=getConexionEstablecida();
