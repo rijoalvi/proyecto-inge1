@@ -1,0 +1,19 @@
+VALORES DEL CAMPO "TIPO" EN LA TABLA TIPOCAMPO:
+1 = numero
+2 = binario
+3 = fechahora
+4 = texto
+5 = incremental
+6 = jerarquia
+
+Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('num 3', 'el numero 3', '1');
+Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('num 21', 'el numero 21', '1');
+Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('num 5', 'el numero 5', '1');
+Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('texto pba', 'bla bla', '4');
+Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('numero 5', '0101', '2');
+
+Insert Into NUMERO (correlativo, numeroDecimales, mascara, valorDefecto) VALUES ('1', '0', '###', '3');
+Insert Into NUMERO (correlativo, numeroDecimales, mascara, valorDefecto) VALUES ('2', '35', '###', '21');
+Insert Into NUMERO (correlativo, numeroDecimales, mascara, valorDefecto) VALUES ('3', '15', '###', '5');
+Insert Into TEXTO (correlativo, tamano, textoDefecto) VALUES ('4','8','ocholetr');
+Insert Into BINARIO (correlativo, nombre1, nombre2, valor1, valor2, valorDefecto) VALUES ('5', 'NO', 'SI', 'no', 'si', '2');

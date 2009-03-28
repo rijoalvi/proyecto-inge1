@@ -17,8 +17,6 @@ import javax.swing.JFrame;
 import java.sql.*;
 import javax.swing.tree.*;
 import javax.swing.JTree;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 
 /**
@@ -117,43 +115,25 @@ public class GestionTipoCampoView extends FrameView {
 
     public void llenarTreeView(){
         //Llena los valores del Tree View
-        String [] tiposCampo = {"Número", "Binario", "FechaHora", "Texto", "Incremental"};
+        String [] tiposCampo = {"Numero", "Binario", "FechaHora", "Texto", "Incremental"};
         String valores;
         String [] valTrim;
         DefaultMutableTreeNode nodoTipoCampo;
         DefaultMutableTreeNode nodoTemp;
-
         DefaultMutableTreeNode raizArbol = new DefaultMutableTreeNode("Gift");    
-
-        /*
-        for(int k = 0; k < tiposCampo.length; k++){
-            nodoTemp = new DefaultMutableTreeNode(tiposCampo[k]);
-            
-            if(k == 2){
-                DefaultMutableTreeNode nodoTmp = new DefaultMutableTreeNode("2kjojhiohjoi");
-                nodoTemp.add(nodoTmp);
-                nodoTmp = new DefaultMutableTreeNode("333333");
-                nodoTemp.add(nodoTmp);
-            }
-            raizArbol.add(nodoTemp);
-        }        
-        /* */
-
         
         for(int k = 0; k < tiposCampo.length; k++){
             nodoTipoCampo = new DefaultMutableTreeNode(tiposCampo[k]);
             //Se llenan los datos con los valores que contenga la base de datos con el tipo campo:
-            valores = buscarEnBD(tiposCampo[k]);
+            valores = buscarEnBD(tiposCampo[k], k+1);
            // System.out.println("valores: " + valores);
-            valTrim = valores.split(" ");        
+            valTrim = valores.split("\n");
             for(int i= 0; i < valTrim.length; ++i){
                 nodoTemp = new DefaultMutableTreeNode(valTrim[i]);
                 nodoTipoCampo.add(nodoTemp); //agrega el nodo
             }
             raizArbol.add(nodoTipoCampo);
         }
-         /* */
-
         JTree arbolnuevo = new JTree(raizArbol);
         arbolPrincipal.setModel(arbolnuevo.getModel());
 
@@ -181,17 +161,15 @@ public class GestionTipoCampoView extends FrameView {
      * Encargado de buscar valores en la base de datos
      * @param nombreTP: Indica el nombre del tipoCampo al que se le van a buscar los valores en la BD
      */
-    public String buscarEnBD(String nombreTP){  
-        ControladorBD miPrueba = new ControladorBD();
+    public String buscarEnBD(String nombreTP, int num){
+        ControladorBD buscador = new ControladorBD();
         Object[] fila = new Object[4];
         String valores = "";
         try {
-           // ResultSet resultado = miPrueba.getResultSet("select * from TIPOCAMPO where nombre = '"+ nombreTP +"' ;");
-            //devuelve todo
-            ResultSet resultado = miPrueba.getResultSet("select * from TIPOCAMPO;");
+            ResultSet resultado = buscador.getResultSet("select * from TIPOCAMPO where tipo = '" + num + "';");
             if(resultado != null)
                 while (resultado.next()) {
-                    valores += resultado.getObject(2).toString();
+                    valores += resultado.getObject(2).toString() + "\n";
                 }
         } catch (SQLException e) {
             System.out.println("*SQL Exception: *" + e.toString());

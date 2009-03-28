@@ -189,30 +189,30 @@ public class frameManejoCampos extends javax.swing.JFrame {
 
         jLabel4.setText(resourceMap.getString("jLabel4.text")); // NOI18N
         jLabel4.setName("jLabel4"); // NOI18N
-        jLabel4.setBounds(10, 10, 110, 13);
+        jLabel4.setBounds(10, 10, 110, -1);
         paneNumero.add(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorNumDecimales.setName("valorNumDecimales"); // NOI18N
-        valorNumDecimales.setBounds(10, 30, 80, 17);
+        valorNumDecimales.setBounds(10, 30, 80, -1);
         paneNumero.add(valorNumDecimales, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel5.setText(resourceMap.getString("jLabel5.text")); // NOI18N
         jLabel5.setName("jLabel5"); // NOI18N
-        jLabel5.setBounds(130, 10, 50, 13);
+        jLabel5.setBounds(130, 10, 50, -1);
         paneNumero.add(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorNumeroMascara.setName("valorNumeroMascara"); // NOI18N
-        valorNumeroMascara.setBounds(130, 30, 80, 17);
+        valorNumeroMascara.setBounds(130, 30, 80, -1);
         paneNumero.add(valorNumeroMascara, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorValorDefectoNumero.setText(resourceMap.getString("valorValorDefectoNumero.text")); // NOI18N
         valorValorDefectoNumero.setName("valorValorDefectoNumero"); // NOI18N
-        valorValorDefectoNumero.setBounds(250, 30, 80, 17);
+        valorValorDefectoNumero.setBounds(250, 30, 80, -1);
         paneNumero.add(valorValorDefectoNumero, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel12.setText(resourceMap.getString("jLabel12.text")); // NOI18N
         jLabel12.setName("jLabel12"); // NOI18N
-        jLabel12.setBounds(250, 10, 90, 13);
+        jLabel12.setBounds(250, 10, 90, -1);
         paneNumero.add(jLabel12, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneNumero.setBounds(20, 0, 400, 160);
@@ -316,12 +316,12 @@ public class frameManejoCampos extends javax.swing.JFrame {
         paneFechaHora.add(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorPreaviso.setName("valorPreaviso"); // NOI18N
-        valorPreaviso.setBounds(140, 80, 80, 17);
+        valorPreaviso.setBounds(130, 80, 80, -1);
         paneFechaHora.add(valorPreaviso, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel13.setText(resourceMap.getString("jLabel13.text")); // NOI18N
         jLabel13.setName("jLabel13"); // NOI18N
-        jLabel13.setBounds(140, 10, 100, 13);
+        jLabel13.setBounds(130, 10, 100, -1);
         paneFechaHora.add(jLabel13, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         try {
@@ -331,17 +331,17 @@ public class frameManejoCampos extends javax.swing.JFrame {
         }
         valorFechaDefecto.setText(resourceMap.getString("valorFechaDefecto.text")); // NOI18N
         valorFechaDefecto.setName("valorFechaDefecto"); // NOI18N
-        valorFechaDefecto.setBounds(140, 30, 80, 19);
+        valorFechaDefecto.setBounds(130, 30, 80, -1);
         paneFechaHora.add(valorFechaDefecto, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel14.setText(resourceMap.getString("jLabel14.text")); // NOI18N
         jLabel14.setName("jLabel14"); // NOI18N
-        jLabel14.setBounds(140, 60, 100, 13);
+        jLabel14.setBounds(130, 60, 100, -1);
         paneFechaHora.add(jLabel14, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel15.setText(resourceMap.getString("jLabel15.text")); // NOI18N
         jLabel15.setName("jLabel15"); // NOI18N
-        jLabel15.setBounds(20, 60, 100, 13);
+        jLabel15.setBounds(10, 60, 100, -1);
         paneFechaHora.add(jLabel15, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         radioFechaHoraSi.setSelected(true);
@@ -352,7 +352,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 radioFechaHoraSiActionPerformed(evt);
             }
         });
-        radioFechaHoraSi.setBounds(20, 80, 36, 21);
+        radioFechaHoraSi.setBounds(10, 80, -1, -1);
         paneFechaHora.add(radioFechaHoraSi, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         radioFechaHoraNo.setText(resourceMap.getString("radioFechaHoraNo.text")); // NOI18N
@@ -362,7 +362,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 radioFechaHoraNoActionPerformed(evt);
             }
         });
-        radioFechaHoraNo.setBounds(20, 100, 40, 20);
+        radioFechaHoraNo.setBounds(10, 100, -1, 20);
         paneFechaHora.add(radioFechaHoraNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         comboFormatoFecha.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "dd/mm/aaaa", "mm/dd/aaaa", "aaaa/dd/mm", "aaaa/mm/dd" }));
@@ -372,7 +372,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 comboFormatoFechaActionPerformed(evt);
             }
         });
-        comboFormatoFecha.setBounds(20, 30, 90, 22);
+        comboFormatoFecha.setBounds(10, 30, 90, -1);
         paneFechaHora.add(comboFormatoFecha, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneFechaHora.setBounds(0, 0, 380, 130);
@@ -425,7 +425,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
             .add(layout.createSequentialGroup()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(98, Short.MAX_VALUE)
+                        .addContainerGap(144, Short.MAX_VALUE)
                         .add(botonBorrar)
                         .add(18, 18, 18)
                         .add(botonGuardarComo)
@@ -449,7 +449,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                     .add(jLabel1)
                                     .add(comboTipos, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 95, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 141, Short.MAX_VALUE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 170, Short.MAX_VALUE)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                     .add(layout.createSequentialGroup()
                                         .add(valorBusqueda, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 105, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -783,13 +783,24 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 }
                 break;
             case FECHAHORA: //HashCode para FechaHora
+                int valorVencimiento = 0; //Se toma como que es no
+                if(radioFechaHoraSi.isSelected())
+                    valorVencimiento = 1; //Se cambia el valor
                 if (existe) {
-                } else {
+                    conexionBD.getResultSet("Update FECHAHORA set despliegue = '" + this.comboFormatoFecha.getSelectedItem().toString() + "', fechaDefecto = '" + this.valorFechaDefecto.getText() + "', preaviso = '" + this.valorPreaviso.getText() + "', vencimiento = '" + valorVencimiento + " ' where correlativo = " + ID);
+                    this.valorNombreGeneral.setText("");
+                    this.valorNota.setText("");
+                    
+                } else {                    
+                    conexionBD.getResultSet("Insert Into FECHAHORA (correlativo, despliegue, fechaDefecto, preaviso, vencimiento) VALUES (" + ID + ", " + this.comboFormatoFecha.getSelectedItem().toString() + ", '" + this.valorFechaDefecto.getText() + ", '" + this.valorPreaviso.getText() + ", '" + valorVencimiento + "')");
+                    this.valorNombreGeneral.setText("");
+                    this.valorNota.setText("");
+                    
                 }
                 break;
             case TEXTO: //HashCode para Texto
                 if (existe) {
-                    conexionBD.getResultSet("Update TEXTO set tamano = " + this.valorTextoLargo.getText() + ", textoDefecto = '" + this.valorTextoDefecto.getText() + "' where correlativo = " + ID);
+                    conexionBD.getResultSet("Update TEXTO set tamano = '" + this.valorTextoLargo.getText() + "', textoDefecto = '" + this.valorTextoDefecto.getText() + "' where correlativo = " + ID);
                     this.valorNombreGeneral.setText("");
                     this.valorNota.setText("");
                     this.valorTextoLargo.setText("");

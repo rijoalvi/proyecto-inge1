@@ -88,7 +88,7 @@ public class ControladorBD {
             String SQL = consulta;
             query = conexion.createStatement();
             resultado = query.executeQuery(SQL);
-            System.out.println("\nSe realizo la consula con la conexion # "+conexionSeleccionada+"\n");
+            System.out.println("Se realizo la consula con la conexion # "+conexionSeleccionada+"");
         } catch (SQLException e) {
             System.out.println("*SQL Exception: *" + e.toString());
         } catch (ClassNotFoundException cE) {
