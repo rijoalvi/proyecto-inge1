@@ -20,7 +20,7 @@ import java.text.ParseException;
 public class frameManejoCampos extends javax.swing.JFrame {
 
     //Son los macros que se usan para seleccion del combo box.
-    static final int NUMERO = -1827665343;
+    static final int NUMERO = -1950493636;
     static final int INCREMENTAL = -1541726278;
     static final int FECHAHORA = -1299756429;
     static final int TEXTO = 80703682;
@@ -568,135 +568,49 @@ public class frameManejoCampos extends javax.swing.JFrame {
         ResultSet resultado = null;
         String tipoCampo = "default";
         Object retorno[] = new Object[2];
-        retorno[0] = tipoCampo;
-        retorno[1] = resultado;
+        this.ocultarPanes();
 
-        try {
-            resultado = control.getResultSet("Select * from NUMERO where correlativo = '" + llave + "'");
-            if (resultado.next()) {
-                tipoCampo = "NUMERO";
-            }
-
-            resultado = control.getResultSet("Select * from BINARIO where correlativo = '" + llave + "'");
-            if (tipoCampo.equalsIgnoreCase("default") && resultado.next()) {
+        try{
+        resultado = control.getResultSet("Select * from NUMERO where correlativo = "+llave);
+        if(resultado.next()){
+            tipoCampo = "NUMERO";
+            paneNumero.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(null,"probando en binario");
+            resultado = control.getResultSet("Select * from BINARIO where correlativo = "+llave);
+            if(resultado.next()){
                 tipoCampo = "BINARIO";
-            }
-
-            resultado = control.getResultSet("Select * from TEXTO where correlativo = '" + llave + "'");
-            if (tipoCampo.equalsIgnoreCase("default") && resultado.next()) {
-                tipoCampo = "TEXTO";
-            }
-
-            resultado = control.getResultSet("Select * from FECHAHORA where correlativo = '" + llave + "'");
-            if (tipoCampo.equalsIgnoreCase("default") && resultado.next()) {
-                tipoCampo = "FECHAHORA";
-            }
-
-            resultado = control.getResultSet("Select * from INCREMENTAL where correlativo = '" + llave + "'");
-            if (tipoCampo.equalsIgnoreCase("default") && resultado.next()) {
-                tipoCampo = "INCREMENTAL";
-            }
-
-            resultado = control.getResultSet("Select * from TIPOCAMPO where correlativo = '" + llave + "'");
-            if (tipoCampo.equalsIgnoreCase("default") && resultado.next()) {
-                tipoCampo = "TIPOCAMPO";
-            }
-
-
-        } catch (SQLException e) {
-            System.out.println("*SQL Exception: *" + e.toString());
-        }
-
-        mostrarPaneTipoCampo(tipoCampo);
-        return retorno;
-    }
-
-    void mostrarPaneTipoCampo(String tipoCampo) {
-
-        switch (tipoCampo.hashCode()) {
-            case NUMERO: //HashCode para Número
-                paneNumero.setVisible(true);
-                break;
-            case INCREMENTAL: //HashCode para Incremental
-                paneIncremental.setVisible(true);
-                break;
-            case FECHAHORA: //HashCode para FechaHora
-                paneFechaHora.setVisible(true);
-                break;
-            case TEXTO: //HashCode para Texto
-                paneTexto.setVisible(true);
-                break;
-            case BINARIO: //HashCode para Binario
                 paneBinario.setVisible(true);
-                break;
-            default: //Si se selecciona algo raro o el campito en blanco.
-                break;
-        }
-    }
-
-    public void llenarFormularioCampos(String llave) {
-        Object tipoEncontrado[] = buscarTipoCampo(llave);
-        String tipoCampo = (String) tipoEncontrado[0];
-        ResultSet resultado = (ResultSet) tipoEncontrado[1];
-        try {
-            ControladorBD control = new ControladorBD();
-            ResultSet resultadoGeneral = control.getResultSet("Select * from TIPOCAMPO where Correlativo = " + llave);
-
-            JOptionPane.showMessageDialog(null, tipoCampo);
-            this.valorNombreGeneral.setText(resultadoGeneral.getObject(1).toString());
-            this.valorNota.setText(resultadoGeneral.getObject(2).toString());
-            this.comboTipos.setSelectedItem(tipoCampo);
-            switch (tipoCampo.hashCode()) {
-                case NUMERO: //HashCode para Número
-                    this.valorNumDecimales.setText(resultado.getObject(2).toString());
-                    this.valorNumeroMascara.setText(resultado.getObject(3).toString());
-                    this.valorValorDefectoNumero.setText(resultado.getObject(4).toString());
-                    break;
-                case INCREMENTAL: //HashCode para Incremental
-                    this.valorValorInicial.setText(resultado.getObject(2).toString());
-                    this.valorIncremento.setText(resultado.getObject(3).toString());
-                    break;
-                case FECHAHORA: //HashCode para FechaHora
-                    this.comboFormatoFecha.setSelectedItem(resultado.getObject(2).toString());
-                    this.valorFechaDefecto.setText(resultado.getObject(3).toString());
-                    if (resultado.getObject(4).toString() == "true") {
-                        this.radioFechaHoraSi.setSelected(true);
-                        this.radioFechaHoraNo.setSelected(false);
-                    } else {
-                        this.radioFechaHoraSi.setSelected(false);
-                        this.radioFechaHoraNo.setSelected(true);
+            }else {
+                JOptionPane.showMessageDialog(null,"probando en Texto");
+                resultado = control.getResultSet("Select * from TEXTO where correlativo = "+llave);
+                if(resultado.next()){
+                    tipoCampo = "TEXTO";
+                    paneTexto.setVisible(true);
+                }else {
+                    JOptionPane.showMessageDialog(null,"probando en fechahora");
+                    resultado = control.getResultSet("Select * from FECHAHORA where correlativo = "+llave);
+                    if(resultado.next()){
+                        tipoCampo = "FECHAHORA";
+                        paneFechaHora.setVisible(true);
+                    }else {
+                        JOptionPane.showMessageDialog(null,"probando en Incremental");
+                        resultado = control.getResultSet("Select * from INCREMENTAL where correlativo = "+llave);
+                        if(resultado.next()){
+                            tipoCampo = "INCREMENTAL";
+                            paneIncremental.setVisible(true);
+                        }
                     }
-                    this.valorPreaviso.setText(resultado.getObject(5).toString());
-                    break;
-                case TEXTO: //HashCode para Texto
-                    this.valorTextoDefecto.setText(resultado.getObject(2).toString());
-                    this.valorTextoLargo.setText(resultado.getObject(3).toString());
-                    break;
-                case BINARIO: //HashCode para Binario
-                    this.valorNombreBinario1.setText(resultado.getObject(2).toString());
-                    this.valorOpcionBinaria1.setText(resultado.getObject(3).toString());
-                    this.valorNombreBinario2.setText(resultado.getObject(4).toString());
-                    this.valorOpcionBinaria2.setText(resultado.getObject(5).toString());
-                    if (resultado.getObject(6).toString() == "false") {
-                        this.radioOpcionBinaria1.setSelected(false);
-                        this.radioOpcionBinaria2.setSelected(true);
-                    } else {
-                        this.radioOpcionBinaria1.setSelected(true);
-                        this.radioOpcionBinaria2.setSelected(false);
-                    }
-                    break;
-                default: //Si se selecciona algo raro o el campito en blanco.
-                    break;
+                }
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(frameManejoCampos.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-
-
-
-
-        this.valorNombreGeneral.setText(llave);
+    resultado.beforeFirst();
+    }catch (SQLException e) {
+            System.out.println("*SQL Exception: *" + e.toString());
+    }
+    retorno[0]=tipoCampo;
+    retorno[1]=resultado;
+    return retorno;
     }
 
 private void botonBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBusquedaActionPerformed
@@ -963,6 +877,67 @@ private void radioOpcionBinaria2ActionPerformed(java.awt.event.ActionEvent evt) 
             pe.printStackTrace();
         }
     }
+
+public void llenarFormularioCampos(String llave){
+    Object tipoEncontrado[] =  buscarTipoCampo(llave);
+    String tipoCampo = (String) tipoEncontrado[0];
+    ResultSet resultado = (ResultSet) tipoEncontrado[1];
+    JOptionPane.showMessageDialog(null, "!!!!!!!!!!!!Es de tipo "+tipoCampo+"!!!");
+    try {
+        ControladorBD control = new ControladorBD();
+        ResultSet resultadoGeneral = control.getResultSet("Select * from TIPOCAMPO where Correlativo = "+llave);
+        //resultado.next();
+        resultadoGeneral.next();
+        
+        int i=0;
+        while(!this.comboTipos.getItemAt(i).toString().equalsIgnoreCase(tipoCampo)&&comboTipos.getItemCount()>=i){
+             i++;
+           //JOptionPane.showMessageDialog(null,this.comboTipos.getItemAt(i).toString()+" "+tipoCampo);
+        }
+        comboTipos.setSelectedIndex(i);
+        this.valorNombreGeneral.setText(resultadoGeneral.getObject(2).toString());
+        this.valorNota.setText(resultadoGeneral.getObject(3).toString());
+        if(tipoCampo.equals("NUMERO")){
+                this.valorNumDecimales.setText(resultado.getObject(2).toString());
+                this.valorNumeroMascara.setText(resultado.getObject(3).toString());
+                this.valorValorDefectoNumero.setText(resultado.getObject(4).toString());
+                //paneNumero.setVisible(true);
+        }else if(tipoCampo.equals("INCREMENTAL")){
+                this.valorValorInicial.setText(resultado.getObject(2).toString());
+                this.valorIncremento.setText(resultado.getObject(3).toString());
+        }else if(tipoCampo.equals("FECHAHORA")){
+                this.comboFormatoFecha.setSelectedItem(resultado.getObject(2).toString());
+                this.valorFechaDefecto.setText(resultado.getObject(3).toString());
+                if(resultado.getObject(4).toString()=="true"){
+                    this.radioFechaHoraSi.setSelected(true);
+                    this.radioFechaHoraNo.setSelected(false);
+                }else{
+                    this.radioFechaHoraSi.setSelected(false);
+                    this.radioFechaHoraNo.setSelected(true);
+                }
+                this.valorPreaviso.setText(resultado.getObject(5).toString());
+        }else if(tipoCampo.equals("TEXTO")){
+                this.valorTextoDefecto.setText(resultado.getObject(2).toString());
+                this.valorTextoLargo.setText(resultado.getObject(3).toString());
+        }else if(tipoCampo.equals("BINARIO")){
+                this.valorNombreBinario1.setText(resultado.getObject(2).toString());
+                this.valorOpcionBinaria1.setText(resultado.getObject(3).toString());
+                this.valorNombreBinario2.setText(resultado.getObject(4).toString());
+                this.valorOpcionBinaria2.setText(resultado.getObject(5).toString());
+                if(resultado.getObject(6).toString()=="false"){
+                    this.radioOpcionBinaria1.setSelected(false);
+                    this.radioOpcionBinaria2.setSelected(true);
+                }else{
+                    this.radioOpcionBinaria1.setSelected(true);
+                    this.radioOpcionBinaria2.setSelected(false);
+                }
+        }
+    } catch (SQLException ex) {
+            Logger.getLogger(frameManejoCampos.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    
+}
+
 
     /**
      * @param args the command line arguments

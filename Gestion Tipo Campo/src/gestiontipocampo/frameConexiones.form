@@ -40,7 +40,7 @@
               <EmptySpace pref="138" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="282" max="32767" attributes="0"/>
+              <EmptySpace pref="338" max="32767" attributes="0"/>
               <Component id="btnRefrescar" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnEstablecerConexion" min="-2" max="-2" attributes="0"/>
