@@ -17,6 +17,7 @@ import javax.swing.JFrame;
 import java.sql.*;
 import javax.swing.tree.*;
 import javax.swing.JTree;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -28,6 +29,14 @@ public class GestionTipoCampoView extends FrameView {
         super(app);
 
         initComponents();
+
+        //Se esconden todos los datos de panel para abrir datos...
+        paneDatosAbrir.setVisible(false);
+
+        //Inicializa el arbol para obtener nodo seleccionado
+        arbolPrincipal.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+
+
 
         // status bar initialization - message timeout, idle icon and busy animation, etc
         ResourceMap resourceMap = getResourceMap();
@@ -194,8 +203,57 @@ public class GestionTipoCampoView extends FrameView {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         arbolPrincipal = new javax.swing.JTree();
-        botonAbrir = new javax.swing.JButton();
         botonActualizarArbol = new javax.swing.JButton();
+        botonAbrirArbol = new javax.swing.JButton();
+        paneDatosAbrir = new javax.swing.JLayeredPane();
+        panePrincipal = new javax.swing.JLayeredPane();
+        paneIncremental = new javax.swing.JLayeredPane();
+        jLabel17 = new javax.swing.JLabel();
+        valorValorInicial = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        valorIncremento = new javax.swing.JTextField();
+        paneTexto = new javax.swing.JLayeredPane();
+        jLabel16 = new javax.swing.JLabel();
+        valorTextoLargo = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        valorTextoDefecto = new javax.swing.JTextField();
+        paneFechaHora = new javax.swing.JLayeredPane();
+        jLabel6 = new javax.swing.JLabel();
+        valorPreaviso = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        valorFechaDefecto = new javax.swing.JFormattedTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        radioFechaHoraSi = new javax.swing.JRadioButton();
+        radioFechaHoraNo = new javax.swing.JRadioButton();
+        comboFormatoFecha = new javax.swing.JComboBox();
+        paneBinario = new javax.swing.JLayeredPane();
+        jLabel7 = new javax.swing.JLabel();
+        valorNombreBinario1 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        valorOpcionBinaria1 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        valorNombreBinario2 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        valorOpcionBinaria2 = new javax.swing.JTextField();
+        radioOpcionBinaria1 = new javax.swing.JRadioButton();
+        radioOpcionBinaria2 = new javax.swing.JRadioButton();
+        paneNumero = new javax.swing.JLayeredPane();
+        jLabel4 = new javax.swing.JLabel();
+        valorNumDecimales = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        valorNumeroMascara = new javax.swing.JTextField();
+        valorValorDefectoNumero = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        valorNombreGeneral = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        valorNota = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        comboTipos = new javax.swing.JComboBox();
+        botonCancelarPanel = new javax.swing.JButton();
+        botonEditar = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -216,7 +274,10 @@ public class GestionTipoCampoView extends FrameView {
         statusAnimationLabel = new javax.swing.JLabel();
         progressBar = new javax.swing.JProgressBar();
 
+        mainPanel.setMaximumSize(new java.awt.Dimension(471, 659));
+        mainPanel.setMinimumSize(new java.awt.Dimension(471, 659));
         mainPanel.setName("mainPanel"); // NOI18N
+        mainPanel.setPreferredSize(new java.awt.Dimension(471, 859));
         mainPanel.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 mainPanelComponentShown(evt);
@@ -253,19 +314,6 @@ public class GestionTipoCampoView extends FrameView {
         jScrollPane1.setViewportView(arbolPrincipal);
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(GestionTipoCampoView.class);
-        botonAbrir.setText(resourceMap.getString("botonAbrir.text")); // NOI18N
-        botonAbrir.setName("botonAbrir"); // NOI18N
-        botonAbrir.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonAbrirMouseClicked(evt);
-            }
-        });
-        botonAbrir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonAbrirActionPerformed(evt);
-            }
-        });
-
         botonActualizarArbol.setText(resourceMap.getString("botonActualizarArbol.text")); // NOI18N
         botonActualizarArbol.setName("botonActualizarArbol"); // NOI18N
         botonActualizarArbol.addActionListener(new java.awt.event.ActionListener() {
@@ -274,45 +322,303 @@ public class GestionTipoCampoView extends FrameView {
             }
         });
 
+        botonAbrirArbol.setText(resourceMap.getString("botonAbrirArbol.text")); // NOI18N
+        botonAbrirArbol.setName("botonAbrirArbol"); // NOI18N
+        botonAbrirArbol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAbrirArbolActionPerformed(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel1Layout.createSequentialGroup()
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
-                .add(104, 104, 104))
-            .add(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .add(botonActualizarArbol)
-                .add(18, 18, 18)
-                .add(botonAbrir)
-                .addContainerGap(123, Short.MAX_VALUE))
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                    .add(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(botonActualizarArbol)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(botonAbrirArbol, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 70, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel1Layout.createSequentialGroup()
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 199, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 285, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(botonActualizarArbol)
-                    .add(botonAbrir))
+                    .add(botonAbrirArbol))
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        paneDatosAbrir.setName("paneDatosAbrir"); // NOI18N
+
+        panePrincipal.setAutoscrolls(true);
+        panePrincipal.setName("panePrincipal"); // NOI18N
+
+        paneIncremental.setName("paneIncremental"); // NOI18N
+
+        jLabel17.setText(resourceMap.getString("jLabel17.text")); // NOI18N
+        jLabel17.setName("jLabel17"); // NOI18N
+        jLabel17.setBounds(10, 10, 100, 20);
+        paneIncremental.add(jLabel17, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        valorValorInicial.setName("valorValorInicial"); // NOI18N
+        valorValorInicial.setBounds(10, 30, 100, 20);
+        paneIncremental.add(valorValorInicial, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel19.setText(resourceMap.getString("jLabel19.text")); // NOI18N
+        jLabel19.setName("jLabel19"); // NOI18N
+        jLabel19.setBounds(130, 10, 100, 20);
+        paneIncremental.add(jLabel19, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        valorIncremento.setName("valorIncremento"); // NOI18N
+        valorIncremento.setBounds(130, 30, 100, 20);
+        paneIncremental.add(valorIncremento, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        paneIncremental.setBounds(10, 20, 430, 180);
+        panePrincipal.add(paneIncremental, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        paneTexto.setName("paneTexto"); // NOI18N
+
+        jLabel16.setText(resourceMap.getString("jLabel16.text")); // NOI18N
+        jLabel16.setName("jLabel16"); // NOI18N
+        jLabel16.setBounds(10, 10, 100, 20);
+        paneTexto.add(jLabel16, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        valorTextoLargo.setName("valorTextoLargo"); // NOI18N
+        valorTextoLargo.setBounds(10, 30, 100, 20);
+        paneTexto.add(valorTextoLargo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel18.setText(resourceMap.getString("jLabel18.text")); // NOI18N
+        jLabel18.setName("jLabel18"); // NOI18N
+        jLabel18.setBounds(130, 10, 100, 20);
+        paneTexto.add(jLabel18, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        valorTextoDefecto.setName("valorTextoDefecto"); // NOI18N
+        valorTextoDefecto.setBounds(130, 30, 100, 20);
+        paneTexto.add(valorTextoDefecto, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        paneTexto.setBounds(10, 30, 370, 130);
+        panePrincipal.add(paneTexto, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        paneFechaHora.setName("paneFechaHora"); // NOI18N
+
+        jLabel6.setText(resourceMap.getString("jLabel6.text")); // NOI18N
+        jLabel6.setName("jLabel6"); // NOI18N
+        jLabel6.setBounds(10, 30, 100, 10);
+        paneFechaHora.add(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        valorPreaviso.setName("valorPreaviso"); // NOI18N
+        valorPreaviso.setBounds(130, 100, 80, 20);
+        paneFechaHora.add(valorPreaviso, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel13.setText(resourceMap.getString("jLabel13.text")); // NOI18N
+        jLabel13.setName("jLabel13"); // NOI18N
+        jLabel13.setBounds(130, 30, 100, 14);
+        paneFechaHora.add(jLabel13, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        valorFechaDefecto.setText(resourceMap.getString("valorFechaDefecto.text")); // NOI18N
+        valorFechaDefecto.setName("valorFechaDefecto"); // NOI18N
+        valorFechaDefecto.setBounds(130, 50, 80, 20);
+        paneFechaHora.add(valorFechaDefecto, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel14.setText(resourceMap.getString("jLabel14.text")); // NOI18N
+        jLabel14.setName("jLabel14"); // NOI18N
+        jLabel14.setBounds(130, 80, 100, 14);
+        paneFechaHora.add(jLabel14, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel15.setText(resourceMap.getString("jLabel15.text")); // NOI18N
+        jLabel15.setName("jLabel15"); // NOI18N
+        jLabel15.setBounds(10, 80, 100, 14);
+        paneFechaHora.add(jLabel15, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        radioFechaHoraSi.setSelected(true);
+        radioFechaHoraSi.setText(resourceMap.getString("radioFechaHoraSi.text")); // NOI18N
+        radioFechaHoraSi.setName("radioFechaHoraSi"); // NOI18N
+        radioFechaHoraSi.setBounds(10, 100, 33, 23);
+        paneFechaHora.add(radioFechaHoraSi, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        radioFechaHoraNo.setText(resourceMap.getString("radioFechaHoraNo.text")); // NOI18N
+        radioFechaHoraNo.setName("radioFechaHoraNo"); // NOI18N
+        radioFechaHoraNo.setBounds(10, 120, 39, 20);
+        paneFechaHora.add(radioFechaHoraNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        comboFormatoFecha.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "dd/mm/aaaa", "mm/dd/aaaa", "aaaa/dd/mm", "aaaa/mm/dd" }));
+        comboFormatoFecha.setName("comboFormatoFecha"); // NOI18N
+        comboFormatoFecha.setBounds(10, 50, 90, 20);
+        paneFechaHora.add(comboFormatoFecha, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        paneFechaHora.setBounds(10, 0, 380, 180);
+        panePrincipal.add(paneFechaHora, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        paneBinario.setName("paneBinario"); // NOI18N
+
+        jLabel7.setText(resourceMap.getString("jLabel7.text")); // NOI18N
+        jLabel7.setName("jLabel7"); // NOI18N
+        jLabel7.setBounds(10, 10, 100, 20);
+        paneBinario.add(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        valorNombreBinario1.setName("valorNombreBinario1"); // NOI18N
+        valorNombreBinario1.setBounds(10, 30, 100, 20);
+        paneBinario.add(valorNombreBinario1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel8.setText(resourceMap.getString("jLabel8.text")); // NOI18N
+        jLabel8.setName("jLabel8"); // NOI18N
+        jLabel8.setBounds(130, 10, 100, 20);
+        paneBinario.add(jLabel8, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        valorOpcionBinaria1.setName("valorOpcionBinaria1"); // NOI18N
+        valorOpcionBinaria1.setBounds(130, 30, 100, 20);
+        paneBinario.add(valorOpcionBinaria1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel9.setText(resourceMap.getString("jLabel9.text")); // NOI18N
+        jLabel9.setName("jLabel9"); // NOI18N
+        jLabel9.setBounds(260, 10, 100, 20);
+        paneBinario.add(jLabel9, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel10.setText(resourceMap.getString("jLabel10.text")); // NOI18N
+        jLabel10.setName("jLabel10"); // NOI18N
+        jLabel10.setBounds(10, 60, 100, 20);
+        paneBinario.add(jLabel10, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        valorNombreBinario2.setName("valorNombreBinario2"); // NOI18N
+        valorNombreBinario2.setBounds(10, 80, 100, 20);
+        paneBinario.add(valorNombreBinario2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel11.setText(resourceMap.getString("jLabel11.text")); // NOI18N
+        jLabel11.setName("jLabel11"); // NOI18N
+        jLabel11.setBounds(130, 60, 100, 20);
+        paneBinario.add(jLabel11, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        valorOpcionBinaria2.setName("valorOpcionBinaria2"); // NOI18N
+        valorOpcionBinaria2.setBounds(130, 80, 100, 20);
+        paneBinario.add(valorOpcionBinaria2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        radioOpcionBinaria1.setSelected(true);
+        radioOpcionBinaria1.setText(resourceMap.getString("radioOpcionBinaria1.text")); // NOI18N
+        radioOpcionBinaria1.setName("radioOpcionBinaria1"); // NOI18N
+        radioOpcionBinaria1.setBounds(260, 30, 100, 20);
+        paneBinario.add(radioOpcionBinaria1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        radioOpcionBinaria2.setText(resourceMap.getString("radioOpcionBinaria2.text")); // NOI18N
+        radioOpcionBinaria2.setName("radioOpcionBinaria2"); // NOI18N
+        radioOpcionBinaria2.setBounds(260, 60, 100, 20);
+        paneBinario.add(radioOpcionBinaria2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        paneBinario.setBounds(10, 20, 410, 160);
+        panePrincipal.add(paneBinario, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        paneNumero.setName("paneNumero"); // NOI18N
+
+        jLabel4.setText(resourceMap.getString("jLabel4.text")); // NOI18N
+        jLabel4.setName("jLabel4"); // NOI18N
+        jLabel4.setBounds(10, 20, 110, 14);
+        paneNumero.add(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        valorNumDecimales.setName("valorNumDecimales"); // NOI18N
+        valorNumDecimales.setBounds(10, 40, 80, 20);
+        paneNumero.add(valorNumDecimales, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel5.setText(resourceMap.getString("jLabel5.text")); // NOI18N
+        jLabel5.setName("jLabel5"); // NOI18N
+        jLabel5.setBounds(130, 20, 50, 14);
+        paneNumero.add(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        valorNumeroMascara.setName("valorNumeroMascara"); // NOI18N
+        valorNumeroMascara.setBounds(130, 40, 80, 20);
+        paneNumero.add(valorNumeroMascara, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        valorValorDefectoNumero.setText(resourceMap.getString("valorValorDefectoNumero.text")); // NOI18N
+        valorValorDefectoNumero.setName("valorValorDefectoNumero"); // NOI18N
+        valorValorDefectoNumero.setBounds(250, 40, 80, 20);
+        paneNumero.add(valorValorDefectoNumero, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel12.setText(resourceMap.getString("jLabel12.text")); // NOI18N
+        jLabel12.setName("jLabel12"); // NOI18N
+        jLabel12.setBounds(250, 20, 90, 14);
+        paneNumero.add(jLabel12, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        paneNumero.setBounds(10, 10, 400, 160);
+        panePrincipal.add(paneNumero, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        panePrincipal.setBounds(0, 90, 470, 210);
+        paneDatosAbrir.add(panePrincipal, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
+        jLabel2.setName("jLabel2"); // NOI18N
+        jLabel2.setBounds(20, 70, 41, 14);
+        paneDatosAbrir.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        valorNombreGeneral.setName("valorNombreGeneral"); // NOI18N
+        valorNombreGeneral.setBounds(20, 90, 80, 20);
+        paneDatosAbrir.add(valorNombreGeneral, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
+        jLabel3.setName("jLabel3"); // NOI18N
+        jLabel3.setBounds(140, 70, 58, 14);
+        paneDatosAbrir.add(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        valorNota.setName("valorNota"); // NOI18N
+        valorNota.setBounds(140, 90, 150, 20);
+        paneDatosAbrir.add(valorNota, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
+        jLabel1.setName("jLabel1"); // NOI18N
+        jLabel1.setBounds(20, 10, 73, 14);
+        paneDatosAbrir.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        comboTipos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Número", "Binario", "FechaHora", "Texto", "Incremental" }));
+        comboTipos.setName("comboTipos"); // NOI18N
+        comboTipos.setBounds(20, 30, 82, 20);
+        paneDatosAbrir.add(comboTipos, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        botonCancelarPanel.setText(resourceMap.getString("botonCancelarPanel.text")); // NOI18N
+        botonCancelarPanel.setName("botonCancelarPanel"); // NOI18N
+        botonCancelarPanel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCancelarPanelActionPerformed(evt);
+            }
+        });
+        botonCancelarPanel.setBounds(320, 290, 80, 23);
+        paneDatosAbrir.add(botonCancelarPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        botonEditar.setText(resourceMap.getString("botonEditar.text")); // NOI18N
+        botonEditar.setName("botonEditar"); // NOI18N
+        botonEditar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonEditarMouseClicked(evt);
+            }
+        });
+        botonEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEditarActionPerformed(evt);
+            }
+        });
+        botonEditar.setBounds(230, 290, 80, 23);
+        paneDatosAbrir.add(botonEditar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         org.jdesktop.layout.GroupLayout mainPanelLayout = new org.jdesktop.layout.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(mainPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(paneDatosAbrir, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 437, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(10, 10, 10)
                 .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(mainPanelLayout.createSequentialGroup()
-                        .addContainerGap()
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(mainPanelLayout.createSequentialGroup()
                                 .add(canvas1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 108, Short.MAX_VALUE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 203, Short.MAX_VALUE)
                                 .add(canvas3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                             .add(org.jdesktop.layout.GroupLayout.TRAILING, canvas2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                     .add(mainPanelLayout.createSequentialGroup()
@@ -325,16 +631,15 @@ public class GestionTipoCampoView extends FrameView {
             .add(mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(mainPanelLayout.createSequentialGroup()
-                        .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(mainPanelLayout.createSequentialGroup()
-                                .add(105, 105, 105)
-                                .add(canvas3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                            .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 345, Short.MAX_VALUE)
-                        .add(canvas4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 324, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(paneDatosAbrir, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 392, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(canvas2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(canvas1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE))
+                    .add(canvas1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .add(105, 105, 105)
+                        .add(canvas3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 515, Short.MAX_VALUE)
+                        .add(canvas4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -421,11 +726,11 @@ public class GestionTipoCampoView extends FrameView {
         statusPanel.setLayout(statusPanelLayout);
         statusPanelLayout.setHorizontalGroup(
             statusPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(statusPanelSeparator, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE)
+            .add(statusPanelSeparator, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 652, Short.MAX_VALUE)
             .add(statusPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .add(statusMessageLabel)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 253, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 482, Short.MAX_VALUE)
                 .add(progressBar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(statusAnimationLabel)
@@ -452,32 +757,6 @@ public class GestionTipoCampoView extends FrameView {
         abrirUnCampo();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void botonAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAbrirActionPerformed
-        abrirUnCampo();
-}//GEN-LAST:event_botonAbrirActionPerformed
-
-    private void botonAbrirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAbrirMouseClicked
-        // TODO add your handling code here:
-        ControladorBD miPrueba = new ControladorBD();
-        //   miPrueba.hacerConsulta("select * from Profesional");
-       // System.out.print("prueba de base de datos");
-        try {
-            ResultSet resultado = miPrueba.getResultSet("select * from TIPOCAMPO");
-
-            while (resultado.next()) {
-                System.out.println(resultado.getString("Nombre") + " : " + resultado.getString("descripcion"));
-            }
-        } catch (SQLException e) {
-            System.out.println("*SQL Exception: *" + e.toString());
-        }
-
-              /*  frameConexiones ventanaConexiones = new frameConexiones();
-        //  JFrame mainFrame = frameManejoCampos.getApplication().getMainFrame();
-        //coloca el frame segun como este ubicada la ventana principal
-        // ventanaBusqueda.setLocationRelativeTo(mainFrame);
-        ventanaConexiones.setVisible(true); */
-    }//GEN-LAST:event_botonAbrirMouseClicked
-
     private void mainPanelComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_mainPanelComponentShown
 
     }//GEN-LAST:event_mainPanelComponentShown
@@ -486,6 +765,30 @@ public class GestionTipoCampoView extends FrameView {
         //Se actualiza el tree View
         llenarTreeView();
 }//GEN-LAST:event_botonActualizarArbolActionPerformed
+
+    private void botonEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEditarMouseClicked
+        // TODO add your handling code here:
+}//GEN-LAST:event_botonEditarMouseClicked
+
+    private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_botonEditarActionPerformed
+
+    private void botonCancelarPanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarPanelActionPerformed
+        paneDatosAbrir.setVisible(false);
+    }//GEN-LAST:event_botonCancelarPanelActionPerformed
+
+    private void botonAbrirArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAbrirArbolActionPerformed
+        DefaultMutableTreeNode node = (DefaultMutableTreeNode)arbolPrincipal.getLastSelectedPathComponent();
+        if (node == null){
+            JOptionPane.showMessageDialog(null, "¡Favor seleccionar un dato para abrir!", "", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            String nombre = node.toString();
+            System.out.println("selecciono: " + nombre + " padre: "+ node.getParent().toString());
+        }
+         
+    }//GEN-LAST:event_botonAbrirArbolActionPerformed
 
     public void abrirUnCampo() {
         frameManejoCampos ventanaManejoCampos = new frameManejoCampos("abrir");
@@ -497,12 +800,35 @@ public class GestionTipoCampoView extends FrameView {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTree arbolPrincipal;
-    private javax.swing.JButton botonAbrir;
+    private javax.swing.JButton botonAbrirArbol;
     private javax.swing.JButton botonActualizarArbol;
+    private javax.swing.JButton botonCancelarPanel;
+    private javax.swing.JButton botonEditar;
     private java.awt.Canvas canvas1;
     private java.awt.Canvas canvas2;
     private java.awt.Canvas canvas3;
     private java.awt.Canvas canvas4;
+    private javax.swing.JComboBox comboFormatoFecha;
+    private javax.swing.JComboBox comboTipos;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
@@ -516,10 +842,36 @@ public class GestionTipoCampoView extends FrameView {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JLayeredPane paneBinario;
+    private javax.swing.JLayeredPane paneDatosAbrir;
+    private javax.swing.JLayeredPane paneFechaHora;
+    private javax.swing.JLayeredPane paneIncremental;
+    private javax.swing.JLayeredPane paneNumero;
+    private javax.swing.JLayeredPane panePrincipal;
+    private javax.swing.JLayeredPane paneTexto;
     private javax.swing.JProgressBar progressBar;
+    private javax.swing.JRadioButton radioFechaHoraNo;
+    private javax.swing.JRadioButton radioFechaHoraSi;
+    private javax.swing.JRadioButton radioOpcionBinaria1;
+    private javax.swing.JRadioButton radioOpcionBinaria2;
     private javax.swing.JLabel statusAnimationLabel;
     private javax.swing.JLabel statusMessageLabel;
     private javax.swing.JPanel statusPanel;
+    private javax.swing.JFormattedTextField valorFechaDefecto;
+    private javax.swing.JTextField valorIncremento;
+    private javax.swing.JTextField valorNombreBinario1;
+    private javax.swing.JTextField valorNombreBinario2;
+    private javax.swing.JTextField valorNombreGeneral;
+    private javax.swing.JTextField valorNota;
+    private javax.swing.JTextField valorNumDecimales;
+    private javax.swing.JTextField valorNumeroMascara;
+    private javax.swing.JTextField valorOpcionBinaria1;
+    private javax.swing.JTextField valorOpcionBinaria2;
+    private javax.swing.JTextField valorPreaviso;
+    private javax.swing.JTextField valorTextoDefecto;
+    private javax.swing.JTextField valorTextoLargo;
+    private javax.swing.JTextField valorValorDefectoNumero;
+    private javax.swing.JTextField valorValorInicial;
     // End of variables declaration//GEN-END:variables
     private final Timer messageTimer;
     private final Timer busyIconTimer;
