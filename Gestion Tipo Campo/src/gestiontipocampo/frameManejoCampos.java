@@ -976,7 +976,6 @@ public void llenarFormularioCampos(String llave){
                 this.valorNumDecimales.setText(resultado.getObject(2).toString());
                 this.valorNumeroMascara.setText(resultado.getObject(3).toString());
                 this.valorValorDefectoNumero.setText(resultado.getObject(4).toString());
-                //paneNumero.setVisible(true);
         }else if(tipoCampo.equals("INCREMENTAL")){
                 this.valorValorInicial.setText(resultado.getObject(2).toString());
                 this.valorIncremento.setText(resultado.getObject(3).toString());
