@@ -36,6 +36,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
         paneFechaHora.setVisible(false);
         paneTexto.setVisible(false);
         paneIncremental.setVisible(false);
+        paneJerarquia.setVisible(false);
     }
 
     /** Creates new form frameManejoCampos */
@@ -47,6 +48,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
         paneFechaHora.setVisible(false);
         paneTexto.setVisible(false);
         paneIncremental.setVisible(false);
+        paneJerarquia.setVisible(false);
 
         //Se revisa si se debe abrir con algun valor o si es para ingresar valores nuevos
         if (tipo.equalsIgnoreCase("nuevo")) {
@@ -160,6 +162,23 @@ public class frameManejoCampos extends javax.swing.JFrame {
         valorNombreGeneral = new javax.swing.JTextField();
         valorNota = new javax.swing.JTextField();
         panePrincipal = new javax.swing.JLayeredPane();
+        paneJerarquia = new javax.swing.JLayeredPane();
+        labelNumTerminos = new javax.swing.JLabel();
+        labelNumNiveles = new javax.swing.JLabel();
+        fieldTerminos = new javax.swing.JTextField();
+        fieldNiveles = new javax.swing.JTextField();
+        labelNomNiveles = new javax.swing.JLabel();
+        comboNiveles = new javax.swing.JComboBox();
+        labelCategorias = new javax.swing.JLabel();
+        comboCategorias = new javax.swing.JComboBox();
+        botonConfigJerarquia = new javax.swing.JButton();
+        botonAgregarCategoria = new javax.swing.JButton();
+        botonListarTerminos = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        campoBusqAvanzada = new javax.swing.JTextField();
+        botonBusqAvanzada = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         paneBinario = new javax.swing.JLayeredPane();
         jLabel7 = new javax.swing.JLabel();
         valorNombreBinario1 = new javax.swing.JTextField();
@@ -241,6 +260,121 @@ public class frameManejoCampos extends javax.swing.JFrame {
 
         panePrincipal.setAutoscrolls(true);
         panePrincipal.setName("panePrincipal"); // NOI18N
+
+        paneJerarquia.setName("paneJerarquia"); // NOI18N
+
+        labelNumTerminos.setText(resourceMap.getString("labelNumTerminos.text")); // NOI18N
+        labelNumTerminos.setName("labelNumTerminos"); // NOI18N
+        labelNumTerminos.setBounds(10, 10, 100, 14);
+        paneJerarquia.add(labelNumTerminos, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        labelNumNiveles.setText(resourceMap.getString("labelNumNiveles.text")); // NOI18N
+        labelNumNiveles.setName("labelNumNiveles"); // NOI18N
+        labelNumNiveles.setBounds(10, 60, 90, 14);
+        paneJerarquia.add(labelNumNiveles, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        fieldTerminos.setText(resourceMap.getString("fieldTerminos.text")); // NOI18N
+        fieldTerminos.setName("fieldTerminos"); // NOI18N
+        fieldTerminos.setBounds(10, 30, 100, 20);
+        paneJerarquia.add(fieldTerminos, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        fieldNiveles.setText(resourceMap.getString("fieldNiveles.text")); // NOI18N
+        fieldNiveles.setName("fieldNiveles"); // NOI18N
+        fieldNiveles.setBounds(10, 80, 100, 20);
+        paneJerarquia.add(fieldNiveles, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        labelNomNiveles.setText(resourceMap.getString("labelNomNiveles.text")); // NOI18N
+        labelNomNiveles.setName("labelNomNiveles"); // NOI18N
+        labelNomNiveles.setBounds(120, 10, 94, 10);
+        paneJerarquia.add(labelNomNiveles, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        comboNiveles.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "nombreNivel1", "nombreNivel2", "nombreNivel3", "nombreNivel4" }));
+        comboNiveles.setName("comboNiveles"); // NOI18N
+        comboNiveles.setBounds(120, 30, 90, 20);
+        paneJerarquia.add(comboNiveles, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        labelCategorias.setText(resourceMap.getString("labelCategorias.text")); // NOI18N
+        labelCategorias.setName("labelCategorias"); // NOI18N
+        labelCategorias.setBounds(120, 60, 60, 14);
+        paneJerarquia.add(labelCategorias, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        comboCategorias.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Categoria 1", "Categoria 2", "Categoría 3", "Categoría 4" }));
+        comboCategorias.setName("comboCategorias"); // NOI18N
+        comboCategorias.setBounds(120, 80, 90, 20);
+        paneJerarquia.add(comboCategorias, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        botonConfigJerarquia.setText(resourceMap.getString("botonConfigJerarquia.text")); // NOI18N
+        botonConfigJerarquia.setName("botonConfigJerarquia"); // NOI18N
+        botonConfigJerarquia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonConfigJerarquiaActionPerformed(evt);
+            }
+        });
+        botonConfigJerarquia.setBounds(240, 80, 100, 23);
+        paneJerarquia.add(botonConfigJerarquia, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        botonAgregarCategoria.setText(resourceMap.getString("botonAgregarCategoria.text")); // NOI18N
+        botonAgregarCategoria.setName("botonAgregarCategoria"); // NOI18N
+        botonAgregarCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAgregarCategoriaActionPerformed(evt);
+            }
+        });
+        botonAgregarCategoria.setBounds(350, 120, 130, 23);
+        paneJerarquia.add(botonAgregarCategoria, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        botonListarTerminos.setText(resourceMap.getString("botonListarTerminos.text")); // NOI18N
+        botonListarTerminos.setName("botonListarTerminos"); // NOI18N
+        botonListarTerminos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonListarTerminosActionPerformed(evt);
+            }
+        });
+        botonListarTerminos.setBounds(240, 120, 105, 23);
+        paneJerarquia.add(botonListarTerminos, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
+        jButton1.setName("jButton1"); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jButton1.setBounds(10, 120, 111, 23);
+        paneJerarquia.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jButton2.setText(resourceMap.getString("jButton2.text")); // NOI18N
+        jButton2.setName("jButton2"); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jButton2.setBounds(350, 80, 130, 23);
+        paneJerarquia.add(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        campoBusqAvanzada.setText(resourceMap.getString("campoBusqAvanzada.text")); // NOI18N
+        campoBusqAvanzada.setName("campoBusqAvanzada"); // NOI18N
+        campoBusqAvanzada.setBounds(240, 30, 100, 20);
+        paneJerarquia.add(campoBusqAvanzada, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        botonBusqAvanzada.setText(resourceMap.getString("botonBusqAvanzada.text")); // NOI18N
+        botonBusqAvanzada.setName("botonBusqAvanzada"); // NOI18N
+        botonBusqAvanzada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBusqAvanzadaActionPerformed(evt);
+            }
+        });
+        botonBusqAvanzada.setBounds(350, 30, 130, 23);
+        paneJerarquia.add(botonBusqAvanzada, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jButton4.setText(resourceMap.getString("jButton4.text")); // NOI18N
+        jButton4.setName("jButton4"); // NOI18N
+        jButton4.setBounds(150, 120, 63, 23);
+        paneJerarquia.add(jButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        paneJerarquia.setBounds(0, 0, 490, 160);
+        panePrincipal.add(paneJerarquia, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneBinario.setName("paneBinario"); // NOI18N
 
@@ -490,7 +624,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
             }
         });
 
-        comboTipos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Número", "Binario", "FechaHora", "Texto", "Incremental" }));
+        comboTipos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Número", "Binario", "FechaHora", "Texto", "Incremental", "Jerarquía" }));
         comboTipos.setName("comboTipos"); // NOI18N
         comboTipos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -652,47 +786,47 @@ public class frameManejoCampos extends javax.swing.JFrame {
         Object retorno[] = new Object[2];
         this.ocultarPanes();
 
-        try{
-        resultado = control.getResultSet("Select * from NUMERO where correlativo = "+llave);
-        if(resultado.next()){
-            tipoCampo = "NUMERO";
-            paneNumero.setVisible(true);
-        }else{
-            JOptionPane.showMessageDialog(null,"probando en binario");
-            resultado = control.getResultSet("Select * from BINARIO where correlativo = "+llave);
-            if(resultado.next()){
-                tipoCampo = "BINARIO";
-                paneBinario.setVisible(true);
-            }else {
-                JOptionPane.showMessageDialog(null,"probando en Texto");
-                resultado = control.getResultSet("Select * from TEXTO where correlativo = "+llave);
-                if(resultado.next()){
-                    tipoCampo = "TEXTO";
-                    paneTexto.setVisible(true);
-                }else {
-                    JOptionPane.showMessageDialog(null,"probando en fechahora");
-                    resultado = control.getResultSet("Select * from FECHAHORA where correlativo = "+llave);
-                    if(resultado.next()){
-                        tipoCampo = "FECHAHORA";
-                        paneFechaHora.setVisible(true);
-                    }else {
-                        JOptionPane.showMessageDialog(null,"probando en Incremental");
-                        resultado = control.getResultSet("Select * from INCREMENTAL where correlativo = "+llave);
-                        if(resultado.next()){
-                            tipoCampo = "INCREMENTAL";
-                            paneIncremental.setVisible(true);
+        try {
+            resultado = control.getResultSet("Select * from NUMERO where correlativo = " + llave);
+            if (resultado.next()) {
+                tipoCampo = "NUMERO";
+                paneNumero.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "probando en binario");
+                resultado = control.getResultSet("Select * from BINARIO where correlativo = " + llave);
+                if (resultado.next()) {
+                    tipoCampo = "BINARIO";
+                    paneBinario.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "probando en Texto");
+                    resultado = control.getResultSet("Select * from TEXTO where correlativo = " + llave);
+                    if (resultado.next()) {
+                        tipoCampo = "TEXTO";
+                        paneTexto.setVisible(true);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "probando en fechahora");
+                        resultado = control.getResultSet("Select * from FECHAHORA where correlativo = " + llave);
+                        if (resultado.next()) {
+                            tipoCampo = "FECHAHORA";
+                            paneFechaHora.setVisible(true);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "probando en Incremental");
+                            resultado = control.getResultSet("Select * from INCREMENTAL where correlativo = " + llave);
+                            if (resultado.next()) {
+                                tipoCampo = "INCREMENTAL";
+                                paneIncremental.setVisible(true);
+                            }
                         }
                     }
                 }
             }
-        }
-    resultado.beforeFirst();
-    }catch (SQLException e) {
+            resultado.beforeFirst();
+        } catch (SQLException e) {
             System.out.println("*SQL Exception: *" + e.toString());
-    }
-    retorno[0]=tipoCampo;
-    retorno[1]=resultado;
-    return retorno;
+        }
+        retorno[0] = tipoCampo;
+        retorno[1] = resultado;
+        return retorno;
     }
 
 private void botonBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBusquedaActionPerformed
@@ -743,10 +877,9 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         if (existe) {
             JOptionPane.showConfirmDialog(null, "Ya existe campo con este nombre!");
 
-            //Por ahora no la boten, por si la ocupo mas tarde
-            //conexionBD.getResultSet("Update TIPOCAMPO set nombre = '" + this.valorNombreGeneral.getText() + "', descripcion = '" + this.valorNota.getText() + "' where correlativo = " + ID);
+        //Por ahora no la boten, por si la ocupo mas tarde
+        //conexionBD.getResultSet("Update TIPOCAMPO set nombre = '" + this.valorNombreGeneral.getText() + "', descripcion = '" + this.valorNota.getText() + "' where correlativo = " + ID);
         } else { //Si no existe en la base hay que agregar una entrada nueva
-            
         }
 
         switch (comboTipos.getSelectedItem().toString().hashCode()) {
@@ -759,7 +892,7 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     this.valorNumDecimales.setText("");
                     this.valorNumeroMascara.setText("");
                     this.valorValorDefectoNumero.setText("");
-                    */
+                     */
                 } else {
                     conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 1)");
                     try { //Se busca el ID de los datos que acaba de insertar
@@ -781,7 +914,6 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 break;
             case INCREMENTAL: //HashCode para Incremental
                 if (existe) {
-                    
                 } else {
                     conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 5)");
                     try { //Se busca el ID de los datos que acaba de insertar
@@ -802,16 +934,16 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 break;
             case FECHAHORA: //HashCode para FechaHora
                 int valorVencimiento = 0; //Se toma como que es no
-                if(radioFechaHoraSi.isSelected())
+                if (radioFechaHoraSi.isSelected()) {
                     valorVencimiento = 1; //Se cambia el valor
+                }
                 if (existe) {
                     /*
                     conexionBD.doUpdate("Update FECHAHORA set despliegue = '" + this.comboFormatoFecha.getSelectedItem().toString() + "', fechaDefecto = '" + this.valorFechaDefecto.getText() + "', preaviso = '" + this.valorPreaviso.getText() + "', vencimiento = '" + valorVencimiento + " ' where correlativo = " + ID);
                     this.valorNombreGeneral.setText("");
                     this.valorNota.setText("");
-                    */
-                    
-                } else {                
+                     */
+                } else {
                     conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 3)");
                     try { //Se busca el ID de los datos que acaba de insertar
                         ResultSet resultado = conexionBD.getResultSet("select correlativo from TIPOCAMPO where nombre = '" + this.valorNombreGeneral.getText() + "'");
@@ -839,7 +971,7 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     this.valorNota.setText("");
                     this.valorTextoLargo.setText("");
                     this.valorTextoDefecto.setText("");
-                    */
+                     */
                 } else {
                     conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 4)");
                     try { //Se busca el ID de los datos que acaba de insertar
@@ -860,7 +992,6 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 break;
             case BINARIO: //HashCode para Binario
                 if (existe) {
-                    
                 } else {
                     conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 2)");
                     try { //Se busca el ID de los datos que acaba de insertar
@@ -886,7 +1017,7 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 //Nada supongo
                 break;
         }
-        //this.dispose(); //Se cierra la ventana... No me parece hacer esto, por eso lo comente: Alberto
+    //this.dispose(); //Se cierra la ventana... No me parece hacer esto, por eso lo comente: Alberto
     }
 
 private void botonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarActionPerformed
@@ -918,6 +1049,10 @@ private void comboTiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         case BINARIO: //HashCode para Binario
             paneBinario.setVisible(true);
             break;
+        /*case JERARQUIA: //HashCode para Binario
+        paneJerarquia.setVisible(true);
+        break;*/
+
         default: //Si se selecciona algo raro o el campito en blanco.
             break;
     }
@@ -1011,6 +1146,55 @@ private void botonGuardarComoActionPerformed(java.awt.event.ActionEvent evt) {//
     // TODO add your handling code here:
 }//GEN-LAST:event_botonGuardarComoActionPerformed
 
+private void botonConfigJerarquiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonConfigJerarquiaActionPerformed
+    configuraJerarquia ventanaConfiguracion = new configuraJerarquia();
+    ventanaConfiguracion.setVisible(true);
+}//GEN-LAST:event_botonConfigJerarquiaActionPerformed
+
+private void botonBusqAvanzadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBusqAvanzadaActionPerformed
+    frameBusqueda ventanaBusqueda = new frameBusqueda(this);
+    //ventanaBusqueda.llenarTabla(campoBusqAvanzada);
+    //  JFrame mainFrame = frameManejoCampos.getApplication().getMainFrame();
+    //coloca el frame segun como este ubicada la ventana principal
+    // ventanaBusqueda.setLocationRelativeTo(mainFrame);
+    ventanaBusqueda.setVisible(true);    // TODO add your handling code here:
+}//GEN-LAST:event_botonBusqAvanzadaActionPerformed
+
+private void botonListarTerminosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonListarTerminosActionPerformed
+    String[] opciones = {"Niveles", "Alfabéticamente", "Por Fecha de Inserción"};
+    int respuesta = JOptionPane.showOptionDialog(null, "¿Cómo desea que se desplieguen los resultados?", "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opciones, "Niveles");
+    frameBuscarTerminos busqueda;
+    switch (respuesta) {
+        case 0:
+            busqueda = new frameBuscarTerminos(0);
+            busqueda.setVisible(true);
+
+            break;
+        case 1:
+            busqueda = new frameBuscarTerminos(1);
+            busqueda.setVisible(true);
+            break;
+        case 2:
+            busqueda = new frameBuscarTerminos();
+            busqueda.setVisible(true);
+            break;
+    }
+}//GEN-LAST:event_botonListarTerminosActionPerformed
+
+private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    frameTermino termino;
+    termino = new frameTermino();
+    termino.setVisible(true);
+}//GEN-LAST:event_jButton1ActionPerformed
+
+private void botonAgregarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarCategoriaActionPerformed
+    String response = JOptionPane.showInputDialog(null, "Digite el nombre de la nueva categoría", "Nueva Categoría", JOptionPane.QUESTION_MESSAGE);
+}//GEN-LAST:event_botonAgregarCategoriaActionPerformed
+
+private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    // TODO add your handling code here:
+}//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * Cambia la mascara del valorFechaDefecto
      * @param formato String que indica el formato de la máscara. I.E. ##/##/####
@@ -1029,65 +1213,64 @@ private void botonGuardarComoActionPerformed(java.awt.event.ActionEvent evt) {//
         }
     }
 
-public void llenarFormularioCampos(String llave){
-    Object tipoEncontrado[] =  buscarTipoCampo(llave);
-    String tipoCampo = (String) tipoEncontrado[0];
-    ResultSet resultado = (ResultSet) tipoEncontrado[1];
-    JOptionPane.showMessageDialog(null, "!!!!!!!!!!!!Es de tipo "+tipoCampo+"!!!");
-    try {
-        ControladorBD control = new ControladorBD();
-        ResultSet resultadoGeneral = control.getResultSet("Select * from TIPOCAMPO where Correlativo = "+llave);
-        //resultado.next();
-        resultadoGeneral.next();
-        
-        int i=0;
-        while(!this.comboTipos.getItemAt(i).toString().equalsIgnoreCase(tipoCampo)&&comboTipos.getItemCount()>=i){
-             i++;
-           //JOptionPane.showMessageDialog(null,this.comboTipos.getItemAt(i).toString()+" "+tipoCampo);
-        }
-        comboTipos.setSelectedIndex(i);
-        this.valorNombreGeneral.setText(resultadoGeneral.getObject(2).toString());
-        this.valorNota.setText(resultadoGeneral.getObject(3).toString());
-        if(tipoCampo.equals("NUMERO")){
+    public void llenarFormularioCampos(String llave) {
+        Object tipoEncontrado[] = buscarTipoCampo(llave);
+        String tipoCampo = (String) tipoEncontrado[0];
+        ResultSet resultado = (ResultSet) tipoEncontrado[1];
+        JOptionPane.showMessageDialog(null, "!!!!!!!!!!!!Es de tipo " + tipoCampo + "!!!");
+        try {
+            ControladorBD control = new ControladorBD();
+            ResultSet resultadoGeneral = control.getResultSet("Select * from TIPOCAMPO where Correlativo = " + llave);
+            //resultado.next();
+            resultadoGeneral.next();
+
+            int i = 0;
+            while (!this.comboTipos.getItemAt(i).toString().equalsIgnoreCase(tipoCampo) && comboTipos.getItemCount() >= i) {
+                i++;
+            //JOptionPane.showMessageDialog(null,this.comboTipos.getItemAt(i).toString()+" "+tipoCampo);
+            }
+            comboTipos.setSelectedIndex(i);
+            this.valorNombreGeneral.setText(resultadoGeneral.getObject(2).toString());
+            this.valorNota.setText(resultadoGeneral.getObject(3).toString());
+            if (tipoCampo.equals("NUMERO")) {
                 this.valorNumDecimales.setText(resultado.getObject(2).toString());
                 this.valorNumeroMascara.setText(resultado.getObject(3).toString());
                 this.valorValorDefectoNumero.setText(resultado.getObject(4).toString());
-        }else if(tipoCampo.equals("INCREMENTAL")){
+            } else if (tipoCampo.equals("INCREMENTAL")) {
                 this.valorValorInicial.setText(resultado.getObject(2).toString());
                 this.valorIncremento.setText(resultado.getObject(3).toString());
-        }else if(tipoCampo.equals("FECHAHORA")){
+            } else if (tipoCampo.equals("FECHAHORA")) {
                 this.comboFormatoFecha.setSelectedItem(resultado.getObject(2).toString());
                 this.valorFechaDefecto.setText(resultado.getObject(3).toString());
-                if(resultado.getObject(4).toString()=="true"){
+                if (resultado.getObject(4).toString() == "true") {
                     this.radioFechaHoraSi.setSelected(true);
                     this.radioFechaHoraNo.setSelected(false);
-                }else{
+                } else {
                     this.radioFechaHoraSi.setSelected(false);
                     this.radioFechaHoraNo.setSelected(true);
                 }
                 this.valorPreaviso.setText(resultado.getObject(5).toString());
-        }else if(tipoCampo.equals("TEXTO")){
+            } else if (tipoCampo.equals("TEXTO")) {
                 this.valorTextoDefecto.setText(resultado.getObject(2).toString());
                 this.valorTextoLargo.setText(resultado.getObject(3).toString());
-        }else if(tipoCampo.equals("BINARIO")){
+            } else if (tipoCampo.equals("BINARIO")) {
                 this.valorNombreBinario1.setText(resultado.getObject(2).toString());
                 this.valorOpcionBinaria1.setText(resultado.getObject(3).toString());
                 this.valorNombreBinario2.setText(resultado.getObject(4).toString());
                 this.valorOpcionBinaria2.setText(resultado.getObject(5).toString());
-                if(resultado.getObject(6).toString()=="false"){
+                if (resultado.getObject(6).toString() == "false") {
                     this.radioOpcionBinaria1.setSelected(false);
                     this.radioOpcionBinaria2.setSelected(true);
-                }else{
+                } else {
                     this.radioOpcionBinaria1.setSelected(true);
                     this.radioOpcionBinaria2.setSelected(false);
                 }
-        }
-    } catch (SQLException ex) {
+            }
+        } catch (SQLException ex) {
             Logger.getLogger(frameManejoCampos.class.getName()).log(Level.SEVERE, null, ex);
-    }
-    
-}
+        }
 
+    }
 
     /**
      * @param args the command line arguments
@@ -1102,16 +1285,28 @@ public void llenarFormularioCampos(String llave){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonAgregarCategoria;
     private javax.swing.JButton botonBorrar;
     private javax.swing.JButton botonBorrar1;
+    private javax.swing.JButton botonBusqAvanzada;
     private javax.swing.JButton botonBusqueda;
     private javax.swing.JButton botonCerrar;
+    private javax.swing.JButton botonConfigJerarquia;
     private javax.swing.JButton botonGuardar;
     private javax.swing.JButton botonGuardar1;
     private javax.swing.JButton botonGuardarComo;
     private javax.swing.JButton botonGuardarComo1;
+    private javax.swing.JButton botonListarTerminos;
+    private javax.swing.JTextField campoBusqAvanzada;
+    private javax.swing.JComboBox comboCategorias;
     private javax.swing.JComboBox comboFormatoFecha;
+    private javax.swing.JComboBox comboNiveles;
     private javax.swing.JComboBox comboTipos;
+    private javax.swing.JTextField fieldNiveles;
+    private javax.swing.JTextField fieldTerminos;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1132,9 +1327,14 @@ public void llenarFormularioCampos(String llave){
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel labelCategorias;
+    private javax.swing.JLabel labelNomNiveles;
+    private javax.swing.JLabel labelNumNiveles;
+    private javax.swing.JLabel labelNumTerminos;
     private javax.swing.JLayeredPane paneBinario;
     private javax.swing.JLayeredPane paneFechaHora;
     private javax.swing.JLayeredPane paneIncremental;
+    private javax.swing.JLayeredPane paneJerarquia;
     private javax.swing.JLayeredPane paneNumero;
     private javax.swing.JLayeredPane panePrincipal;
     private javax.swing.JLayeredPane paneTexto;
