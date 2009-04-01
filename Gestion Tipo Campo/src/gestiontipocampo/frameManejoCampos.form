@@ -57,7 +57,7 @@
                                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                   <Component id="comboTipos" min="-2" pref="95" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="170" max="32767" attributes="0"/>
+                              <EmptySpace pref="187" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="valorBusqueda" min="-2" pref="105" max="-2" attributes="0"/>
@@ -71,7 +71,7 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="panePrincipal" pref="486" max="32767" attributes="0"/>
+                      <Component id="panePrincipal" pref="530" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
