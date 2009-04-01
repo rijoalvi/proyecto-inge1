@@ -61,6 +61,86 @@ public class frameManejoCampos extends javax.swing.JFrame {
             }
         }
     }
+    
+    /**
+     * Constructor que viene de abrir un dato en el tree view
+     */
+    public frameManejoCampos(String [] valGenerales, String [] valEspecificos){
+        initComponents();
+        panePrincipal.setVisible(true);
+        int tipo = Integer.parseInt(valGenerales[4]);
+        comboTipos.setSelectedIndex(tipo);
+        valorNombreGeneral.setText(valGenerales[1]);
+        valorNota.setText(valGenerales[2]);
+        switch(tipo){
+            //numero
+            case(1):
+                valorNumDecimales.setText(valEspecificos[1]);
+                valorNumeroMascara.setText(valEspecificos[2]);
+                valorValorDefectoNumero.setText(valEspecificos[3]);
+                break;
+            //binario
+            case(2):
+                valorNombreBinario1.setText(valEspecificos[1]);
+                valorOpcionBinaria1.setText(valEspecificos[2]);
+                valorNombreBinario2.setText(valEspecificos[3]);
+                valorOpcionBinaria2.setText(valEspecificos[4]);
+                if(valEspecificos[5].equals("true")){
+                    radioOpcionBinaria1.setSelected(false);
+                    radioOpcionBinaria2.setSelected(true);
+                }else{
+                    radioOpcionBinaria1.setSelected(true);
+                    radioOpcionBinaria2.setSelected(false);
+                }
+                break;
+            //FechaHora
+            case(3):
+                //comboFormatoFecha.setSelectedItem(valoresEspSep[1]);
+                valorFechaDefecto.setText(valEspecificos[2]);
+                if( valEspecificos[3].equals("true") ){
+                    radioFechaHoraSi.setSelected(true);
+                    radioFechaHoraNo.setSelected(false);
+                }else{
+                    radioFechaHoraSi.setSelected(false);
+                    radioFechaHoraNo.setSelected(true);
+                }
+                valorPreaviso.setText(valEspecificos[4]);
+                break;
+            //Texto
+            case(4):
+                valorTextoDefecto.setText(valEspecificos[1]);
+                valorTextoLargo.setText(valEspecificos[2]);
+                break;
+            //Incremental
+            case(5):
+                valorValorInicial.setText(valEspecificos[1]);
+                valorIncremento.setText(valEspecificos[2]);
+                break;
+            default:
+                break;
+        }    
+        ocultarPanes();
+        switch (tipo) {
+            case 1: 
+                paneNumero.setVisible(true);
+                break;
+            case 2: 
+                paneBinario.setVisible(true);                
+                break;
+            case 3: 
+                paneFechaHora.setVisible(true);
+                break;
+            case 4: 
+                paneTexto.setVisible(true);
+                break;
+            case 5: 
+                paneIncremental.setVisible(true);
+                break;
+            default:
+                //Si se selecciona algo raro o el campito en blanco.
+                break;
+        }
+    }
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -790,14 +870,8 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         }
                     } catch (SQLException e) {
                         System.out.println("*SQL Exception: *" + e.toString());
-                    }
-                    String valorBinarioDefecto;
-                    if(this.radioOpcionBinaria1.isSelected()){
-                        valorBinarioDefecto = this.valorOpcionBinaria1.getText();
-                    }else{
-                        valorBinarioDefecto = this.valorOpcionBinaria2.getText();
-                    }
-                    conexionBD.doUpdate("Insert Into BINARIO (correlativo, nombre1, valor1, nombre2, valor2, valorDefecto) VALUES (" + ID + ", '" + this.valorNombreBinario1.getText() + "', '" + this.valorOpcionBinaria1.getText() + "', '" + this.valorNombreBinario2.getText() + "', '" + this.valorOpcionBinaria2.getText() + "', '" + valorBinarioDefecto  + "')");
+                    }                    
+                    conexionBD.doUpdate("Insert Into BINARIO (correlativo, nombre1, valor1, nombre2, valor2, valorDefecto) VALUES (" + ID + ", '" + this.valorNombreBinario1.getText() + "', '" + this.valorOpcionBinaria1.getText() + "', '" + this.valorNombreBinario2.getText() + "', '" + this.valorOpcionBinaria2.getText() + "', '" + radioOpcionBinaria1.isSelected()  + "')");
                     this.valorNombreGeneral.setText("");
                     this.valorNota.setText("");
                     this.valorNombreBinario1.setText("");

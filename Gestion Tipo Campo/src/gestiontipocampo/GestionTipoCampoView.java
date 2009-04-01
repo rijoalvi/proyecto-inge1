@@ -36,8 +36,6 @@ public class GestionTipoCampoView extends FrameView {
         //Inicializa el arbol para obtener nodo seleccionado
         arbolPrincipal.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
 
-
-
         // status bar initialization - message timeout, idle icon and busy animation, etc
         ResourceMap resourceMap = getResourceMap();
         int messageTimeout = resourceMap.getInteger("StatusBar.messageTimeout");
@@ -145,9 +143,6 @@ public class GestionTipoCampoView extends FrameView {
         }
         JTree arbolnuevo = new JTree(raizArbol);
         arbolPrincipal.setModel(arbolnuevo.getModel());
-
-
-
         /*
          MouseListener ml = new MouseAdapter() {
      public void mousePressed(MouseEvent e) {
@@ -199,6 +194,7 @@ public class GestionTipoCampoView extends FrameView {
                 valores += resultado.getObject(2).toString() + ";";
                 valores += resultado.getObject(3).toString() + ";";
                 valores += resultado.getObject(4).toString() + ";";
+                valores += resultado.getObject(5).toString() + ";";
             }            
         } catch (SQLException e) {
             System.out.println("*SQL Exception: *" + e.toString());
@@ -834,6 +830,7 @@ public class GestionTipoCampoView extends FrameView {
     private void botonActualizarArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarArbolActionPerformed
         //Se actualiza el tree View
         llenarTreeView();
+        paneDatosAbrir.setVisible(false);
 }//GEN-LAST:event_botonActualizarArbolActionPerformed
 
     private void botonEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEditarMouseClicked
@@ -841,7 +838,16 @@ public class GestionTipoCampoView extends FrameView {
 }//GEN-LAST:event_botonEditarMouseClicked
 
     private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
-        // TODO add your handling code here:
+        String valoresGlobales = buscarDatosEnBD(valorNombreGeneral.getText());
+        String [] valoresSeparados = valoresGlobales.split(";");
+        String valoresEspecificos = buscarPorTipoEnBD(Integer.parseInt(valoresSeparados[0]), Integer.parseInt(valoresSeparados[4]));
+        String [] valoresEspSep = valoresEspecificos.split(";");
+        paneDatosAbrir.setVisible(false);
+        frameManejoCampos ventanaManejoCampos = new frameManejoCampos(valoresSeparados, valoresEspSep);
+        JFrame mainFrame = GestionTipoCampoApp.getApplication().getMainFrame();
+        //coloca el frame segun como este ubicada la ventana principal
+        ventanaManejoCampos.setLocationRelativeTo(mainFrame);
+        ventanaManejoCampos.setVisible(true);        
 }//GEN-LAST:event_botonEditarActionPerformed
 
     private void botonCancelarPanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarPanelActionPerformed
@@ -854,7 +860,6 @@ public class GestionTipoCampoView extends FrameView {
             JOptionPane.showMessageDialog(null, "¡Favor seleccionar un dato para abrir!", "", JOptionPane.ERROR_MESSAGE);
         }
         else{
-
 //            String nombre = "num 3";
 //            String papa = "Numero";
             String nombre = node.toString();
@@ -922,13 +927,11 @@ public class GestionTipoCampoView extends FrameView {
         //Trae todos los valores de la tabla TIPOCAMPO
         String valoresGlobales = buscarDatosEnBD(nombre);
         String [] valoresSeparados = valoresGlobales.split(";");
-        System.out.println("va para buscar por tipo");
         String valoresEspecificos = buscarPorTipoEnBD(Integer.parseInt(valoresSeparados[0]), tipo);
         String [] valoresEspSep = valoresEspecificos.split(";");
         comboTipos.setSelectedIndex(tipo);
         valorNombreGeneral.setText(valoresSeparados[1]);
         valorNota.setText(valoresSeparados[2]);
-        System.out.println("lleno valores");
         switch(tipo){
             //numero
             case(1):
@@ -942,7 +945,7 @@ public class GestionTipoCampoView extends FrameView {
                 valorOpcionBinaria1.setText(valoresEspSep[2]);
                 valorNombreBinario2.setText(valoresEspSep[3]);
                 valorOpcionBinaria2.setText(valoresEspSep[4]);
-                if(valoresEspSep[1].equals("1")){
+                if(valoresEspSep[5].equals("true")){
                     radioOpcionBinaria1.setSelected(false);
                     radioOpcionBinaria2.setSelected(true);
                 }else{
@@ -954,7 +957,7 @@ public class GestionTipoCampoView extends FrameView {
             case(3):
                 //comboFormatoFecha.setSelectedItem(valoresEspSep[1]);
                 valorFechaDefecto.setText(valoresEspSep[2]);
-                if(valoresEspSep[3].equals("1")){
+                if( valoresEspSep[3].equals("true") ){
                     radioFechaHoraSi.setSelected(true);
                     radioFechaHoraNo.setSelected(false);
                 }else{
