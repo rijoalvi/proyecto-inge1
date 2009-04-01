@@ -150,7 +150,7 @@ public class frameConexiones extends javax.swing.JFrame {
     //    System.out.print("apareció ventana");
         ControladorBD probadorConexiones = new ControladorBD();
 
-     /*   if(1==probadorConexiones.probarConexion(1)){
+        if(1==probadorConexiones.probarConexion(1)){
 
             jRadioButton1.setEnabled(true);
             jRadioButton1.setText("Disponible");
@@ -162,7 +162,7 @@ public class frameConexiones extends javax.swing.JFrame {
             jRadioButton1.setText("No disponible");
             jRadioButton1.setSelected(false);
             jRadioButton1.setEnabled(false);
-        }*/
+        }
 
         if(1==probadorConexiones.probarConexion(2)){
             jRadioButton2.setText("Disponible");

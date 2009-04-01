@@ -70,6 +70,9 @@ public class frameBusqueda extends javax.swing.JFrame {
         });
         tablaBusqueda.setName("tablaBusqueda"); // NOI18N
         tablaBusqueda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaBusquedaMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 tablaBusquedaMouseEntered(evt);
             }
@@ -133,14 +136,20 @@ public class frameBusqueda extends javax.swing.JFrame {
     }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void botonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonOKActionPerformed
-        int filaSeleccionada = tablaBusqueda.getSelectedRow();
-        String llave = tablaBusqueda.getModel().getValueAt(filaSeleccionada, 0).toString();
-        madre.llenarFormularioCampos(llave);
+        this.dispose();
     }//GEN-LAST:event_botonOKActionPerformed
 
     private void tablaBusquedaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaBusquedaMouseEntered
 
 }//GEN-LAST:event_tablaBusquedaMouseEntered
+
+    private void tablaBusquedaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaBusquedaMouseClicked
+        if(evt.getClickCount()==2){
+            realizarBusqueda();
+            this.dispose();
+        }
+
+    }//GEN-LAST:event_tablaBusquedaMouseClicked
 
     public void llenarTabla(JTextField campo) {
         ControladorBD miPrueba = new ControladorBD();
@@ -174,6 +183,12 @@ public class frameBusqueda extends javax.swing.JFrame {
         }
         
 
+    }
+
+    public void realizarBusqueda(){
+        int filaSeleccionada = tablaBusqueda.getSelectedRow();
+        String llave = tablaBusqueda.getModel().getValueAt(filaSeleccionada, 0).toString();
+        madre.llenarFormularioCampos(llave);
     }
 
     /**
