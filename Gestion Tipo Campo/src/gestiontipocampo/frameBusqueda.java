@@ -135,7 +135,6 @@ public class frameBusqueda extends javax.swing.JFrame {
     private void botonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonOKActionPerformed
         int filaSeleccionada = tablaBusqueda.getSelectedRow();
         String llave = tablaBusqueda.getModel().getValueAt(filaSeleccionada, 0).toString();
-        JOptionPane.showMessageDialog(null, llave);
         madre.llenarFormularioCampos(llave);
     }//GEN-LAST:event_botonOKActionPerformed
 
@@ -160,22 +159,13 @@ public class frameBusqueda extends javax.swing.JFrame {
         try {
             ResultSet resultado = miPrueba.getResultSet("select * from TIPOCAMPO where nombre like '%"+campo.getText()+"%' or descripcion like '%"+campo.getText()+"%';");
             while (resultado.next()) {
-//                System.out.print("\nEntre en el ciclo!!"+resultado.getObject(2).toString());
-               // fila[(contador % 4)] = resultado.getObject((contador % 4) + 1);
-                //if (((contador % 4) == 0) && (contador != 0)) {
-                    //modelo.setValueAt(fila, (contador % 4), contadorFila);
                     for(int i=0;i<4;i++){
                         fila[i] = resultado.getObject(i+1).toString();
   //                      JOptionPane.showMessageDialog(null, fila[i]);
 
                     }
                     modelo.addRow(fila);
-                 //   System.out.print("Contenido tabla " + modelo.getRowCount());
 
-
-        //            ++contadorFila;
-                //}
-          //      ++contador;
             }
             tablaBusqueda.setModel(modelo);
             

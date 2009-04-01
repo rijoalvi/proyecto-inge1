@@ -29,7 +29,7 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="144" max="32767" attributes="0"/>
+                      <EmptySpace pref="188" max="32767" attributes="0"/>
                       <Component id="botonBorrar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="botonGuardarComo" min="-2" max="-2" attributes="0"/>
@@ -57,7 +57,7 @@
                                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                   <Component id="comboTipos" min="-2" pref="95" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="187" max="32767" attributes="0"/>
+                              <EmptySpace pref="214" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="valorBusqueda" min="-2" pref="105" max="-2" attributes="0"/>
@@ -899,13 +899,14 @@
     <Component class="javax.swing.JComboBox" name="comboTipos">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="6">
-            <StringItem index="0" value="N&#xfa;mero"/>
-            <StringItem index="1" value="Binario"/>
-            <StringItem index="2" value="FechaHora"/>
-            <StringItem index="3" value="Texto"/>
-            <StringItem index="4" value="Incremental"/>
-            <StringItem index="5" value="Jerarqu&#xed;a"/>
+          <StringArray count="7">
+            <StringItem index="0" value=" "/>
+            <StringItem index="1" value="N&#xfa;mero"/>
+            <StringItem index="2" value="Binario"/>
+            <StringItem index="3" value="FechaHora"/>
+            <StringItem index="4" value="Texto"/>
+            <StringItem index="5" value="Incremental"/>
+            <StringItem index="6" value="Jerarqu&#xed;a"/>
           </StringArray>
         </Property>
         <Property name="name" type="java.lang.String" value="comboTipos" noResource="true"/>
