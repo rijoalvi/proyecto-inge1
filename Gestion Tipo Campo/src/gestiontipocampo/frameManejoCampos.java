@@ -19,13 +19,14 @@ import java.text.ParseException;
  */
 public class frameManejoCampos extends javax.swing.JFrame {
 
-    //Son los macros que se usan para seleccion del combo box.
-    static final int NUMERO = -1950493636;
-    static final int INCREMENTAL = -1541726278;
-    static final int FECHAHORA = -1299756429;
-    static final int TEXTO = 80703682;
-    static final int BINARIO = 1556351614;
-    static final int JERARQUIA = 304540448;
+    //Son los macros que se usan para seleccion del combo box.//CAMBIE EL HASH CODE POR LOS NUMEROS ESTABLECIDOS
+    static final int NUMERO =1;// -1950493636;
+    static final int INCREMENTAL = 5;//-1541726278;
+    static final int FECHAHORA =3; //-1299756429;
+    static final int TEXTO =4;// 80703682;
+    static final int BINARIO =2;// 1556351614;
+
+    static final int JERARQUIA =6;// 304540448;
     ControladorBD conexionBD = new ControladorBD();
 
     /** Creates new form frameManejoCampos */
@@ -139,6 +140,9 @@ public class frameManejoCampos extends javax.swing.JFrame {
             case 5: 
                 paneIncremental.setVisible(true);
                 break;
+            case 6:
+                paneJerarquia.setVisible(true);
+                break;
             default:
                 //Si se selecciona algo raro o el campito en blanco.
                 break;
@@ -229,10 +233,11 @@ public class frameManejoCampos extends javax.swing.JFrame {
         botonBorrar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameManejoCampos.class);
+        setTitle(resourceMap.getString("Form.title")); // NOI18N
         setMinimumSize(new java.awt.Dimension(200, 200));
         setName("Form"); // NOI18N
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameManejoCampos.class);
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
 
@@ -240,6 +245,11 @@ public class frameManejoCampos extends javax.swing.JFrame {
         jLabel20.setName("jLabel20"); // NOI18N
 
         valorBusqueda.setName("valorBusqueda"); // NOI18N
+        valorBusqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                valorBusquedaActionPerformed(evt);
+            }
+        });
 
         botonBusqueda.setText(resourceMap.getString("botonBusqueda.text")); // NOI18N
         botonBusqueda.setName("botonBusqueda"); // NOI18N
@@ -266,27 +276,27 @@ public class frameManejoCampos extends javax.swing.JFrame {
 
         labelNumTerminos.setText(resourceMap.getString("labelNumTerminos.text")); // NOI18N
         labelNumTerminos.setName("labelNumTerminos"); // NOI18N
-        labelNumTerminos.setBounds(10, 10, 100, 14);
+        labelNumTerminos.setBounds(10, 10, 100, -1);
         paneJerarquia.add(labelNumTerminos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         labelNumNiveles.setText(resourceMap.getString("labelNumNiveles.text")); // NOI18N
         labelNumNiveles.setName("labelNumNiveles"); // NOI18N
-        labelNumNiveles.setBounds(10, 60, 90, 14);
+        labelNumNiveles.setBounds(10, 60, 90, -1);
         paneJerarquia.add(labelNumNiveles, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         fieldTerminos.setText(resourceMap.getString("fieldTerminos.text")); // NOI18N
         fieldTerminos.setName("fieldTerminos"); // NOI18N
-        fieldTerminos.setBounds(10, 30, 100, 20);
+        fieldTerminos.setBounds(10, 30, 100, -1);
         paneJerarquia.add(fieldTerminos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         fieldNiveles.setText(resourceMap.getString("fieldNiveles.text")); // NOI18N
         fieldNiveles.setName("fieldNiveles"); // NOI18N
-        fieldNiveles.setBounds(10, 80, 100, 20);
+        fieldNiveles.setBounds(10, 80, 100, -1);
         paneJerarquia.add(fieldNiveles, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         labelNomNiveles.setText(resourceMap.getString("labelNomNiveles.text")); // NOI18N
         labelNomNiveles.setName("labelNomNiveles"); // NOI18N
-        labelNomNiveles.setBounds(120, 10, 94, 10);
+        labelNomNiveles.setBounds(120, 10, -1, 10);
         paneJerarquia.add(labelNomNiveles, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         comboNiveles.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "nombreNivel1", "nombreNivel2", "nombreNivel3", "nombreNivel4" }));
@@ -296,12 +306,12 @@ public class frameManejoCampos extends javax.swing.JFrame {
 
         labelCategorias.setText(resourceMap.getString("labelCategorias.text")); // NOI18N
         labelCategorias.setName("labelCategorias"); // NOI18N
-        labelCategorias.setBounds(120, 60, 60, 14);
+        labelCategorias.setBounds(120, 60, 60, -1);
         paneJerarquia.add(labelCategorias, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         comboCategorias.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Categoria 1", "Categoria 2", "Categoría 3", "Categoría 4" }));
         comboCategorias.setName("comboCategorias"); // NOI18N
-        comboCategorias.setBounds(120, 80, 90, 20);
+        comboCategorias.setBounds(120, 80, 90, -1);
         paneJerarquia.add(comboCategorias, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         botonConfigJerarquia.setText(resourceMap.getString("botonConfigJerarquia.text")); // NOI18N
@@ -311,7 +321,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 botonConfigJerarquiaActionPerformed(evt);
             }
         });
-        botonConfigJerarquia.setBounds(240, 80, 100, 23);
+        botonConfigJerarquia.setBounds(240, 80, 100, -1);
         paneJerarquia.add(botonConfigJerarquia, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         botonAgregarCategoria.setText(resourceMap.getString("botonAgregarCategoria.text")); // NOI18N
@@ -321,7 +331,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 botonAgregarCategoriaActionPerformed(evt);
             }
         });
-        botonAgregarCategoria.setBounds(350, 120, 130, 23);
+        botonAgregarCategoria.setBounds(350, 120, 130, -1);
         paneJerarquia.add(botonAgregarCategoria, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         botonListarTerminos.setText(resourceMap.getString("botonListarTerminos.text")); // NOI18N
@@ -331,7 +341,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 botonListarTerminosActionPerformed(evt);
             }
         });
-        botonListarTerminos.setBounds(240, 120, 105, 23);
+        botonListarTerminos.setBounds(240, 120, -1, -1);
         paneJerarquia.add(botonListarTerminos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
@@ -341,7 +351,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jButton1.setBounds(10, 120, 111, 23);
+        jButton1.setBounds(10, 120, -1, -1);
         paneJerarquia.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton2.setText(resourceMap.getString("jButton2.text")); // NOI18N
@@ -351,12 +361,12 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jButton2.setBounds(350, 80, 130, 23);
+        jButton2.setBounds(350, 80, 130, -1);
         paneJerarquia.add(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         campoBusqAvanzada.setText(resourceMap.getString("campoBusqAvanzada.text")); // NOI18N
         campoBusqAvanzada.setName("campoBusqAvanzada"); // NOI18N
-        campoBusqAvanzada.setBounds(240, 30, 100, 20);
+        campoBusqAvanzada.setBounds(240, 30, 100, -1);
         paneJerarquia.add(campoBusqAvanzada, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         botonBusqAvanzada.setText(resourceMap.getString("botonBusqAvanzada.text")); // NOI18N
@@ -366,12 +376,12 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 botonBusqAvanzadaActionPerformed(evt);
             }
         });
-        botonBusqAvanzada.setBounds(350, 30, 130, 23);
+        botonBusqAvanzada.setBounds(350, 30, 130, -1);
         paneJerarquia.add(botonBusqAvanzada, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton4.setText(resourceMap.getString("jButton4.text")); // NOI18N
         jButton4.setName("jButton4"); // NOI18N
-        jButton4.setBounds(150, 120, 63, 23);
+        jButton4.setBounds(150, 120, -1, -1);
         paneJerarquia.add(jButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneJerarquia.setBounds(0, 0, 490, 160);
@@ -448,16 +458,16 @@ public class frameManejoCampos extends javax.swing.JFrame {
 
         jLabel6.setText(resourceMap.getString("jLabel6.text")); // NOI18N
         jLabel6.setName("jLabel6"); // NOI18N
-        jLabel6.setBounds(10, 10, 100, 10);
+        jLabel6.setBounds(20, 10, 100, 10);
         paneFechaHora.add(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorPreaviso.setName("valorPreaviso"); // NOI18N
-        valorPreaviso.setBounds(130, 80, 80, 20);
+        valorPreaviso.setBounds(140, 80, 80, 20);
         paneFechaHora.add(valorPreaviso, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel13.setText(resourceMap.getString("jLabel13.text")); // NOI18N
         jLabel13.setName("jLabel13"); // NOI18N
-        jLabel13.setBounds(130, 10, 100, 14);
+        jLabel13.setBounds(140, 10, 100, 14);
         paneFechaHora.add(jLabel13, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         try {
@@ -467,17 +477,17 @@ public class frameManejoCampos extends javax.swing.JFrame {
         }
         valorFechaDefecto.setText(resourceMap.getString("valorFechaDefecto.text")); // NOI18N
         valorFechaDefecto.setName("valorFechaDefecto"); // NOI18N
-        valorFechaDefecto.setBounds(130, 30, 80, 20);
+        valorFechaDefecto.setBounds(140, 30, 80, 20);
         paneFechaHora.add(valorFechaDefecto, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel14.setText(resourceMap.getString("jLabel14.text")); // NOI18N
         jLabel14.setName("jLabel14"); // NOI18N
-        jLabel14.setBounds(130, 60, 100, 14);
+        jLabel14.setBounds(140, 60, 100, 14);
         paneFechaHora.add(jLabel14, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel15.setText(resourceMap.getString("jLabel15.text")); // NOI18N
         jLabel15.setName("jLabel15"); // NOI18N
-        jLabel15.setBounds(10, 60, 100, 14);
+        jLabel15.setBounds(20, 60, 100, 14);
         paneFechaHora.add(jLabel15, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         radioFechaHoraSi.setSelected(true);
@@ -488,7 +498,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 radioFechaHoraSiActionPerformed(evt);
             }
         });
-        radioFechaHoraSi.setBounds(10, 80, 33, 23);
+        radioFechaHoraSi.setBounds(20, 80, 33, 23);
         paneFechaHora.add(radioFechaHoraSi, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         radioFechaHoraNo.setText(resourceMap.getString("radioFechaHoraNo.text")); // NOI18N
@@ -498,7 +508,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 radioFechaHoraNoActionPerformed(evt);
             }
         });
-        radioFechaHoraNo.setBounds(10, 100, 39, 20);
+        radioFechaHoraNo.setBounds(20, 100, 39, 20);
         paneFechaHora.add(radioFechaHoraNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         comboFormatoFecha.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "dd/mm/aaaa", "mm/dd/aaaa", "aaaa/dd/mm", "aaaa/mm/dd" }));
@@ -508,7 +518,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 comboFormatoFechaActionPerformed(evt);
             }
         });
-        comboFormatoFecha.setBounds(10, 30, 90, 20);
+        comboFormatoFecha.setBounds(20, 30, 90, 20);
         paneFechaHora.add(comboFormatoFecha, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneFechaHora.setBounds(0, 0, 380, 130);
@@ -564,30 +574,30 @@ public class frameManejoCampos extends javax.swing.JFrame {
 
         jLabel4.setText(resourceMap.getString("jLabel4.text")); // NOI18N
         jLabel4.setName("jLabel4"); // NOI18N
-        jLabel4.setBounds(10, 10, 110, 14);
+        jLabel4.setBounds(20, 20, 110, 20);
         paneNumero.add(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorNumDecimales.setName("valorNumDecimales"); // NOI18N
-        valorNumDecimales.setBounds(10, 30, 80, 20);
+        valorNumDecimales.setBounds(20, 40, 80, 20);
         paneNumero.add(valorNumDecimales, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel5.setText(resourceMap.getString("jLabel5.text")); // NOI18N
         jLabel5.setName("jLabel5"); // NOI18N
-        jLabel5.setBounds(130, 10, 50, 14);
+        jLabel5.setBounds(140, 20, 50, 20);
         paneNumero.add(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorNumeroMascara.setName("valorNumeroMascara"); // NOI18N
-        valorNumeroMascara.setBounds(130, 30, 80, 20);
+        valorNumeroMascara.setBounds(140, 40, 80, 20);
         paneNumero.add(valorNumeroMascara, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorValorDefectoNumero.setText(resourceMap.getString("valorValorDefectoNumero.text")); // NOI18N
         valorValorDefectoNumero.setName("valorValorDefectoNumero"); // NOI18N
-        valorValorDefectoNumero.setBounds(250, 30, 80, 20);
+        valorValorDefectoNumero.setBounds(260, 40, 80, 20);
         paneNumero.add(valorValorDefectoNumero, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel12.setText(resourceMap.getString("jLabel12.text")); // NOI18N
         jLabel12.setName("jLabel12"); // NOI18N
-        jLabel12.setBounds(250, 10, 90, 14);
+        jLabel12.setBounds(260, 20, 90, 20);
         paneNumero.add(jLabel12, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneNumero.setBounds(0, 0, 400, 160);
@@ -720,7 +730,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
         if (this.valorNombreGeneral.getText().isEmpty() || this.valorNota.getText().isEmpty()) {
             alerta = true;
         }
-        switch (comboTipos.getSelectedItem().toString().hashCode()) {
+        switch (comboTipos.getSelectedIndex()) {
             case NUMERO: //HashCode para Número
                 if (this.valorNumDecimales.getText().isEmpty() ||
                         this.valorNumeroMascara.getText().isEmpty() ||
@@ -785,51 +795,57 @@ public class frameManejoCampos extends javax.swing.JFrame {
         ControladorBD control = new ControladorBD();
 
         ResultSet resultado = null;
-        String tipoCampo = "default";
+        int tipoCampo = -1;
+        String tipo = null;
         Object retorno[] = new Object[2];
         this.ocultarPanes();
 
-        try {
-            resultado = control.getResultSet("Select * from NUMERO where correlativo = " + llave);
-            if (resultado.next()) {
-                tipoCampo = "NUMERO";
-                paneNumero.setVisible(true);
-            } else {               
-                resultado = control.getResultSet("Select * from BINARIO where correlativo = " + llave);
-                if (resultado.next()) {
-                    tipoCampo = "BINARIO";
-                    paneBinario.setVisible(true);
-                } else {
-                    resultado = control.getResultSet("Select * from TEXTO where correlativo = " + llave);
-                    if (resultado.next()) {
-                        tipoCampo = "TEXTO";
+        try{
+            resultado = control.getResultSet("Select * from TIPOCAMPO where correlativo = "+llave);
+            if(resultado.next()){
+                tipoCampo = Integer.parseInt(resultado.getObject(5).toString());
+                //////////////////////////////////////////////////////////////JOptionPane.showMessageDialog(null, "Tipo de campo = "+tipoCampo);
+                switch(tipoCampo){
+                    case 1:
+                        tipo = "NUMERO";
+                        paneNumero.setVisible(true);
+                    break;
+                    case 2:
+                        tipo = "BINARIO";
+                        paneBinario.setVisible(true);
+                    break;
+                    case 3:
+                        tipo = "FECHAHORA";
+                        paneFechaHora.setVisible(true);
+                    break;
+                    case 4:
+                        tipo = "TEXTO";
                         paneTexto.setVisible(true);
-                    } else {
-                        resultado = control.getResultSet("Select * from FECHAHORA where correlativo = " + llave);
-                        if (resultado.next()) {
-                            tipoCampo = "FECHAHORA";
-                            paneFechaHora.setVisible(true);
-                        } else {
-                            resultado = control.getResultSet("Select * from INCREMENTAL where correlativo = " + llave);
-                            if (resultado.next()) {
-                                tipoCampo = "INCREMENTAL";
-                                paneIncremental.setVisible(true);
-                            }
-                        }
-                    }
+                    break;
+                    case 5:
+                        tipo = "INCREMENTAL";
+                        paneIncremental.setVisible(true);
+                    break;
+                    case 6:
+                        tipo = "JERARQUIA";
+                        break;
+                    default:
+
+                    break;
                 }
             }
-            resultado.beforeFirst();
-        } catch (SQLException e) {
-            System.out.println("*SQL Exception: *" + e.toString());
+            resultado = control.getResultSet("Select * from "+tipo+" where correlativo = "+llave);
+        }catch (SQLException e) {
+                System.out.println("*SQL Exception: *" + e.toString());
         }
-        retorno[0] = tipoCampo;
-        retorno[1] = resultado;
+        retorno[0]=tipoCampo;
+        retorno[1]=resultado;
         return retorno;
     }
 
 private void botonBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBusquedaActionPerformed
     frameBusqueda ventanaBusqueda = new frameBusqueda(this);
+    ventanaBusqueda.setLocationRelativeTo(this);
     ventanaBusqueda.llenarTabla(valorBusqueda);
     //  JFrame mainFrame = frameManejoCampos.getApplication().getMainFrame();
     //coloca el frame segun como este ubicada la ventana principal
@@ -881,7 +897,7 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         } else { //Si no existe en la base hay que agregar una entrada nueva
         }
 
-        switch (comboTipos.getSelectedItem().toString().hashCode()) {
+        switch (comboTipos.getSelectedIndex()) {
             case NUMERO: //HashCode para Número
                 if (existe) {
                     /* Si el nombre ya existe no se hace nada
@@ -1032,7 +1048,7 @@ private void comboTiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
      */
     //La version nueva que usa case, se ve mejor que if anidado y mas facil para agregar nuevas opciones.
     ocultarPanes();
-    switch (comboTipos.getSelectedItem().toString().hashCode()) {
+    switch (comboTipos.getSelectedIndex()) {///////////cambie lo del hash code porcon los numeros que tenemos establcidos para cada tipo///comboTipos.getSelectedItem().toString().hashCode()
         case NUMERO: //HashCode para Número
             paneNumero.setVisible(true);
             break;
@@ -1194,6 +1210,16 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     // TODO add your handling code here:
 }//GEN-LAST:event_jButton2ActionPerformed
 
+private void valorBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valorBusquedaActionPerformed
+    frameBusqueda ventanaBusqueda = new frameBusqueda(this);
+    ventanaBusqueda.setLocationRelativeTo(this);
+    ventanaBusqueda.llenarTabla(valorBusqueda);
+    //  JFrame mainFrame = frameManejoCampos.getApplication().getMainFrame();
+    //coloca el frame segun como este ubicada la ventana principal
+    // ventanaBusqueda.setLocationRelativeTo(mainFrame);
+    ventanaBusqueda.setVisible(true);
+}//GEN-LAST:event_valorBusquedaActionPerformed
+
     /**
      * Cambia la mascara del valorFechaDefecto
      * @param formato String que indica el formato de la máscara. I.E. ##/##/####
@@ -1214,59 +1240,66 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
     public void llenarFormularioCampos(String llave) {
         Object tipoEncontrado[] = buscarTipoCampo(llave);
-        String tipoCampo = (String) tipoEncontrado[0];
+        int tipoCampo = Integer.parseInt(tipoEncontrado[0].toString());
         ResultSet resultado = (ResultSet) tipoEncontrado[1];
         try {
-            ControladorBD control = new ControladorBD();
-            ResultSet resultadoGeneral = control.getResultSet("Select * from TIPOCAMPO where Correlativo = " + llave);
-            //resultado.next();
-            resultadoGeneral.next();
+        ControladorBD control = new ControladorBD();
+        ResultSet resultadoGeneral = control.getResultSet("Select * from TIPOCAMPO where Correlativo = "+llave);
+        resultado.next();
+        resultadoGeneral.next();
 
-            int i = 0;
-            while (!this.comboTipos.getItemAt(i).toString().equalsIgnoreCase(tipoCampo) && comboTipos.getItemCount() >= i) {
-                i++;
-            //JOptionPane.showMessageDialog(null,this.comboTipos.getItemAt(i).toString()+" "+tipoCampo);
-            }
-            comboTipos.setSelectedIndex(i);
+        if(tipoCampo<=comboTipos.getItemCount()){
+            comboTipos.setSelectedIndex(tipoCampo);
             this.valorNombreGeneral.setText(resultadoGeneral.getObject(2).toString());
             this.valorNota.setText(resultadoGeneral.getObject(3).toString());
-            if (tipoCampo.equals("NUMERO")) {
-                this.valorNumDecimales.setText(resultado.getObject(2).toString());
-                this.valorNumeroMascara.setText(resultado.getObject(3).toString());
-                this.valorValorDefectoNumero.setText(resultado.getObject(4).toString());
-            } else if (tipoCampo.equals("INCREMENTAL")) {
-                this.valorValorInicial.setText(resultado.getObject(2).toString());
-                this.valorIncremento.setText(resultado.getObject(3).toString());
-            } else if (tipoCampo.equals("FECHAHORA")) {
-                this.comboFormatoFecha.setSelectedItem(resultado.getObject(2).toString());
-                this.valorFechaDefecto.setText(resultado.getObject(3).toString());
-                if (resultado.getObject(4).toString() == "true") {
-                    this.radioFechaHoraSi.setSelected(true);
-                    this.radioFechaHoraNo.setSelected(false);
-                } else {
-                    this.radioFechaHoraSi.setSelected(false);
-                    this.radioFechaHoraNo.setSelected(true);
-                }
-                this.valorPreaviso.setText(resultado.getObject(5).toString());
-            } else if (tipoCampo.equals("TEXTO")) {
-                this.valorTextoDefecto.setText(resultado.getObject(2).toString());
-                this.valorTextoLargo.setText(resultado.getObject(3).toString());
-            } else if (tipoCampo.equals("BINARIO")) {
-                this.valorNombreBinario1.setText(resultado.getObject(2).toString());
-                this.valorOpcionBinaria1.setText(resultado.getObject(3).toString());
-                this.valorNombreBinario2.setText(resultado.getObject(4).toString());
-                this.valorOpcionBinaria2.setText(resultado.getObject(5).toString());
-                if (resultado.getObject(6).toString() == "false") {
-                    this.radioOpcionBinaria1.setSelected(false);
-                    this.radioOpcionBinaria2.setSelected(true);
-                } else {
-                    this.radioOpcionBinaria1.setSelected(true);
-                    this.radioOpcionBinaria2.setSelected(false);
-                }
+            switch(tipoCampo){
+                case 1:
+                    this.valorNumDecimales.setText(resultado.getObject(2).toString());
+                    this.valorNumeroMascara.setText(resultado.getObject(3).toString());
+                    this.valorValorDefectoNumero.setText(resultado.getObject(4).toString());
+                break;
+                case 2:
+                    this.valorNombreBinario1.setText(resultado.getObject(2).toString());
+                    this.valorOpcionBinaria1.setText(resultado.getObject(3).toString());
+                    this.valorNombreBinario2.setText(resultado.getObject(4).toString());
+                    this.valorOpcionBinaria2.setText(resultado.getObject(5).toString());
+                    if(resultado.getObject(6).toString()=="false"){
+                        this.radioOpcionBinaria1.setSelected(false);
+                        this.radioOpcionBinaria2.setSelected(true);
+                    }else{
+                        this.radioOpcionBinaria1.setSelected(true);
+                        this.radioOpcionBinaria2.setSelected(false);
+                    }
+                break;
+                case 3:
+                    this.comboFormatoFecha.setSelectedItem(resultado.getObject(2).toString());
+                    this.valorFechaDefecto.setText(resultado.getObject(3).toString());
+                    if(resultado.getObject(4).toString().equalsIgnoreCase("true")){
+                        this.radioFechaHoraSi.setSelected(true);
+                        this.radioFechaHoraNo.setSelected(false);
+                    }else{
+                        this.radioFechaHoraSi.setSelected(false);
+                        this.radioFechaHoraNo.setSelected(true);
+                    }
+                    this.valorPreaviso.setText(resultado.getObject(5).toString());
+                break;
+                case 4:
+                    this.valorTextoDefecto.setText(resultado.getObject(2).toString());
+                    this.valorTextoLargo.setText(resultado.getObject(3).toString());
+                break;
+                case 5:
+                    this.valorValorInicial.setText(resultado.getObject(2).toString());
+                    this.valorIncremento.setText(resultado.getObject(3).toString());
+                break;
+                default:
+
+                break;
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(frameManejoCampos.class.getName()).log(Level.SEVERE, null, ex);
+
         }
+    } catch (SQLException ex) {
+            Logger.getLogger(frameManejoCampos.class.getName()).log(Level.SEVERE, null, ex);
+    }
 
     }
 

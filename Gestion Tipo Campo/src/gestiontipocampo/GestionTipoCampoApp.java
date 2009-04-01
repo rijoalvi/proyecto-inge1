@@ -3,6 +3,8 @@
  */
 package gestiontipocampo;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
 
@@ -16,7 +18,11 @@ public class GestionTipoCampoApp extends SingleFrameApplication {
      */
     @Override
     protected void startup() {
-        show(new GestionTipoCampoView(this));
+        try {
+            show(new GestionTipoCampoView(this));
+        } catch (InterruptedException ex) {
+            Logger.getLogger(GestionTipoCampoApp.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

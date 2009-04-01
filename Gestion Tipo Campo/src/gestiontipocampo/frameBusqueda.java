@@ -14,14 +14,12 @@ import javax.swing.*;
 //import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
-import javax.swing.table.TableModel;
 
 /**
  *
  * @author Alberto
  */
 public class frameBusqueda extends javax.swing.JFrame {
-    private TableModel DefaultTableModel;
     private frameManejoCampos madre;
     /** Creates new form frameBusqueda */
     public frameBusqueda() {
@@ -48,7 +46,14 @@ public class frameBusqueda extends javax.swing.JFrame {
         botonCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameBusqueda.class);
+        setTitle(resourceMap.getString("Form.title")); // NOI18N
         setName("Form"); // NOI18N
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
@@ -78,7 +83,6 @@ public class frameBusqueda extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(tablaBusqueda);
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameBusqueda.class);
         tablaBusqueda.getColumnModel().getColumn(0).setHeaderValue(resourceMap.getString("tablaBusqueda.columnModel.title0")); // NOI18N
         tablaBusqueda.getColumnModel().getColumn(1).setHeaderValue(resourceMap.getString("tablaBusqueda.columnModel.title1")); // NOI18N
         tablaBusqueda.getColumnModel().getColumn(2).setHeaderValue(resourceMap.getString("tablaBusqueda.columnModel.title2")); // NOI18N
@@ -136,6 +140,7 @@ public class frameBusqueda extends javax.swing.JFrame {
     }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void botonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonOKActionPerformed
+        realizarBusqueda();
         this.dispose();
     }//GEN-LAST:event_botonOKActionPerformed
 
@@ -151,27 +156,22 @@ public class frameBusqueda extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tablaBusquedaMouseClicked
 
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formMouseClicked
+
     public void llenarTabla(JTextField campo) {
         ControladorBD miPrueba = new ControladorBD();
-       // System.out.print("prueba de base de datos");
-
- //       int contador;
-   //     int contadorFila;
         DefaultTableModel modelo = new DefaultTableModel();
         modelo = (DefaultTableModel) tablaBusqueda.getModel();
 
-        //jTable1 = new JTable(modelo);
         Object[] fila = new Object[4];
-    //    contador = 0;
-      //  contadorFila=0;
-
+        madre.setVisible(false);
         try {
             ResultSet resultado = miPrueba.getResultSet("select * from TIPOCAMPO where nombre like '%"+campo.getText()+"%' or descripcion like '%"+campo.getText()+"%';");
             while (resultado.next()) {
                     for(int i=0;i<4;i++){
                         fila[i] = resultado.getObject(i+1).toString();
-  //                      JOptionPane.showMessageDialog(null, fila[i]);
-
                     }
                     modelo.addRow(fila);
 
@@ -181,14 +181,18 @@ public class frameBusqueda extends javax.swing.JFrame {
         } catch (SQLException e) {
             System.out.println("*SQL Exception: *" + e.toString());
         }
-        
-
     }
 
     public void realizarBusqueda(){
         int filaSeleccionada = tablaBusqueda.getSelectedRow();
-        String llave = tablaBusqueda.getModel().getValueAt(filaSeleccionada, 0).toString();
-        madre.llenarFormularioCampos(llave);
+        
+        //JOptionPane.showMessageDialog(null, filaSeleccionada);
+        if(filaSeleccionada != -1){
+            madre.setVisible(true);
+            String llave = tablaBusqueda.getModel().getValueAt(filaSeleccionada, 0).toString();
+            
+            madre.llenarFormularioCampos(llave);
+        }
     }
 
     /**

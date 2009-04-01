@@ -25,7 +25,7 @@ import javax.swing.JOptionPane;
  */
 public class GestionTipoCampoView extends FrameView {
 
-    public GestionTipoCampoView(SingleFrameApplication app) {
+    public GestionTipoCampoView(SingleFrameApplication app) throws InterruptedException {
         super(app);
 
         initComponents();
@@ -93,11 +93,19 @@ public class GestionTipoCampoView extends FrameView {
             }
         });
 
+        
+
         frameConexiones ventanaConexiones = new frameConexiones();
+        ventanaConexiones.setAlwaysOnTop(true);
+       
+        
+
         //JFrame mainFrame = frameManejoCampos.getApplication().getMainFrame();
         //coloca el frame segun como este ubicada la ventana principal
         // ventanaBusqueda.setLocationRelativeTo(mainFrame);
         ventanaConexiones.setVisible(true);
+        ventanaConexiones.setLocationRelativeTo(null);
+        
         //ventanaConexiones.setLocationRelativeTo();
     }
 

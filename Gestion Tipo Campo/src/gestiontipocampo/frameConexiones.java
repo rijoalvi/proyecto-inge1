@@ -41,8 +41,11 @@ public class frameConexiones extends javax.swing.JFrame {
         jRadioButton2 = new javax.swing.JRadioButton();
         btnEstablecerConexion = new javax.swing.JButton();
         btnRefrescar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameConexiones.class);
+        setTitle(resourceMap.getString("Form.title")); // NOI18N
         setName("Form"); // NOI18N
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -50,7 +53,6 @@ public class frameConexiones extends javax.swing.JFrame {
             }
         });
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameConexiones.class);
         lblConexion1.setText(resourceMap.getString("lblConexion1.text")); // NOI18N
         lblConexion1.setName("lblConexion1"); // NOI18N
 
@@ -96,31 +98,37 @@ public class frameConexiones extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
+        jLabel1.setName("jLabel1"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(97, 97, 97)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblConexion1)
-                    .addComponent(jRadioButton1))
-                .addGap(82, 82, 82)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblConexion2)
-                    .addComponent(jRadioButton2))
-                .addContainerGap(138, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(267, Short.MAX_VALUE)
-                .addComponent(btnRefrescar)
+                .addContainerGap(146, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblConexion1)
+                            .addComponent(jRadioButton1))
+                        .addGap(82, 82, 82)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblConexion2)
+                            .addComponent(jRadioButton2)))
+                    .addComponent(btnRefrescar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEstablecerConexion)
                 .addContainerGap())
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(69, 69, 69)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblConexion2)
                     .addComponent(lblConexion1))
@@ -128,7 +136,7 @@ public class frameConexiones extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButton2)
                     .addComponent(jRadioButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEstablecerConexion)
                     .addComponent(btnRefrescar))
@@ -145,12 +153,10 @@ public class frameConexiones extends javax.swing.JFrame {
         probarConexiones();
     }//GEN-LAST:event_formComponentShown
     private void probarConexiones(){
-            // TODO add your handling code here:
+        
         btnEstablecerConexion.setEnabled(false);
-    //    System.out.print("apareció ventana");
         ControladorBD probadorConexiones = new ControladorBD();
-
-        if(1==probadorConexiones.probarConexion(1)){
+      /*  if(1==probadorConexiones.probarConexion(1)){
 
             jRadioButton1.setEnabled(true);
             jRadioButton1.setText("Disponible");
@@ -162,7 +168,7 @@ public class frameConexiones extends javax.swing.JFrame {
             jRadioButton1.setText("No disponible");
             jRadioButton1.setSelected(false);
             jRadioButton1.setEnabled(false);
-        }
+        }*/
 
         if(1==probadorConexiones.probarConexion(2)){
             jRadioButton2.setText("Disponible");
@@ -173,6 +179,9 @@ public class frameConexiones extends javax.swing.JFrame {
             jRadioButton2.setSelected(false);
             jRadioButton2.setEnabled(false);
         }
+
+        jLabel1.setText("Por favor elija la Base de Datos a la que sea conectarse.");
+
     }
     private void jRadioButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButton1MouseClicked
         // TODO add your handling code here:
@@ -224,6 +233,8 @@ public class frameConexiones extends javax.swing.JFrame {
         jRadioButton2.setText("Revisando...");
         jRadioButton2.setSelected(false);
         jRadioButton2.setEnabled(false);
+        jLabel1.setVisible(true);
+        jLabel1.setText("Por favor espere un momento.\nSe está revisando la conexión a las Bases de Datos.");
         probarConexiones();
         btnRefrescar.setEnabled(true);
 
@@ -244,6 +255,7 @@ public class frameConexiones extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEstablecerConexion;
     private javax.swing.JButton btnRefrescar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JLabel lblConexion1;
