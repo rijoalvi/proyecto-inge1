@@ -190,7 +190,6 @@ public class frameBusqueda extends javax.swing.JFrame {
         if(filaSeleccionada != -1){
             madre.setVisible(true);
             String llave = tablaBusqueda.getModel().getValueAt(filaSeleccionada, 0).toString();
-            
             madre.llenarFormularioCampos(llave);
         }
     }
