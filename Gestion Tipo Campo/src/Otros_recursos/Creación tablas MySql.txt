@@ -12,7 +12,7 @@ CREATE TABLE BINARIO(
 -- Tabla "FECHAHORA"
 CREATE TABLE FECHAHORA(
   correlativo int NOT NULL,
-  despliegue varchar(8) NOT NULL,
+  despliegue varchar(25) NOT NULL,
   fechaDefecto datetime,
   vencimiento bit,
   preaviso int,
@@ -54,6 +54,3 @@ CREATE TABLE TIPOCAMPO(
   PRIMARY KEY (correlativo)
 
 );
-
---insert into TIPOCAMPO (nombre,descripcion) values ('pruebaNombre','PruebaDescripsion')
---select * from TIPOCAMPO
