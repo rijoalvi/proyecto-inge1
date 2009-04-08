@@ -3,6 +3,8 @@
  */
 package gestiontipocampo;
 
+import java.util.Vector;
+import javax.swing.JLabel;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.ResourceMap;
 import org.jdesktop.application.SingleFrameApplication;
@@ -249,32 +251,15 @@ public class GestionTipoCampoView extends FrameView {
         canvas3 = new java.awt.Canvas();
         canvas4 = new java.awt.Canvas();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        arbolPrincipal = new javax.swing.JTree();
         botonActualizarArbol = new javax.swing.JButton();
         botonAbrirArbol = new javax.swing.JButton();
         paneDatosAbrir = new javax.swing.JLayeredPane();
         panePrincipal = new javax.swing.JLayeredPane();
-        paneIncremental = new javax.swing.JLayeredPane();
-        jLabel17 = new javax.swing.JLabel();
-        valorValorInicial = new javax.swing.JTextField();
-        jLabel19 = new javax.swing.JLabel();
-        valorIncremento = new javax.swing.JTextField();
         paneTexto = new javax.swing.JLayeredPane();
         jLabel16 = new javax.swing.JLabel();
         valorTextoLargo = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         valorTextoDefecto = new javax.swing.JTextField();
-        paneFechaHora = new javax.swing.JLayeredPane();
-        jLabel6 = new javax.swing.JLabel();
-        valorPreaviso = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
-        valorFechaDefecto = new javax.swing.JFormattedTextField();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        radioFechaHoraSi = new javax.swing.JRadioButton();
-        radioFechaHoraNo = new javax.swing.JRadioButton();
-        comboFormatoFecha = new javax.swing.JComboBox();
         paneBinario = new javax.swing.JLayeredPane();
         jLabel7 = new javax.swing.JLabel();
         valorNombreBinario1 = new javax.swing.JTextField();
@@ -294,6 +279,21 @@ public class GestionTipoCampoView extends FrameView {
         valorNumeroMascara = new javax.swing.JTextField();
         valorValorDefectoNumero = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
+        paneIncremental = new javax.swing.JLayeredPane();
+        jLabel17 = new javax.swing.JLabel();
+        valorValorInicial = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        valorIncremento = new javax.swing.JTextField();
+        paneFechaHora = new javax.swing.JLayeredPane();
+        jLabel6 = new javax.swing.JLabel();
+        valorPreaviso = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        valorFechaDefecto = new javax.swing.JFormattedTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        radioFechaHoraSi = new javax.swing.JRadioButton();
+        radioFechaHoraNo = new javax.swing.JRadioButton();
+        comboFormatoFecha = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
         valorNombreGeneral = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -302,6 +302,9 @@ public class GestionTipoCampoView extends FrameView {
         comboTipos = new javax.swing.JComboBox();
         botonCancelarPanel = new javax.swing.JButton();
         botonEditar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        arbolPrincipal = new javax.swing.JTree();
+        pathPane = new javax.swing.JPanel();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -321,6 +324,8 @@ public class GestionTipoCampoView extends FrameView {
         statusMessageLabel = new javax.swing.JLabel();
         statusAnimationLabel = new javax.swing.JLabel();
         progressBar = new javax.swing.JProgressBar();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
 
         mainPanel.setMaximumSize(new java.awt.Dimension(471, 659));
         mainPanel.setMinimumSize(new java.awt.Dimension(471, 659));
@@ -341,25 +346,6 @@ public class GestionTipoCampoView extends FrameView {
         canvas4.setName("canvas4"); // NOI18N
 
         jPanel1.setName("jPanel1"); // NOI18N
-
-        jScrollPane1.setName("jScrollPane1"); // NOI18N
-
-        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("GIFT");
-        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Número");
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Binario");
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("FechaHora");
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Texto");
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Incremental");
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Jerarquía");
-        treeNode1.add(treeNode2);
-        arbolPrincipal.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
-        arbolPrincipal.setName("arbolPrincipal"); // NOI18N
-        jScrollPane1.setViewportView(arbolPrincipal);
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(GestionTipoCampoView.class);
         botonActualizarArbol.setText(resourceMap.getString("botonActualizarArbol.text")); // NOI18N
@@ -383,55 +369,26 @@ public class GestionTipoCampoView extends FrameView {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel1Layout.createSequentialGroup()
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
-                    .add(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .add(botonActualizarArbol)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(botonAbrirArbol, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 70, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addContainerGap()
+                .add(botonActualizarArbol)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(botonAbrirArbol, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 70, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel1Layout.createSequentialGroup()
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 285, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(50, 50, 50)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(botonActualizarArbol)
                     .add(botonAbrirArbol))
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         paneDatosAbrir.setName("paneDatosAbrir"); // NOI18N
 
         panePrincipal.setAutoscrolls(true);
         panePrincipal.setName("panePrincipal"); // NOI18N
-
-        paneIncremental.setName("paneIncremental"); // NOI18N
-
-        jLabel17.setText(resourceMap.getString("jLabel17.text")); // NOI18N
-        jLabel17.setName("jLabel17"); // NOI18N
-        jLabel17.setBounds(10, 10, 100, 20);
-        paneIncremental.add(jLabel17, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        valorValorInicial.setEditable(false);
-        valorValorInicial.setName("valorValorInicial"); // NOI18N
-        valorValorInicial.setBounds(10, 30, 100, 20);
-        paneIncremental.add(valorValorInicial, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jLabel19.setText(resourceMap.getString("jLabel19.text")); // NOI18N
-        jLabel19.setName("jLabel19"); // NOI18N
-        jLabel19.setBounds(130, 10, 100, 20);
-        paneIncremental.add(jLabel19, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        valorIncremento.setEditable(false);
-        valorIncremento.setName("valorIncremento"); // NOI18N
-        valorIncremento.setBounds(130, 30, 100, 20);
-        paneIncremental.add(valorIncremento, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        paneIncremental.setBounds(10, 20, 430, 180);
-        panePrincipal.add(paneIncremental, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneTexto.setName("paneTexto"); // NOI18N
 
@@ -455,66 +412,8 @@ public class GestionTipoCampoView extends FrameView {
         valorTextoDefecto.setBounds(130, 30, 100, 20);
         paneTexto.add(valorTextoDefecto, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        paneTexto.setBounds(10, 30, 370, 130);
+        paneTexto.setBounds(0, 70, 410, 110);
         panePrincipal.add(paneTexto, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        paneFechaHora.setName("paneFechaHora"); // NOI18N
-
-        jLabel6.setText(resourceMap.getString("jLabel6.text")); // NOI18N
-        jLabel6.setName("jLabel6"); // NOI18N
-        jLabel6.setBounds(10, 30, 100, 10);
-        paneFechaHora.add(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        valorPreaviso.setEditable(false);
-        valorPreaviso.setName("valorPreaviso"); // NOI18N
-        valorPreaviso.setBounds(130, 100, 80, 20);
-        paneFechaHora.add(valorPreaviso, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jLabel13.setText(resourceMap.getString("jLabel13.text")); // NOI18N
-        jLabel13.setName("jLabel13"); // NOI18N
-        jLabel13.setBounds(130, 30, 100, 14);
-        paneFechaHora.add(jLabel13, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        valorFechaDefecto.setEditable(false);
-        valorFechaDefecto.setText(resourceMap.getString("valorFechaDefecto.text")); // NOI18N
-        valorFechaDefecto.setName("valorFechaDefecto"); // NOI18N
-        valorFechaDefecto.setBounds(130, 50, 80, 20);
-        paneFechaHora.add(valorFechaDefecto, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jLabel14.setText(resourceMap.getString("jLabel14.text")); // NOI18N
-        jLabel14.setName("jLabel14"); // NOI18N
-        jLabel14.setBounds(130, 80, 100, 14);
-        paneFechaHora.add(jLabel14, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jLabel15.setText(resourceMap.getString("jLabel15.text")); // NOI18N
-        jLabel15.setName("jLabel15"); // NOI18N
-        jLabel15.setBounds(10, 80, 100, 14);
-        paneFechaHora.add(jLabel15, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        radioFechaHoraSi.setSelected(true);
-        radioFechaHoraSi.setText(resourceMap.getString("radioFechaHoraSi.text")); // NOI18N
-        radioFechaHoraSi.setEnabled(false);
-        radioFechaHoraSi.setFocusable(false);
-        radioFechaHoraSi.setName("radioFechaHoraSi"); // NOI18N
-        radioFechaHoraSi.setBounds(10, 100, 33, 23);
-        paneFechaHora.add(radioFechaHoraSi, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        radioFechaHoraNo.setText(resourceMap.getString("radioFechaHoraNo.text")); // NOI18N
-        radioFechaHoraNo.setEnabled(false);
-        radioFechaHoraNo.setFocusable(false);
-        radioFechaHoraNo.setName("radioFechaHoraNo"); // NOI18N
-        radioFechaHoraNo.setBounds(10, 120, 39, 20);
-        paneFechaHora.add(radioFechaHoraNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        comboFormatoFecha.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "dd/mm/aaaa", "mm/dd/aaaa", "aaaa/dd/mm", "aaaa/mm/dd" }));
-        comboFormatoFecha.setEnabled(false);
-        comboFormatoFecha.setFocusable(false);
-        comboFormatoFecha.setName("comboFormatoFecha"); // NOI18N
-        comboFormatoFecha.setBounds(10, 50, 90, 20);
-        paneFechaHora.add(comboFormatoFecha, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        paneFechaHora.setBounds(10, 0, 380, 180);
-        panePrincipal.add(paneFechaHora, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneBinario.setName("paneBinario"); // NOI18N
 
@@ -578,78 +477,161 @@ public class GestionTipoCampoView extends FrameView {
         radioOpcionBinaria2.setBounds(260, 60, 100, 20);
         paneBinario.add(radioOpcionBinaria2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        paneBinario.setBounds(10, 20, 410, 160);
+        paneBinario.setBounds(0, 70, 450, 130);
         panePrincipal.add(paneBinario, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneNumero.setName("paneNumero"); // NOI18N
 
         jLabel4.setText(resourceMap.getString("jLabel4.text")); // NOI18N
         jLabel4.setName("jLabel4"); // NOI18N
-        jLabel4.setBounds(10, 20, 110, 14);
+        jLabel4.setBounds(10, 20, 110, -1);
         paneNumero.add(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorNumDecimales.setEditable(false);
         valorNumDecimales.setName("valorNumDecimales"); // NOI18N
-        valorNumDecimales.setBounds(10, 40, 80, 20);
+        valorNumDecimales.setBounds(10, 40, 80, -1);
         paneNumero.add(valorNumDecimales, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel5.setText(resourceMap.getString("jLabel5.text")); // NOI18N
         jLabel5.setName("jLabel5"); // NOI18N
-        jLabel5.setBounds(130, 20, 50, 14);
+        jLabel5.setBounds(130, 20, 50, -1);
         paneNumero.add(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorNumeroMascara.setEditable(false);
         valorNumeroMascara.setName("valorNumeroMascara"); // NOI18N
-        valorNumeroMascara.setBounds(130, 40, 80, 20);
+        valorNumeroMascara.setBounds(130, 40, 80, -1);
         paneNumero.add(valorNumeroMascara, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorValorDefectoNumero.setEditable(false);
         valorValorDefectoNumero.setText(resourceMap.getString("valorValorDefectoNumero.text")); // NOI18N
         valorValorDefectoNumero.setName("valorValorDefectoNumero"); // NOI18N
-        valorValorDefectoNumero.setBounds(250, 40, 80, 20);
+        valorValorDefectoNumero.setBounds(250, 40, 80, -1);
         paneNumero.add(valorValorDefectoNumero, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel12.setText(resourceMap.getString("jLabel12.text")); // NOI18N
         jLabel12.setName("jLabel12"); // NOI18N
-        jLabel12.setBounds(250, 20, 90, 14);
+        jLabel12.setBounds(250, 20, 90, -1);
         paneNumero.add(jLabel12, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        paneNumero.setBounds(10, 10, 400, 160);
+        paneNumero.setBounds(0, 60, 440, 130);
         panePrincipal.add(paneNumero, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        panePrincipal.setBounds(20, 90, 470, 210);
+        paneIncremental.setName("paneIncremental"); // NOI18N
+
+        jLabel17.setText(resourceMap.getString("jLabel17.text")); // NOI18N
+        jLabel17.setName("jLabel17"); // NOI18N
+        jLabel17.setBounds(20, 10, 100, 20);
+        paneIncremental.add(jLabel17, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        valorValorInicial.setEditable(false);
+        valorValorInicial.setName("valorValorInicial"); // NOI18N
+        valorValorInicial.setBounds(20, 30, 100, 20);
+        paneIncremental.add(valorValorInicial, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel19.setText(resourceMap.getString("jLabel19.text")); // NOI18N
+        jLabel19.setName("jLabel19"); // NOI18N
+        jLabel19.setBounds(140, 10, 100, 20);
+        paneIncremental.add(jLabel19, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        valorIncremento.setEditable(false);
+        valorIncremento.setName("valorIncremento"); // NOI18N
+        valorIncremento.setBounds(140, 30, 100, 20);
+        paneIncremental.add(valorIncremento, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        paneIncremental.setBounds(-10, 70, 470, 150);
+        panePrincipal.add(paneIncremental, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        paneFechaHora.setName("paneFechaHora"); // NOI18N
+
+        jLabel6.setText(resourceMap.getString("jLabel6.text")); // NOI18N
+        jLabel6.setName("jLabel6"); // NOI18N
+        jLabel6.setBounds(10, 30, 100, 10);
+        paneFechaHora.add(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        valorPreaviso.setEditable(false);
+        valorPreaviso.setName("valorPreaviso"); // NOI18N
+        valorPreaviso.setBounds(130, 100, 80, -1);
+        paneFechaHora.add(valorPreaviso, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel13.setText(resourceMap.getString("jLabel13.text")); // NOI18N
+        jLabel13.setName("jLabel13"); // NOI18N
+        jLabel13.setBounds(130, 30, 100, -1);
+        paneFechaHora.add(jLabel13, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        valorFechaDefecto.setEditable(false);
+        valorFechaDefecto.setText(resourceMap.getString("valorFechaDefecto.text")); // NOI18N
+        valorFechaDefecto.setName("valorFechaDefecto"); // NOI18N
+        valorFechaDefecto.setBounds(130, 50, 80, -1);
+        paneFechaHora.add(valorFechaDefecto, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel14.setText(resourceMap.getString("jLabel14.text")); // NOI18N
+        jLabel14.setName("jLabel14"); // NOI18N
+        jLabel14.setBounds(130, 80, 100, -1);
+        paneFechaHora.add(jLabel14, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel15.setText(resourceMap.getString("jLabel15.text")); // NOI18N
+        jLabel15.setName("jLabel15"); // NOI18N
+        jLabel15.setBounds(10, 80, 100, -1);
+        paneFechaHora.add(jLabel15, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        radioFechaHoraSi.setSelected(true);
+        radioFechaHoraSi.setText(resourceMap.getString("radioFechaHoraSi.text")); // NOI18N
+        radioFechaHoraSi.setEnabled(false);
+        radioFechaHoraSi.setFocusable(false);
+        radioFechaHoraSi.setName("radioFechaHoraSi"); // NOI18N
+        radioFechaHoraSi.setBounds(10, 100, -1, -1);
+        paneFechaHora.add(radioFechaHoraSi, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        radioFechaHoraNo.setText(resourceMap.getString("radioFechaHoraNo.text")); // NOI18N
+        radioFechaHoraNo.setEnabled(false);
+        radioFechaHoraNo.setFocusable(false);
+        radioFechaHoraNo.setName("radioFechaHoraNo"); // NOI18N
+        radioFechaHoraNo.setBounds(10, 120, -1, 20);
+        paneFechaHora.add(radioFechaHoraNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        comboFormatoFecha.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "dd/mm/aaaa", "mm/dd/aaaa", "aaaa/dd/mm", "aaaa/mm/dd" }));
+        comboFormatoFecha.setEnabled(false);
+        comboFormatoFecha.setFocusable(false);
+        comboFormatoFecha.setName("comboFormatoFecha"); // NOI18N
+        comboFormatoFecha.setBounds(10, 50, 90, -1);
+        paneFechaHora.add(comboFormatoFecha, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        paneFechaHora.setBounds(0, 50, 370, 150);
+        panePrincipal.add(paneFechaHora, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        panePrincipal.setBounds(20, 90, 470, 240);
         paneDatosAbrir.add(panePrincipal, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
         jLabel2.setName("jLabel2"); // NOI18N
-        jLabel2.setBounds(20, 70, 41, 14);
+        jLabel2.setBounds(20, 90, 41, 14);
         paneDatosAbrir.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorNombreGeneral.setEditable(false);
         valorNombreGeneral.setName("valorNombreGeneral"); // NOI18N
-        valorNombreGeneral.setBounds(20, 90, 80, 20);
+        valorNombreGeneral.setBounds(20, 110, 80, 20);
         paneDatosAbrir.add(valorNombreGeneral, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
         jLabel3.setName("jLabel3"); // NOI18N
-        jLabel3.setBounds(140, 70, 58, 14);
+        jLabel3.setBounds(140, 90, 58, 14);
         paneDatosAbrir.add(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorNota.setEditable(false);
         valorNota.setName("valorNota"); // NOI18N
-        valorNota.setBounds(140, 90, 150, 20);
+        valorNota.setBounds(140, 110, 150, 20);
         paneDatosAbrir.add(valorNota, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
-        jLabel1.setBounds(20, 10, 73, 14);
+        jLabel1.setBounds(20, 40, 73, 14);
         paneDatosAbrir.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         comboTipos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Número", "Binario", "FechaHora", "Texto", "Incremental" }));
         comboTipos.setEnabled(false);
         comboTipos.setFocusable(false);
         comboTipos.setName("comboTipos"); // NOI18N
-        comboTipos.setBounds(20, 30, 82, 20);
+        comboTipos.setBounds(20, 60, 82, 20);
         paneDatosAbrir.add(comboTipos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         botonCancelarPanel.setText(resourceMap.getString("botonCancelarPanel.text")); // NOI18N
@@ -659,7 +641,7 @@ public class GestionTipoCampoView extends FrameView {
                 botonCancelarPanelActionPerformed(evt);
             }
         });
-        botonCancelarPanel.setBounds(340, 290, 80, 23);
+        botonCancelarPanel.setBounds(340, 280, 80, 23);
         paneDatosAbrir.add(botonCancelarPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         botonEditar.setText(resourceMap.getString("botonEditar.text")); // NOI18N
@@ -674,8 +656,35 @@ public class GestionTipoCampoView extends FrameView {
                 botonEditarActionPerformed(evt);
             }
         });
-        botonEditar.setBounds(250, 290, 80, 23);
+        botonEditar.setBounds(250, 280, 80, 23);
         paneDatosAbrir.add(botonEditar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jScrollPane1.setName("jScrollPane1"); // NOI18N
+
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("GIFT");
+        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Número");
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Binario");
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("FechaHora");
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Texto");
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Incremental");
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Jerarquía");
+        treeNode1.add(treeNode2);
+        arbolPrincipal.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        arbolPrincipal.setName("arbolPrincipal"); // NOI18N
+        arbolPrincipal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                arbolPrincipalMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(arbolPrincipal);
+
+        pathPane.setName("pathPanel"); // NOI18N
+        pathPane.setLayout(new javax.swing.BoxLayout(pathPane, javax.swing.BoxLayout.LINE_AXIS));
 
         org.jdesktop.layout.GroupLayout mainPanelLayout = new org.jdesktop.layout.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
@@ -683,35 +692,55 @@ public class GestionTipoCampoView extends FrameView {
             mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(paneDatosAbrir, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 437, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(canvas1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                    .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                        .add(org.jdesktop.layout.GroupLayout.TRAILING, canvas3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(org.jdesktop.layout.GroupLayout.TRAILING, canvas2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(mainPanelLayout.createSequentialGroup()
-                        .add(203, 203, 203)
-                        .add(canvas4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .add(230, 230, 230)
+                        .add(canvas1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                .add(org.jdesktop.layout.GroupLayout.TRAILING, canvas3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(org.jdesktop.layout.GroupLayout.TRAILING, canvas2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(mainPanelLayout.createSequentialGroup()
+                                .add(203, 203, 203)
+                                .add(canvas4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(paneDatosAbrir, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 452, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(pathPane, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 452, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(mainPanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, mainPanelLayout.createSequentialGroup()
+                        .add(pathPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(paneDatosAbrir, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 435, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(5, 5, 5))
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 480, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(canvas1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 403, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 324, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(paneDatosAbrir, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 392, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(canvas2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(mainPanelLayout.createSequentialGroup()
                         .add(105, 105, 105)
-                        .add(canvas3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 515, Short.MAX_VALUE)
-                        .add(canvas4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                        .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(canvas2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(mainPanelLayout.createSequentialGroup()
+                                .add(105, 105, 105)
+                                .add(canvas3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 298, Short.MAX_VALUE)
+                                .add(canvas4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(canvas1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 403, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -820,6 +849,38 @@ public class GestionTipoCampoView extends FrameView {
                 .add(3, 3, 3))
         );
 
+        jPanel3.setName("jPanel3"); // NOI18N
+
+        jPanel4.setName("jPanel4"); // NOI18N
+
+        org.jdesktop.layout.GroupLayout jPanel4Layout = new org.jdesktop.layout.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 100, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 100, Short.MAX_VALUE)
+        );
+
+        org.jdesktop.layout.GroupLayout jPanel3Layout = new org.jdesktop.layout.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(342, Short.MAX_VALUE)
+                .add(jPanel4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(112, 112, 112))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(31, Short.MAX_VALUE)
+                .add(jPanel4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
         setComponent(mainPanel);
         setMenuBar(menuBar);
         setStatusBar(statusPanel);
@@ -868,66 +929,17 @@ public class GestionTipoCampoView extends FrameView {
         else{
 //            String nombre = "num 3";
 //            String papa = "Numero";
-            String nombre = node.toString();
-            String papa = node.getParent().toString();
-            paneDatosAbrir.setVisible(true);
-            panePrincipal.setVisible(true);
-
-            if( papa.equals("Numero")  ){
-                paneNumero.setVisible(true);
-                paneBinario.setVisible(false);
-                paneFechaHora.setVisible(false);
-                paneTexto.setVisible(false);
-                paneIncremental.setVisible(false);
-                llenarDatosReadOnly(nombre, 1);
-            }
-            else{
-                if( papa.equals("Binario")  ){
-                    paneNumero.setVisible(false);
-                    paneBinario.setVisible(true);
-                    paneFechaHora.setVisible(false);
-                    paneTexto.setVisible(false);
-                    paneIncremental.setVisible(false);
-                    llenarDatosReadOnly(nombre, 2);
-                }
-                else{
-                    if( papa.equals("FechaHora")  ){
-                        paneNumero.setVisible(false);
-                        paneBinario.setVisible(false);
-                        paneFechaHora.setVisible(true);
-                        paneTexto.setVisible(false);
-                        paneIncremental.setVisible(false);
-                        llenarDatosReadOnly(nombre, 3);
-                    }
-                    else{
-                        if( papa.equals("Texto")  ){
-                            paneNumero.setVisible(false);
-                            paneBinario.setVisible(false);
-                            paneFechaHora.setVisible(false);
-                            paneTexto.setVisible(true);
-                            paneIncremental.setVisible(false);
-                            llenarDatosReadOnly(nombre, 4);
-                        }
-                        else{
-                            if( papa.equals("Incremental")  ){
-                                paneNumero.setVisible(false);
-                                paneBinario.setVisible(false);
-                                paneFechaHora.setVisible(false);
-                                paneTexto.setVisible(false);
-                                paneIncremental.setVisible(true);
-                                llenarDatosReadOnly(nombre, 5);
-                            }
-                            else{
-                                paneDatosAbrir.setVisible(false);
-                                JOptionPane.showMessageDialog(null, "¡Favor seleccionar un dato hoja!", "", JOptionPane.ERROR_MESSAGE);
-                            }
-                        }
-                    }
-                }
-            }
+            actualizarPath();
+            abrirNodoHoja();
         }
          
     }//GEN-LAST:event_botonAbrirArbolActionPerformed
+
+    private void arbolPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arbolPrincipalMouseClicked
+        // TODO add your handling code here:
+        actualizarPath();
+        abrirNodoHoja();
+    }//GEN-LAST:event_arbolPrincipalMouseClicked
 
     public void llenarDatosReadOnly(String nombre, int tipo){
         //Trae todos los valores de la tabla TIPOCAMPO
@@ -995,6 +1007,105 @@ public class GestionTipoCampoView extends FrameView {
         ventanaManejoCampos.setVisible(true);
     }
 
+    public void abrirNodoHoja(){
+
+        DefaultMutableTreeNode node = (DefaultMutableTreeNode)arbolPrincipal.getLastSelectedPathComponent();
+        if (node != null){
+//            String nombre = "num 3";
+//            String papa = "Numero";
+            String nombre = node.toString();
+            String papa = node.getParent().toString();
+            paneDatosAbrir.setVisible(true);
+            panePrincipal.setVisible(true);
+            paneBinario.setVisible(false);
+            paneFechaHora.setVisible(false);
+            paneTexto.setVisible(false);
+            paneIncremental.setVisible(false);
+            paneNumero.setVisible(false);
+            if( papa.equals("Numero")  ){
+                paneNumero.setVisible(true);
+                llenarDatosReadOnly(nombre, 1);
+            }
+            else{
+                if( papa.equals("Binario")  ){
+                    paneBinario.setVisible(true);
+                    llenarDatosReadOnly(nombre, 2);
+                }
+                else{
+                    if( papa.equals("FechaHora")  ){
+                        paneFechaHora.setVisible(true);
+                        llenarDatosReadOnly(nombre, 3);
+                    }
+                    else{
+                        if( papa.equals("Texto")  ){
+                            paneTexto.setVisible(true);
+                            llenarDatosReadOnly(nombre, 4);
+                        }
+                        else{
+                            if( papa.equals("Incremental")  ){
+                                paneIncremental.setVisible(true);
+                                llenarDatosReadOnly(nombre, 5);
+                            }
+                            else{
+                                paneDatosAbrir.setVisible(false);
+                               // JOptionPane.showMessageDialog(null, "¡Favor seleccionar un dato hoja!", "", JOptionPane.ERROR_MESSAGE);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+Vector vectorPath;
+
+
+    public void actualizarPath(){
+        /////////veamos que sale....
+        DefaultMutableTreeNode node = (DefaultMutableTreeNode)arbolPrincipal.getLastSelectedPathComponent();
+        if(node!=null){
+
+                pathPane.removeAll();
+           
+            vectorPath=new Vector();
+            vectorPath.removeAllElements();
+            vectorPath.setSize(0);
+        javax.swing.JLabel temp;
+        while(node!=null && !node.toString().equals("")){
+            temp = new javax.swing.JLabel();
+            temp.setText("  "+node.toString()+">");
+            JOptionPane.showMessageDialog(null, node.toString());
+            node = (DefaultMutableTreeNode)node.getParent();
+            vectorPath.add(temp);
+        }
+        javax.swing.JLabel labelHoja;
+
+        labelHoja = (javax.swing.JLabel)vectorPath.get(0);
+        String hoja = labelHoja.getText();
+        JOptionPane.showMessageDialog(null,"HOJA    "+hoja+" tam"+0);
+        hoja=hoja.substring(0, hoja.length()-1);
+        temp = (javax.swing.JLabel) vectorPath.get(0);
+        temp.setText(hoja);
+
+        vectorPath.set(0, temp);
+        
+
+        for(int i=vectorPath.size()-1;i>=0; i--){
+            Object temp1 = vectorPath.get(i);
+
+            temp = (javax.swing.JLabel)temp1;
+            pathPane.add(temp);
+        }
+        }
+
+
+
+
+
+    }
+
+
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTree arbolPrincipal;
     private javax.swing.JButton botonAbrirArbol;
@@ -1034,6 +1145,8 @@ public class GestionTipoCampoView extends FrameView {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
@@ -1046,6 +1159,7 @@ public class GestionTipoCampoView extends FrameView {
     private javax.swing.JLayeredPane paneNumero;
     private javax.swing.JLayeredPane panePrincipal;
     private javax.swing.JLayeredPane paneTexto;
+    private javax.swing.JPanel pathPane;
     private javax.swing.JProgressBar progressBar;
     private javax.swing.JRadioButton radioFechaHoraNo;
     private javax.swing.JRadioButton radioFechaHoraSi;
