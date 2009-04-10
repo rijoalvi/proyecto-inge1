@@ -65,6 +65,8 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Raíz");
+        jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         jTree1.setName("jTree1"); // NOI18N
         jScrollPane1.setViewportView(jTree1);
 
@@ -109,12 +111,12 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jButton1.setBounds(320, 10, 100, 23);
+        jButton1.setBounds(320, 10, 100, -1);
         jLayeredPane1.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton2.setText(resourceMap.getString("jButton2.text")); // NOI18N
         jButton2.setName("jButton2"); // NOI18N
-        jButton2.setBounds(320, 40, 100, 23);
+        jButton2.setBounds(320, 40, 100, -1);
         jLayeredPane1.add(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton3.setText(resourceMap.getString("jButton3.text")); // NOI18N
@@ -124,7 +126,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jButton3.setBounds(320, 70, 100, 23);
+        jButton3.setBounds(320, 70, 100, -1);
         jLayeredPane1.add(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton4.setText(resourceMap.getString("jButton4.text")); // NOI18N
@@ -134,7 +136,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jButton4.setBounds(320, 100, 103, 23);
+        jButton4.setBounds(320, 100, -1, -1);
         jLayeredPane1.add(jButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton5.setText(resourceMap.getString("jButton5.text")); // NOI18N
@@ -144,12 +146,12 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        jButton5.setBounds(320, 160, 100, 23);
+        jButton5.setBounds(320, 160, 100, -1);
         jLayeredPane1.add(jButton5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton6.setText(resourceMap.getString("jButton6.text")); // NOI18N
         jButton6.setName("jButton6"); // NOI18N
-        jButton6.setBounds(320, 130, 100, 23);
+        jButton6.setBounds(320, 130, 100, -1);
         jLayeredPane1.add(jButton6, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
