@@ -22,16 +22,15 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jScrollPane1" pref="191" max="32767" attributes="0"/>
-                      <Component id="jPanel1" alignment="1" min="-2" max="-2" attributes="0"/>
-                  </Group>
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jScrollPane1" pref="191" max="32767" attributes="0"/>
+                      <Component id="jPanel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="230" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="236" max="-2" attributes="0"/>
                           <Component id="canvas1" min="-2" pref="0" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -46,50 +45,42 @@
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="pathPane" min="-2" pref="433" max="-2" attributes="1"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="paneDatosAbrir" alignment="0" min="-2" pref="452" max="-2" attributes="1"/>
-                              <Component id="pathPane" alignment="0" min="-2" pref="452" max="-2" attributes="1"/>
-                          </Group>
+                          <Component id="paneDatosAbrir" min="-2" pref="452" max="-2" attributes="1"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
+                  <EmptySpace min="11" pref="11" max="11" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Group type="102" alignment="1" attributes="1">
-                          <Component id="pathPane" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="paneDatosAbrir" min="-2" pref="435" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="1">
+                          <Component id="pathPane" min="-2" pref="44" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                          <Component id="paneDatosAbrir" max="32767" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" min="-2" pref="480" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jScrollPane1" alignment="0" min="-2" pref="376" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="canvas2" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
-                                  <Component id="canvas3" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="298" max="32767" attributes="0"/>
-                                  <Component id="canvas4" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="canvas1" alignment="0" min="-2" pref="403" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <Component id="canvas2" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
+                          <Component id="canvas3" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="298" max="32767" attributes="0"/>
+                          <Component id="canvas4" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <Component id="canvas1" alignment="0" min="-2" pref="403" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -137,12 +128,12 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="botonActualizarArbol" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="botonAbrirArbol" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="21" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -182,7 +173,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-                  <JLayeredPaneConstraints x="20" y="90" width="470" height="240" layer="0" position="-1"/>
+                  <JLayeredPaneConstraints x="10" y="50" width="470" height="200" layer="0" position="-1"/>
                 </Constraint>
               </Constraints>
 
@@ -473,7 +464,7 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-                      <JLayeredPaneConstraints x="-10" y="70" width="470" height="150" layer="0" position="-1"/>
+                      <JLayeredPaneConstraints x="-10" y="70" width="470" height="110" layer="0" position="-1"/>
                     </Constraint>
                   </Constraints>
 
@@ -662,7 +653,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-                  <JLayeredPaneConstraints x="20" y="90" width="-1" height="-1" layer="0" position="-1"/>
+                  <JLayeredPaneConstraints x="10" y="60" width="-1" height="-1" layer="0" position="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -673,7 +664,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-                  <JLayeredPaneConstraints x="20" y="110" width="80" height="-1" layer="0" position="-1"/>
+                  <JLayeredPaneConstraints x="10" y="80" width="80" height="-1" layer="0" position="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -684,7 +675,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-                  <JLayeredPaneConstraints x="140" y="90" width="-1" height="-1" layer="0" position="-1"/>
+                  <JLayeredPaneConstraints x="130" y="60" width="-1" height="-1" layer="0" position="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -695,7 +686,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-                  <JLayeredPaneConstraints x="140" y="110" width="150" height="-1" layer="0" position="-1"/>
+                  <JLayeredPaneConstraints x="130" y="80" width="150" height="-1" layer="0" position="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -706,7 +697,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-                  <JLayeredPaneConstraints x="20" y="40" width="-1" height="-1" layer="0" position="-1"/>
+                  <JLayeredPaneConstraints x="10" y="10" width="-1" height="-1" layer="0" position="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -728,7 +719,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-                  <JLayeredPaneConstraints x="20" y="60" width="-1" height="-1" layer="0" position="-1"/>
+                  <JLayeredPaneConstraints x="10" y="30" width="-1" height="-1" layer="0" position="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -742,7 +733,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-                  <JLayeredPaneConstraints x="340" y="280" width="80" height="-1" layer="0" position="-1"/>
+                  <JLayeredPaneConstraints x="330" y="250" width="80" height="-1" layer="0" position="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -757,7 +748,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-                  <JLayeredPaneConstraints x="250" y="280" width="80" height="-1" layer="0" position="-1"/>
+                  <JLayeredPaneConstraints x="240" y="250" width="80" height="-1" layer="0" position="-1"/>
                 </Constraint>
               </Constraints>
             </Component>

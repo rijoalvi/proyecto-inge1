@@ -33,7 +33,7 @@ public class GestionTipoCampoView extends FrameView {
         initComponents();
 
         //Se esconden todos los datos de panel para abrir datos...
-        paneDatosAbrir.setVisible(false);
+        ocultarPanes();
 
         //Inicializa el arbol para obtener nodo seleccionado
         arbolPrincipal.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
@@ -132,7 +132,7 @@ public class GestionTipoCampoView extends FrameView {
 
     public void llenarTreeView(){
         //Llena los valores del Tree View
-        String [] tiposCampo = {"Numero", "Binario", "FechaHora", "Texto", "Incremental"};
+        String [] tiposCampo = {"Numero", "Binario", "FechaHora", "Texto", "Incremental", "Jerarquia"};
         String valores;
         String [] valTrim;
         DefaultMutableTreeNode nodoTipoCampo;
@@ -153,22 +153,6 @@ public class GestionTipoCampoView extends FrameView {
         }
         JTree arbolnuevo = new JTree(raizArbol);
         arbolPrincipal.setModel(arbolnuevo.getModel());
-        /*
-         MouseListener ml = new MouseAdapter() {
-     public void mousePressed(MouseEvent e) {
-         int selRow = tree.getRowForLocation(e.getX(), e.getY());
-         TreePath selPath = tree.getPathForLocation(e.getX(), e.getY());
-         if(selRow != -1) {
-             if(e.getClickCount() == 1) {
-                 mySingleClick(selRow, selPath);
-             }
-             else
-                if(e.getClickCount() == 2) {
-                 myDoubleClick(selRow, selPath);
-                }
-         }
-     }
-    */
     }
 
     /**
@@ -378,11 +362,11 @@ public class GestionTipoCampoView extends FrameView {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel1Layout.createSequentialGroup()
-                .add(50, 50, 50)
+                .addContainerGap()
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(botonActualizarArbol)
                     .add(botonAbrirArbol))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         paneDatosAbrir.setName("paneDatosAbrir"); // NOI18N
@@ -538,7 +522,7 @@ public class GestionTipoCampoView extends FrameView {
         valorIncremento.setBounds(140, 30, 100, 20);
         paneIncremental.add(valorIncremento, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        paneIncremental.setBounds(-10, 70, 470, 150);
+        paneIncremental.setBounds(-10, 70, 470, 110);
         panePrincipal.add(paneIncremental, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneFechaHora.setName("paneFechaHora"); // NOI18N
@@ -599,39 +583,39 @@ public class GestionTipoCampoView extends FrameView {
         paneFechaHora.setBounds(0, 50, 370, 150);
         panePrincipal.add(paneFechaHora, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        panePrincipal.setBounds(20, 90, 470, 240);
+        panePrincipal.setBounds(10, 50, 470, 200);
         paneDatosAbrir.add(panePrincipal, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
         jLabel2.setName("jLabel2"); // NOI18N
-        jLabel2.setBounds(20, 90, 41, 14);
+        jLabel2.setBounds(10, 60, 41, 14);
         paneDatosAbrir.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorNombreGeneral.setEditable(false);
         valorNombreGeneral.setName("valorNombreGeneral"); // NOI18N
-        valorNombreGeneral.setBounds(20, 110, 80, 20);
+        valorNombreGeneral.setBounds(10, 80, 80, 20);
         paneDatosAbrir.add(valorNombreGeneral, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
         jLabel3.setName("jLabel3"); // NOI18N
-        jLabel3.setBounds(140, 90, 58, 14);
+        jLabel3.setBounds(130, 60, 58, 14);
         paneDatosAbrir.add(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorNota.setEditable(false);
         valorNota.setName("valorNota"); // NOI18N
-        valorNota.setBounds(140, 110, 150, 20);
+        valorNota.setBounds(130, 80, 150, 20);
         paneDatosAbrir.add(valorNota, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
-        jLabel1.setBounds(20, 40, 73, 14);
+        jLabel1.setBounds(10, 10, 73, 14);
         paneDatosAbrir.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         comboTipos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Número", "Binario", "FechaHora", "Texto", "Incremental" }));
         comboTipos.setEnabled(false);
         comboTipos.setFocusable(false);
         comboTipos.setName("comboTipos"); // NOI18N
-        comboTipos.setBounds(20, 60, 82, 20);
+        comboTipos.setBounds(10, 30, 82, 20);
         paneDatosAbrir.add(comboTipos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         botonCancelarPanel.setText(resourceMap.getString("botonCancelarPanel.text")); // NOI18N
@@ -641,7 +625,7 @@ public class GestionTipoCampoView extends FrameView {
                 botonCancelarPanelActionPerformed(evt);
             }
         });
-        botonCancelarPanel.setBounds(340, 280, 80, 23);
+        botonCancelarPanel.setBounds(330, 250, 80, 23);
         paneDatosAbrir.add(botonCancelarPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         botonEditar.setText(resourceMap.getString("botonEditar.text")); // NOI18N
@@ -656,7 +640,7 @@ public class GestionTipoCampoView extends FrameView {
                 botonEditarActionPerformed(evt);
             }
         });
-        botonEditar.setBounds(250, 280, 80, 23);
+        botonEditar.setBounds(240, 250, 80, 23);
         paneDatosAbrir.add(botonEditar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
@@ -692,13 +676,12 @@ public class GestionTipoCampoView extends FrameView {
             mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
                     .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(mainPanelLayout.createSequentialGroup()
-                        .add(230, 230, 230)
+                        .add(236, 236, 236)
                         .add(canvas1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -709,38 +692,34 @@ public class GestionTipoCampoView extends FrameView {
                                 .add(203, 203, 203)
                                 .add(canvas4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
                     .add(mainPanelLayout.createSequentialGroup()
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(pathPane, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 433, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(mainPanelLayout.createSequentialGroup()
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(paneDatosAbrir, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 452, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(pathPane, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 452, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .add(paneDatosAbrir, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 452, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(mainPanelLayout.createSequentialGroup()
+                .add(11, 11, 11)
                 .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, mainPanelLayout.createSequentialGroup()
-                        .add(pathPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(paneDatosAbrir, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 435, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(5, 5, 5))
                     .add(mainPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 480, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                        .add(pathPane, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 44, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(2, 2, 2)
+                        .add(paneDatosAbrir))
+                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 376, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(118, 118, 118)
                 .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(canvas2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(mainPanelLayout.createSequentialGroup()
                         .add(105, 105, 105)
-                        .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(canvas2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(mainPanelLayout.createSequentialGroup()
-                                .add(105, 105, 105)
-                                .add(canvas3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 298, Short.MAX_VALUE)
-                                .add(canvas4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                            .add(canvas1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 403, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                    .add(mainPanelLayout.createSequentialGroup()
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                        .add(canvas3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 298, Short.MAX_VALUE)
+                        .add(canvas4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(canvas1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 403, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -897,7 +876,7 @@ public class GestionTipoCampoView extends FrameView {
     private void botonActualizarArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarArbolActionPerformed
         //Se actualiza el tree View
         llenarTreeView();
-        paneDatosAbrir.setVisible(false);
+        ocultarPanes();
 }//GEN-LAST:event_botonActualizarArbolActionPerformed
 
     private void botonEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEditarMouseClicked
@@ -909,7 +888,7 @@ public class GestionTipoCampoView extends FrameView {
         String [] valoresSeparados = valoresGlobales.split(";");
         String valoresEspecificos = buscarPorTipoEnBD(Integer.parseInt(valoresSeparados[0]), Integer.parseInt(valoresSeparados[4]));
         String [] valoresEspSep = valoresEspecificos.split(";");
-        paneDatosAbrir.setVisible(false);
+        ocultarPanes();
         frameManejoCampos ventanaManejoCampos = new frameManejoCampos(valoresSeparados, valoresEspSep);
         JFrame mainFrame = GestionTipoCampoApp.getApplication().getMainFrame();
         //coloca el frame segun como este ubicada la ventana principal
@@ -917,18 +896,12 @@ public class GestionTipoCampoView extends FrameView {
         ventanaManejoCampos.setVisible(true);        
 }//GEN-LAST:event_botonEditarActionPerformed
 
-    private void botonCancelarPanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarPanelActionPerformed
-        paneDatosAbrir.setVisible(false);
-    }//GEN-LAST:event_botonCancelarPanelActionPerformed
-
     private void botonAbrirArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAbrirArbolActionPerformed
         DefaultMutableTreeNode node = (DefaultMutableTreeNode)arbolPrincipal.getLastSelectedPathComponent();
         if (node == null){
             JOptionPane.showMessageDialog(null, "¡Favor seleccionar un dato para abrir!", "", JOptionPane.ERROR_MESSAGE);
         }
         else{
-//            String nombre = "num 3";
-//            String papa = "Numero";
             actualizarPath();
             abrirNodoHoja();
         }
@@ -940,6 +913,10 @@ public class GestionTipoCampoView extends FrameView {
         actualizarPath();
         abrirNodoHoja();
     }//GEN-LAST:event_arbolPrincipalMouseClicked
+
+    private void botonCancelarPanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarPanelActionPerformed
+        ocultarPanes();
+    }//GEN-LAST:event_botonCancelarPanelActionPerformed
 
     public void llenarDatosReadOnly(String nombre, int tipo){
         //Trae todos los valores de la tabla TIPOCAMPO
@@ -1007,21 +984,25 @@ public class GestionTipoCampoView extends FrameView {
         ventanaManejoCampos.setVisible(true);
     }
 
+    public void ocultarPanes(){
+        paneDatosAbrir.setVisible(false);
+        panePrincipal.setVisible(false);
+        paneBinario.setVisible(false);
+        paneFechaHora.setVisible(false);
+        paneTexto.setVisible(false);
+        paneIncremental.setVisible(false);
+        paneNumero.setVisible(false);
+    }
+
     public void abrirNodoHoja(){
 
         DefaultMutableTreeNode node = (DefaultMutableTreeNode)arbolPrincipal.getLastSelectedPathComponent();
         if (node != null){
-//            String nombre = "num 3";
-//            String papa = "Numero";
             String nombre = node.toString();
             String papa = node.getParent().toString();
+            ocultarPanes();
             paneDatosAbrir.setVisible(true);
             panePrincipal.setVisible(true);
-            paneBinario.setVisible(false);
-            paneFechaHora.setVisible(false);
-            paneTexto.setVisible(false);
-            paneIncremental.setVisible(false);
-            paneNumero.setVisible(false);
             if( papa.equals("Numero")  ){
                 paneNumero.setVisible(true);
                 llenarDatosReadOnly(nombre, 1);
@@ -1047,8 +1028,14 @@ public class GestionTipoCampoView extends FrameView {
                                 llenarDatosReadOnly(nombre, 5);
                             }
                             else{
-                                paneDatosAbrir.setVisible(false);
-                               // JOptionPane.showMessageDialog(null, "¡Favor seleccionar un dato hoja!", "", JOptionPane.ERROR_MESSAGE);
+                                if( papa.equals("Jerarquia")  ){
+                                    paneIncremental.setVisible(true);
+                                    llenarDatosReadOnly(nombre, 5);
+                                }
+                                else{
+                                    paneDatosAbrir.setVisible(false);
+                                    //JOptionPane.showMessageDialog(null, "¡Favor seleccionar un dato hoja!", "", JOptionPane.ERROR_MESSAGE);
+                                }
                             }
                         }
                     }
@@ -1056,6 +1043,7 @@ public class GestionTipoCampoView extends FrameView {
             }
         }
     }
+
 Vector vectorPath;
 
 
@@ -1064,43 +1052,36 @@ Vector vectorPath;
         DefaultMutableTreeNode node = (DefaultMutableTreeNode)arbolPrincipal.getLastSelectedPathComponent();
         if(node!=null){
 
-                pathPane.removeAll();
+            pathPane.removeAll();
            
             vectorPath=new Vector();
             vectorPath.removeAllElements();
             vectorPath.setSize(0);
-        javax.swing.JLabel temp;
-        while(node!=null && !node.toString().equals("")){
-            temp = new javax.swing.JLabel();
-            temp.setText("  "+node.toString()+">");
-            JOptionPane.showMessageDialog(null, node.toString());
-            node = (DefaultMutableTreeNode)node.getParent();
-            vectorPath.add(temp);
+            javax.swing.JLabel temp;
+            while(node!=null && !node.toString().equals("")){
+                temp = new javax.swing.JLabel();
+                temp.setText("  "+node.toString()+">");
+              //  JOptionPane.showMessageDialog(null, node.toString());
+                node = (DefaultMutableTreeNode)node.getParent();
+                vectorPath.add(temp);
+            }
+            javax.swing.JLabel labelHoja;
+
+            labelHoja = (javax.swing.JLabel)vectorPath.get(0);
+            String hoja = labelHoja.getText();
+         //   JOptionPane.showMessageDialog(null,"HOJA    "+hoja+" tam"+0);
+            hoja=hoja.substring(0, hoja.length()-1);
+            temp = (javax.swing.JLabel) vectorPath.get(0);
+            temp.setText(hoja);
+
+            vectorPath.set(0, temp);
+
+            for(int i=vectorPath.size()-1;i>=0; i--){
+                Object temp1 = vectorPath.get(i);
+                temp = (javax.swing.JLabel)temp1;
+                pathPane.add(temp);
+            }
         }
-        javax.swing.JLabel labelHoja;
-
-        labelHoja = (javax.swing.JLabel)vectorPath.get(0);
-        String hoja = labelHoja.getText();
-        JOptionPane.showMessageDialog(null,"HOJA    "+hoja+" tam"+0);
-        hoja=hoja.substring(0, hoja.length()-1);
-        temp = (javax.swing.JLabel) vectorPath.get(0);
-        temp.setText(hoja);
-
-        vectorPath.set(0, temp);
-        
-
-        for(int i=vectorPath.size()-1;i>=0; i--){
-            Object temp1 = vectorPath.get(i);
-
-            temp = (javax.swing.JLabel)temp1;
-            pathPane.add(temp);
-        }
-        }
-
-
-
-
-
     }
 
 
