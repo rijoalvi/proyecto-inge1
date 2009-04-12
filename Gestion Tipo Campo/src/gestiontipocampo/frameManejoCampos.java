@@ -276,27 +276,27 @@ public class frameManejoCampos extends javax.swing.JFrame {
 
         labelNumTerminos.setText(resourceMap.getString("labelNumTerminos.text")); // NOI18N
         labelNumTerminos.setName("labelNumTerminos"); // NOI18N
-        labelNumTerminos.setBounds(10, 10, 100, 14);
+        labelNumTerminos.setBounds(10, 10, 100, -1);
         paneJerarquia.add(labelNumTerminos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         labelNumNiveles.setText(resourceMap.getString("labelNumNiveles.text")); // NOI18N
         labelNumNiveles.setName("labelNumNiveles"); // NOI18N
-        labelNumNiveles.setBounds(10, 60, 90, 14);
+        labelNumNiveles.setBounds(10, 60, 90, -1);
         paneJerarquia.add(labelNumNiveles, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         fieldTerminos.setText(resourceMap.getString("fieldTerminos.text")); // NOI18N
         fieldTerminos.setName("fieldTerminos"); // NOI18N
-        fieldTerminos.setBounds(10, 30, 100, 20);
+        fieldTerminos.setBounds(10, 30, 100, -1);
         paneJerarquia.add(fieldTerminos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         fieldNiveles.setText(resourceMap.getString("fieldNiveles.text")); // NOI18N
         fieldNiveles.setName("fieldNiveles"); // NOI18N
-        fieldNiveles.setBounds(10, 80, 100, 20);
+        fieldNiveles.setBounds(10, 80, 100, -1);
         paneJerarquia.add(fieldNiveles, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         labelNomNiveles.setText(resourceMap.getString("labelNomNiveles.text")); // NOI18N
         labelNomNiveles.setName("labelNomNiveles"); // NOI18N
-        labelNomNiveles.setBounds(120, 10, 94, 10);
+        labelNomNiveles.setBounds(120, 10, -1, 10);
         paneJerarquia.add(labelNomNiveles, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         comboNiveles.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "nombreNivel1", "nombreNivel2", "nombreNivel3", "nombreNivel4" }));
@@ -306,12 +306,12 @@ public class frameManejoCampos extends javax.swing.JFrame {
 
         labelCategorias.setText(resourceMap.getString("labelCategorias.text")); // NOI18N
         labelCategorias.setName("labelCategorias"); // NOI18N
-        labelCategorias.setBounds(120, 60, 60, 14);
+        labelCategorias.setBounds(120, 60, 60, -1);
         paneJerarquia.add(labelCategorias, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         comboCategorias.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Categoria 1", "Categoria 2", "Categoría 3", "Categoría 4" }));
         comboCategorias.setName("comboCategorias"); // NOI18N
-        comboCategorias.setBounds(120, 80, 90, 20);
+        comboCategorias.setBounds(120, 80, 90, -1);
         paneJerarquia.add(comboCategorias, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         botonConfigJerarquia.setText(resourceMap.getString("botonConfigJerarquia.text")); // NOI18N
@@ -321,7 +321,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 botonConfigJerarquiaActionPerformed(evt);
             }
         });
-        botonConfigJerarquia.setBounds(240, 80, 100, 23);
+        botonConfigJerarquia.setBounds(240, 80, 100, -1);
         paneJerarquia.add(botonConfigJerarquia, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         botonAgregarCategoria.setText(resourceMap.getString("botonAgregarCategoria.text")); // NOI18N
@@ -331,7 +331,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 botonAgregarCategoriaActionPerformed(evt);
             }
         });
-        botonAgregarCategoria.setBounds(350, 120, 130, 23);
+        botonAgregarCategoria.setBounds(350, 120, 130, -1);
         paneJerarquia.add(botonAgregarCategoria, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         botonListarTerminos.setText(resourceMap.getString("botonListarTerminos.text")); // NOI18N
@@ -341,7 +341,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 botonListarTerminosActionPerformed(evt);
             }
         });
-        botonListarTerminos.setBounds(240, 120, 105, 23);
+        botonListarTerminos.setBounds(240, 120, -1, -1);
         paneJerarquia.add(botonListarTerminos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
@@ -351,7 +351,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jButton1.setBounds(10, 120, 111, 23);
+        jButton1.setBounds(10, 120, -1, -1);
         paneJerarquia.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton2.setText(resourceMap.getString("jButton2.text")); // NOI18N
@@ -361,12 +361,12 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jButton2.setBounds(350, 80, 130, 23);
+        jButton2.setBounds(350, 80, 130, -1);
         paneJerarquia.add(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         campoBusqAvanzada.setText(resourceMap.getString("campoBusqAvanzada.text")); // NOI18N
         campoBusqAvanzada.setName("campoBusqAvanzada"); // NOI18N
-        campoBusqAvanzada.setBounds(240, 30, 100, 20);
+        campoBusqAvanzada.setBounds(240, 30, 100, -1);
         paneJerarquia.add(campoBusqAvanzada, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         botonBusqAvanzada.setText(resourceMap.getString("botonBusqAvanzada.text")); // NOI18N
@@ -376,12 +376,12 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 botonBusqAvanzadaActionPerformed(evt);
             }
         });
-        botonBusqAvanzada.setBounds(350, 30, 130, 23);
+        botonBusqAvanzada.setBounds(350, 30, 130, -1);
         paneJerarquia.add(botonBusqAvanzada, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton4.setText(resourceMap.getString("jButton4.text")); // NOI18N
         jButton4.setName("jButton4"); // NOI18N
-        jButton4.setBounds(150, 120, 63, 23);
+        jButton4.setBounds(150, 120, -1, -1);
         paneJerarquia.add(jButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneJerarquia.setBounds(0, 0, 490, 160);
@@ -1189,15 +1189,17 @@ private void botonListarTerminosActionPerformed(java.awt.event.ActionEvent evt) 
     frameBuscarTerminos busqueda;
     switch (respuesta) {
         case 0:
-            busqueda = new frameBuscarTerminos(0);
+            //Se quiere ver por niveles
+            busqueda = new frameBuscarTerminos(valorNombreGeneral.getText().toString());
             busqueda.setVisible(true);
-
             break;
         case 1:
+            //Alfabeticamente
             busqueda = new frameBuscarTerminos(1);
             busqueda.setVisible(true);
             break;
         case 2:
+            //Por fecha de insercion
             busqueda = new frameBuscarTerminos();
             busqueda.setVisible(true);
             break;

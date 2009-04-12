@@ -9,6 +9,8 @@
  * Created on 01/04/2009, 12:11:45 AM
  */
 package gestiontipocampo;
+import javax.swing.tree.*;
+import javax.swing.JTree;
 
 /**
  *
@@ -18,19 +20,21 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
 
     /** Creates new form frameBuscarTerminos */
     public frameBuscarTerminos() {
-        initComponents();
+        initComponents();        
     }
 
     frameBuscarTerminos(int i) {
         initComponents();
-        if (i == 0) {
-            paneTree.setVisible(true);
-            paneLista.setVisible(false);
-
-        } else {
+        if (i == 1) { //alfabeticamente
             paneTree.setVisible(false);
             paneLista.setVisible(true);
         }
+    }
+
+    //Constructor de vista por niveles
+    frameBuscarTerminos(String nombreJerarquia) {
+        initComponents();
+        llenarTreeViewJerarquia(nombreJerarquia);
     }
 
     /** This method is called from within the constructor to
@@ -45,7 +49,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         jLayeredPane1 = new javax.swing.JLayeredPane();
         paneTree = new javax.swing.JLayeredPane();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTree1 = new javax.swing.JTree();
+        arbolJerarquia = new javax.swing.JTree();
         paneLista = new javax.swing.JLayeredPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -66,9 +70,9 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Raíz");
-        jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
-        jTree1.setName("jTree1"); // NOI18N
-        jScrollPane1.setViewportView(jTree1);
+        arbolJerarquia.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        arbolJerarquia.setName("arbolJerarquia"); // NOI18N
+        jScrollPane1.setViewportView(arbolJerarquia);
 
         jScrollPane1.setBounds(0, 0, 160, 400);
         paneTree.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -206,7 +210,37 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         });
     }
 
+
+    public void llenarTreeViewJerarquia(String nombreJerarquia){
+        //Se llena el arbol
+        //Llena los valores del Tree View
+        String tipoCampo = "Jerarquia";
+        String valores;
+        String [] valTrim;
+        DefaultMutableTreeNode nodoTipoCampo;
+        DefaultMutableTreeNode nodoTemp;
+        DefaultMutableTreeNode raizArbol = new DefaultMutableTreeNode(nombreJerarquia);
+
+        /*
+        for(int k = 0; k < tiposCampo.length; k++){
+            nodoTipoCampo = new DefaultMutableTreeNode(tiposCampo[k]);
+            //Se llenan los datos con los valores que contenga la base de datos con el tipo campo:
+            valores = buscarNombreEnBD(k+1);
+           // System.out.println("valores: " + valores);
+            valTrim = valores.split("\n");
+            for(int i= 0; i < valTrim.length; ++i){
+                nodoTemp = new DefaultMutableTreeNode(valTrim[i]);
+                nodoTipoCampo.add(nodoTemp); //agrega el nodo
+            }
+            raizArbol.add(nodoTipoCampo);
+        }
+         */
+        JTree arbolnuevo = new JTree(raizArbol);
+        arbolJerarquia.setModel(arbolnuevo.getModel());
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTree arbolJerarquia;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -217,7 +251,6 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTree jTree1;
     private javax.swing.JLayeredPane paneLista;
     private javax.swing.JLayeredPane paneTree;
     // End of variables declaration//GEN-END:variables

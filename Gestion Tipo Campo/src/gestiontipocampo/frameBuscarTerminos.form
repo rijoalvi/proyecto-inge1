@@ -75,12 +75,12 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTree" name="jTree1">
+                <Component class="javax.swing.JTree" name="arbolJerarquia">
                   <Properties>
                     <Property name="model" type="javax.swing.tree.TreeModel" editor="org.netbeans.modules.form.editors2.TreeModelEditor">
                       <TreeModel code="Ra&#xed;z"/>
                     </Property>
-                    <Property name="name" type="java.lang.String" value="jTree1" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="arbolJerarquia" noResource="true"/>
                   </Properties>
                 </Component>
               </SubComponents>
