@@ -3,8 +3,9 @@
  */
 package gestiontipocampo;
 
+import java.awt.event.FocusEvent;
 import java.util.Vector;
-import javax.swing.JLabel;
+import javax.swing.JButton;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.ResourceMap;
 import org.jdesktop.application.SingleFrameApplication;
@@ -1047,38 +1048,108 @@ public class GestionTipoCampoView extends FrameView {
 Vector vectorPath;
 
 
-    public void actualizarPath(){
+    private void buscarElementoPath(){
+        DefaultMutableTreeNode punterito = (DefaultMutableTreeNode)arbolPrincipal.getPathForRow(0).getPathComponent(0);
+        int indice = 0;
+        while(!((JButton)vectorPath.get(indice)).hasFocus()){
+            System.out.println("PANE>>no esta con focus "+ ((JButton)vectorPath.get(indice)).getText() + " Indice = " + indice);
+            indice++;//indice queda con el boton que tiene el focus
+        }
+        System.out.println(((JButton)vectorPath.get(indice)).getText()+" esta en la pos con FOCUS= " + indice);
+        TreePath pathCoso = arbolPrincipal.getSelectionPath();
+        Object[] vectorObjetos = pathCoso.getPath();
+        Object[] vectorNuevo=new Object[indice+1];
+        System.out.println("numElem de path = "+pathCoso.getPathCount()+" indice " + indice);
+        for(int i=0;i<=indice;i++){
+            vectorNuevo[i]=vectorObjetos[i];
+            System.out.println("ARBOL<<IMPRIMASE!!!"+((DefaultMutableTreeNode)vectorNuevo[i]).toString()+" INDICE "+i);
+        }
+        TreePath nuevaRuta = new TreePath(vectorNuevo);
+        arbolPrincipal.setSelectionPath(nuevaRuta);
+        for(int i = indice; i<vectorPath.size(); i++){
+            ((JButton)vectorPath.get(i)).setVisible(false);
+            vectorPath.remove(i);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*int indiceVector = 0;
+        DefaultMutableTreeNode node = (DefaultMutableTreeNode)arbolPrincipal.getLastSelectedPathComponent();
+        while(!((JButton)vectorPath.get(indiceVector)).hasFocus()){
+            //System.out.println("no es "+ ((JButton)vectorPath.get(indice)).toString());
+            indiceVector++;
+        }
+        int retroceso = vectorPath.size() - indiceVector+1;
+
+        while(retroceso>0){
+            node = (DefaultMutableTreeNode)node.getParent();
+            retroceso--;
+        }
+
+        arbolPrincipal.setSelectionPath(node.getPath()[]);
+        */
+        //System.out.println("Si es "+ ((JButton)vectorPath.get(indice)).toString());*/
+
+
+    }
+
+    private void actualizarPath(){
         /////////veamos que sale....
         DefaultMutableTreeNode node = (DefaultMutableTreeNode)arbolPrincipal.getLastSelectedPathComponent();
         if(node!=null){
 
-            pathPane.removeAll();
-           
-            vectorPath=new Vector();
-            vectorPath.removeAllElements();
-            vectorPath.setSize(0);
-            javax.swing.JLabel temp;
+           pathPane.removeAll();          
+           vectorPath=new Vector();
+           javax.swing.JButton temp;
+
             while(node!=null && !node.toString().equals("")){
-                temp = new javax.swing.JLabel();
+                temp = new javax.swing.JButton();
+                temp.addFocusListener(new java.awt.event.FocusListener() {
+
+                    public void focusGained(FocusEvent e) {
+                        //throw new UnsupportedOperationException("Not supported yet.");
+
+                        buscarElementoPath();
+
+                    }
+
+                    public void focusLost(FocusEvent e) {
+                        //throw new UnsupportedOperationException("Not supported yet.");
+                    }
+                });
+                temp.setFocusable(true);
+                temp.setFont(new java.awt.Font("SansSerif",java.awt.Font.BOLD,12));
+                temp.setForeground(java.awt.Color.blue);
+
                 temp.setText("  "+node.toString()+">");
               //  JOptionPane.showMessageDialog(null, node.toString());
                 node = (DefaultMutableTreeNode)node.getParent();
-                vectorPath.add(temp);
+                vectorPath.insertElementAt(temp,0);
             }
-            javax.swing.JLabel labelHoja;
+         /*   javax.swing.JButton labelHoja;
 
-            labelHoja = (javax.swing.JLabel)vectorPath.get(0);
+            labelHoja = (javax.swing.JButton)vectorPath.get(vectorPath.size());
             String hoja = labelHoja.getText();
          //   JOptionPane.showMessageDialog(null,"HOJA    "+hoja+" tam"+0);
             hoja=hoja.substring(0, hoja.length()-1);
-            temp = (javax.swing.JLabel) vectorPath.get(0);
+            temp = (javax.swing.JButton) vectorPath.get(vectorPath.size());
             temp.setText(hoja);
+            vectorPath.set(vectorPath.size(), temp);*/
 
-            vectorPath.set(0, temp);
-
-            for(int i=vectorPath.size()-1;i>=0; i--){
+            for(int i=0;i<vectorPath.size(); i++){
                 Object temp1 = vectorPath.get(i);
-                temp = (javax.swing.JLabel)temp1;
+                temp = (javax.swing.JButton)temp1;
                 pathPane.add(temp);
             }
         }
