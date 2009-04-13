@@ -668,7 +668,7 @@ public class GestionTipoCampoView extends FrameView {
         });
         jScrollPane1.setViewportView(arbolPrincipal);
 
-        pathPane.setName("pathPanel"); // NOI18N
+        pathPane.setName("pathPane"); // NOI18N
         pathPane.setLayout(new javax.swing.BoxLayout(pathPane, javax.swing.BoxLayout.LINE_AXIS));
 
         org.jdesktop.layout.GroupLayout mainPanelLayout = new org.jdesktop.layout.GroupLayout(mainPanel);
@@ -693,11 +693,11 @@ public class GestionTipoCampoView extends FrameView {
                                 .add(203, 203, 203)
                                 .add(canvas4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
                     .add(mainPanelLayout.createSequentialGroup()
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(pathPane, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 433, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(mainPanelLayout.createSequentialGroup()
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(paneDatosAbrir, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 452, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                        .add(paneDatosAbrir, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 452, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(mainPanelLayout.createSequentialGroup()
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(pathPane, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 433, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         mainPanelLayout.setVerticalGroup(
@@ -1000,7 +1000,7 @@ public class GestionTipoCampoView extends FrameView {
         DefaultMutableTreeNode node = (DefaultMutableTreeNode)arbolPrincipal.getLastSelectedPathComponent();
         if (node != null){
             String nombre = node.toString();
-            String papa = node.getParent().toString();
+            String papa = node.getParent()!=null?node.getParent().toString():"";
             ocultarPanes();
             paneDatosAbrir.setVisible(true);
             panePrincipal.setVisible(true);
@@ -1045,62 +1045,32 @@ public class GestionTipoCampoView extends FrameView {
         }
     }
 
-Vector vectorPath;
 
 
     private void buscarElementoPath(){
-        DefaultMutableTreeNode punterito = (DefaultMutableTreeNode)arbolPrincipal.getPathForRow(0).getPathComponent(0);
         int indice = 0;
         while(!((JButton)vectorPath.get(indice)).hasFocus()){
-            System.out.println("PANE>>no esta con focus "+ ((JButton)vectorPath.get(indice)).getText() + " Indice = " + indice);
+           // System.out.println("PANE>>no esta con focus "+ ((JButton)vectorPath.get(indice)).getText() + " Indice = " + indice);
             indice++;//indice queda con el boton que tiene el focus
         }
-        System.out.println(((JButton)vectorPath.get(indice)).getText()+" esta en la pos con FOCUS= " + indice);
+       // System.out.println(((JButton)vectorPath.get(indice)).getText()+" esta en la pos con FOCUS= " + indice);
         TreePath pathCoso = arbolPrincipal.getSelectionPath();
         Object[] vectorObjetos = pathCoso.getPath();
         Object[] vectorNuevo=new Object[indice+1];
-        System.out.println("numElem de path = "+pathCoso.getPathCount()+" indice " + indice);
+       // System.out.println("numElem de path = "+pathCoso.getPathCount()+" indice " + indice);
         for(int i=0;i<=indice;i++){
             vectorNuevo[i]=vectorObjetos[i];
-            System.out.println("ARBOL<<IMPRIMASE!!!"+((DefaultMutableTreeNode)vectorNuevo[i]).toString()+" INDICE "+i);
+            //System.out.println("ARBOL<<IMPRIMASE!!!"+((DefaultMutableTreeNode)vectorNuevo[i]).toString()+" INDICE "+i);
         }
         TreePath nuevaRuta = new TreePath(vectorNuevo);
         arbolPrincipal.setSelectionPath(nuevaRuta);
-        for(int i = indice; i<vectorPath.size(); i++){
+        for(int i = indice+1; i<vectorPath.size(); i++){
             ((JButton)vectorPath.get(i)).setVisible(false);
-            vectorPath.remove(i);
+           // vectorPath.remove(i);
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        /*int indiceVector = 0;
-        DefaultMutableTreeNode node = (DefaultMutableTreeNode)arbolPrincipal.getLastSelectedPathComponent();
-        while(!((JButton)vectorPath.get(indiceVector)).hasFocus()){
-            //System.out.println("no es "+ ((JButton)vectorPath.get(indice)).toString());
-            indiceVector++;
-        }
-        int retroceso = vectorPath.size() - indiceVector+1;
-
-        while(retroceso>0){
-            node = (DefaultMutableTreeNode)node.getParent();
-            retroceso--;
-        }
-
-        arbolPrincipal.setSelectionPath(node.getPath()[]);
-        */
-        //System.out.println("Si es "+ ((JButton)vectorPath.get(indice)).toString());*/
-
+        String nombre = ((JButton)vectorPath.get(indice)).getText();
+        String nuevo = nombre.substring(0, nombre.length()-3);
+        ((JButton)vectorPath.get(indice)).setText(nuevo);
 
     }
 
@@ -1108,46 +1078,37 @@ Vector vectorPath;
         /////////veamos que sale....
         DefaultMutableTreeNode node = (DefaultMutableTreeNode)arbolPrincipal.getLastSelectedPathComponent();
         if(node!=null){
-
-           pathPane.removeAll();          
+           pathPane.removeAll();
+           pathPane.repaint();
            vectorPath=new Vector();
            javax.swing.JButton temp;
-
             while(node!=null && !node.toString().equals("")){
                 temp = new javax.swing.JButton();
                 temp.addFocusListener(new java.awt.event.FocusListener() {
-
                     public void focusGained(FocusEvent e) {
-                        //throw new UnsupportedOperationException("Not supported yet.");
-
                         buscarElementoPath();
-
+                        abrirNodoHoja();
                     }
-
-                    public void focusLost(FocusEvent e) {
-                        //throw new UnsupportedOperationException("Not supported yet.");
-                    }
+                    public void focusLost(FocusEvent e) {}
                 });
                 temp.setFocusable(true);
                 temp.setFont(new java.awt.Font("SansSerif",java.awt.Font.BOLD,12));
                 temp.setForeground(java.awt.Color.blue);
 
-                temp.setText("  "+node.toString()+">");
+                temp.setText("  "+node.toString()+" >>");
               //  JOptionPane.showMessageDialog(null, node.toString());
                 node = (DefaultMutableTreeNode)node.getParent();
                 vectorPath.insertElementAt(temp,0);
-            }
-         /*   javax.swing.JButton labelHoja;
+               
+                
+           }
 
-            labelHoja = (javax.swing.JButton)vectorPath.get(vectorPath.size());
-            String hoja = labelHoja.getText();
-         //   JOptionPane.showMessageDialog(null,"HOJA    "+hoja+" tam"+0);
-            hoja=hoja.substring(0, hoja.length()-1);
-            temp = (javax.swing.JButton) vectorPath.get(vectorPath.size());
-            temp.setText(hoja);
-            vectorPath.set(vectorPath.size(), temp);*/
-
-            for(int i=0;i<vectorPath.size(); i++){
+           if(!((DefaultMutableTreeNode)arbolPrincipal.getLastSelectedPathComponent()).toString().equals("")){
+               String nombre = ((JButton)vectorPath.get(vectorPath.size()-1)).getText();
+               String nuevo = nombre.substring(0, nombre.length()-3);
+               ((JButton)vectorPath.get(vectorPath.size()-1)).setText(nuevo);
+           }
+           for(int i=0;i<vectorPath.size(); i++){
                 Object temp1 = vectorPath.get(i);
                 temp = (javax.swing.JButton)temp1;
                 pathPane.add(temp);
@@ -1242,4 +1203,5 @@ Vector vectorPath;
     private final Icon[] busyIcons = new Icon[15];
     private int busyIconIndex = 0;
     private JDialog aboutBox;
+    private Vector vectorPath;
 }

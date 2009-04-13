@@ -22,7 +22,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jScrollPane1" pref="191" max="32767" attributes="0"/>
@@ -45,12 +45,12 @@
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="pathPane" min="-2" pref="433" max="-2" attributes="1"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="paneDatosAbrir" min="-2" pref="452" max="-2" attributes="1"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="pathPane" min="-2" pref="433" max="-2" attributes="1"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -782,7 +782,7 @@
         </Container>
         <Container class="javax.swing.JPanel" name="pathPane">
           <Properties>
-            <Property name="name" type="java.lang.String" value="pathPanel" noResource="true"/>
+            <Property name="name" type="java.lang.String" value="pathPane" noResource="true"/>
           </Properties>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
