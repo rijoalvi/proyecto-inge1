@@ -172,10 +172,6 @@ public class frameManejoCampos extends javax.swing.JFrame {
         labelCategorias = new javax.swing.JLabel();
         comboCategorias = new javax.swing.JComboBox();
         botonAgregarCategoria = new javax.swing.JButton();
-        botonListarTerminos = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
         jLabel21 = new javax.swing.JLabel();
@@ -304,43 +300,8 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 botonAgregarCategoriaActionPerformed(evt);
             }
         });
-        botonAgregarCategoria.setBounds(350, 120, 130, 23);
+        botonAgregarCategoria.setBounds(280, 80, 130, 23);
         paneJerarquia.add(botonAgregarCategoria, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        botonListarTerminos.setText(resourceMap.getString("botonListarTerminos.text")); // NOI18N
-        botonListarTerminos.setName("botonListarTerminos"); // NOI18N
-        botonListarTerminos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonListarTerminosActionPerformed(evt);
-            }
-        });
-        botonListarTerminos.setBounds(240, 120, 105, 23);
-        paneJerarquia.add(botonListarTerminos, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
-        jButton1.setName("jButton1"); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jButton1.setBounds(10, 120, 111, 23);
-        paneJerarquia.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jButton2.setText(resourceMap.getString("jButton2.text")); // NOI18N
-        jButton2.setName("jButton2"); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jButton2.setBounds(280, 80, 130, 23);
-        paneJerarquia.add(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jButton4.setText(resourceMap.getString("jButton4.text")); // NOI18N
-        jButton4.setName("jButton4"); // NOI18N
-        jButton4.setBounds(150, 120, 63, 23);
-        paneJerarquia.add(jButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jRadioButton1.setText(resourceMap.getString("jRadioButton1.text")); // NOI18N
         jRadioButton1.setName("jRadioButton1"); // NOI18N
@@ -1202,35 +1163,6 @@ private void botonGuardarComoActionPerformed(java.awt.event.ActionEvent evt) {//
     }
 }//GEN-LAST:event_botonGuardarComoActionPerformed
 
-private void botonListarTerminosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonListarTerminosActionPerformed
-    String[] opciones = {"Niveles", "Alfabéticamente", "Por Fecha de Inserción"};
-    int respuesta = JOptionPane.showOptionDialog(null, "¿Cómo desea que se desplieguen los resultados?", "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opciones, "Niveles");
-    frameBuscarTerminos busqueda;
-    switch (respuesta) {
-        case 0:
-            //Se quiere ver por niveles
-            busqueda = new frameBuscarTerminos(valorNombreGeneral.getText().toString());
-            busqueda.setVisible(true);
-            break;
-        case 1:
-            //Alfabeticamente
-            busqueda = new frameBuscarTerminos(1);
-            busqueda.setVisible(true);
-            break;
-        case 2:
-            //Por fecha de insercion
-            busqueda = new frameBuscarTerminos();
-            busqueda.setVisible(true);
-            break;
-    }
-}//GEN-LAST:event_botonListarTerminosActionPerformed
-
-private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    configuraJerarquia termino;
-    termino = new configuraJerarquia();
-    termino.setVisible(true);
-}//GEN-LAST:event_jButton1ActionPerformed
-
 private void botonAgregarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarCategoriaActionPerformed
     String response = JOptionPane.showInputDialog(null, "Digite el nombre de la nueva categoría", "Nueva Categoría", JOptionPane.QUESTION_MESSAGE);
 }//GEN-LAST:event_botonAgregarCategoriaActionPerformed
@@ -1244,10 +1176,6 @@ private void valorBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     // ventanaBusqueda.setLocationRelativeTo(mainFrame);
     ventanaBusqueda.setVisible(true);
 }//GEN-LAST:event_valorBusquedaActionPerformed
-
-private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    // TODO add your handling code here:
-}//GEN-LAST:event_jButton2ActionPerformed
 
 private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
     if (jRadioButton1.isSelected() == true) {
@@ -1394,14 +1322,10 @@ private void jRadioButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     private javax.swing.JButton botonGuardar1;
     private javax.swing.JButton botonGuardarComo;
     private javax.swing.JButton botonGuardarComo1;
-    private javax.swing.JButton botonListarTerminos;
     private javax.swing.JComboBox comboCategorias;
     private javax.swing.JComboBox comboFormatoFecha;
     private javax.swing.JComboBox comboNiveles;
     private javax.swing.JComboBox comboTipos;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

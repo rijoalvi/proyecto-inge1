@@ -55,18 +55,18 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         arbolJerarquia = new javax.swing.JTree();
         paneLista = new javax.swing.JLayeredPane();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        scrollPaneJerarquia = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        botonBuscar = new javax.swing.JButton();
+        BotonAgregarTermino = new javax.swing.JButton();
+        fieldBusqueda = new javax.swing.JTextField();
+        labelBusqueda = new javax.swing.JLabel();
+        botonCerrar = new javax.swing.JButton();
+        botonListarSubarbol = new javax.swing.JButton();
+        botonListarHijos = new javax.swing.JButton();
+        botonExcluir = new javax.swing.JButton();
+        botonModificar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton8 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setName("Form"); // NOI18N
@@ -90,7 +90,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
 
         paneLista.setName("paneLista"); // NOI18N
 
-        jScrollPane2.setName("jScrollPane2"); // NOI18N
+        scrollPaneJerarquia.setName("scrollPaneJerarquia"); // NOI18N
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -104,97 +104,102 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
             }
         ));
         jTable1.setName("jTable1"); // NOI18N
-        jScrollPane2.setViewportView(jTable1);
+        scrollPaneJerarquia.setViewportView(jTable1);
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameBuscarTerminos.class);
         jTable1.getColumnModel().getColumn(0).setHeaderValue(resourceMap.getString("jTable1.columnModel.title0")); // NOI18N
         jTable1.getColumnModel().getColumn(1).setHeaderValue(resourceMap.getString("jTable1.columnModel.title1")); // NOI18N
         jTable1.getColumnModel().getColumn(2).setHeaderValue(resourceMap.getString("jTable1.columnModel.title2")); // NOI18N
 
-        jScrollPane2.setBounds(10, 10, 290, 380);
-        paneLista.add(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        scrollPaneJerarquia.setBounds(10, 10, 290, 380);
+        paneLista.add(scrollPaneJerarquia, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneLista.setBounds(0, 0, 310, 400);
         jLayeredPane1.add(paneLista, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
-        jButton1.setName("jButton1"); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        botonBuscar.setText(resourceMap.getString("botonBuscar.text")); // NOI18N
+        botonBuscar.setName("botonBuscar"); // NOI18N
+        botonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                botonBuscarActionPerformed(evt);
             }
         });
-        jButton1.setBounds(320, 30, 100, -1);
-        jLayeredPane1.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        botonBuscar.setBounds(320, 320, 100, 23);
+        jLayeredPane1.add(botonBuscar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        BotonAgregarTermino.setText(resourceMap.getString("BotonAgregarTermino.text")); // NOI18N
+        BotonAgregarTermino.setName("BotonAgregarTermino"); // NOI18N
+        BotonAgregarTermino.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonAgregarTerminoActionPerformed(evt);
+            }
+        });
+        BotonAgregarTermino.setBounds(310, 40, 113, 23);
+        jLayeredPane1.add(BotonAgregarTermino, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        fieldBusqueda.setText(resourceMap.getString("fieldBusqueda.text")); // NOI18N
+        fieldBusqueda.setName("fieldBusqueda"); // NOI18N
+        fieldBusqueda.setBounds(320, 300, 100, 20);
+        jLayeredPane1.add(fieldBusqueda, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        labelBusqueda.setText(resourceMap.getString("labelBusqueda.text")); // NOI18N
+        labelBusqueda.setName("labelBusqueda"); // NOI18N
+        labelBusqueda.setBounds(320, 280, 100, 14);
+        jLayeredPane1.add(labelBusqueda, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        botonCerrar.setText(resourceMap.getString("botonCerrar.text")); // NOI18N
+        botonCerrar.setName("botonCerrar"); // NOI18N
+        botonCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCerrarActionPerformed(evt);
+            }
+        });
+        botonCerrar.setBounds(320, 360, 100, 23);
+        jLayeredPane1.add(botonCerrar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        botonListarSubarbol.setText(resourceMap.getString("botonListarSubarbol.text")); // NOI18N
+        botonListarSubarbol.setName("botonListarSubarbol"); // NOI18N
+        botonListarSubarbol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonListarSubarbolActionPerformed(evt);
+            }
+        });
+        botonListarSubarbol.setBounds(320, 70, 103, 23);
+        jLayeredPane1.add(botonListarSubarbol, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        botonListarHijos.setText(resourceMap.getString("botonListarHijos.text")); // NOI18N
+        botonListarHijos.setName("botonListarHijos"); // NOI18N
+        botonListarHijos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonListarHijosActionPerformed(evt);
+            }
+        });
+        botonListarHijos.setBounds(320, 100, 100, 23);
+        jLayeredPane1.add(botonListarHijos, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        botonExcluir.setText(resourceMap.getString("botonExcluir.text")); // NOI18N
+        botonExcluir.setName("botonExcluir"); // NOI18N
+        botonExcluir.setBounds(320, 130, 100, 23);
+        jLayeredPane1.add(botonExcluir, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        botonModificar.setText(resourceMap.getString("botonModificar.text")); // NOI18N
+        botonModificar.setName("botonModificar"); // NOI18N
+        botonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonModificarActionPerformed(evt);
+            }
+        });
+        botonModificar.setBounds(320, 10, 100, 23);
+        jLayeredPane1.add(botonModificar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton2.setText(resourceMap.getString("jButton2.text")); // NOI18N
         jButton2.setName("jButton2"); // NOI18N
-        jButton2.setBounds(320, 60, 100, -1);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jButton2.setBounds(310, 160, 111, 23);
         jLayeredPane1.add(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jButton3.setText(resourceMap.getString("jButton3.text")); // NOI18N
-        jButton3.setName("jButton3"); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        jButton3.setBounds(320, 90, 100, -1);
-        jLayeredPane1.add(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jButton4.setText(resourceMap.getString("jButton4.text")); // NOI18N
-        jButton4.setName("jButton4"); // NOI18N
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        jButton4.setBounds(320, 120, -1, -1);
-        jLayeredPane1.add(jButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jButton5.setText(resourceMap.getString("jButton5.text")); // NOI18N
-        jButton5.setName("jButton5"); // NOI18N
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-        jButton5.setBounds(320, 180, 100, -1);
-        jLayeredPane1.add(jButton5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jButton6.setText(resourceMap.getString("jButton6.text")); // NOI18N
-        jButton6.setName("jButton6"); // NOI18N
-        jButton6.setBounds(320, 150, 100, -1);
-        jLayeredPane1.add(jButton6, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jButton7.setText(resourceMap.getString("jButton7.text")); // NOI18N
-        jButton7.setName("jButton7"); // NOI18N
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-        jButton7.setBounds(310, 0, -1, -1);
-        jLayeredPane1.add(jButton7, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
-        jLabel1.setName("jLabel1"); // NOI18N
-        jLabel1.setBounds(320, 310, 100, -1);
-        jLayeredPane1.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jTextField1.setText(resourceMap.getString("jTextField1.text")); // NOI18N
-        jTextField1.setName("jTextField1"); // NOI18N
-        jTextField1.setBounds(320, 330, 100, -1);
-        jLayeredPane1.add(jTextField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jButton8.setText(resourceMap.getString("jButton8.text")); // NOI18N
-        jButton8.setName("jButton8"); // NOI18N
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
-            }
-        });
-        jButton8.setBounds(320, 360, 100, -1);
-        jLayeredPane1.add(jButton8, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -216,36 +221,40 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
         frameTermino termino;
         termino = new frameTermino();
         termino.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+}//GEN-LAST:event_botonModificarActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void botonListarHijosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonListarHijosActionPerformed
         paneTree.setVisible(false);
         paneLista.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+}//GEN-LAST:event_botonListarHijosActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void botonListarSubarbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonListarSubarbolActionPerformed
         paneTree.setVisible(false);
         paneLista.setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
+}//GEN-LAST:event_botonListarSubarbolActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void botonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarActionPerformed
         this.setVisible(false);
-    }//GEN-LAST:event_jButton5ActionPerformed
+}//GEN-LAST:event_botonCerrarActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        configuraJerarquia config;
-        config = new configuraJerarquia();
-        config.setVisible(true);
-    }//GEN-LAST:event_jButton7ActionPerformed
+    private void BotonAgregarTerminoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarTerminoActionPerformed
+        frameTermino fram;
+        fram = new frameTermino();
+        fram.setVisible(true);
+}//GEN-LAST:event_BotonAgregarTerminoActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
         frameBusqueda ventanaBusqueda = new frameBusqueda();
         ventanaBusqueda.setVisible(true);        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
+}//GEN-LAST:event_botonBuscarActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -289,22 +298,22 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonAgregarTermino;
     private javax.swing.JTree arbolJerarquia;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton botonBuscar;
+    private javax.swing.JButton botonCerrar;
+    private javax.swing.JButton botonExcluir;
+    private javax.swing.JButton botonListarHijos;
+    private javax.swing.JButton botonListarSubarbol;
+    private javax.swing.JButton botonModificar;
+    private javax.swing.JTextField fieldBusqueda;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel labelBusqueda;
     private javax.swing.JLayeredPane paneLista;
     private javax.swing.JLayeredPane paneTree;
+    private javax.swing.JScrollPane scrollPaneJerarquia;
     // End of variables declaration//GEN-END:variables
 }
