@@ -20,7 +20,9 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
 
     /** Creates new form frameBuscarTerminos */
     public frameBuscarTerminos() {
-        initComponents();        
+        initComponents();
+        paneTree.setVisible(false);
+        paneLista.setVisible(true);
     }
 
     frameBuscarTerminos(int i) {
@@ -34,6 +36,8 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
     //Constructor de vista por niveles
     frameBuscarTerminos(String nombreJerarquia) {
         initComponents();
+        paneTree.setVisible(true);
+        paneLista.setVisible(false);
         llenarTreeViewJerarquia(nombreJerarquia);
     }
 
@@ -64,7 +68,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jButton8 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setName("Form"); // NOI18N
 
         jLayeredPane1.setName("jLayeredPane1"); // NOI18N
