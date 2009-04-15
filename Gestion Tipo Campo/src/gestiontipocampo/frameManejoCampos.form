@@ -235,13 +235,8 @@
             </Component>
             <Component class="javax.swing.JComboBox" name="comboCategorias">
               <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="Categoria 1"/>
-                    <StringItem index="1" value="Categoria 2"/>
-                    <StringItem index="2" value="Categor&#xed;a 3"/>
-                    <StringItem index="3" value="Categor&#xed;a 4"/>
-                  </StringArray>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { &quot;1- Categoria 1&quot;, &quot;2- Categoria 2&quot;, &quot;3- Categor&#xed;a 3&quot;, &quot;4- Categor&#xed;a 4&quot; })" type="code"/>
                 </Property>
                 <Property name="enabled" type="boolean" value="false"/>
                 <Property name="name" type="java.lang.String" value="comboCategorias" noResource="true"/>
@@ -266,13 +261,13 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="jRadioButton1">
+            <Component class="javax.swing.JRadioButton" name="radioNivelesSi">
               <Properties>
-                <Property name="text" type="java.lang.String" resourceKey="jRadioButton1.text"/>
-                <Property name="name" type="java.lang.String" value="jRadioButton1" noResource="true"/>
+                <Property name="text" type="java.lang.String" resourceKey="radioNivelesSi.text"/>
+                <Property name="name" type="java.lang.String" value="radioNivelesSi" noResource="true"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioNivelesSiActionPerformed"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
@@ -280,13 +275,13 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="jRadioButton2">
+            <Component class="javax.swing.JRadioButton" name="radioNivelesNo">
               <Properties>
-                <Property name="text" type="java.lang.String" resourceKey="jRadioButton2.text"/>
-                <Property name="name" type="java.lang.String" value="jRadioButton2" noResource="true"/>
+                <Property name="text" type="java.lang.String" resourceKey="radioNivelesNo.text"/>
+                <Property name="name" type="java.lang.String" value="radioNivelesNo" noResource="true"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioNivelesNoActionPerformed"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
@@ -305,13 +300,13 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="jRadioButton3">
+            <Component class="javax.swing.JRadioButton" name="radioCategoriasSi">
               <Properties>
-                <Property name="text" type="java.lang.String" resourceKey="jRadioButton3.text"/>
-                <Property name="name" type="java.lang.String" value="jRadioButton3" noResource="true"/>
+                <Property name="text" type="java.lang.String" resourceKey="radioCategoriasSi.text"/>
+                <Property name="name" type="java.lang.String" value="radioCategoriasSi" noResource="true"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton3ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioCategoriasSiActionPerformed"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
@@ -319,13 +314,13 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="jRadioButton4">
+            <Component class="javax.swing.JRadioButton" name="radioCategoriasNo">
               <Properties>
-                <Property name="text" type="java.lang.String" resourceKey="jRadioButton4.text"/>
-                <Property name="name" type="java.lang.String" value="jRadioButton4" noResource="true"/>
+                <Property name="text" type="java.lang.String" resourceKey="radioCategoriasNo.text"/>
+                <Property name="name" type="java.lang.String" value="radioCategoriasNo" noResource="true"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton4ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioCategoriasNoActionPerformed"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
@@ -344,13 +339,13 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="jRadioButton5">
+            <Component class="javax.swing.JRadioButton" name="radioNomUnicoSi">
               <Properties>
-                <Property name="text" type="java.lang.String" resourceKey="jRadioButton5.text"/>
-                <Property name="name" type="java.lang.String" value="jRadioButton5" noResource="true"/>
+                <Property name="text" type="java.lang.String" resourceKey="radioNomUnicoSi.text"/>
+                <Property name="name" type="java.lang.String" value="radioNomUnicoSi" noResource="true"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton5ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioNomUnicoSiActionPerformed"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
@@ -358,13 +353,13 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="jRadioButton6">
+            <Component class="javax.swing.JRadioButton" name="radioNomUnicoNo">
               <Properties>
-                <Property name="text" type="java.lang.String" resourceKey="jRadioButton6.text"/>
-                <Property name="name" type="java.lang.String" value="jRadioButton6" noResource="true"/>
+                <Property name="text" type="java.lang.String" resourceKey="radioNomUnicoNo.text"/>
+                <Property name="name" type="java.lang.String" value="radioNomUnicoNo" noResource="true"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton6ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioNomUnicoNoActionPerformed"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">

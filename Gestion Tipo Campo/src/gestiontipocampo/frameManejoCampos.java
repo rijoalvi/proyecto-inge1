@@ -172,14 +172,14 @@ public class frameManejoCampos extends javax.swing.JFrame {
         labelCategorias = new javax.swing.JLabel();
         comboCategorias = new javax.swing.JComboBox();
         botonAgregarCategoria = new javax.swing.JButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        radioNivelesSi = new javax.swing.JRadioButton();
+        radioNivelesNo = new javax.swing.JRadioButton();
         jLabel21 = new javax.swing.JLabel();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
+        radioCategoriasSi = new javax.swing.JRadioButton();
+        radioCategoriasNo = new javax.swing.JRadioButton();
         jLabel22 = new javax.swing.JLabel();
-        jRadioButton5 = new javax.swing.JRadioButton();
-        jRadioButton6 = new javax.swing.JRadioButton();
+        radioNomUnicoSi = new javax.swing.JRadioButton();
+        radioNomUnicoNo = new javax.swing.JRadioButton();
         jLabel23 = new javax.swing.JLabel();
         paneBinario = new javax.swing.JLayeredPane();
         jLabel7 = new javax.swing.JLabel();
@@ -287,7 +287,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
         labelCategorias.setBounds(120, 60, 60, 14);
         paneJerarquia.add(labelCategorias, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        comboCategorias.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Categoria 1", "Categoria 2", "Categoría 3", "Categoría 4" }));
+        comboCategorias.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1- Categoria 1", "2- Categoria 2", "3- Categoría 3", "4- Categoría 4" }));
         comboCategorias.setEnabled(false);
         comboCategorias.setName("comboCategorias"); // NOI18N
         comboCategorias.setBounds(120, 80, 90, 20);
@@ -303,75 +303,75 @@ public class frameManejoCampos extends javax.swing.JFrame {
         botonAgregarCategoria.setBounds(280, 80, 130, 23);
         paneJerarquia.add(botonAgregarCategoria, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jRadioButton1.setText(resourceMap.getString("jRadioButton1.text")); // NOI18N
-        jRadioButton1.setName("jRadioButton1"); // NOI18N
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        radioNivelesSi.setText(resourceMap.getString("radioNivelesSi.text")); // NOI18N
+        radioNivelesSi.setName("radioNivelesSi"); // NOI18N
+        radioNivelesSi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                radioNivelesSiActionPerformed(evt);
             }
         });
-        jRadioButton1.setBounds(10, 30, 33, 23);
-        paneJerarquia.add(jRadioButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        radioNivelesSi.setBounds(10, 30, 33, 23);
+        paneJerarquia.add(radioNivelesSi, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jRadioButton2.setText(resourceMap.getString("jRadioButton2.text")); // NOI18N
-        jRadioButton2.setName("jRadioButton2"); // NOI18N
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        radioNivelesNo.setText(resourceMap.getString("radioNivelesNo.text")); // NOI18N
+        radioNivelesNo.setName("radioNivelesNo"); // NOI18N
+        radioNivelesNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                radioNivelesNoActionPerformed(evt);
             }
         });
-        jRadioButton2.setBounds(50, 30, 50, 23);
-        paneJerarquia.add(jRadioButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        radioNivelesNo.setBounds(50, 30, 50, 23);
+        paneJerarquia.add(radioNivelesNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel21.setText(resourceMap.getString("jLabel21.text")); // NOI18N
         jLabel21.setName("jLabel21"); // NOI18N
         jLabel21.setBounds(20, 10, 56, 14);
         paneJerarquia.add(jLabel21, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jRadioButton3.setText(resourceMap.getString("jRadioButton3.text")); // NOI18N
-        jRadioButton3.setName("jRadioButton3"); // NOI18N
-        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+        radioCategoriasSi.setText(resourceMap.getString("radioCategoriasSi.text")); // NOI18N
+        radioCategoriasSi.setName("radioCategoriasSi"); // NOI18N
+        radioCategoriasSi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton3ActionPerformed(evt);
+                radioCategoriasSiActionPerformed(evt);
             }
         });
-        jRadioButton3.setBounds(10, 80, 33, 23);
-        paneJerarquia.add(jRadioButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        radioCategoriasSi.setBounds(10, 80, 33, 23);
+        paneJerarquia.add(radioCategoriasSi, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jRadioButton4.setText(resourceMap.getString("jRadioButton4.text")); // NOI18N
-        jRadioButton4.setName("jRadioButton4"); // NOI18N
-        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
+        radioCategoriasNo.setText(resourceMap.getString("radioCategoriasNo.text")); // NOI18N
+        radioCategoriasNo.setName("radioCategoriasNo"); // NOI18N
+        radioCategoriasNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton4ActionPerformed(evt);
+                radioCategoriasNoActionPerformed(evt);
             }
         });
-        jRadioButton4.setBounds(50, 80, 50, 23);
-        paneJerarquia.add(jRadioButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        radioCategoriasNo.setBounds(50, 80, 50, 23);
+        paneJerarquia.add(radioCategoriasNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel22.setText(resourceMap.getString("jLabel22.text")); // NOI18N
         jLabel22.setName("jLabel22"); // NOI18N
         jLabel22.setBounds(10, 60, 80, 14);
         paneJerarquia.add(jLabel22, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jRadioButton5.setText(resourceMap.getString("jRadioButton5.text")); // NOI18N
-        jRadioButton5.setName("jRadioButton5"); // NOI18N
-        jRadioButton5.addActionListener(new java.awt.event.ActionListener() {
+        radioNomUnicoSi.setText(resourceMap.getString("radioNomUnicoSi.text")); // NOI18N
+        radioNomUnicoSi.setName("radioNomUnicoSi"); // NOI18N
+        radioNomUnicoSi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton5ActionPerformed(evt);
+                radioNomUnicoSiActionPerformed(evt);
             }
         });
-        jRadioButton5.setBounds(310, 30, 33, 23);
-        paneJerarquia.add(jRadioButton5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        radioNomUnicoSi.setBounds(310, 30, 33, 23);
+        paneJerarquia.add(radioNomUnicoSi, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jRadioButton6.setText(resourceMap.getString("jRadioButton6.text")); // NOI18N
-        jRadioButton6.setName("jRadioButton6"); // NOI18N
-        jRadioButton6.addActionListener(new java.awt.event.ActionListener() {
+        radioNomUnicoNo.setText(resourceMap.getString("radioNomUnicoNo.text")); // NOI18N
+        radioNomUnicoNo.setName("radioNomUnicoNo"); // NOI18N
+        radioNomUnicoNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton6ActionPerformed(evt);
+                radioNomUnicoNoActionPerformed(evt);
             }
         });
-        jRadioButton6.setBounds(350, 30, 50, 23);
-        paneJerarquia.add(jRadioButton6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        radioNomUnicoNo.setBounds(350, 30, 50, 23);
+        paneJerarquia.add(radioNomUnicoNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel23.setText(resourceMap.getString("jLabel23.text")); // NOI18N
         jLabel23.setName("jLabel23"); // NOI18N
@@ -456,12 +456,12 @@ public class frameManejoCampos extends javax.swing.JFrame {
         paneFechaHora.add(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorPreaviso.setName("valorPreaviso"); // NOI18N
-        valorPreaviso.setBounds(140, 80, 80, 20);
+        valorPreaviso.setBounds(140, 80, 80, -1);
         paneFechaHora.add(valorPreaviso, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel13.setText(resourceMap.getString("jLabel13.text")); // NOI18N
         jLabel13.setName("jLabel13"); // NOI18N
-        jLabel13.setBounds(140, 10, 100, 14);
+        jLabel13.setBounds(140, 10, 100, -1);
         paneFechaHora.add(jLabel13, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         try {
@@ -471,12 +471,12 @@ public class frameManejoCampos extends javax.swing.JFrame {
         }
         valorFechaDefecto.setText(resourceMap.getString("valorFechaDefecto.text")); // NOI18N
         valorFechaDefecto.setName("valorFechaDefecto"); // NOI18N
-        valorFechaDefecto.setBounds(140, 30, 80, 20);
+        valorFechaDefecto.setBounds(140, 30, 80, -1);
         paneFechaHora.add(valorFechaDefecto, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel14.setText(resourceMap.getString("jLabel14.text")); // NOI18N
         jLabel14.setName("jLabel14"); // NOI18N
-        jLabel14.setBounds(140, 60, 100, 14);
+        jLabel14.setBounds(140, 60, 100, -1);
         paneFechaHora.add(jLabel14, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel15.setText(resourceMap.getString("jLabel15.text")); // NOI18N
@@ -492,7 +492,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 radioFechaHoraSiActionPerformed(evt);
             }
         });
-        radioFechaHoraSi.setBounds(20, 80, 33, 23);
+        radioFechaHoraSi.setBounds(20, 80, -1, -1);
         paneFechaHora.add(radioFechaHoraSi, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         radioFechaHoraNo.setText(resourceMap.getString("radioFechaHoraNo.text")); // NOI18N
@@ -502,7 +502,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 radioFechaHoraNoActionPerformed(evt);
             }
         });
-        radioFechaHoraNo.setBounds(20, 100, 39, 20);
+        radioFechaHoraNo.setBounds(20, 100, -1, 20);
         paneFechaHora.add(radioFechaHoraNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         comboFormatoFecha.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "dd/mm/aaaa", "mm/dd/aaaa", "aaaa/dd/mm", "aaaa/mm/dd" }));
@@ -512,7 +512,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 comboFormatoFechaActionPerformed(evt);
             }
         });
-        comboFormatoFecha.setBounds(20, 30, 90, 20);
+        comboFormatoFecha.setBounds(20, 30, 90, -1);
         paneFechaHora.add(comboFormatoFecha, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneFechaHora.setBounds(0, 0, 380, 130);
@@ -997,6 +997,47 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 }
                 break;
 
+            case JERARQUIA:
+                String nombreRep=this.radioNomUnicoSi.isSelected()?"true":"false";
+                String categorias=this.radioCategoriasSi.isSelected()?"true":"false";
+                //boolean conNiveles=false;
+                if (existe) {
+                    conexionBD.doUpdate("Update TIPOCAMPO set descripcion = '" + this.valorNota.getText() + "' where correlativo = " + ID);
+                    conexionBD.doUpdate("Update JERARQUIA set repeticionNombreNodo = '" + nombreRep + "', conCategorias = " + categorias + ", IDTIpoCategoria = '" + this.comboCategorias.getSelectedItem().toString().charAt(0)+ "' where correlativo = " + ID);
+
+                    /*
+                         correlativo                 int auto_increment NOT NULL,
+	nombreJerarquia             varchar(50),???????????????
+    IDNodoRaiz                  int,**************************
+	repeticionNombreNodo        bool,
+	numeroDeTerminos            int,**
+	numeroDeNiveles             int,**
+	fechaCreacion               datetime,
+	configuracionXML            varchar(100),*****
+	conCategorias               bool,
+	conteoNivelesAutomatico     bool,
+	IDTIpoCategoria             int,
+                     */
+    //                limpiarValoresNumero();
+                    System.out.println("Modifica");
+                } else {
+                    conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 6)");
+                    try { //Se busca el ID de los datos que acaba de insertar
+                        ResultSet resultado = conexionBD.getResultSet("select correlativo from TIPOCAMPO where nombre = '" + this.valorNombreGeneral.getText() + "'");
+
+                        if (resultado.next()) {
+                            ID = resultado.getInt("correlativo");
+                        }
+                    } catch (SQLException e) {
+                        System.out.println("*SQL Exception: *" + e.toString());
+                    }
+
+                }
+                    System.out.println("ID que se tiene que guardar en la jerarquia!!!"+ID);
+                    conexionBD.doUpdate("Insert Into JERARQUIA (correlativo, repeticionNombreNodo, conCategorias, IDTIpoCategoria) VALUES (" + ID + ", " + nombreRep + ","+ categorias + ", " + this.comboCategorias.getSelectedItem().toString().charAt(0) + ")");
+ //                 limpiarValoresNumero();
+                break;
+
             default: //Si se selecciona algo raro o el campito en blanco.
 
                 break;
@@ -1180,45 +1221,45 @@ private void valorBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     ventanaBusqueda.setVisible(true);
 }//GEN-LAST:event_valorBusquedaActionPerformed
 
-private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-    if (jRadioButton1.isSelected() == true) {
-        jRadioButton2.setSelected(false);
+private void radioNivelesSiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNivelesSiActionPerformed
+    if (radioNivelesSi.isSelected() == true) {
+        radioNivelesNo.setSelected(false);
         comboNiveles.setEnabled(true);
     }
-}//GEN-LAST:event_jRadioButton1ActionPerformed
+}//GEN-LAST:event_radioNivelesSiActionPerformed
 
-private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-    if (jRadioButton2.isSelected() == true) {
-        jRadioButton1.setSelected(false);
+private void radioNivelesNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNivelesNoActionPerformed
+    if (radioNivelesNo.isSelected() == true) {
+        radioNivelesSi.setSelected(false);
         comboNiveles.setEnabled(false);
     }
-}//GEN-LAST:event_jRadioButton2ActionPerformed
+}//GEN-LAST:event_radioNivelesNoActionPerformed
 
-private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
-    if (jRadioButton3.isSelected() == true) {
-        jRadioButton4.setSelected(false);
+private void radioCategoriasSiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioCategoriasSiActionPerformed
+    if (radioCategoriasSi.isSelected() == true) {
+        radioCategoriasNo.setSelected(false);
         comboCategorias.setEnabled(true);
     }
-}//GEN-LAST:event_jRadioButton3ActionPerformed
+}//GEN-LAST:event_radioCategoriasSiActionPerformed
 
-private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
-    if (jRadioButton4.isSelected() == true) {
-        jRadioButton3.setSelected(false);
+private void radioCategoriasNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioCategoriasNoActionPerformed
+    if (radioCategoriasNo.isSelected() == true) {
+        radioCategoriasSi.setSelected(false);
         comboCategorias.setEnabled(false);
     }
-}//GEN-LAST:event_jRadioButton4ActionPerformed
+}//GEN-LAST:event_radioCategoriasNoActionPerformed
 
-private void jRadioButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton5ActionPerformed
-     if (jRadioButton5.isSelected() == true) {
-        jRadioButton6.setSelected(false);
+private void radioNomUnicoSiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNomUnicoSiActionPerformed
+     if (radioNomUnicoSi.isSelected() == true) {
+        radioNomUnicoNo.setSelected(false);
     }
-}//GEN-LAST:event_jRadioButton5ActionPerformed
+}//GEN-LAST:event_radioNomUnicoSiActionPerformed
 
-private void jRadioButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton6ActionPerformed
-    if (jRadioButton6.isSelected() == true) {
-        jRadioButton5.setSelected(false);
+private void radioNomUnicoNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNomUnicoNoActionPerformed
+    if (radioNomUnicoNo.isSelected() == true) {
+        radioNomUnicoSi.setSelected(false);
     }
-}//GEN-LAST:event_jRadioButton6ActionPerformed
+}//GEN-LAST:event_radioNomUnicoNoActionPerformed
 
     /**
      * Cambia la mascara del valorFechaDefecto
@@ -1352,12 +1393,6 @@ private void jRadioButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JRadioButton jRadioButton5;
-    private javax.swing.JRadioButton jRadioButton6;
     private javax.swing.JLabel labelCategorias;
     private javax.swing.JLabel labelNomNiveles;
     private javax.swing.JLayeredPane paneBinario;
@@ -1367,8 +1402,14 @@ private void jRadioButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     private javax.swing.JLayeredPane paneNumero;
     private javax.swing.JLayeredPane panePrincipal;
     private javax.swing.JLayeredPane paneTexto;
+    private javax.swing.JRadioButton radioCategoriasNo;
+    private javax.swing.JRadioButton radioCategoriasSi;
     private javax.swing.JRadioButton radioFechaHoraNo;
     private javax.swing.JRadioButton radioFechaHoraSi;
+    private javax.swing.JRadioButton radioNivelesNo;
+    private javax.swing.JRadioButton radioNivelesSi;
+    private javax.swing.JRadioButton radioNomUnicoNo;
+    private javax.swing.JRadioButton radioNomUnicoSi;
     private javax.swing.JRadioButton radioOpcionBinaria1;
     private javax.swing.JRadioButton radioOpcionBinaria2;
     private javax.swing.JTextField valorBusqueda;
