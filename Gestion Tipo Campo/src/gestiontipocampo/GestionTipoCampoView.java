@@ -167,7 +167,7 @@ public class GestionTipoCampoView extends FrameView {
             ResultSet resultado = buscador.getResultSet("select * from TIPOCAMPO where tipo = '" + num + "';");
             if(resultado != null)
                 while (resultado.next()) {
-                    valores += resultado.getObject(2).toString() + "\n";
+                    valores += resultado.getObject(2).toString();
                 }
         } catch (SQLException e) {
             System.out.println("*SQL Exception: *" + e.toString());

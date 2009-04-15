@@ -9,6 +9,7 @@
  * Created on 01/04/2009, 12:11:45 AM
  */
 package gestiontipocampo;
+import java.sql.*;
 import javax.swing.tree.*;
 import javax.swing.JTree;
 
@@ -272,29 +273,126 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
     public void llenarTreeViewJerarquia(String nombreJerarquia){
         //Se llena el arbol
         //Llena los valores del Tree View
-        String tipoCampo = "Jerarquia";
         String valores;
         String [] valTrim;
-        DefaultMutableTreeNode nodoTipoCampo;
+        valores = buscarDatosEnBD(nombreJerarquia);
+        valTrim = valores.split(";");
+        int numHijos;
+        String IDsHijos;
+        String trimIDsHijos [];
         DefaultMutableTreeNode nodoTemp;
         DefaultMutableTreeNode raizArbol = new DefaultMutableTreeNode(nombreJerarquia);
-
-        /*
-        for(int k = 0; k < tiposCampo.length; k++){
-            nodoTipoCampo = new DefaultMutableTreeNode(tiposCampo[k]);
-            //Se llenan los datos con los valores que contenga la base de datos con el tipo campo:
-            valores = buscarNombreEnBD(k+1);
-           // System.out.println("valores: " + valores);
-            valTrim = valores.split("\n");
-            for(int i= 0; i < valTrim.length; ++i){
-                nodoTemp = new DefaultMutableTreeNode(valTrim[i]);
-                nodoTipoCampo.add(nodoTemp); //agrega el nodo
-            }
-            raizArbol.add(nodoTipoCampo);
+        if(Integer.parseInt(valTrim[2]) > 1){ //Si tiene mas de un nivel la jerarquia
+            numHijos = numDeHijos(Integer.parseInt(valTrim[1])); //cant d hijos de la raiz
+            IDsHijos = buscarIDHijos( Integer.parseInt(valTrim[1]), numHijos);
+            trimIDsHijos = IDsHijos.split(";");
+                for(int j = 0; j < numHijos; ++j){ //Mientras tenga hijos la raiz
+                   nodoTemp = llenarSubArbol( Integer.parseInt(trimIDsHijos[j]));
+                   raizArbol.add(nodoTemp);
+                }
+//              raizArbol.add(nodoTipoCampo);
         }
-         */
         JTree arbolnuevo = new JTree(raizArbol);
         arbolJerarquia.setModel(arbolnuevo.getModel());
+    }
+    
+    public DefaultMutableTreeNode llenarSubArbol(int ID){
+        int numHijos;
+        String IDsHijos;
+        String trimIDsHijos [];
+        DefaultMutableTreeNode nodoActual;
+        String nombre = buscarNombreNodo( ID );
+        DefaultMutableTreeNode nodoTemp;
+        nodoActual = new DefaultMutableTreeNode(nombre);
+        numHijos = numDeHijos( ID ); //cant d hijos del nodo
+        IDsHijos = buscarIDHijos( ID, numHijos ); //IDs hijos
+        trimIDsHijos = IDsHijos.split(";");
+        for(int j = 0; j < numHijos; ++j){ //Mientras tenga hijos el nodo
+            //nodoTemp = llenarSubArbol(trimIDsHijos[k]); //llena el subarbol
+           nodoTemp = llenarSubArbol( Integer.parseInt(trimIDsHijos[j]));
+           nodoActual.add(nodoTemp);                   
+        }
+        return nodoActual;
+    }
+
+    /**
+     * Encargado de buscar los valores TIPOCAMPO segun el nombre en la base de datos
+     * @param nombre: Indica el nombre del tipo de campo que va a buscar
+     */
+    public String buscarDatosEnBD(String nombre){
+        ControladorBD buscador = new ControladorBD();
+        String valores = "";
+        try {
+            ResultSet resultado = buscador.getResultSet("select * from TIPOCAMPO where nombre = '" + nombre + "';");
+            if(resultado.next()){
+                valores += resultado.getObject(1).toString() + ";"; //ID correlativo
+                valores += resultado.getObject(2).toString() + ";"; //IDRaiz
+                valores += resultado.getObject(5).toString() + ";"; //NumNiveles
+            }
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception: *" + e.toString());
+        }
+        return valores;
+    }
+
+    /**
+     *
+     * @param IDnodo
+     * @return
+     */
+    public int numDeHijos(int IDnodo){
+        ControladorBD buscador = new ControladorBD();
+        String valores = "";
+        try {
+            ResultSet resultado = buscador.getResultSet("select count(*) from RELACIONHIJO where IDNodoPadre = '" + IDnodo + "';");
+            if(resultado.next()){
+                valores += resultado.getObject(1).toString() + ";"; //cant hijos
+            }
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception: *" + e.toString());
+        }
+        return Integer.parseInt(valores);
+    }
+
+    /**
+     *
+     * @param IDnodo
+     * @return
+     */
+    public String buscarIDHijos(int IDnodo, int cantHijos){
+        ControladorBD buscador = new ControladorBD();
+        String valores = "";
+        try {
+            ResultSet resultado = buscador.getResultSet("select IDNodoHijo from RELACIONHIJO where IDNodoPadre = '" + IDnodo + "';");
+            for(int k = 1; k <= cantHijos; ++k ){
+                if(resultado.next()){
+                    valores += resultado.getObject(1).toString() + ";"; //ID nodo hijo
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception: *" + e.toString());
+        }
+        return valores;
+    }
+
+    /**
+     * 
+     * @param num
+     * @return
+     */
+    public String buscarNombreNodo(int ID){
+        ControladorBD buscador = new ControladorBD();
+        String valores = "";
+        try {
+            ResultSet resultado = buscador.getResultSet("select nombre from NODO where ID = '" + ID + "';");
+            if(resultado != null)
+                while (resultado.next()) {
+                    valores += resultado.getObject(1).toString();
+                }
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception: *" + e.toString());
+        }
+        return valores;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
