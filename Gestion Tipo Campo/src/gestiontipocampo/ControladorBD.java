@@ -21,7 +21,6 @@ public class ControladorBD {
 
     public int probarConexion(int  numeroConexion){
         String conexionStringAProbar="";
-        
         switch(numeroConexion){
             case 1:
                 conexionStringAProbar=conexionString1;

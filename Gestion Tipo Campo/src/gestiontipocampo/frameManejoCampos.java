@@ -998,8 +998,8 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 break;
 
             case JERARQUIA:
-                String nombreRep=this.radioNomUnicoSi.isSelected()?"true":"false";
-                String categorias=this.radioCategoriasSi.isSelected()?"true":"false";
+                int nombreRep=this.radioNomUnicoSi.isSelected()?1:0;
+                int categorias=this.radioCategoriasSi.isSelected()?1:0;
                 //boolean conNiveles=false;
                 if (existe) {
                     conexionBD.doUpdate("Update TIPOCAMPO set descripcion = '" + this.valorNota.getText() + "' where correlativo = " + ID);
@@ -1034,7 +1034,7 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 
                 }
                     System.out.println("ID que se tiene que guardar en la jerarquia!!!"+ID);
-                    conexionBD.doUpdate("Insert Into JERARQUIA (correlativo, repeticionNombreNodo, conCategorias, IDTIpoCategoria) VALUES (" + ID + ", " + nombreRep + ","+ categorias + ", " + this.comboCategorias.getSelectedItem().toString().charAt(0) + ")");
+                    conexionBD.doUpdate("Insert Into JERARQUIA ( correlativo, repeticionNombreNodo, conCategorias, IDTIpoCategoria) VALUES ("+ ID +","+ nombreRep + ","+ categorias + ", " + this.comboCategorias.getSelectedItem().toString().charAt(0) + ")");
  //                 limpiarValoresNumero();
                 break;
 

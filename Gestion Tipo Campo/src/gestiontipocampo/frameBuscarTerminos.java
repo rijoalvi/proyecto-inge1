@@ -39,7 +39,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         initComponents();
         paneTree.setVisible(true);
         paneLista.setVisible(false);
-        llenarTreeViewJerarquia(nombreJerarquia);
+        //llenarTreeViewJerarquia(nombreJerarquia);
     }
 
     /** This method is called from within the constructor to
