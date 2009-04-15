@@ -1,0 +1,53 @@
+drop table JERARQUIA;
+CREATE TABLE JERARQUIA(
+    correlativo                 int auto_increment NOT NULL,
+	IDNodoRaiz                  int,
+	nombreNodosUnicio           bool,
+	numeroDeTerminos            int,
+	numeroDeNiveles             int,
+	fechaCreacion               datetime,
+	configuracionXML            varchar(100),
+	conCategorias               bool,
+	conteoNivelesAutomatico     bool,
+	IDTIpoCategoria             int,
+  PRIMARY KEY (correlativo)
+);
+
+
+drop table NODO;
+CREATE TABLE NODO(
+	ID                              int auto_increment NOT NULL,
+	IDInstanciaCategoria			int,
+	nombre                          varchar(20),
+	descripcion                     varchar(20),
+	fechaCreacion                   datetime,
+	fechaUltimaModificacion			datetime,
+	IDNodoPadre                   	int,
+    esHoja                          bool,
+	PRIMARY KEY (ID)
+);
+
+drop table RELACIONHIJO;
+CREATE TABLE RELACIONHIJO(
+	ID                              int auto_increment NOT NULL,
+	IDNodoPadre                     int,
+	IDNodoHijo                      int,
+	PRIMARY KEY (ID)
+);
+
+drop TABLE TIPOCATEGORIA;
+CREATE TABLE TIPOCATEGORIA(
+	ID                              int auto_increment NOT NULL,
+	nombre                          varchar(20),
+	descripcion                     varchar(20),
+  PRIMARY KEY (ID)
+);
+
+drop TABLE INSTANCIACATEGORIA;
+CREATE TABLE INSTANCIACATEGORIA(
+	ID                          	int auto_increment NOT NULL,
+	IDTIpoCategoria             	int,
+	valor                           varchar(20),
+  PRIMARY KEY (ID)
+)
+
