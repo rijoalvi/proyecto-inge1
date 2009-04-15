@@ -1,8 +1,9 @@
 drop table JERARQUIA;
 CREATE TABLE JERARQUIA(
     correlativo                 int auto_increment NOT NULL,
-	IDNodoRaiz                  int,
-	nombreNodosUnicio           bool,
+	nombreJerarquia             varchar(50),
+    IDNodoRaiz                  int,
+	repeticionNombreNodo        bool,
 	numeroDeTerminos            int,
 	numeroDeNiveles             int,
 	fechaCreacion               datetime,
