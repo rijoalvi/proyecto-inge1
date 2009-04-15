@@ -39,7 +39,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         initComponents();
         paneTree.setVisible(true);
         paneLista.setVisible(false);
-        //llenarTreeViewJerarquia(nombreJerarquia);
+        llenarTreeViewJerarquia(nombreJerarquia);
     }
 
     /** This method is called from within the constructor to
@@ -290,7 +290,6 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
                    nodoTemp = llenarSubArbol( Integer.parseInt(trimIDsHijos[j]));
                    raizArbol.add(nodoTemp);
                 }
-//              raizArbol.add(nodoTipoCampo);
         }
         JTree arbolnuevo = new JTree(raizArbol);
         arbolJerarquia.setModel(arbolnuevo.getModel());
@@ -308,7 +307,6 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         IDsHijos = buscarIDHijos( ID, numHijos ); //IDs hijos
         trimIDsHijos = IDsHijos.split(";");
         for(int j = 0; j < numHijos; ++j){ //Mientras tenga hijos el nodo
-            //nodoTemp = llenarSubArbol(trimIDsHijos[k]); //llena el subarbol
            nodoTemp = llenarSubArbol( Integer.parseInt(trimIDsHijos[j]));
            nodoActual.add(nodoTemp);                   
         }
@@ -323,11 +321,11 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         ControladorBD buscador = new ControladorBD();
         String valores = "";
         try {
-            ResultSet resultado = buscador.getResultSet("select * from TIPOCAMPO where nombre = '" + nombre + "';");
+            ResultSet resultado = buscador.getResultSet("select * from JERARQUIA where nombreJerarquia = '" + nombre + "';");
             if(resultado.next()){
-                valores += resultado.getObject(1).toString() + ";"; //ID correlativo
-                valores += resultado.getObject(2).toString() + ";"; //IDRaiz
-                valores += resultado.getObject(5).toString() + ";"; //NumNiveles
+                valores += resultado.getObject(1).toString() + ";"; //ID correlativo                
+                valores += resultado.getObject(3).toString() + ";"; //IDRaiz
+                valores += resultado.getObject(6).toString() + ";"; //num niveles
             }
         } catch (SQLException e) {
             System.out.println("*SQL Exception: *" + e.toString());
@@ -346,7 +344,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         try {
             ResultSet resultado = buscador.getResultSet("select count(*) from RELACIONHIJO where IDNodoPadre = '" + IDnodo + "';");
             if(resultado.next()){
-                valores += resultado.getObject(1).toString() + ";"; //cant hijos
+                valores += resultado.getObject(1).toString(); //cant hijos
             }
         } catch (SQLException e) {
             System.out.println("*SQL Exception: *" + e.toString());

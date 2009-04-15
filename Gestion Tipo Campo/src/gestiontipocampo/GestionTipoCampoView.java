@@ -305,6 +305,7 @@ public class GestionTipoCampoView extends FrameView {
         jScrollPane1 = new javax.swing.JScrollPane();
         arbolPrincipal = new javax.swing.JTree();
         pathPane = new javax.swing.JPanel();
+        abreTreeView = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -801,6 +802,14 @@ public class GestionTipoCampoView extends FrameView {
         pathPane.setName("pathPane"); // NOI18N
         pathPane.setLayout(new javax.swing.BoxLayout(pathPane, javax.swing.BoxLayout.LINE_AXIS));
 
+        abreTreeView.setText(resourceMap.getString("abreTreeView.text")); // NOI18N
+        abreTreeView.setName("abreTreeView"); // NOI18N
+        abreTreeView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                abreTreeViewActionPerformed(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout mainPanelLayout = new org.jdesktop.layout.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
@@ -808,8 +817,12 @@ public class GestionTipoCampoView extends FrameView {
             .add(mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
-                    .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
+                        .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, mainPanelLayout.createSequentialGroup()
+                        .add(abreTreeView)
+                        .add(64, 64, 64)))
                 .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(mainPanelLayout.createSequentialGroup()
                         .add(236, 236, 236)
@@ -846,7 +859,9 @@ public class GestionTipoCampoView extends FrameView {
                 .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(canvas2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(mainPanelLayout.createSequentialGroup()
-                        .add(105, 105, 105)
+                        .add(22, 22, 22)
+                        .add(abreTreeView)
+                        .add(60, 60, 60)
                         .add(canvas3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 298, Short.MAX_VALUE)
                         .add(canvas4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
@@ -1033,7 +1048,7 @@ public class GestionTipoCampoView extends FrameView {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         frameBuscarTerminos f;
-        f=new frameBuscarTerminos("Carros");
+        f=new frameBuscarTerminos(valorNombreGeneral.getText()); //abre el tree view de la jerarquia
         f.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -1093,6 +1108,12 @@ public class GestionTipoCampoView extends FrameView {
         llenarTreeView();
         ocultarPanes();       
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void abreTreeViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abreTreeViewActionPerformed
+        frameBuscarTerminos f;
+        f=new frameBuscarTerminos("Eq. Fut"); //abre el tree view de la jerarquia
+        f.setVisible(true);
+}//GEN-LAST:event_abreTreeViewActionPerformed
 
     public void llenarDatosReadOnly(String nombre, int tipo){
         //Trae todos los valores de la tabla TIPOCAMPO
@@ -1315,6 +1336,7 @@ public class GestionTipoCampoView extends FrameView {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton abreTreeView;
     private javax.swing.JTree arbolPrincipal;
     private javax.swing.JButton botonAgregarCategoria;
     private javax.swing.JButton botonCancelarPanel;
