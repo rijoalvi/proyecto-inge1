@@ -173,7 +173,7 @@ public class frameConexiones extends javax.swing.JFrame {
             jRadioButton1.setEnabled(false);
         }
         /* */
-        /*
+        
         if(1==probadorConexiones.probarConexion(2)){
         jRadioButton2.setText("Disponible");
         jRadioButton2.setEnabled(true);
