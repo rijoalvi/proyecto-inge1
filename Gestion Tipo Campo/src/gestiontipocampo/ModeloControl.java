@@ -11,4 +11,5 @@ package gestiontipocampo;
  */
 public class ModeloControl {
 
+   // public
 }
