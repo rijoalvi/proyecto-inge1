@@ -8,12 +8,11 @@
  *
  * Created on 21/03/2009, 04:48:00 PM
  */
-
 package gestiontipocampo;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.JFrame;
-
 
 /**
  *
@@ -24,6 +23,12 @@ public class frameConexiones extends javax.swing.JFrame {
     /** Creates new form frameConexiones */
     public frameConexiones() {
         initComponents();
+    }
+
+    public frameConexiones(GestionTipoCampoView mama) {
+        this.madre = mama;
+        initComponents();
+
     }
 
     /** This method is called from within the constructor to
@@ -152,75 +157,75 @@ public class frameConexiones extends javax.swing.JFrame {
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         probarConexiones();
     }//GEN-LAST:event_formComponentShown
-    private void probarConexiones(){
-        
+    private void probarConexiones() {
+
         btnEstablecerConexion.setEnabled(false);
         ControladorBD probadorConexiones = new ControladorBD();
-        if(1==probadorConexiones.probarConexion(1)){
+        if (1 == probadorConexiones.probarConexion(1)) {
 
             jRadioButton1.setEnabled(true);
             jRadioButton1.setText("Disponible");
 
-   //         jRadioButton1.setBackground(Color.green);
-        }
-        else{
+        //         jRadioButton1.setBackground(Color.green);
+        } else {
             jRadioButton1.setText("No disponible");
             jRadioButton1.setSelected(false);
             jRadioButton1.setEnabled(false);
         }
-/* */
+        /* */
         /*
         if(1==probadorConexiones.probarConexion(2)){
-            jRadioButton2.setText("Disponible");
-            jRadioButton2.setEnabled(true);
+        jRadioButton2.setText("Disponible");
+        jRadioButton2.setEnabled(true);
         }
         else{
-            jRadioButton2.setText("No disponible");
-            jRadioButton2.setSelected(false);
-            jRadioButton2.setEnabled(false);
+        jRadioButton2.setText("No disponible");
+        jRadioButton2.setSelected(false);
+        jRadioButton2.setEnabled(false);
         }
-/* */
+        /* */
         jLabel1.setText("Por favor elija la Base de Datos a la que sea conectarse.");
 
     }
     private void jRadioButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButton1MouseClicked
         // TODO add your handling code here:
-      if(true==jRadioButton1.isSelected()){
-        btnEstablecerConexion.setEnabled(true);
-        jRadioButton2.setSelected(false);
-      }
-      if(false==jRadioButton1.isSelected() && false==jRadioButton2.isSelected()){
-              btnEstablecerConexion.setEnabled(false);
-      }
+        if (true == jRadioButton1.isSelected()) {
+            btnEstablecerConexion.setEnabled(true);
+            jRadioButton2.setSelected(false);
+        }
+        if (false == jRadioButton1.isSelected() && false == jRadioButton2.isSelected()) {
+            btnEstablecerConexion.setEnabled(false);
+        }
     /*  else{
-          btnEstablecerConexion.setEnabled(false);
-      }*/
+    btnEstablecerConexion.setEnabled(false);
+    }*/
     }//GEN-LAST:event_jRadioButton1MouseClicked
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
         // TODO add your handling code here:
-  
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void btnEstablecerConexionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEstablecerConexionMouseClicked
-            // TODO add your handling code here:
-        if(jRadioButton1.isSelected()){
-            ControladorBD.conexionSeleccionada=1;
+        // TODO add your handling code here:
+        if (jRadioButton1.isSelected()) {
+            ControladorBD.conexionSeleccionada = 1;
+        } else {
+            ControladorBD.conexionSeleccionada = 2;
         }
-        else{
-            ControladorBD.conexionSeleccionada=2;
+        if (madre != null) {
+            madre.llenarTreeView();
         }
         this.dispose();
     }//GEN-LAST:event_btnEstablecerConexionMouseClicked
 
     private void jRadioButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButton2MouseClicked
-     if(true==jRadioButton2.isSelected()){
-        btnEstablecerConexion.setEnabled(true);
-        jRadioButton1.setSelected(false);
-      }
-      if(false==jRadioButton1.isSelected() && false==jRadioButton2.isSelected()){
-              btnEstablecerConexion.setEnabled(false);
-      }
+        if (true == jRadioButton2.isSelected()) {
+            btnEstablecerConexion.setEnabled(true);
+            jRadioButton1.setSelected(false);
+        }
+        if (false == jRadioButton1.isSelected() && false == jRadioButton2.isSelected()) {
+            btnEstablecerConexion.setEnabled(false);
+        }
     }//GEN-LAST:event_jRadioButton2MouseClicked
 
     private void btnRefrescarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRefrescarMouseClicked
@@ -242,10 +247,11 @@ public class frameConexiones extends javax.swing.JFrame {
 }//GEN-LAST:event_btnRefrescarMouseClicked
 
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 new frameConexiones().setVisible(true);
             }
@@ -261,5 +267,5 @@ public class frameConexiones extends javax.swing.JFrame {
     private javax.swing.JLabel lblConexion1;
     private javax.swing.JLabel lblConexion2;
     // End of variables declaration//GEN-END:variables
-
+    private GestionTipoCampoView madre = null;
 }

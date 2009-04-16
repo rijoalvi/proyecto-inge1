@@ -98,7 +98,7 @@ public class GestionTipoCampoView extends FrameView {
 
         
 
-        frameConexiones ventanaConexiones = new frameConexiones();
+        frameConexiones ventanaConexiones = new frameConexiones(this);
         ventanaConexiones.setAlwaysOnTop(true);
        
         
