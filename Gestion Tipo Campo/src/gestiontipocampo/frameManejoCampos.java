@@ -1269,6 +1269,8 @@ private void radioNomUnicoNoActionPerformed(java.awt.event.ActionEvent evt) {//G
 private void paneJerarquiaComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_paneJerarquiaComponentShown
 
     comboNiveles.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "prueba", "asfdsd", "asfdasdf", "asdf" }));
+    Modelo  miModelo = new Modelo();
+    comboNiveles.setModel(new javax.swing.DefaultComboBoxModel(miModelo.getModeloDeCombo()));
 }//GEN-LAST:event_paneJerarquiaComponentShown
 
     /**
