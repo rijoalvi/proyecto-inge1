@@ -43,6 +43,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         initComponents();
         paneTree.setVisible(true);
         paneLista.setVisible(false);
+        buscador = new ControladorBD();
         llenarTreeViewJerarquia(nombreJerarquia);
     }
 
@@ -300,6 +301,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
     private void BotonAgregarTerminoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarTerminoActionPerformed
         frameTermino fram;
         DefaultMutableTreeNode node = (DefaultMutableTreeNode) arbolJerarquia.getLastSelectedPathComponent();
+        String nombreJer = arbolJerarquia.getModel().getRoot().toString();
         if (node != null) {
             TreeNode[] jerPath = node.getPath();
             for (int i = 0; i < jerPath.length; i++) {
@@ -311,6 +313,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
             fram = new frameTermino(IDJerarquia, IDNodoPadre, 0);
             fram.llenarComboCategoria();
             fram.setVisible(true);
+            llenarTreeViewJerarquia(nombreJer); //actualiza los datos
         } else {
             JOptionPane.showMessageDialog(this, "Ningún elemento seleccionado para agregarle termino!");
         }
@@ -367,6 +370,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
 
     private void botonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonExcluirActionPerformed
         DefaultMutableTreeNode node = (DefaultMutableTreeNode) arbolJerarquia.getLastSelectedPathComponent();
+        String nombreJer = arbolJerarquia.getModel().getRoot().toString();
         if (node != null) {
             String[] opciones = {"Si", "No"};
             int respuesta = JOptionPane.showOptionDialog(null, "¿Seguro que desea eliminar este termino y todos los subterminos?", "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opciones, "No");
@@ -385,6 +389,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
                     /*No borrar*/
                     break;
             }
+            llenarTreeViewJerarquia(nombreJer); //actualiza los datos
         } else {
             JOptionPane.showMessageDialog(this, "Ningún elemento seleccionado para borrar!");
         }
@@ -402,6 +407,10 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         });
     }
 
+    /**
+     * Llena los valores del tree view
+     * @param nombreJerarquia
+     */
     public void llenarTreeViewJerarquia(String nombreJerarquia) {
         //Se llena el arbol
         //Llena los valores del Tree View
@@ -409,18 +418,18 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         String[] valTrim;
         valores = buscarDatosEnBD(nombreJerarquia);
         valTrim = valores.split(";");
-        int numHijos;
         String IDsHijos;
         String trimIDsHijos[];
         DefaultMutableTreeNode nodoTemp;
         DefaultMutableTreeNode raizArbol = new DefaultMutableTreeNode(nombreJerarquia);
         if (Integer.parseInt(valTrim[2]) > 1) { //Si tiene mas de un nivel la jerarquia
-            numHijos = numDeHijos(Integer.parseInt(valTrim[1])); //cant d hijos de la raiz
-            IDsHijos = buscarIDHijos(Integer.parseInt(valTrim[1]), numHijos);
-            trimIDsHijos = IDsHijos.split(";");
-            for (int j = 0; j < numHijos; ++j) { //Mientras tenga hijos la raiz
-                nodoTemp = llenarSubArbol(Integer.parseInt(trimIDsHijos[j]));
-                raizArbol.add(nodoTemp);
+            IDsHijos = buscarIDHijos(Integer.parseInt(valTrim[1]));
+            if(IDsHijos.length() > 1){
+                trimIDsHijos = IDsHijos.split(";");
+                for (int j = 0; j < trimIDsHijos.length ; ++j) { //Mientras tenga hijos la raiz
+                    nodoTemp = llenarSubArbol(Integer.parseInt(trimIDsHijos[j]));
+                    raizArbol.add(nodoTemp);
+                }
             }
         }
         JTree arbolnuevo = new JTree(raizArbol);
@@ -428,19 +437,19 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
     }
 
     public DefaultMutableTreeNode llenarSubArbol(int ID) {
-        int numHijos;
         String IDsHijos;
         String trimIDsHijos[];
         DefaultMutableTreeNode nodoActual;
         String nombre = buscarNombreNodo(ID);
         DefaultMutableTreeNode nodoTemp;
         nodoActual = new DefaultMutableTreeNode(nombre);
-        numHijos = numDeHijos(ID); //cant d hijos del nodo
-        IDsHijos = buscarIDHijos(ID, numHijos); //IDs hijos
-        trimIDsHijos = IDsHijos.split(";");
-        for (int j = 0; j < numHijos; ++j) { //Mientras tenga hijos el nodo
-            nodoTemp = llenarSubArbol(Integer.parseInt(trimIDsHijos[j]));
-            nodoActual.add(nodoTemp);
+        IDsHijos = buscarIDHijos(ID ); //IDs hijos
+        if(IDsHijos.length() > 1){
+            trimIDsHijos = IDsHijos.split(";");
+            for (int j = 0; j < trimIDsHijos.length ; ++j) { //Mientras tenga hijos el nodo
+                nodoTemp = llenarSubArbol(Integer.parseInt(trimIDsHijos[j]));
+                nodoActual.add(nodoTemp);
+            }
         }
         return nodoActual;
     }
@@ -452,11 +461,11 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
     public String buscarDatosEnBD(String nombre) {
         String valores = "";
         try {
-            ResultSet resultado = buscador.getResultSet("select * from JERARQUIA where nombreJerarquia = '" + nombre + "';");
+            ResultSet resultado = buscador.getResultSet("select correlativo, IDNodoRaiz, NumeroDeNiveles from JERARQUIA where nombreJerarquia = '" + nombre + "';");
             if (resultado.next()) {
-                valores += resultado.getObject(1).toString() + ";"; //ID correlativo                
-                valores += resultado.getObject(3).toString() + ";"; //IDRaiz
-                valores += resultado.getObject(6).toString() + ";"; //num niveles
+                valores += resultado.getObject("correlativo").toString() + ";"; //ID correlativo
+                valores += resultado.getObject("IDNodoRaiz").toString() + ";"; //IDRaiz
+                valores += resultado.getObject("NumeroDeNiveles").toString() + ";"; //num niveles
             }
         } catch (SQLException e) {
             System.out.println("*SQL Exception: *" + e.toString());
@@ -472,7 +481,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
     public int numDeHijos(int IDnodo) {
         String valores = "";
         try {
-            ResultSet resultado = buscador.getResultSet("select count(*) from RELACIONHIJO where IDNodoPadre = '" + IDnodo + "';");
+            ResultSet resultado = buscador.getResultSet("select count(*) from NODO where IDNodoPadre = '" + IDnodo + "';");
             if (resultado.next()) {
                 valores += resultado.getObject(1).toString(); //cant hijos
             }
@@ -487,15 +496,13 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
      * @param IDnodo
      * @return
      */
-    public String buscarIDHijos(int IDnodo, int cantHijos) {
+    public String buscarIDHijos(int IDnodo/*, int cantHijos*/) {
         String valores = "";
         try {
-            ResultSet resultado = buscador.getResultSet("select IDNodoHijo from RELACIONHIJO where IDNodoPadre = '" + IDnodo + "';");
-            for (int k = 1; k <= cantHijos; ++k) {
-                if (resultado.next()) {
-                    valores += resultado.getObject(1).toString() + ";"; //ID nodo hijo
-                }
-            }
+            ResultSet resultado = buscador.getResultSet("select ID from NODO where IDNodoPadre = '" + IDnodo + "';");
+            while(resultado.next()){
+                valores += resultado.getObject("ID").toString() + ";"; //ID nodo hijo
+            }           
         } catch (SQLException e) {
             System.out.println("*SQL Exception: *" + e.toString());
         }
@@ -513,7 +520,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
             ResultSet resultado = buscador.getResultSet("select nombre from NODO where ID = '" + ID + "';");
             if (resultado != null) {
                 while (resultado.next()) {
-                    valores += resultado.getObject(1).toString();
+                    valores += resultado.getObject("nombre").toString();
                 }
             }
         } catch (SQLException e) {

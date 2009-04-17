@@ -167,8 +167,6 @@ public class frameManejoCampos extends javax.swing.JFrame {
         valorNota = new javax.swing.JTextField();
         panePrincipal = new javax.swing.JLayeredPane();
         paneJerarquia = new javax.swing.JLayeredPane();
-        labelNomNiveles = new javax.swing.JLabel();
-        comboNiveles = new javax.swing.JComboBox();
         labelCategorias = new javax.swing.JLabel();
         comboCategorias = new javax.swing.JComboBox();
         botonAgregarCategoria = new javax.swing.JButton();
@@ -276,17 +274,6 @@ public class frameManejoCampos extends javax.swing.JFrame {
             }
         });
 
-        labelNomNiveles.setText(resourceMap.getString("labelNomNiveles.text")); // NOI18N
-        labelNomNiveles.setName("labelNomNiveles"); // NOI18N
-        labelNomNiveles.setBounds(120, 20, 94, 10);
-        paneJerarquia.add(labelNomNiveles, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        comboNiveles.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "nombreNivel1", "nombreNivel2", "nombreNivel3", "nombreNivel4" }));
-        comboNiveles.setEnabled(false);
-        comboNiveles.setName("comboNiveles"); // NOI18N
-        comboNiveles.setBounds(120, 40, 90, 20);
-        paneJerarquia.add(comboNiveles, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         labelCategorias.setText(resourceMap.getString("labelCategorias.text")); // NOI18N
         labelCategorias.setName("labelCategorias"); // NOI18N
         labelCategorias.setBounds(120, 70, 60, 14);
@@ -330,7 +317,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
 
         jLabel21.setText(resourceMap.getString("jLabel21.text")); // NOI18N
         jLabel21.setName("jLabel21"); // NOI18N
-        jLabel21.setBounds(20, 20, 56, 14);
+        jLabel21.setBounds(10, 20, 130, 14);
         paneJerarquia.add(jLabel21, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         radioCategoriasSi.setText(resourceMap.getString("radioCategoriasSi.text")); // NOI18N
@@ -1229,14 +1216,14 @@ private void valorBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN
 private void radioNivelesSiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNivelesSiActionPerformed
     if (radioNivelesSi.isSelected() == true) {
         radioNivelesNo.setSelected(false);
-        comboNiveles.setEnabled(true);
+        //comboNiveles.setEnabled(true);
     }
 }//GEN-LAST:event_radioNivelesSiActionPerformed
 
 private void radioNivelesNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNivelesNoActionPerformed
     if (radioNivelesNo.isSelected() == true) {
         radioNivelesSi.setSelected(false);
-        comboNiveles.setEnabled(false);
+        //comboNiveles.setEnabled(false);
     }
 }//GEN-LAST:event_radioNivelesNoActionPerformed
 
@@ -1268,9 +1255,9 @@ private void radioNomUnicoNoActionPerformed(java.awt.event.ActionEvent evt) {//G
 
 private void paneJerarquiaComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_paneJerarquiaComponentShown
 
-    comboNiveles.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "prueba", "asfdsd", "asfdasdf", "asdf" }));
+    //comboNiveles.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "prueba", "asfdsd", "asfdasdf", "asdf" }));
     Modelo  miModelo = new Modelo();
-    comboNiveles.setModel(new javax.swing.DefaultComboBoxModel(miModelo.getModeloDeCombo()));
+    //comboNiveles.setModel(new javax.swing.DefaultComboBoxModel(miModelo.getModeloDeCombo()));
 }//GEN-LAST:event_paneJerarquiaComponentShown
 
     /**
@@ -1380,7 +1367,6 @@ private void paneJerarquiaComponentShown(java.awt.event.ComponentEvent evt) {//G
     private javax.swing.JButton botonGuardarComo1;
     private javax.swing.JComboBox comboCategorias;
     private javax.swing.JComboBox comboFormatoFecha;
-    private javax.swing.JComboBox comboNiveles;
     private javax.swing.JComboBox comboTipos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1406,7 +1392,6 @@ private void paneJerarquiaComponentShown(java.awt.event.ComponentEvent evt) {//G
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel labelCategorias;
-    private javax.swing.JLabel labelNomNiveles;
     private javax.swing.JLayeredPane paneBinario;
     private javax.swing.JLayeredPane paneFechaHora;
     private javax.swing.JLayeredPane paneIncremental;
