@@ -15,12 +15,15 @@ package gestiontipocampo;
  *
  * @author Ricardo
  */
+import java.util.Vector;
+
+
 public class frameManejoCategorias extends javax.swing.JFrame {
 
     /** Creates new form frameManejoCategorias */
     public frameManejoCategorias(String nombre) {
         initComponents();
-        labelNombreCategoria.setText("Categoria "+nombre);
+        labelNombreCategoria.setText(nombre);
     }
 
     /** This method is called from within the constructor to
@@ -33,7 +36,7 @@ public class frameManejoCategorias extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        listInstanciasCategorias = new javax.swing.JList();
         labelNombreCategoria = new javax.swing.JLabel();
         labelElementos = new javax.swing.JLabel();
         botonAgregarElemento = new javax.swing.JButton();
@@ -44,16 +47,16 @@ public class frameManejoCategorias extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setName("Form"); // NOI18N
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jList1.setName("jList1"); // NOI18N
-        jScrollPane1.setViewportView(jList1);
+        listInstanciasCategorias.setName("listInstanciasCategorias"); // NOI18N
+        jScrollPane1.setViewportView(listInstanciasCategorias);
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameManejoCategorias.class);
         labelNombreCategoria.setText(resourceMap.getString("labelNombreCategoria.text")); // NOI18N
@@ -177,6 +180,28 @@ public class frameManejoCategorias extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botonBorrarElementoActionPerformed
 
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        // TODO add your handling code here:
+        ControladorBD buscador= new ControladorBD();
+        buscador.doUpdate("INSERT INTO TIPOCATEGORIA (nombre, descripcion) VALUES ('"+labelNombreCategoria.getText()+"','No establecida')");
+        refrescarLista();
+
+    }//GEN-LAST:event_formComponentShown
+
+    public void refrescarLista(){
+
+/*Vector listaInstancias = new Vector();
+listaInstancias.add("uno");
+listaInstancias.add("dos");
+listaInstancias.add("tres");*/
+
+        Modelo  miModelo = new Modelo();
+        listInstanciasCategorias.setListData(miModelo.getModeloDeCombo("Select ic.ID , ic.valor as nombre from TIPOCATEGORIA tc, INSTANCIACATEGORIA ic where ic.IDTIpoCategoria=tc.ID and tc.nombre like '"+labelNombreCategoria.getText().trim()+"'"));
+
+
+       // listInstanciasCategorias.setListData(listaInstancias);
+
+    }
     /**
     * @param args the command line arguments
     */
@@ -194,10 +219,10 @@ public class frameManejoCategorias extends javax.swing.JFrame {
     private javax.swing.JButton botonBorrarElemento;
     private javax.swing.JButton botonCancelar;
     private javax.swing.JButton botonModificarElemento;
-    private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelElementos;
     private javax.swing.JLabel labelNombreCategoria;
+    private javax.swing.JList listInstanciasCategorias;
     // End of variables declaration//GEN-END:variables
 
 }
