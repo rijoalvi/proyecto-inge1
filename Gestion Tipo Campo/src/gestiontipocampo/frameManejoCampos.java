@@ -1255,9 +1255,10 @@ private void radioNomUnicoNoActionPerformed(java.awt.event.ActionEvent evt) {//G
 
 private void paneJerarquiaComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_paneJerarquiaComponentShown
 
-    //comboNiveles.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "prueba", "asfdsd", "asfdasdf", "asdf" }));
+
+    comboCategorias.setBounds(120, 90, 90, 20);//con esto creo que me quito la maldicion del combo, porque netbeans no se va a atrever a modificar este codigo
     Modelo  miModelo = new Modelo();
-    //comboNiveles.setModel(new javax.swing.DefaultComboBoxModel(miModelo.getModeloDeCombo()));
+    comboCategorias.setModel(new javax.swing.DefaultComboBoxModel(miModelo.getModeloDeCombo("select nombre, ID from TIPOCATEGORIA;")));
 }//GEN-LAST:event_paneJerarquiaComponentShown
 
     /**
