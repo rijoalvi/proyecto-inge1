@@ -29,8 +29,10 @@ public class frameManejoCategorias extends javax.swing.JFrame {
     public frameManejoCategorias(String nombre) {
         initComponents();
         labelNombreCategoria.setText(nombre);
+        nombreGlobal=nombre;
     }
     public int IDCategoria=0;
+        public String nombreGlobal;
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -210,7 +212,8 @@ public class frameManejoCategorias extends javax.swing.JFrame {
 
 
             try {
-                ResultSet resultado = buscador.getResultSet("SELECT  ID FROM TIPOCATEGORIA order by ID desc limit 1");
+                //ResultSet resultado = buscador.getResultSet("SELECT  ID FROM TIPOCATEGORIA order by ID desc limit 1");
+                ResultSet resultado = buscador.getResultSet("SELECT  ID FROM TIPOCATEGORIA where nombre='"+nombreGlobal+"'");
                 int contador=0;
                 while (resultado.next()) {
                     //vectorValores.add(new MiDato(resultado.getObject("nombre").toString(),Integer.parseInt(resultado.getObject("ID").toString())));
