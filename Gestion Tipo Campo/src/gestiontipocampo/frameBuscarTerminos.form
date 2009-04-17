@@ -173,13 +173,13 @@
                           <Component id="botonExcluir" alignment="1" pref="111" max="32767" attributes="0"/>
                           <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
                               <Component id="botonListarHijos" alignment="1" max="32767" attributes="1"/>
-                              <Component id="jButton2" alignment="1" max="32767" attributes="1"/>
+                              <Component id="botonContarTerminos" alignment="1" max="32767" attributes="1"/>
                               <Component id="botonListarSubarbol" alignment="1" max="32767" attributes="1"/>
                           </Group>
                           <Component id="fieldBusqueda" alignment="1" pref="111" max="32767" attributes="0"/>
                           <Component id="labelBusqueda" alignment="1" pref="111" max="32767" attributes="0"/>
-                          <Component id="botonBuscar" alignment="1" pref="111" max="32767" attributes="0"/>
                           <Component id="botonCerrar" alignment="1" pref="111" max="32767" attributes="0"/>
+                          <Component id="botonBuscar" alignment="0" pref="111" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -195,7 +195,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="botonExcluir" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                      <Component id="botonContarTerminos" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="botonListarHijos" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -292,13 +292,13 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonModificarActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton2">
+            <Component class="javax.swing.JButton" name="botonContarTerminos">
               <Properties>
-                <Property name="text" type="java.lang.String" resourceKey="jButton2.text"/>
-                <Property name="name" type="java.lang.String" value="jButton2" noResource="true"/>
+                <Property name="text" type="java.lang.String" resourceKey="botonContarTerminos.text"/>
+                <Property name="name" type="java.lang.String" value="botonContarTerminos" noResource="true"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonContarTerminosActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

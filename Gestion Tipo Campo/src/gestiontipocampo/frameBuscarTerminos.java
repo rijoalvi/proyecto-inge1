@@ -73,7 +73,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         botonListarHijos = new javax.swing.JButton();
         botonExcluir = new javax.swing.JButton();
         botonModificar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        botonContarTerminos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setName("Form"); // NOI18N
@@ -188,11 +188,11 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText(resourceMap.getString("jButton2.text")); // NOI18N
-        jButton2.setName("jButton2"); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        botonContarTerminos.setText(resourceMap.getString("botonContarTerminos.text")); // NOI18N
+        botonContarTerminos.setName("botonContarTerminos"); // NOI18N
+        botonContarTerminos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                botonContarTerminosActionPerformed(evt);
             }
         });
 
@@ -208,12 +208,12 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
                     .addComponent(botonExcluir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ButtonPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(botonListarHijos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonContarTerminos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(botonListarSubarbol, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(fieldBusqueda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
                     .addComponent(labelBusqueda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
-                    .addComponent(botonBuscar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
-                    .addComponent(botonCerrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE))
+                    .addComponent(botonCerrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                    .addComponent(botonBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE))
                 .addContainerGap())
         );
         ButtonPaneLayout.setVerticalGroup(
@@ -226,7 +226,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botonExcluir)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(botonContarTerminos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botonListarHijos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -283,10 +283,62 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Ningún elemento seleccionado para modificar!");
         }
 }//GEN-LAST:event_botonModificarActionPerformed
+    int posicion; //una variable global para buscarNodos. En el futuro sera eliminada, es solo para presentarselo al prof mañana viernes.
+
+    private String[] buscarNodos(String nombreJerarquia) {
+
+        String IDNodoRaiz = "";
+        String[] result = new String[100];//por ahora asi, despues se puede poner  algo dinamico
+        posicion = 0;
+        int IDJerarquia = getIDJerarquia(nombreJerarquia);
+
+        //buscamos la raiz
+        try {
+            ResultSet resultado = buscador.getResultSet("select IDNodoRaiz from JERARQUIA where nombreJerarquia = '" + nombreJerarquia + "';");
+            if (resultado.next()) {
+                IDNodoRaiz = resultado.getObject("IDNodoRaiz").toString();
+            }
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception: *" + e.toString());
+        }
+
+        //Sacamos la lista de nodos de primer nivel y despues recursivamente del resto
+        try {
+            ResultSet resultado = buscador.getResultSet("select ID from NODO where IDNodoPadre = '" + IDNodoRaiz + "';");
+            while (resultado.next()) {
+                result[posicion] = new String(resultado.getObject("ID").toString());
+                posicion++;
+                buscarSubNodos(result[posicion - 1], result);
+            }
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception: *" + e.toString());
+        }
+        return result;
+    }
+
+    private void buscarSubNodos(String IDNodo, String[] result) {
+        try {
+            ResultSet resultado2 = buscador.getResultSet("select ID from NODO where IDNodoPadre = '" + IDNodo + "';");
+            while (resultado2.next()) {
+                result[posicion] = new String(resultado2.getObject("ID").toString());
+                posicion++;
+                buscarSubNodos(result[posicion - 1], result);
+            }
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception: *" + e.toString());
+        }
+    }
 
     private void botonListarHijosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonListarHijosActionPerformed
-        paneTree.setVisible(false);
-        paneLista.setVisible(true);
+        String[] listaElementos;
+        String jerarq = arbolJerarquia.getModel().getRoot().toString();
+        listaElementos = buscarNodos(jerarq);
+        frameBusquedaNodos frame;
+        frame=new frameBusquedaNodos();
+        frame.llenarTabla(listaElementos);
+        System.out.println("listado elementos " + posicion + "");
+        //paneTree.setVisible(false);
+        //paneLista.setVisible(true);
 }//GEN-LAST:event_botonListarHijosActionPerformed
 
     private void botonListarSubarbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonListarSubarbolActionPerformed
@@ -359,14 +411,42 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         return Integer.parseInt(idNodo);
     }
 
+    private void busquedaSimple(String palabra, String[] lista) {
+/*
+        String consulta = "select * from NODO where (";
+        consulta += "ID = '" + lista[0] + "'";
+        for (int i = 1; i < lista.length; i++) {
+            consulta += " or ID = '" + lista[i] + "'";
+        }
+        consulta += ") and ( nombre = '*" + palabra + "*' or descripcion =  '*" + palabra + "*')";
+
+        try {
+            ResultSet resultado = buscador.getResultSet(consulta);
+
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception: *" + e.toString());
+        }*/
+    }
+
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
-        frameBusqueda ventanaBusqueda = new frameBusqueda();
-        ventanaBusqueda.setVisible(true);        // TODO add your handling code here:
+        String[] listaElementos;
+        String jerarq = arbolJerarquia.getModel().getRoot().toString();
+        listaElementos = buscarNodos(jerarq);
+        frameBusquedaNodos frame;
+        frame=new frameBusquedaNodos();
+        frame.llenarTablaBusqueda(listaElementos,fieldBusqueda.getText());
 }//GEN-LAST:event_botonBuscarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-}//GEN-LAST:event_jButton2ActionPerformed
+    private void botonContarTerminosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonContarTerminosActionPerformed
+        String[] listaElementos;
+        String jerarq = arbolJerarquia.getModel().getRoot().toString();
+        listaElementos = buscarNodos(jerarq);
+        int temp=posicion+1;
+        JOptionPane.showMessageDialog(this,
+                "La cantidad de términos en la Jerarquía es de " + temp + " términos.",
+                "Cantidad de Términos",
+                JOptionPane.INFORMATION_MESSAGE);
+}//GEN-LAST:event_botonContarTerminosActionPerformed
 
     private void botonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonExcluirActionPerformed
         DefaultMutableTreeNode node = (DefaultMutableTreeNode) arbolJerarquia.getLastSelectedPathComponent();
@@ -424,9 +504,9 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         DefaultMutableTreeNode raizArbol = new DefaultMutableTreeNode(nombreJerarquia);
         if (Integer.parseInt(valTrim[2]) > 1) { //Si tiene mas de un nivel la jerarquia
             IDsHijos = buscarIDHijos(Integer.parseInt(valTrim[1]));
-            if(IDsHijos.length() > 1){
+            if (IDsHijos.length() > 1) {
                 trimIDsHijos = IDsHijos.split(";");
-                for (int j = 0; j < trimIDsHijos.length ; ++j) { //Mientras tenga hijos la raiz
+                for (int j = 0; j < trimIDsHijos.length; ++j) { //Mientras tenga hijos la raiz
                     nodoTemp = llenarSubArbol(Integer.parseInt(trimIDsHijos[j]));
                     raizArbol.add(nodoTemp);
                 }
@@ -443,10 +523,10 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         String nombre = buscarNombreNodo(ID);
         DefaultMutableTreeNode nodoTemp;
         nodoActual = new DefaultMutableTreeNode(nombre);
-        IDsHijos = buscarIDHijos(ID ); //IDs hijos
-        if(IDsHijos.length() > 1){
+        IDsHijos = buscarIDHijos(ID); //IDs hijos
+        if (IDsHijos.length() > 1) {
             trimIDsHijos = IDsHijos.split(";");
-            for (int j = 0; j < trimIDsHijos.length ; ++j) { //Mientras tenga hijos el nodo
+            for (int j = 0; j < trimIDsHijos.length; ++j) { //Mientras tenga hijos el nodo
                 nodoTemp = llenarSubArbol(Integer.parseInt(trimIDsHijos[j]));
                 nodoActual.add(nodoTemp);
             }
@@ -500,9 +580,9 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         String valores = "";
         try {
             ResultSet resultado = buscador.getResultSet("select ID from NODO where IDNodoPadre = '" + IDnodo + "';");
-            while(resultado.next()){
+            while (resultado.next()) {
                 valores += resultado.getObject("ID").toString() + ";"; //ID nodo hijo
-            }           
+            }
         } catch (SQLException e) {
             System.out.println("*SQL Exception: *" + e.toString());
         }
@@ -535,12 +615,12 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
     private javax.swing.JTree arbolJerarquia;
     private javax.swing.JButton botonBuscar;
     private javax.swing.JButton botonCerrar;
+    private javax.swing.JButton botonContarTerminos;
     private javax.swing.JButton botonExcluir;
     private javax.swing.JButton botonListarHijos;
     private javax.swing.JButton botonListarSubarbol;
     private javax.swing.JButton botonModificar;
     private javax.swing.JTextField fieldBusqueda;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
