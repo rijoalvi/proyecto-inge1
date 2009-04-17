@@ -268,13 +268,14 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
         frameTermino fram;
         DefaultMutableTreeNode node = (DefaultMutableTreeNode) arbolJerarquia.getLastSelectedPathComponent();
+        String nombreJer = arbolJerarquia.getModel().getRoot().toString();
         if (node != null) {
             TreeNode[] jerPath = node.getPath();
 
             int IDJerarquia = getIDJerarquia(jerPath[0].toString());
             int IDNodoPadre = getIDNodo(jerPath);
 
-            fram = new frameTermino(IDJerarquia, IDNodoPadre, 1);
+            fram = new frameTermino(IDJerarquia, IDNodoPadre, 1, this, nombreJer);
             fram.llenarDatos();
             fram.llenarComboCategoria();
 
@@ -362,10 +363,9 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
             int IDJerarquia = getIDJerarquia(jerPath[0].toString());
             int IDNodoPadre = getIDNodo(jerPath);
 
-            fram = new frameTermino(IDJerarquia, IDNodoPadre, 0);
+            fram = new frameTermino(IDJerarquia, IDNodoPadre, 0, this, nombreJer);
             fram.llenarComboCategoria();
-            fram.setVisible(true);
-            llenarTreeViewJerarquia(nombreJer); //actualiza los datos
+            fram.setVisible(true);            
         } else {
             JOptionPane.showMessageDialog(this, "Ningún elemento seleccionado para agregarle termino!");
         }
@@ -502,7 +502,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         String trimIDsHijos[];
         DefaultMutableTreeNode nodoTemp;
         DefaultMutableTreeNode raizArbol = new DefaultMutableTreeNode(nombreJerarquia);
-        if (Integer.parseInt(valTrim[2]) > 1) { //Si tiene mas de un nivel la jerarquia
+       // if (Integer.parseInt(valTrim[2]) > 1) { //Si tiene mas de un nivel la jerarquia
             IDsHijos = buscarIDHijos(Integer.parseInt(valTrim[1]));
             if (IDsHijos.length() > 1) {
                 trimIDsHijos = IDsHijos.split(";");
@@ -511,7 +511,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
                     raizArbol.add(nodoTemp);
                 }
             }
-        }
+     //   }
         JTree arbolnuevo = new JTree(raizArbol);
         arbolJerarquia.setModel(arbolnuevo.getModel());
     }
@@ -540,12 +540,14 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
      */
     public String buscarDatosEnBD(String nombre) {
         String valores = "";
+                System.out.println(nombre);
         try {
-            ResultSet resultado = buscador.getResultSet("select correlativo, IDNodoRaiz, NumeroDeNiveles from JERARQUIA where nombreJerarquia = '" + nombre + "';");
+            ResultSet resultado = buscador.getResultSet("select correlativo, IDNodoRaiz, numeroDeNiveles from JERARQUIA where nombreJerarquia = '" + nombre + "'");
             if (resultado.next()) {
                 valores += resultado.getObject("correlativo").toString() + ";"; //ID correlativo
                 valores += resultado.getObject("IDNodoRaiz").toString() + ";"; //IDRaiz
                 valores += resultado.getObject("NumeroDeNiveles").toString() + ";"; //num niveles
+                System.out.println("valores: "+valores);
             }
         } catch (SQLException e) {
             System.out.println("*SQL Exception: *" + e.toString());

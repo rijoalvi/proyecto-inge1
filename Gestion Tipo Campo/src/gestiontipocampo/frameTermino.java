@@ -24,9 +24,11 @@ public class frameTermino extends javax.swing.JFrame {
         initComponents();
     }
 
-    public frameTermino(int IDJerarquia, int IDNodoPadre, int estado) {
+    public frameTermino(int IDJerarquia, int IDNodoPadre, int estado, frameBuscarTerminos padre, String nombre) {
         this.IDJerarquia = IDJerarquia;
         this.IDNodoPadre = IDNodoPadre;
+        this.framePadre = padre;
+        nombreJer = nombre;
         this.estado = estado;
         initComponents();
         buscador = new ControladorBD();
@@ -234,6 +236,7 @@ public class frameTermino extends javax.swing.JFrame {
         } else {
             buscador.doUpdate("insert into NODO (nombre, descripcion, IDNodoPadre) values ('" + nombre + "', '" + descripcion + "', " + IDNodoPadre + ");");
         }
+        framePadre.llenarTreeViewJerarquia(nombreJer);
     }
 
     private void modificarNodo() {
@@ -245,6 +248,7 @@ public class frameTermino extends javax.swing.JFrame {
         } else {
             buscador.doUpdate("update NODO set nombre = '" + nombre + "', descripcion = '" + descripcion + "' where ID = " + IDNodoPadre + ";");
         }
+        framePadre.llenarTreeViewJerarquia(nombreJer);
     }
 
     private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
@@ -290,4 +294,6 @@ public class frameTermino extends javax.swing.JFrame {
     private int IDCategoria;
     private int estado;
     ControladorBD buscador;
+    frameBuscarTerminos framePadre;
+    String nombreJer;
 }

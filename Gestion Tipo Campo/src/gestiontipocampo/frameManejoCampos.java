@@ -989,31 +989,13 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 }
                 break;
 
-            case JERARQUIA:
-                int nombreRep=this.radioNomUnicoSi.isSelected()?1:0;
-                int categorias=this.radioCategoriasSi.isSelected()?1:0;
-                //boolean conNiveles=false;
+            case JERARQUIA:                                
                 if (existe) {
                     conexionBD.doUpdate("Update TIPOCAMPO set descripcion = '" + this.valorNota.getText() + "' where correlativo = " + ID);
-                    conexionBD.doUpdate("Update JERARQUIA set repeticionNombreNodo = '" + nombreRep + "', conCategorias = " + categorias + ", IDTIpoCategoria = '" + this.comboCategorias.getSelectedItem().toString().charAt(0)+ "' where correlativo = " + ID);
-
-                    /*
-                         correlativo                 int auto_increment NOT NULL,
-	nombreJerarquia             varchar(50),???????????????
-    IDNodoRaiz                  int,**************************
-	repeticionNombreNodo        bool,
-	numeroDeTerminos            int,**
-	numeroDeNiveles             int,**
-	fechaCreacion               datetime,
-	configuracionXML            varchar(100),*****
-	conCategorias               bool,
-	conteoNivelesAutomatico     bool,
-	IDTIpoCategoria             int,
-                     */
-    //                limpiarValoresNumero();
-                    System.out.println("Modifica");
+                    conexionBD.doUpdate("Update JERARQUIA set repeticionNombreNodo = '" + this.radioNomUnicoSi.isSelected() + "', conCategorias = '" + this.radioCategoriasSi.isSelected() + "' , IDTIpoCategoria = '" + this.comboCategorias.getSelectedItem().toString().charAt(0)+ "' where correlativo = " + ID);
                 } else {
                     conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 6)");
+                    conexionBD.doUpdate("Insert Into JERARQUIA ( correlativo, repeticionNombreNodo, conCategorias, IDTIpoCategoria) VALUES ("+ ID +", '"+ this.radioNomUnicoSi.isSelected() + "' , '"+ this.radioCategoriasSi.isSelected() + "' , '" + ((MiDato)comboCategorias.getSelectedItem()).ID + "')");
                     try { //Se busca el ID de los datos que acaba de insertar
                         ResultSet resultado = conexionBD.getResultSet("select correlativo from TIPOCAMPO where nombre = '" + this.valorNombreGeneral.getText() + "'");
 
@@ -1025,8 +1007,7 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     }
 
                 }
-                    System.out.println("ID que se tiene que guardar en la jerarquia!!!"+ID);
-                    conexionBD.doUpdate("Insert Into JERARQUIA ( correlativo, repeticionNombreNodo, conCategorias, IDTIpoCategoria) VALUES ("+ ID +","+ nombreRep + ","+ categorias + ", " + this.comboCategorias.getSelectedItem().toString().charAt(0) + ")");
+                    
  //                 limpiarValoresNumero();
                 break;
 
@@ -1254,8 +1235,6 @@ private void radioNomUnicoNoActionPerformed(java.awt.event.ActionEvent evt) {//G
 }//GEN-LAST:event_radioNomUnicoNoActionPerformed
 
 private void paneJerarquiaComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_paneJerarquiaComponentShown
-
-
     comboCategorias.setBounds(120, 90, 90, 20);//con esto creo que me quito la maldicion del combo, porque netbeans no se va a atrever a modificar este codigo
     Modelo  miModelo = new Modelo();
     comboCategorias.setModel(new javax.swing.DefaultComboBoxModel(miModelo.getModeloDeCombo("select nombre, ID from TIPOCATEGORIA;")));
