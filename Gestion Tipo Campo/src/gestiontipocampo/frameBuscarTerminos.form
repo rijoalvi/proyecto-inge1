@@ -279,6 +279,9 @@
                 <Property name="text" type="java.lang.String" resourceKey="botonExcluir.text"/>
                 <Property name="name" type="java.lang.String" value="botonExcluir" noResource="true"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonExcluirActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="botonModificar">
               <Properties>

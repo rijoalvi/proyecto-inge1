@@ -24,11 +24,15 @@ public class frameTermino extends javax.swing.JFrame {
         initComponents();
     }
 
-    public frameTermino(int IDJerarquia, int IDNodoPadre) {
+    public frameTermino(int IDJerarquia, int IDNodoPadre, int estado) {
         this.IDJerarquia = IDJerarquia;
         this.IDNodoPadre = IDNodoPadre;
+        this.estado = estado;
         initComponents();
         buscador = new ControladorBD();
+        if (estado == 1) {
+            botonAceptar.setName("Modificar");
+        }
     }
 
     /** This method is called from within the constructor to
@@ -182,6 +186,23 @@ public class frameTermino extends javax.swing.JFrame {
         };
     }
 
+    public void llenarDatos() {
+        String nombre = "";
+        String descripcion = "";
+        try {
+                ResultSet resultado = buscador.getResultSet("select nombre, descripcion from NODO where ID = " + IDNodoPadre + ";");
+                if (resultado.next()) {
+                    nombre = resultado.getObject("nombre").toString();
+                    descripcion = resultado.getObject("descripcion").toString();
+                }
+            } catch (SQLException e) {
+                System.out.println("*SQL Exception: *" + e.toString());
+            }
+        campoNombre.setText(nombre);
+        campoDescripcion.setText(descripcion);
+        llenarComboCategoria();
+    }
+
     public void llenarComboCategoria() {
         comboCategoria.removeAllItems();
         getIDCategoria();
@@ -215,8 +236,30 @@ public class frameTermino extends javax.swing.JFrame {
         }
     }
 
+    private void modificarNodo() {
+        String nombre = campoNombre.getText();
+        String descripcion = campoDescripcion.getText();
+        if (comboCategoria.isVisible()) {
+            int categoria = comboCategoria.getSelectedItem().hashCode();
+            buscador.doUpdate("update NODO set nombre = '" + nombre + "', descripcion = '" + descripcion + "', IDInstanciaCategoria = " + categoria + " where ID = " + IDNodoPadre + ";");
+        } else {
+            buscador.doUpdate("update NODO set nombre = '" + nombre + "', descripcion = '" + descripcion + "' where ID = " + IDNodoPadre + ";");
+        }
+    }
+
     private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
-        this.agregarNodo();
+        switch (estado) {
+            case 0: //estado para agregar
+                this.agregarNodo();
+                break;
+            case 1: //estado para modificar
+                this.modificarNodo();
+                break;
+            default:
+                this.agregarNodo();
+                break;
+
+        }
         this.dispose();
 }//GEN-LAST:event_botonAceptarActionPerformed
 
@@ -245,5 +288,6 @@ public class frameTermino extends javax.swing.JFrame {
     private int IDNodoPadre;
     private int IDJerarquia;
     private int IDCategoria;
+    private int estado;
     ControladorBD buscador;
 }

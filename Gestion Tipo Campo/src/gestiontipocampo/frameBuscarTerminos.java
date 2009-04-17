@@ -26,18 +26,20 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         initComponents();
         paneTree.setVisible(false);
         paneLista.setVisible(true);
+        buscador = new ControladorBD();
     }
 
-    frameBuscarTerminos(int i) {
+    public frameBuscarTerminos(int i) {
         initComponents();
         if (i == 1) { //alfabeticamente
             paneTree.setVisible(false);
             paneLista.setVisible(true);
         }
+        buscador = new ControladorBD();
     }
 
     //Constructor de vista por niveles
-    frameBuscarTerminos(String nombreJerarquia) {
+    public frameBuscarTerminos(String nombreJerarquia) {
         initComponents();
         paneTree.setVisible(true);
         paneLista.setVisible(false);
@@ -171,6 +173,11 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
 
         botonExcluir.setText(resourceMap.getString("botonExcluir.text")); // NOI18N
         botonExcluir.setName("botonExcluir"); // NOI18N
+        botonExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonExcluirActionPerformed(evt);
+            }
+        });
 
         botonModificar.setText(resourceMap.getString("botonModificar.text")); // NOI18N
         botonModificar.setName("botonModificar"); // NOI18N
@@ -258,9 +265,22 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
-        frameTermino termino;
-        termino = new frameTermino();
-        termino.setVisible(true);
+        frameTermino fram;
+        DefaultMutableTreeNode node = (DefaultMutableTreeNode) arbolJerarquia.getLastSelectedPathComponent();
+        if (node != null) {
+            TreeNode[] jerPath = node.getPath();
+
+            int IDJerarquia = getIDJerarquia(jerPath[0].toString());
+            int IDNodoPadre = getIDNodo(jerPath);
+
+            fram = new frameTermino(IDJerarquia, IDNodoPadre, 1);
+            fram.llenarDatos();
+            fram.llenarComboCategoria();
+
+            fram.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Ningún elemento seleccionado para modificar!");
+        }
 }//GEN-LAST:event_botonModificarActionPerformed
 
     private void botonListarHijosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonListarHijosActionPerformed
@@ -274,7 +294,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
 }//GEN-LAST:event_botonListarSubarbolActionPerformed
 
     private void botonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarActionPerformed
-        this.setVisible(false);
+        this.dispose();
 }//GEN-LAST:event_botonCerrarActionPerformed
 
     private void BotonAgregarTerminoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarTerminoActionPerformed
@@ -288,7 +308,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
             int IDJerarquia = getIDJerarquia(jerPath[0].toString());
             int IDNodoPadre = getIDNodo(jerPath);
 
-            fram = new frameTermino(IDJerarquia, IDNodoPadre);
+            fram = new frameTermino(IDJerarquia, IDNodoPadre, 0);
             fram.llenarComboCategoria();
             fram.setVisible(true);
         } else {
@@ -296,8 +316,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         }
 }//GEN-LAST:event_BotonAgregarTerminoActionPerformed
 
-    private int getIDJerarquia(String nombre){
-        ControladorBD buscador = new ControladorBD();
+    private int getIDJerarquia(String nombre) {
         String ID = "";
         try {
             ResultSet resultado = buscador.getResultSet("select correlativo from JERARQUIA where nombreJerarquia = '" + nombre + "';");
@@ -309,10 +328,9 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         }
         return Integer.parseInt(ID);
     }
-    
+
     private int getIDNodo(TreeNode[] path) {
         TreeNode[] jerPath = path;
-        ControladorBD buscador = new ControladorBD();
         String idNodo = "";
         String tempNodo = "";
         try {
@@ -346,6 +364,31 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
 }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void botonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonExcluirActionPerformed
+        DefaultMutableTreeNode node = (DefaultMutableTreeNode) arbolJerarquia.getLastSelectedPathComponent();
+        if (node != null) {
+            String[] opciones = {"Si", "No"};
+            int respuesta = JOptionPane.showOptionDialog(null, "¿Seguro que desea eliminar este termino y todos los subterminos?", "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opciones, "No");
+
+            switch (respuesta) {
+                case 0:
+                    /*Si borrar*/
+                    TreeNode[] jerPath = node.getPath();
+
+                    int IDJerarquia = getIDJerarquia(jerPath[0].toString());
+                    int IDNodoPadre = getIDNodo(jerPath);
+                    buscador.doUpdate("delete from NODO where ID = " + IDNodoPadre);
+
+                    break;
+                case 1:
+                    /*No borrar*/
+                    break;
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Ningún elemento seleccionado para borrar!");
+        }
+    }//GEN-LAST:event_botonExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -407,7 +450,6 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
      * @param nombre: Indica el nombre del tipo de campo que va a buscar
      */
     public String buscarDatosEnBD(String nombre) {
-        ControladorBD buscador = new ControladorBD();
         String valores = "";
         try {
             ResultSet resultado = buscador.getResultSet("select * from JERARQUIA where nombreJerarquia = '" + nombre + "';");
@@ -428,7 +470,6 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
      * @return
      */
     public int numDeHijos(int IDnodo) {
-        ControladorBD buscador = new ControladorBD();
         String valores = "";
         try {
             ResultSet resultado = buscador.getResultSet("select count(*) from RELACIONHIJO where IDNodoPadre = '" + IDnodo + "';");
@@ -447,7 +488,6 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
      * @return
      */
     public String buscarIDHijos(int IDnodo, int cantHijos) {
-        ControladorBD buscador = new ControladorBD();
         String valores = "";
         try {
             ResultSet resultado = buscador.getResultSet("select IDNodoHijo from RELACIONHIJO where IDNodoPadre = '" + IDnodo + "';");
@@ -468,7 +508,6 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
      * @return
      */
     public String buscarNombreNodo(int ID) {
-        ControladorBD buscador = new ControladorBD();
         String valores = "";
         try {
             ResultSet resultado = buscador.getResultSet("select nombre from NODO where ID = '" + ID + "';");
@@ -503,4 +542,5 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
     private javax.swing.JLayeredPane paneTree;
     private javax.swing.JScrollPane scrollPaneJerarquia;
     // End of variables declaration//GEN-END:variables
+    private ControladorBD buscador;
 }
