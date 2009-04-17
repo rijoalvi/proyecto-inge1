@@ -9,7 +9,9 @@
  * Created on 01/04/2009, 12:11:45 AM
  */
 package gestiontipocampo;
+
 import java.sql.*;
+import javax.swing.JOptionPane;
 import javax.swing.tree.*;
 import javax.swing.JTree;
 
@@ -277,9 +279,64 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
 
     private void BotonAgregarTerminoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarTerminoActionPerformed
         frameTermino fram;
-        fram = new frameTermino();
-        fram.setVisible(true);
+        DefaultMutableTreeNode node = (DefaultMutableTreeNode) arbolJerarquia.getLastSelectedPathComponent();
+        if (node != null) {
+            TreeNode[] jerPath = node.getPath();
+            for (int i = 0; i < jerPath.length; i++) {
+                System.out.println(i + " " + jerPath[i].toString());
+            }
+            int IDJerarquia = getIDJerarquia(jerPath[0].toString());
+            int IDNodoPadre = getIDNodo(jerPath);
+
+            fram = new frameTermino(IDJerarquia, IDNodoPadre);
+            fram.llenarComboCategoria();
+            fram.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Ningún elemento seleccionado para agregarle termino!");
+        }
 }//GEN-LAST:event_BotonAgregarTerminoActionPerformed
+
+    private int getIDJerarquia(String nombre){
+        ControladorBD buscador = new ControladorBD();
+        String ID = "";
+        try {
+            ResultSet resultado = buscador.getResultSet("select correlativo from JERARQUIA where nombreJerarquia = '" + nombre + "';");
+            if (resultado.next()) {
+                ID = resultado.getObject("correlativo").toString();
+            }
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception: *" + e.toString());
+        }
+        return Integer.parseInt(ID);
+    }
+    
+    private int getIDNodo(TreeNode[] path) {
+        TreeNode[] jerPath = path;
+        ControladorBD buscador = new ControladorBD();
+        String idNodo = "";
+        String tempNodo = "";
+        try {
+            ResultSet resultado = buscador.getResultSet("select IDNodoRaiz from JERARQUIA where nombreJerarquia = '" + jerPath[0].toString() + "';");
+            if (resultado.next()) {
+                idNodo = resultado.getObject("IDNodoRaiz").toString();
+            }
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception: *" + e.toString());
+        }
+        for (int i = 1; i < jerPath.length; i++) {
+            tempNodo = idNodo;
+            try {
+                ResultSet resultado = buscador.getResultSet("select ID from NODO where IDNodoPadre = " + tempNodo + " and nombre = '" + jerPath[i].toString() + "';");
+                if (resultado.next()) {
+                    idNodo = resultado.getObject("ID").toString();
+                }
+            } catch (SQLException e) {
+                System.out.println("*SQL Exception: *" + e.toString());
+            }
+        }
+
+        return Integer.parseInt(idNodo);
+    }
 
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
         frameBusqueda ventanaBusqueda = new frameBusqueda();
@@ -302,46 +359,45 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         });
     }
 
-
-    public void llenarTreeViewJerarquia(String nombreJerarquia){
+    public void llenarTreeViewJerarquia(String nombreJerarquia) {
         //Se llena el arbol
         //Llena los valores del Tree View
         String valores;
-        String [] valTrim;
+        String[] valTrim;
         valores = buscarDatosEnBD(nombreJerarquia);
         valTrim = valores.split(";");
         int numHijos;
         String IDsHijos;
-        String trimIDsHijos [];
+        String trimIDsHijos[];
         DefaultMutableTreeNode nodoTemp;
         DefaultMutableTreeNode raizArbol = new DefaultMutableTreeNode(nombreJerarquia);
-        if(Integer.parseInt(valTrim[2]) > 1){ //Si tiene mas de un nivel la jerarquia
+        if (Integer.parseInt(valTrim[2]) > 1) { //Si tiene mas de un nivel la jerarquia
             numHijos = numDeHijos(Integer.parseInt(valTrim[1])); //cant d hijos de la raiz
-            IDsHijos = buscarIDHijos( Integer.parseInt(valTrim[1]), numHijos);
+            IDsHijos = buscarIDHijos(Integer.parseInt(valTrim[1]), numHijos);
             trimIDsHijos = IDsHijos.split(";");
-                for(int j = 0; j < numHijos; ++j){ //Mientras tenga hijos la raiz
-                   nodoTemp = llenarSubArbol( Integer.parseInt(trimIDsHijos[j]));
-                   raizArbol.add(nodoTemp);
-                }
+            for (int j = 0; j < numHijos; ++j) { //Mientras tenga hijos la raiz
+                nodoTemp = llenarSubArbol(Integer.parseInt(trimIDsHijos[j]));
+                raizArbol.add(nodoTemp);
+            }
         }
         JTree arbolnuevo = new JTree(raizArbol);
         arbolJerarquia.setModel(arbolnuevo.getModel());
     }
-    
-    public DefaultMutableTreeNode llenarSubArbol(int ID){
+
+    public DefaultMutableTreeNode llenarSubArbol(int ID) {
         int numHijos;
         String IDsHijos;
-        String trimIDsHijos [];
+        String trimIDsHijos[];
         DefaultMutableTreeNode nodoActual;
-        String nombre = buscarNombreNodo( ID );
+        String nombre = buscarNombreNodo(ID);
         DefaultMutableTreeNode nodoTemp;
         nodoActual = new DefaultMutableTreeNode(nombre);
-        numHijos = numDeHijos( ID ); //cant d hijos del nodo
-        IDsHijos = buscarIDHijos( ID, numHijos ); //IDs hijos
+        numHijos = numDeHijos(ID); //cant d hijos del nodo
+        IDsHijos = buscarIDHijos(ID, numHijos); //IDs hijos
         trimIDsHijos = IDsHijos.split(";");
-        for(int j = 0; j < numHijos; ++j){ //Mientras tenga hijos el nodo
-           nodoTemp = llenarSubArbol( Integer.parseInt(trimIDsHijos[j]));
-           nodoActual.add(nodoTemp);                   
+        for (int j = 0; j < numHijos; ++j) { //Mientras tenga hijos el nodo
+            nodoTemp = llenarSubArbol(Integer.parseInt(trimIDsHijos[j]));
+            nodoActual.add(nodoTemp);
         }
         return nodoActual;
     }
@@ -350,12 +406,12 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
      * Encargado de buscar los valores TIPOCAMPO segun el nombre en la base de datos
      * @param nombre: Indica el nombre del tipo de campo que va a buscar
      */
-    public String buscarDatosEnBD(String nombre){
+    public String buscarDatosEnBD(String nombre) {
         ControladorBD buscador = new ControladorBD();
         String valores = "";
         try {
             ResultSet resultado = buscador.getResultSet("select * from JERARQUIA where nombreJerarquia = '" + nombre + "';");
-            if(resultado.next()){
+            if (resultado.next()) {
                 valores += resultado.getObject(1).toString() + ";"; //ID correlativo                
                 valores += resultado.getObject(3).toString() + ";"; //IDRaiz
                 valores += resultado.getObject(6).toString() + ";"; //num niveles
@@ -371,12 +427,12 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
      * @param IDnodo
      * @return
      */
-    public int numDeHijos(int IDnodo){
+    public int numDeHijos(int IDnodo) {
         ControladorBD buscador = new ControladorBD();
         String valores = "";
         try {
             ResultSet resultado = buscador.getResultSet("select count(*) from RELACIONHIJO where IDNodoPadre = '" + IDnodo + "';");
-            if(resultado.next()){
+            if (resultado.next()) {
                 valores += resultado.getObject(1).toString(); //cant hijos
             }
         } catch (SQLException e) {
@@ -390,13 +446,13 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
      * @param IDnodo
      * @return
      */
-    public String buscarIDHijos(int IDnodo, int cantHijos){
+    public String buscarIDHijos(int IDnodo, int cantHijos) {
         ControladorBD buscador = new ControladorBD();
         String valores = "";
         try {
             ResultSet resultado = buscador.getResultSet("select IDNodoHijo from RELACIONHIJO where IDNodoPadre = '" + IDnodo + "';");
-            for(int k = 1; k <= cantHijos; ++k ){
-                if(resultado.next()){
+            for (int k = 1; k <= cantHijos; ++k) {
+                if (resultado.next()) {
                     valores += resultado.getObject(1).toString() + ";"; //ID nodo hijo
                 }
             }
@@ -411,15 +467,16 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
      * @param num
      * @return
      */
-    public String buscarNombreNodo(int ID){
+    public String buscarNombreNodo(int ID) {
         ControladorBD buscador = new ControladorBD();
         String valores = "";
         try {
             ResultSet resultado = buscador.getResultSet("select nombre from NODO where ID = '" + ID + "';");
-            if(resultado != null)
+            if (resultado != null) {
                 while (resultado.next()) {
                     valores += resultado.getObject(1).toString();
                 }
+            }
         } catch (SQLException e) {
             System.out.println("*SQL Exception: *" + e.toString());
         }

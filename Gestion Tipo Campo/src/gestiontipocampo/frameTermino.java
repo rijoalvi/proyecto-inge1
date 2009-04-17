@@ -8,8 +8,10 @@
  *
  * Created on 01/04/2009, 01:29:25 AM
  */
-
 package gestiontipocampo;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -22,6 +24,13 @@ public class frameTermino extends javax.swing.JFrame {
         initComponents();
     }
 
+    public frameTermino(int IDJerarquia, int IDNodoPadre) {
+        this.IDJerarquia = IDJerarquia;
+        this.IDNodoPadre = IDNodoPadre;
+        initComponents();
+        buscador = new ControladorBD();
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -32,15 +41,13 @@ public class frameTermino extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        campoNombre = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        campoDescripcion = new javax.swing.JTextField();
+        comboCategoria = new javax.swing.JComboBox();
+        labelCategoria = new javax.swing.JLabel();
+        botonCancelar = new javax.swing.JButton();
+        botonAceptar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setName("Form"); // NOI18N
@@ -49,40 +56,34 @@ public class frameTermino extends javax.swing.JFrame {
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
 
-        jTextField1.setText(resourceMap.getString("jTextField1.text")); // NOI18N
-        jTextField1.setName("jTextField1"); // NOI18N
+        campoNombre.setText(resourceMap.getString("campoNombre.text")); // NOI18N
+        campoNombre.setName("campoNombre"); // NOI18N
 
         jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
         jLabel2.setName("jLabel2"); // NOI18N
 
-        jTextField2.setText(resourceMap.getString("jTextField2.text")); // NOI18N
-        jTextField2.setName("jTextField2"); // NOI18N
+        campoDescripcion.setText(resourceMap.getString("campoDescripcion.text")); // NOI18N
+        campoDescripcion.setName("campoDescripcion"); // NOI18N
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.setName("jComboBox1"); // NOI18N
+        comboCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboCategoria.setName("comboCategoria"); // NOI18N
 
-        jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
-        jLabel3.setName("jLabel3"); // NOI18N
+        labelCategoria.setText(resourceMap.getString("labelCategoria.text")); // NOI18N
+        labelCategoria.setName("labelCategoria"); // NOI18N
 
-        jLabel4.setText(resourceMap.getString("jLabel4.text")); // NOI18N
-        jLabel4.setName("jLabel4"); // NOI18N
-
-        jTextField3.setText(resourceMap.getString("jTextField3.text")); // NOI18N
-        jTextField3.setName("jTextField3"); // NOI18N
-
-        jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
-        jButton1.setName("jButton1"); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        botonCancelar.setText(resourceMap.getString("botonCancelar.text")); // NOI18N
+        botonCancelar.setName("botonCancelar"); // NOI18N
+        botonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                botonCancelarActionPerformed(evt);
             }
         });
 
-        jButton2.setText(resourceMap.getString("jButton2.text")); // NOI18N
-        jButton2.setName("jButton2"); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        botonAceptar.setText(resourceMap.getString("botonAceptar.text")); // NOI18N
+        botonAceptar.setName("botonAceptar"); // NOI18N
+        botonAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                botonAceptarActionPerformed(evt);
             }
         });
 
@@ -92,22 +93,27 @@ public class frameTermino extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField3))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelCategoria)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2))
-                    .addComponent(jLabel3)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel1)
+                                    .addGap(42, 42, 42))
+                                .addComponent(campoNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE))
+                            .addComponent(comboCategoria, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(botonCancelar)
+                                .addGap(18, 18, 18)
+                                .addComponent(botonAceptar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(campoDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE))))))
+                .addContainerGap(54, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,41 +124,108 @@ public class frameTermino extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2))))
+                .addComponent(labelCategoria)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonCancelar)
+                    .addComponent(botonAceptar))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
+        this.dispose();
+}//GEN-LAST:event_botonCancelarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.setVisible(false);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void getIDCategoria() {
+        String ID = "";
+        try {
+            ResultSet resultado = buscador.getResultSet("select IDTIpoCategoria from JERARQUIA where correlativo = " + IDJerarquia + ";");
+            if (resultado.next()) {
+                ID = resultado.getObject("IDTipoCategoria").toString();
+            }
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception: *" + e.toString());
+        }
+        if (ID.equalsIgnoreCase("NULL")) {
+            IDCategoria = -1;
+        } else {
+            IDCategoria = Integer.parseInt(ID);
+        }
+    }
 
     /**
-    * @param args the command line arguments
-    */
+     * Fabrica de objetos para llenar el combo box con objetos que tienen nombre y id
+     * @param item - nombre
+     * @param ID - id
+     * @return Object
+     */
+    private Object makeObj(final String item, final int ID) {
+        return new Object() {
+
+            @Override
+            public String toString() {
+                return item;
+            }
+
+            @Override
+            public int hashCode() {
+                return ID;
+            }
+        };
+    }
+
+    public void llenarComboCategoria() {
+        comboCategoria.removeAllItems();
+        getIDCategoria();
+        if (IDCategoria < 0) {
+            comboCategoria.setVisible(false);
+            comboCategoria.setEditable(false);
+            labelCategoria.setVisible(false);
+            this.repaint();
+        } else {
+            try {
+                ResultSet resultado = buscador.getResultSet("select ID, valor from INSTANCIACATEGORIA where IDTIpoCategoria = " + IDCategoria + ";");
+                while (resultado.next()) {
+                    String ID = resultado.getObject("ID").toString();
+                    String valor = resultado.getObject("valor").toString();
+                    comboCategoria.addItem(makeObj(valor, Integer.parseInt(ID)));
+                }
+            } catch (SQLException e) {
+                System.out.println("*SQL Exception: *" + e.toString());
+            }
+        }
+    }
+
+    private void agregarNodo() {
+        String nombre = campoNombre.getText();
+        String descripcion = campoDescripcion.getText();
+        if (comboCategoria.isVisible()) {
+            int categoria = comboCategoria.getSelectedItem().hashCode();
+            buscador.doUpdate("insert into NODO (IDInstanciaCategoria, nombre, descripcion, IDNodoPadre) values (" + categoria + ", '" + nombre + "', '" + descripcion + "', " + IDNodoPadre + ");");
+        } else {
+            buscador.doUpdate("insert into NODO (nombre, descripcion, IDNodoPadre) values ('" + nombre + "', '" + descripcion + "', " + IDNodoPadre + ");");
+        }
+    }
+
+    private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
+        this.agregarNodo();
+        this.dispose();
+}//GEN-LAST:event_botonAceptarActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 new frameTermino().setVisible(true);
             }
@@ -160,16 +233,17 @@ public class frameTermino extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JButton botonAceptar;
+    private javax.swing.JButton botonCancelar;
+    private javax.swing.JTextField campoDescripcion;
+    private javax.swing.JTextField campoNombre;
+    private javax.swing.JComboBox comboCategoria;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel labelCategoria;
     // End of variables declaration//GEN-END:variables
-
+    private int IDNodoPadre;
+    private int IDJerarquia;
+    private int IDCategoria;
+    ControladorBD buscador;
 }

@@ -25,25 +25,36 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField1" alignment="0" pref="65" max="32767" attributes="1"/>
-                  <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField3" alignment="0" max="32767" attributes="1"/>
-              </Group>
-              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="labelCategoria" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="campoNombre" pref="79" max="32767" attributes="1"/>
+                          </Group>
+                          <Component id="comboCategoria" alignment="0" min="-2" pref="78" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="botonCancelar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="botonAceptar" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="campoDescripcion" alignment="0" pref="249" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
                   </Group>
-                  <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jComboBox1" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField2" pref="299" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace pref="54" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -57,26 +68,17 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField2" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="campoNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="campoDescripcion" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextField3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="43" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
+              <Component id="labelCategoria" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="comboCategoria" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="43" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="botonCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="botonAceptar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -90,10 +92,10 @@
         <Property name="name" type="java.lang.String" value="jLabel1" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="campoNombre">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="jTextField1.text"/>
-        <Property name="name" type="java.lang.String" value="jTextField1" noResource="true"/>
+        <Property name="text" type="java.lang.String" resourceKey="campoNombre.text"/>
+        <Property name="name" type="java.lang.String" value="campoNombre" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
@@ -102,13 +104,13 @@
         <Property name="name" type="java.lang.String" value="jLabel2" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField2">
+    <Component class="javax.swing.JTextField" name="campoDescripcion">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="jTextField2.text"/>
-        <Property name="name" type="java.lang.String" value="jTextField2" noResource="true"/>
+        <Property name="text" type="java.lang.String" resourceKey="campoDescripcion.text"/>
+        <Property name="name" type="java.lang.String" value="campoDescripcion" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox1">
+    <Component class="javax.swing.JComboBox" name="comboCategoria">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
@@ -118,43 +120,31 @@
             <StringItem index="3" value="Item 4"/>
           </StringArray>
         </Property>
-        <Property name="name" type="java.lang.String" value="jComboBox1" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="comboCategoria" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel3">
+    <Component class="javax.swing.JLabel" name="labelCategoria">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="jLabel3.text"/>
-        <Property name="name" type="java.lang.String" value="jLabel3" noResource="true"/>
+        <Property name="text" type="java.lang.String" resourceKey="labelCategoria.text"/>
+        <Property name="name" type="java.lang.String" value="labelCategoria" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel4">
+    <Component class="javax.swing.JButton" name="botonCancelar">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="jLabel4.text"/>
-        <Property name="name" type="java.lang.String" value="jLabel4" noResource="true"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTextField3">
-      <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="jTextField3.text"/>
-        <Property name="name" type="java.lang.String" value="jTextField3" noResource="true"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
-      <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="jButton1.text"/>
-        <Property name="name" type="java.lang.String" value="jButton1" noResource="true"/>
+        <Property name="text" type="java.lang.String" resourceKey="botonCancelar.text"/>
+        <Property name="name" type="java.lang.String" value="botonCancelar" noResource="true"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonCancelarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="botonAceptar">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="jButton2.text"/>
-        <Property name="name" type="java.lang.String" value="jButton2" noResource="true"/>
+        <Property name="text" type="java.lang.String" resourceKey="botonAceptar.text"/>
+        <Property name="name" type="java.lang.String" value="botonAceptar" noResource="true"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonAceptarActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
