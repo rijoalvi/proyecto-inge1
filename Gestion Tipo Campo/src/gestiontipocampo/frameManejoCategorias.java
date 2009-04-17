@@ -16,6 +16,11 @@ package gestiontipocampo;
  * @author Ricardo
  */
 import java.util.Vector;
+import javax.swing.JOptionPane;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.lang.Integer;
+
 
 
 public class frameManejoCategorias extends javax.swing.JFrame {
@@ -25,7 +30,7 @@ public class frameManejoCategorias extends javax.swing.JFrame {
         initComponents();
         labelNombreCategoria.setText(nombre);
     }
-
+    public int IDCategoria=0;
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -67,6 +72,11 @@ public class frameManejoCategorias extends javax.swing.JFrame {
 
         botonAgregarElemento.setText(resourceMap.getString("botonAgregarElemento.text")); // NOI18N
         botonAgregarElemento.setName("botonAgregarElemento"); // NOI18N
+        botonAgregarElemento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonAgregarElementoMouseClicked(evt);
+            }
+        });
         botonAgregarElemento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonAgregarElementoActionPerformed(evt);
@@ -187,6 +197,41 @@ public class frameManejoCategorias extends javax.swing.JFrame {
         refrescarLista();
 
     }//GEN-LAST:event_formComponentShown
+
+    private void botonAgregarElementoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAgregarElementoMouseClicked
+
+        String elemento = JOptionPane.showInputDialog(null, "Digite el elemento a agregar", "Nuevo elemento", JOptionPane.QUESTION_MESSAGE);// TODO add your handling code here:
+        ControladorBD buscador= new ControladorBD();
+        //buscador.doUpdate("INSERT INTO TIPOCATEGORIA (nombre, descripcion) VALUES ('"+labelNombreCategoria.getText()+"','No establecida')");
+        //refrescarLista();
+        
+          //     ControladorBD buscador = new ControladorBD();
+
+
+
+            try {
+                ResultSet resultado = buscador.getResultSet("SELECT  ID FROM TIPOCATEGORIA order by ID desc limit 1");
+                int contador=0;
+                while (resultado.next()) {
+                    //vectorValores.add(new MiDato(resultado.getObject("nombre").toString(),Integer.parseInt(resultado.getObject("ID").toString())));
+                    System.out.println(resultado.getObject("ID").toString());
+                    this.IDCategoria=Integer.parseInt(resultado.getObject("ID").toString());
+                    contador++;
+                }
+            } catch (SQLException e) {
+                System.out.println("*SQL Exception: *" + e.toString());
+            }
+
+        buscador.doUpdate("INSERT INTO INSTANCIACATEGORIA (IDTipoCategoria, valor) VALUES ('"+this.IDCategoria+"','"+elemento.toString()+"')");
+        refrescarLista();
+
+
+
+
+    }//GEN-LAST:event_botonAgregarElementoMouseClicked
+
+
+
 
     public void refrescarLista(){
 
