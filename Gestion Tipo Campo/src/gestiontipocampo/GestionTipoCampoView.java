@@ -231,7 +231,7 @@ public class GestionTipoCampoView extends FrameView {
             if(resultado.next()){
                 for(int i = 1; i<=resultado.getMetaData().getColumnCount()/*resultado.getObject(i) != null*/; ++i){
                     valores += resultado.getObject(i)!=null?resultado.getObject(i).toString() + ";":";";
-                    System.out.println("val: "+ valores);
+                   // System.out.println("val: "+ valores);
                 }               
             }
         } catch (SQLException e) {
@@ -1243,19 +1243,25 @@ public class GestionTipoCampoView extends FrameView {
 //                System.out.println("cantidda valores en vector "+valoresEspSep[0]+valoresEspSep[1]);
                 if(valoresEspSep[3].equalsIgnoreCase("true")){
                     this.radioNomUnicoSi.setSelected(true);
+                    this.radioNomUnicoNo.setSelected(false);
                 }else{
+                    this.radioNomUnicoSi.setSelected(false);
                     this.radioNomUnicoNo.setSelected(true);
                 }
                 this.valorNumTerminos.setText(valoresEspSep[4]);
                 this.valorNumNiveles.setText(valoresEspSep[5]);
                 if(valoresEspSep[8].equalsIgnoreCase("true")){
                     this.radioCategoriasSi.setSelected(true);
+                    this.radioCategoriasNo.setSelected(false);
                 }else{
+                    this.radioCategoriasSi.setSelected(false);
                     this.radioCategoriasNo.setSelected(true);
                 }
                 if(valoresEspSep[9].equalsIgnoreCase("true")){
                     this.radioNivelesSi.setSelected(true);
+                    this.radioNivelesNo.setSelected(false);
                 }else{
+                    this.radioNivelesSi.setSelected(false);
                     this.radioNivelesNo.setSelected(true);
                 }
                 //this.comboCategorias.setSelectedIndex(Integer.parseInt(valoresEspSep[10]));

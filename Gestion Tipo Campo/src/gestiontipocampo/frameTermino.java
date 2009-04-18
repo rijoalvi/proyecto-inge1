@@ -24,12 +24,13 @@ public class frameTermino extends javax.swing.JFrame {
         initComponents();
     }
 
-    public frameTermino(int IDJerarquia, int IDNodoPadre, int estado, frameBuscarTerminos padre, String nombre) {
+    public frameTermino(int IDJerarquia, int IDNodoPadre, int estado, frameBuscarTerminos padre, String nombre, int nivel) {
         this.IDJerarquia = IDJerarquia;
         this.IDNodoPadre = IDNodoPadre;
         this.framePadre = padre;
         nombreJer = nombre;
         this.estado = estado;
+        this.numNivel = nivel;
         initComponents();
         buscador = new ControladorBD();
         if (estado == 1) {
@@ -207,36 +208,61 @@ public class frameTermino extends javax.swing.JFrame {
 
     public void llenarComboCategoria() {
         comboCategoria.removeAllItems();
-        getIDCategoria();
-        if (IDCategoria < 0) {
-            comboCategoria.setVisible(false);
-            comboCategoria.setEditable(false);
-            labelCategoria.setVisible(false);
-            this.repaint();
-        } else {
-            try {
-                ResultSet resultado = buscador.getResultSet("select ID, valor from INSTANCIACATEGORIA where IDTIpoCategoria = " + IDCategoria + ";");
-                while (resultado.next()) {
-                    String ID = resultado.getObject("ID").toString();
-                    String valor = resultado.getObject("valor").toString();
-                    comboCategoria.addItem(makeObj(valor, Integer.parseInt(ID)));
+        if( tieneCategorias() ){ //para q no se caiga con jerarquias no relacionadas a categorias
+            getIDCategoria();
+            comboCategoria.setVisible(true);
+            labelCategoria.setVisible(true);
+            if (IDCategoria < 0) {
+                comboCategoria.setVisible(false);
+                comboCategoria.setEditable(false);
+                labelCategoria.setVisible(false);
+                this.repaint();
+            } else {
+                try {
+                    ResultSet resultado = buscador.getResultSet("select ID, valor from INSTANCIACATEGORIA where IDTIpoCategoria = " + IDCategoria + ";");
+                    while (resultado.next()) {
+                        String ID = resultado.getObject("ID").toString();
+                        String valor = resultado.getObject("valor").toString();
+                        comboCategoria.addItem(makeObj(valor, Integer.parseInt(ID)));
+                    }
+                } catch (SQLException e) {
+                    System.out.println("*SQL Exception: *" + e.toString());
                 }
-            } catch (SQLException e) {
-                System.out.println("*SQL Exception: *" + e.toString());
             }
+        }
+        else{
+            comboCategoria.setVisible(false);
+            labelCategoria.setVisible(false);
         }
     }
 
+    private boolean tieneCategorias(){
+        String valor = "";
+        try {
+            ResultSet resultado = buscador.getResultSet("select conCategorias from JERARQUIA where correlativo = '" + IDJerarquia + "'");
+            if (resultado.next()) {
+                valor += resultado.getObject("IDNodoRaiz").toString(); //IDRaiz
+            }
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception: *" + e.toString());
+        }
+        if(valor.equalsIgnoreCase("true")) //Si utiliza categorias
+            return true;
+        return false;
+    }
+
     private void agregarNodo() {
+        System.out.println("entro!");
         String nombre = campoNombre.getText();
         String descripcion = campoDescripcion.getText();
         if (comboCategoria.isVisible()) {
             int categoria = comboCategoria.getSelectedItem().hashCode();
-            buscador.doUpdate("insert into NODO (IDInstanciaCategoria, nombre, descripcion, IDNodoPadre) values (" + categoria + ", '" + nombre + "', '" + descripcion + "', " + IDNodoPadre + ");");
+            buscador.doUpdate("insert into NODO (IDInstanciaCategoria, nombre, descripcion, IDNodoPadre, numNivel) values (" + categoria + ", '" + nombre + "', '" + descripcion + "', " + IDNodoPadre + ", "+ (numNivel+1) + ");");
         } else {
-            buscador.doUpdate("insert into NODO (nombre, descripcion, IDNodoPadre) values ('" + nombre + "', '" + descripcion + "', " + IDNodoPadre + ");");
+            buscador.doUpdate("insert into NODO (nombre, descripcion, IDNodoPadre, numNivel) values ('" + nombre + "', '" + descripcion + "', " + IDNodoPadre + ", "+ (numNivel+1) + ");");
         }
-   //     buscador.doUpdate("update into JERARQUIA (numeroDeTerminos) values ("  ");");
+        System.out.println("antes d aumentar termino!");
+        framePadre.cambiarNumTerminos(1);
         framePadre.llenarTreeViewJerarquia(nombreJer);
     }
 
@@ -294,6 +320,7 @@ public class frameTermino extends javax.swing.JFrame {
     private int IDJerarquia;
     private int IDCategoria;
     private int estado;
+    private int numNivel;
     ControladorBD buscador;
     frameBuscarTerminos framePadre;
     String nombreJer;

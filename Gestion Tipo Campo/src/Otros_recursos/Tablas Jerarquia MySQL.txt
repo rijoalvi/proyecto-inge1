@@ -10,7 +10,6 @@ CREATE TABLE JERARQUIA(
 	configuracionXML            varchar(100),
 	conCategorias               varchar(6),
 	conNombreNiveles            varchar(6),
-	conteoNivelesAutomatico     varchar(6),
 	IDTipoCategoria             int,
   PRIMARY KEY (correlativo)
 );
