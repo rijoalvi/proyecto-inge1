@@ -9,7 +9,10 @@ import java.util.Vector;
  *
  * @author Administrator
  */
-public class Lista {
-    private int Correlativo;
+public class Lista extends TipoCampo{
+    private int correlativo;
     private Vector miembroLista;
+    public Lista(){
+        
+    }
 }

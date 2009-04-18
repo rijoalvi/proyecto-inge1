@@ -10,9 +10,9 @@ package gestiontipocampo;
  * @author Administrator
  */
 public class TipoCampo {
-    private int correlativo;
-    private String nombre;
-    private String descripcion;
-    private String ultimaActualizacion;
+    protected int correlativo;
+    protected String nombre;
+    protected String descripcion;
+    protected String ultimaActualizacion;
   
 }
