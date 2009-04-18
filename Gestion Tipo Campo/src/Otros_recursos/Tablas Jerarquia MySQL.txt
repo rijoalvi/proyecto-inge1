@@ -1,16 +1,17 @@
 drop table JERARQUIA;
 CREATE TABLE JERARQUIA(
-    correlativo                 int auto_increment NOT NULL,
+    correlativo                 int NOT NULL,
 	nombreJerarquia             varchar(50),
     IDNodoRaiz                  int,
-	repeticionNombreNodo        bool,
+	repeticionNombreNodo        varchar(6),
 	numeroDeTerminos            int,
 	numeroDeNiveles             int,
 	fechaCreacion               datetime,
 	configuracionXML            varchar(100),
-	conCategorias               bool,
-	conteoNivelesAutomatico     bool,
-	IDTIpoCategoria             int,
+	conCategorias               varchar(6),
+	conNombreNiveles            varchar(6),
+	conteoNivelesAutomatico     varchar(6),
+	IDTipoCategoria             int,
   PRIMARY KEY (correlativo)
 );
 
@@ -19,36 +20,47 @@ drop table NODO;
 CREATE TABLE NODO(
 	ID                              int auto_increment NOT NULL,
 	IDInstanciaCategoria			int,
-	nombre                          varchar(20),
-	descripcion                     varchar(20),
+	nombre                          varchar(30),
+	descripcion                     varchar(100),
 	fechaCreacion                   datetime,
 	fechaUltimaModificacion			datetime,
 	IDNodoPadre                   	int,
-    esHoja                          bool,
+    esHoja                          varchar(6),
 	PRIMARY KEY (ID)
 );
 
-drop table RELACIONHIJO;
-CREATE TABLE RELACIONHIJO(
-	ID                              int auto_increment NOT NULL,
-	IDNodoPadre                     int,
-	IDNodoHijo                      int,
-	PRIMARY KEY (ID)
-);
+
+
 
 drop TABLE TIPOCATEGORIA;
 CREATE TABLE TIPOCATEGORIA(
 	ID                              int auto_increment NOT NULL,
-	nombre                          varchar(20),
-	descripcion                     varchar(20),
+	nombre                          varchar(30),
+	descripcion                     varchar(50),
   PRIMARY KEY (ID)
 );
 
 drop TABLE INSTANCIACATEGORIA;
 CREATE TABLE INSTANCIACATEGORIA(
 	ID                          	int auto_increment NOT NULL,
-	IDTIpoCategoria             	int,
-	valor                           varchar(20),
+	IDTipoCategoria             	int,
+	valor                           varchar(30),
+  PRIMARY KEY (ID)
+);
+
+drop TABLE NOMBRENIVEL;
+CREATE TABLE NOMBRENIVEL(
+	ID                              int auto_increment NOT NULL,
+	nombre                          varchar(30),
+	descripcion                     varchar(50),
+  PRIMARY KEY (ID)
+);
+
+drop TABLE INSTANCIANOMBRENIVEL;
+CREATE TABLE INSTANCIANOMBRENIVEL(
+	ID                          	int auto_increment NOT NULL,
+	IDNombreNivel                	int,
+	valor                           varchar(30),
   PRIMARY KEY (ID)
 )
 
