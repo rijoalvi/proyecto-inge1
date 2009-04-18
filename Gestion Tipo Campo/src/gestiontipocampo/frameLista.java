@@ -20,9 +20,11 @@ public class frameLista extends javax.swing.JFrame {
     /** Creates new form frameLista */
     public frameLista() {
         initComponents();
+        Modelo  miModelo = new Modelo();
+        lista.setListData(miModelo.getModeloEnVector("select * from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo=31","valor","IDLIsta"));
     //comboCategorias.setBounds(120, 90, 90, 20);//con esto creo que me quito la maldicion del combo, porque netbeans no se va a atrever a modificar este codigo
-    Modelo  miModelo = new Modelo();
-    lista.setModel(new javax.swing.DefaultComboBoxModel(miModelo.getModeloDeCombo("select nombre, ID from TIPOCATEGORIA;")));
+  //  Modelo  miModelo = new Modelo();
+    //lista.setModel(new javax.swing.DefaultComboBoxModel(miModelo.getModeloDeCombo("select nombre, ID from TIPOCATEGORIA;")));
     }
 
     /** This method is called from within the constructor to
@@ -37,7 +39,7 @@ public class frameLista extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         lista = new javax.swing.JList();
         botonAgregar = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        campoTextoEntrada = new javax.swing.JTextField();
         botonBorrar = new javax.swing.JButton();
         botonPorDefecto = new javax.swing.JButton();
         botonSalir = new javax.swing.JButton();
@@ -57,12 +59,12 @@ public class frameLista extends javax.swing.JFrame {
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
-        lista.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         lista.setName("lista"); // NOI18N
+        lista.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listaValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(lista);
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameLista.class);
@@ -74,8 +76,8 @@ public class frameLista extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setText(resourceMap.getString("jTextField1.text")); // NOI18N
-        jTextField1.setName("jTextField1"); // NOI18N
+        campoTextoEntrada.setText(resourceMap.getString("campoTextoEntrada.text")); // NOI18N
+        campoTextoEntrada.setName("campoTextoEntrada"); // NOI18N
 
         botonBorrar.setText(resourceMap.getString("botonBorrar.text")); // NOI18N
         botonBorrar.setName("botonBorrar"); // NOI18N
@@ -107,7 +109,7 @@ public class frameLista extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botonSalir))
                     .addComponent(jScrollPane1)
-                    .addComponent(jTextField1))
+                    .addComponent(campoTextoEntrada))
                 .addContainerGap(152, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -116,7 +118,7 @@ public class frameLista extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(campoTextoEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonAgregar)
@@ -146,9 +148,14 @@ public class frameLista extends javax.swing.JFrame {
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // TODO add your handling code here:
 
-                Modelo  miModelo = new Modelo();
-        lista.setListData(miModelo.getModeloEnVector("select * from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo=31","valor","IDLIsta"));
+
     }//GEN-LAST:event_formComponentShown
+
+    private void listaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaValueChanged
+        // TODO add your handling code here:
+        campoTextoEntrada.setText( lista.getSelectedValue().toString());
+
+    }//GEN-LAST:event_listaValueChanged
 
     /**
     * @param args the command line arguments
@@ -166,8 +173,8 @@ public class frameLista extends javax.swing.JFrame {
     private javax.swing.JButton botonBorrar;
     private javax.swing.JButton botonPorDefecto;
     private javax.swing.JButton botonSalir;
+    private javax.swing.JTextField campoTextoEntrada;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JList lista;
     // End of variables declaration//GEN-END:variables
 
