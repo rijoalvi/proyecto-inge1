@@ -5,16 +5,16 @@ CREATE TABLE BINARIO(
   valor1        varchar(20) NOT NULL,
   nombre2       varchar(20) NOT NULL,
   valor2        varchar(20) NOT NULL,
-  valorDefecto  varchar(20) NOT NULL,
+  valorDefecto  varchar(6) NOT NULL,
   PRIMARY KEY (correlativo)
 );
 
 -- Tabla "FECHAHORA"
 CREATE TABLE FECHAHORA(
   correlativo int NOT NULL,
-  despliegue varchar(8) NOT NULL,
+  despliegue varchar(20) NOT NULL,
   fechaDefecto datetime,
-  vencimiento bit,
+  vencimiento varchar(10),
   preaviso int,
   PRIMARY KEY (correlativo)
 );

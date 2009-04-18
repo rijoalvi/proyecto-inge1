@@ -198,20 +198,40 @@ public class GestionTipoCampoView extends FrameView {
     }
 
     /**
+     * Encargado de buscar los valores TIPOCAMPO segun el nombre en la base de datos
+     * @param nombre: Indica el nombre del tipo de campo que va a buscar
+     */
+    public String getIDTipoCampo(String nombre){
+        ControladorBD buscador = new ControladorBD();
+        String valores = "";
+        try {
+            ResultSet resultado = buscador.getResultSet("select correlativo from TIPOCAMPO where nombre = '" + nombre + "';");
+            if(resultado.next()){
+                valores += resultado.getObject("correlativo").toString();
+            }
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception: *" + e.toString());
+        }
+        return valores;
+    }
+
+
+    /**
      * Encargado de buscar el valor del nombre en la base de datos
      * @param ID: Indica el ID del campo que va a buscar
      * @param tipo: Indica el tipo de campo que va a buscar
      */
     public String buscarPorTipoEnBD(int ID, int tipo){
-        System.out.println("entro");
+        System.out.println("entro con ID: " + ID + " tipo: "+ tipo);
         ControladorBD buscador = new ControladorBD();
-        String [] tiposCampo = {"NUMERO", "BINARIO", "FECHAHORA", "TEXTO", "INCREMENTAL","JERARQUIA"};
+        String [] tiposCampo = {"NUMERO", "BINARIO", "FECHAHORA", "TEXTO", "INCREMENTAL", "JERARQUIA"};
         String valores = "";
-        try {
+        try { 
             ResultSet resultado = buscador.getResultSet("select * from " + tiposCampo[tipo-1] + " where correlativo = '" + Integer.toString(ID) + "';");
             if(resultado.next()){
                 for(int i = 1; i<=resultado.getMetaData().getColumnCount()/*resultado.getObject(i) != null*/; ++i){
                     valores += resultado.getObject(i)!=null?resultado.getObject(i).toString() + ";":";";
+                    System.out.println("val: "+ valores);
                 }               
             }
         } catch (SQLException e) {
@@ -287,6 +307,13 @@ public class GestionTipoCampoView extends FrameView {
         radioNomUnicoNo = new javax.swing.JRadioButton();
         jLabel23 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel20 = new javax.swing.JLabel();
+        comboNiveles = new javax.swing.JComboBox();
+        botonAgregarNivel = new javax.swing.JButton();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        valorNumNiveles = new javax.swing.JTextField();
+        valorNumTerminos = new javax.swing.JTextField();
         paneTexto = new javax.swing.JLayeredPane();
         jLabel16 = new javax.swing.JLabel();
         valorTextoLargo = new javax.swing.JTextField();
@@ -455,33 +482,33 @@ public class GestionTipoCampoView extends FrameView {
 
         jLabel4.setText(resourceMap.getString("jLabel4.text")); // NOI18N
         jLabel4.setName("jLabel4"); // NOI18N
-        jLabel4.setBounds(10, 10, 110, 14);
+        jLabel4.setBounds(10, 10, 110, -1);
         paneNumero.add(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorNumDecimales.setEditable(false);
         valorNumDecimales.setName("valorNumDecimales"); // NOI18N
-        valorNumDecimales.setBounds(10, 30, 120, 20);
+        valorNumDecimales.setBounds(10, 30, 120, -1);
         paneNumero.add(valorNumDecimales, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel5.setText(resourceMap.getString("jLabel5.text")); // NOI18N
         jLabel5.setName("jLabel5"); // NOI18N
-        jLabel5.setBounds(200, 10, 50, 14);
+        jLabel5.setBounds(200, 10, 50, -1);
         paneNumero.add(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorNumeroMascara.setEditable(false);
         valorNumeroMascara.setName("valorNumeroMascara"); // NOI18N
-        valorNumeroMascara.setBounds(200, 30, 120, 20);
+        valorNumeroMascara.setBounds(200, 30, 120, -1);
         paneNumero.add(valorNumeroMascara, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorValorDefectoNumero.setEditable(false);
         valorValorDefectoNumero.setText(resourceMap.getString("valorValorDefectoNumero.text")); // NOI18N
         valorValorDefectoNumero.setName("valorValorDefectoNumero"); // NOI18N
-        valorValorDefectoNumero.setBounds(10, 80, 120, 20);
+        valorValorDefectoNumero.setBounds(10, 80, 120, -1);
         paneNumero.add(valorValorDefectoNumero, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel12.setText(resourceMap.getString("jLabel12.text")); // NOI18N
         jLabel12.setName("jLabel12"); // NOI18N
-        jLabel12.setBounds(10, 60, 90, 14);
+        jLabel12.setBounds(10, 60, 90, -1);
         paneNumero.add(jLabel12, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneNumero.setBounds(30, 0, 410, 190);
@@ -579,13 +606,13 @@ public class GestionTipoCampoView extends FrameView {
 
         labelCategorias.setText(resourceMap.getString("labelCategorias.text")); // NOI18N
         labelCategorias.setName("labelCategorias"); // NOI18N
-        labelCategorias.setBounds(130, 60, 60, 14);
+        labelCategorias.setBounds(150, 60, 60, 14);
         paneJerarquia.add(labelCategorias, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         comboCategorias.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1- Categoria 1", "2- Categoria 2", "3- Categoría 3", "4- Categoría 4" }));
         comboCategorias.setEnabled(false);
         comboCategorias.setName("comboCategorias"); // NOI18N
-        comboCategorias.setBounds(130, 80, 130, 20);
+        comboCategorias.setBounds(150, 80, 130, 20);
         paneJerarquia.add(comboCategorias, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         botonAgregarCategoria.setText(resourceMap.getString("botonAgregarCategoria.text")); // NOI18N
@@ -595,10 +622,11 @@ public class GestionTipoCampoView extends FrameView {
                 botonAgregarCategoriaActionPerformed(evt);
             }
         });
-        botonAgregarCategoria.setBounds(280, 80, 130, 23);
+        botonAgregarCategoria.setBounds(300, 80, 130, 23);
         paneJerarquia.add(botonAgregarCategoria, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         radioNivelesSi.setText(resourceMap.getString("radioNivelesSi.text")); // NOI18N
+        radioNivelesSi.setEnabled(false);
         radioNivelesSi.setName("radioNivelesSi"); // NOI18N
         radioNivelesSi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -609,6 +637,7 @@ public class GestionTipoCampoView extends FrameView {
         paneJerarquia.add(radioNivelesSi, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         radioNivelesNo.setText(resourceMap.getString("radioNivelesNo.text")); // NOI18N
+        radioNivelesNo.setEnabled(false);
         radioNivelesNo.setName("radioNivelesNo"); // NOI18N
         radioNivelesNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -624,6 +653,7 @@ public class GestionTipoCampoView extends FrameView {
         paneJerarquia.add(jLabel21, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         radioCategoriasSi.setText(resourceMap.getString("radioCategoriasSi.text")); // NOI18N
+        radioCategoriasSi.setEnabled(false);
         radioCategoriasSi.setName("radioCategoriasSi"); // NOI18N
         radioCategoriasSi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -634,6 +664,7 @@ public class GestionTipoCampoView extends FrameView {
         paneJerarquia.add(radioCategoriasSi, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         radioCategoriasNo.setText(resourceMap.getString("radioCategoriasNo.text")); // NOI18N
+        radioCategoriasNo.setEnabled(false);
         radioCategoriasNo.setName("radioCategoriasNo"); // NOI18N
         radioCategoriasNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -644,11 +675,13 @@ public class GestionTipoCampoView extends FrameView {
         paneJerarquia.add(radioCategoriasNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel22.setText(resourceMap.getString("jLabel22.text")); // NOI18N
+        jLabel22.setEnabled(false);
         jLabel22.setName("jLabel22"); // NOI18N
         jLabel22.setBounds(20, 60, 80, 14);
         paneJerarquia.add(jLabel22, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         radioNomUnicoSi.setText(resourceMap.getString("radioNomUnicoSi.text")); // NOI18N
+        radioNomUnicoSi.setEnabled(false);
         radioNomUnicoSi.setName("radioNomUnicoSi"); // NOI18N
         radioNomUnicoSi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -659,6 +692,7 @@ public class GestionTipoCampoView extends FrameView {
         paneJerarquia.add(radioNomUnicoSi, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         radioNomUnicoNo.setText(resourceMap.getString("radioNomUnicoNo.text")); // NOI18N
+        radioNomUnicoNo.setEnabled(false);
         radioNomUnicoNo.setName("radioNomUnicoNo"); // NOI18N
         radioNomUnicoNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -669,6 +703,7 @@ public class GestionTipoCampoView extends FrameView {
         paneJerarquia.add(radioNomUnicoNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel23.setText(resourceMap.getString("jLabel23.text")); // NOI18N
+        jLabel23.setEnabled(false);
         jLabel23.setName("jLabel23"); // NOI18N
         jLabel23.setBounds(20, 110, 70, 14);
         paneJerarquia.add(jLabel23, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -680,8 +715,51 @@ public class GestionTipoCampoView extends FrameView {
                 jButton1ActionPerformed(evt);
             }
         });
-        jButton1.setBounds(280, 30, 130, 23);
+        jButton1.setBounds(300, 130, 130, 23);
         paneJerarquia.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel20.setText(resourceMap.getString("jLabel20.text")); // NOI18N
+        jLabel20.setName("jLabel20"); // NOI18N
+        jLabel20.setBounds(150, 10, 34, 14);
+        paneJerarquia.add(jLabel20, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        comboNiveles.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1- Categoria 1", "2- Categoria 2", "3- Categoría 3", "4- Categoría 4" }));
+        comboNiveles.setEnabled(false);
+        comboNiveles.setName("comboNiveles"); // NOI18N
+        comboNiveles.setBounds(150, 30, 130, 20);
+        paneJerarquia.add(comboNiveles, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        botonAgregarNivel.setText(resourceMap.getString("botonAgregarNivel.text")); // NOI18N
+        botonAgregarNivel.setName("botonAgregarNivel"); // NOI18N
+        botonAgregarNivel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAgregarNivelActionPerformed(evt);
+            }
+        });
+        botonAgregarNivel.setBounds(300, 30, 130, 23);
+        paneJerarquia.add(botonAgregarNivel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel24.setText(resourceMap.getString("jLabel24.text")); // NOI18N
+        jLabel24.setName("jLabel24"); // NOI18N
+        jLabel24.setBounds(150, 160, 110, 14);
+        paneJerarquia.add(jLabel24, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel25.setText(resourceMap.getString("jLabel25.text")); // NOI18N
+        jLabel25.setName("jLabel25"); // NOI18N
+        jLabel25.setBounds(20, 160, 110, 14);
+        paneJerarquia.add(jLabel25, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        valorNumNiveles.setText(resourceMap.getString("valorNumNiveles.text")); // NOI18N
+        valorNumNiveles.setEnabled(false);
+        valorNumNiveles.setName("valorNumNiveles"); // NOI18N
+        valorNumNiveles.setBounds(150, 180, 70, 20);
+        paneJerarquia.add(valorNumNiveles, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        valorNumTerminos.setText(resourceMap.getString("valorNumTerminos.text")); // NOI18N
+        valorNumTerminos.setEnabled(false);
+        valorNumTerminos.setName("valorNumTerminos"); // NOI18N
+        valorNumTerminos.setBounds(20, 180, 70, 20);
+        paneJerarquia.add(valorNumTerminos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneJerarquia.setBounds(20, -10, 470, 250);
         panePrincipal.add(paneJerarquia, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -690,22 +768,22 @@ public class GestionTipoCampoView extends FrameView {
 
         jLabel16.setText(resourceMap.getString("jLabel16.text")); // NOI18N
         jLabel16.setName("jLabel16"); // NOI18N
-        jLabel16.setBounds(20, 10, 100, 20);
+        jLabel16.setBounds(80, 10, 100, 20);
         paneTexto.add(jLabel16, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorTextoLargo.setEditable(false);
         valorTextoLargo.setName("valorTextoLargo"); // NOI18N
-        valorTextoLargo.setBounds(20, 30, 120, 20);
+        valorTextoLargo.setBounds(80, 30, 120, 20);
         paneTexto.add(valorTextoLargo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel18.setText(resourceMap.getString("jLabel18.text")); // NOI18N
         jLabel18.setName("jLabel18"); // NOI18N
-        jLabel18.setBounds(210, 10, 100, 20);
+        jLabel18.setBounds(260, 10, 100, 20);
         paneTexto.add(jLabel18, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorTextoDefecto.setEditable(false);
         valorTextoDefecto.setName("valorTextoDefecto"); // NOI18N
-        valorTextoDefecto.setBounds(210, 30, 120, 20);
+        valorTextoDefecto.setBounds(260, 30, 120, 20);
         paneTexto.add(valorTextoDefecto, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneTexto.setBounds(-30, 30, 410, 180);
@@ -1006,12 +1084,15 @@ public class GestionTipoCampoView extends FrameView {
 }//GEN-LAST:event_botonEditarMouseClicked
 
     private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
-        String valoresGlobales = buscarDatosEnBD(valorNombreGeneral.getText());
+   /*     String valoresGlobales = buscarDatosEnBD(valorNombreGeneral.getText());
         String [] valoresSeparados = valoresGlobales.split(";");
         String valoresEspecificos = buscarPorTipoEnBD(Integer.parseInt(valoresSeparados[0]), Integer.parseInt(valoresSeparados[4]));
         String [] valoresEspSep = valoresEspecificos.split(";");
+    */
+        String ID = getIDTipoCampo(valorNombreGeneral.getText());
         ocultarPanes();
-        frameManejoCampos ventanaManejoCampos = new frameManejoCampos(valoresSeparados, valoresEspSep);
+        frameManejoCampos ventanaManejoCampos = new frameManejoCampos();
+        ventanaManejoCampos.llenarFormularioCampos(ID);
         JFrame mainFrame = GestionTipoCampoApp.getApplication().getMainFrame();
         //coloca el frame segun como este ubicada la ventana principal
         ventanaManejoCampos.setLocationRelativeTo(mainFrame);
@@ -1044,14 +1125,14 @@ public class GestionTipoCampoView extends FrameView {
     private void radioNivelesSiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNivelesSiActionPerformed
         if (radioNivelesSi.isSelected() == true) {
             radioNivelesNo.setSelected(false);
-            //comboNiveles.setEnabled(true);
+            comboNiveles.setEnabled(true);
         }
 }//GEN-LAST:event_radioNivelesSiActionPerformed
 
     private void radioNivelesNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNivelesNoActionPerformed
         if (radioNivelesNo.isSelected() == true) {
             radioNivelesSi.setSelected(false);
-            //comboNiveles.setEnabled(false);
+            comboNiveles.setEnabled(false);
         }
 }//GEN-LAST:event_radioNivelesNoActionPerformed
 
@@ -1092,15 +1173,17 @@ public class GestionTipoCampoView extends FrameView {
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void paneDatosAbrirComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_paneDatosAbrirComponentShown
-        // TODO add your handling code here:
         botonEditar.setBounds(240, 330, 80, 20);
     }//GEN-LAST:event_paneDatosAbrirComponentShown
 
     private void paneJerarquiaComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_paneJerarquiaComponentShown
-        // TODO add your handling code here:
         Modelo  miModelo = new Modelo();
-    comboCategorias.setModel(new javax.swing.DefaultComboBoxModel(miModelo.getModeloDeCombo("select nombre, ID from TIPOCATEGORIA;")));
+        comboCategorias.setModel(new javax.swing.DefaultComboBoxModel(miModelo.getModeloDeCombo("select nombre, ID from TIPOCATEGORIA;")));
     }//GEN-LAST:event_paneJerarquiaComponentShown
+
+    private void botonAgregarNivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarNivelActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_botonAgregarNivelActionPerformed
 
     public void llenarDatosReadOnly(String nombre, int tipo){
         //Trae todos los valores de la tabla TIPOCAMPO
@@ -1125,11 +1208,11 @@ public class GestionTipoCampoView extends FrameView {
                 valorNombreBinario2.setText(valoresEspSep[3]);
                 valorOpcionBinaria2.setText(valoresEspSep[4]);
                 if(valoresEspSep[5].equals("true")){
-                    radioOpcionBinaria1.setSelected(false);
-                    radioOpcionBinaria2.setSelected(true);
-                }else{
                     radioOpcionBinaria1.setSelected(true);
                     radioOpcionBinaria2.setSelected(false);
+                }else{
+                    radioOpcionBinaria1.setSelected(false);
+                    radioOpcionBinaria2.setSelected(true);
                 }
                 break;
             //FechaHora
@@ -1157,18 +1240,25 @@ public class GestionTipoCampoView extends FrameView {
                 break;
                 //Jerarquia
             case(6):
-                System.out.println("cantidda valores en vector "+valoresEspSep[0]+valoresEspSep[1]);
+//                System.out.println("cantidda valores en vector "+valoresEspSep[0]+valoresEspSep[1]);
                 if(valoresEspSep[3].equalsIgnoreCase("true")){
                     this.radioNomUnicoSi.setSelected(true);
                 }else{
                     this.radioNomUnicoNo.setSelected(true);
                 }
+                this.valorNumTerminos.setText(valoresEspSep[4]);
+                this.valorNumNiveles.setText(valoresEspSep[5]);
                 if(valoresEspSep[8].equalsIgnoreCase("true")){
                     this.radioCategoriasSi.setSelected(true);
                 }else{
                     this.radioCategoriasNo.setSelected(true);
                 }
-                this.comboCategorias.setSelectedIndex(Integer.parseInt(valoresEspSep[10]));
+                if(valoresEspSep[9].equalsIgnoreCase("true")){
+                    this.radioNivelesSi.setSelected(true);
+                }else{
+                    this.radioNivelesNo.setSelected(true);
+                }
+                //this.comboCategorias.setSelectedIndex(Integer.parseInt(valoresEspSep[10]));
                 break;
 
             default:
@@ -1325,6 +1415,7 @@ public class GestionTipoCampoView extends FrameView {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTree arbolPrincipal;
     private javax.swing.JButton botonAgregarCategoria;
+    private javax.swing.JButton botonAgregarNivel;
     private javax.swing.JButton botonCancelarPanel;
     private javax.swing.JButton botonEditar;
     private java.awt.Canvas canvas1;
@@ -1333,6 +1424,7 @@ public class GestionTipoCampoView extends FrameView {
     private java.awt.Canvas canvas4;
     private javax.swing.JComboBox comboCategorias;
     private javax.swing.JComboBox comboFormatoFecha;
+    private javax.swing.JComboBox comboNiveles;
     private javax.swing.JComboBox comboTipos;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -1348,9 +1440,12 @@ public class GestionTipoCampoView extends FrameView {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1404,6 +1499,8 @@ public class GestionTipoCampoView extends FrameView {
     private javax.swing.JTextField valorNombreGeneral;
     private javax.swing.JTextField valorNota;
     private javax.swing.JTextField valorNumDecimales;
+    private javax.swing.JTextField valorNumNiveles;
+    private javax.swing.JTextField valorNumTerminos;
     private javax.swing.JTextField valorNumeroMascara;
     private javax.swing.JTextField valorOpcionBinaria1;
     private javax.swing.JTextField valorOpcionBinaria2;

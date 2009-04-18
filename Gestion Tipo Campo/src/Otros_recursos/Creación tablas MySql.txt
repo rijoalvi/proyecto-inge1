@@ -12,9 +12,9 @@ CREATE TABLE BINARIO(
 -- Tabla "FECHAHORA"
 CREATE TABLE FECHAHORA(
   correlativo int NOT NULL,
-  despliegue varchar(25) NOT NULL,
+  despliegue varchar(20) NOT NULL,
   fechaDefecto datetime,
-  vencimiento bit,
+  vencimiento varchar(10),
   preaviso int,
   PRIMARY KEY (correlativo)
 );

@@ -26,6 +26,7 @@ CREATE TABLE NODO(
 	fechaUltimaModificacion			datetime,
 	IDNodoPadre                   	int,
     esHoja                          varchar(6),
+    numNivel                        int,
 	PRIMARY KEY (ID)
 );
 

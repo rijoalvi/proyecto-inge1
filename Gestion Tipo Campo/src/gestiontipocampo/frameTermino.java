@@ -236,6 +236,7 @@ public class frameTermino extends javax.swing.JFrame {
         } else {
             buscador.doUpdate("insert into NODO (nombre, descripcion, IDNodoPadre) values ('" + nombre + "', '" + descripcion + "', " + IDNodoPadre + ");");
         }
+   //     buscador.doUpdate("update into JERARQUIA (numeroDeTerminos) values ("  ");");
         framePadre.llenarTreeViewJerarquia(nombreJer);
     }
 

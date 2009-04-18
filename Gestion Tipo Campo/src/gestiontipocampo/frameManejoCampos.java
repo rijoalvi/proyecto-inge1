@@ -179,6 +179,9 @@ public class frameManejoCampos extends javax.swing.JFrame {
         radioNomUnicoSi = new javax.swing.JRadioButton();
         radioNomUnicoNo = new javax.swing.JRadioButton();
         jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        comboNiveles = new javax.swing.JComboBox();
+        botonAgregarNivel = new javax.swing.JButton();
         paneBinario = new javax.swing.JLayeredPane();
         jLabel7 = new javax.swing.JLabel();
         valorNombreBinario1 = new javax.swing.JTextField();
@@ -276,13 +279,13 @@ public class frameManejoCampos extends javax.swing.JFrame {
 
         labelCategorias.setText(resourceMap.getString("labelCategorias.text")); // NOI18N
         labelCategorias.setName("labelCategorias"); // NOI18N
-        labelCategorias.setBounds(120, 70, 60, 14);
+        labelCategorias.setBounds(150, 70, 60, -1);
         paneJerarquia.add(labelCategorias, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         comboCategorias.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1- Categoria 1", "2- Categoria 2", "3- Categoría 3", "4- Categoría 4" }));
         comboCategorias.setEnabled(false);
         comboCategorias.setName("comboCategorias"); // NOI18N
-        comboCategorias.setBounds(120, 90, 90, 20);
+        comboCategorias.setBounds(150, 90, 90, -1);
         paneJerarquia.add(comboCategorias, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         botonAgregarCategoria.setText(resourceMap.getString("botonAgregarCategoria.text")); // NOI18N
@@ -292,7 +295,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 botonAgregarCategoriaActionPerformed(evt);
             }
         });
-        botonAgregarCategoria.setBounds(280, 90, 130, 23);
+        botonAgregarCategoria.setBounds(310, 90, 130, -1);
         paneJerarquia.add(botonAgregarCategoria, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         radioNivelesSi.setText(resourceMap.getString("radioNivelesSi.text")); // NOI18N
@@ -302,7 +305,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 radioNivelesSiActionPerformed(evt);
             }
         });
-        radioNivelesSi.setBounds(10, 40, 33, 23);
+        radioNivelesSi.setBounds(10, 40, -1, -1);
         paneJerarquia.add(radioNivelesSi, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         radioNivelesNo.setText(resourceMap.getString("radioNivelesNo.text")); // NOI18N
@@ -312,12 +315,12 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 radioNivelesNoActionPerformed(evt);
             }
         });
-        radioNivelesNo.setBounds(50, 40, 50, 23);
+        radioNivelesNo.setBounds(50, 40, 50, -1);
         paneJerarquia.add(radioNivelesNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel21.setText(resourceMap.getString("jLabel21.text")); // NOI18N
         jLabel21.setName("jLabel21"); // NOI18N
-        jLabel21.setBounds(10, 20, 130, 14);
+        jLabel21.setBounds(10, 20, 130, -1);
         paneJerarquia.add(jLabel21, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         radioCategoriasSi.setText(resourceMap.getString("radioCategoriasSi.text")); // NOI18N
@@ -327,7 +330,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 radioCategoriasSiActionPerformed(evt);
             }
         });
-        radioCategoriasSi.setBounds(10, 90, 33, 23);
+        radioCategoriasSi.setBounds(10, 90, -1, -1);
         paneJerarquia.add(radioCategoriasSi, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         radioCategoriasNo.setText(resourceMap.getString("radioCategoriasNo.text")); // NOI18N
@@ -337,12 +340,12 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 radioCategoriasNoActionPerformed(evt);
             }
         });
-        radioCategoriasNo.setBounds(50, 90, 50, 23);
+        radioCategoriasNo.setBounds(50, 90, 50, -1);
         paneJerarquia.add(radioCategoriasNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel22.setText(resourceMap.getString("jLabel22.text")); // NOI18N
         jLabel22.setName("jLabel22"); // NOI18N
-        jLabel22.setBounds(10, 70, 80, 14);
+        jLabel22.setBounds(10, 70, 80, -1);
         paneJerarquia.add(jLabel22, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         radioNomUnicoSi.setText(resourceMap.getString("radioNomUnicoSi.text")); // NOI18N
@@ -352,7 +355,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 radioNomUnicoSiActionPerformed(evt);
             }
         });
-        radioNomUnicoSi.setBounds(310, 40, 33, 23);
+        radioNomUnicoSi.setBounds(10, 140, -1, -1);
         paneJerarquia.add(radioNomUnicoSi, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         radioNomUnicoNo.setText(resourceMap.getString("radioNomUnicoNo.text")); // NOI18N
@@ -362,13 +365,34 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 radioNomUnicoNoActionPerformed(evt);
             }
         });
-        radioNomUnicoNo.setBounds(350, 40, 50, 23);
+        radioNomUnicoNo.setBounds(50, 140, 50, -1);
         paneJerarquia.add(radioNomUnicoNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel23.setText(resourceMap.getString("jLabel23.text")); // NOI18N
         jLabel23.setName("jLabel23"); // NOI18N
-        jLabel23.setBounds(320, 20, 70, 14);
+        jLabel23.setBounds(10, 120, 70, -1);
         paneJerarquia.add(jLabel23, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel24.setText(resourceMap.getString("jLabel24.text")); // NOI18N
+        jLabel24.setName("jLabel24"); // NOI18N
+        jLabel24.setBounds(150, 20, -1, -1);
+        paneJerarquia.add(jLabel24, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        comboNiveles.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1- Categoria 1", "2- Categoria 2", "3- Categoría 3", "4- Categoría 4" }));
+        comboNiveles.setEnabled(false);
+        comboNiveles.setName("comboNiveles"); // NOI18N
+        comboNiveles.setBounds(150, 40, 130, -1);
+        paneJerarquia.add(comboNiveles, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        botonAgregarNivel.setText(resourceMap.getString("botonAgregarNivel.text")); // NOI18N
+        botonAgregarNivel.setName("botonAgregarNivel"); // NOI18N
+        botonAgregarNivel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAgregarNivelActionPerformed(evt);
+            }
+        });
+        botonAgregarNivel.setBounds(300, 40, 130, -1);
+        paneJerarquia.add(botonAgregarNivel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneJerarquia.setBounds(0, 0, 490, 160);
         panePrincipal.add(paneJerarquia, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -1197,14 +1221,14 @@ private void valorBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN
 private void radioNivelesSiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNivelesSiActionPerformed
     if (radioNivelesSi.isSelected() == true) {
         radioNivelesNo.setSelected(false);
-        //comboNiveles.setEnabled(true);
+        comboNiveles.setEnabled(true);
     }
 }//GEN-LAST:event_radioNivelesSiActionPerformed
 
 private void radioNivelesNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNivelesNoActionPerformed
     if (radioNivelesNo.isSelected() == true) {
         radioNivelesSi.setSelected(false);
-        //comboNiveles.setEnabled(false);
+        comboNiveles.setEnabled(false);
     }
 }//GEN-LAST:event_radioNivelesNoActionPerformed
 
@@ -1239,6 +1263,10 @@ private void paneJerarquiaComponentShown(java.awt.event.ComponentEvent evt) {//G
     Modelo  miModelo = new Modelo();
     comboCategorias.setModel(new javax.swing.DefaultComboBoxModel(miModelo.getModeloDeCombo("select nombre, ID from TIPOCATEGORIA;")));
 }//GEN-LAST:event_paneJerarquiaComponentShown
+
+private void botonAgregarNivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarNivelActionPerformed
+    // TODO add your handling code here:
+}//GEN-LAST:event_botonAgregarNivelActionPerformed
 
     /**
      * Cambia la mascara del valorFechaDefecto
@@ -1283,6 +1311,7 @@ private void paneJerarquiaComponentShown(java.awt.event.ComponentEvent evt) {//G
                     this.valorOpcionBinaria1.setText(resultado.getObject(3).toString());
                     this.valorNombreBinario2.setText(resultado.getObject(4).toString());
                     this.valorOpcionBinaria2.setText(resultado.getObject(5).toString());
+                    System.out.println("valor por defecto: "+resultado.getObject(6).toString()+ " d la llave: " + llave);
                     if(resultado.getObject(6).toString().equalsIgnoreCase("true")){
                         this.radioOpcionBinaria1.setSelected(true);
                         this.radioOpcionBinaria2.setSelected(false);
@@ -1337,6 +1366,7 @@ private void paneJerarquiaComponentShown(java.awt.event.ComponentEvent evt) {//G
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAgregarCategoria;
+    private javax.swing.JButton botonAgregarNivel;
     private javax.swing.JButton botonBorrar;
     private javax.swing.JButton botonBorrar1;
     private javax.swing.JButton botonBusqueda;
@@ -1347,6 +1377,7 @@ private void paneJerarquiaComponentShown(java.awt.event.ComponentEvent evt) {//G
     private javax.swing.JButton botonGuardarComo1;
     private javax.swing.JComboBox comboCategorias;
     private javax.swing.JComboBox comboFormatoFecha;
+    private javax.swing.JComboBox comboNiveles;
     private javax.swing.JComboBox comboTipos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1364,6 +1395,7 @@ private void paneJerarquiaComponentShown(java.awt.event.ComponentEvent evt) {//G
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
