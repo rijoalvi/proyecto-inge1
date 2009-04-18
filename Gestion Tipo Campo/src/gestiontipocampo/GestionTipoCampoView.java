@@ -1202,7 +1202,7 @@ public class GestionTipoCampoView extends FrameView {
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         // TODO add your handling code here:
-        frameLista ventanaLista = new frameLista();
+        frameLista ventanaLista = new frameLista(31);
      //   ventanaManejoCampos.llenarFormularioCampos(ID);
        // JFrame mainFrame = GestionTipoCampoApp.getApplication().getMainFrame();
         //coloca el frame segun como este ubicada la ventana principal

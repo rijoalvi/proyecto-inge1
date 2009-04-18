@@ -10,9 +10,17 @@ package gestiontipocampo;
  * @author Administrator
  */
 public class TipoCampo {
-    protected int correlativo;
+    protected String correlativo;
     protected String nombre;
     protected String descripcion;
     protected String ultimaActualizacion;
+    @Override
+    public String toString(){
+        String aRetornar=
+        this.correlativo+"\n"+
+        this.nombre+"\n"+
+        this.descripcion+"\n";
+        return aRetornar;
+    }
   
 }

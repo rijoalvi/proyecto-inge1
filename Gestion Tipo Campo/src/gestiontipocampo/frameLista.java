@@ -18,10 +18,33 @@ package gestiontipocampo;
 public class frameLista extends javax.swing.JFrame {
 
     /** Creates new form frameLista */
+    public Lista miLista = new Lista();
     public frameLista() {
         initComponents();
-        Modelo  miModelo = new Modelo();
-        lista.setListData(miModelo.getModeloEnVector("select * from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo=31","valor","IDLIsta"));
+
+
+       // Modelo  miModelo = new Modelo();
+        //lista.setListData(miModelo.getModeloEnVector("select * from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo=31","valor","IDLIsta"));
+
+
+        lista.setListData(this.miLista.getModeloVector("select valor, IDLista from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo=31", "valor", "IDLIsta"));
+
+
+    //comboCategorias.setBounds(120, 90, 90, 20);//con esto creo que me quito la maldicion del combo, porque netbeans no se va a atrever a modificar este codigo
+  //  Modelo  miModelo = new Modelo();
+    //lista.setModel(new javax.swing.DefaultComboBoxModel(miModelo.getModeloDeCombo("select nombre, ID from TIPOCATEGORIA;")));
+    }
+    public frameLista(int IDLista) {
+        initComponents();
+
+
+       // Modelo  miModelo = new Modelo();
+        //lista.setListData(miModelo.getModeloEnVector("select * from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo=31","valor","IDLIsta"));
+
+
+        lista.setListData(this.miLista.getModeloVector("select valor, IDLista from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo="+IDLista+"", "valor", "IDLIsta"));
+
+
     //comboCategorias.setBounds(120, 90, 90, 20);//con esto creo que me quito la maldicion del combo, porque netbeans no se va a atrever a modificar este codigo
   //  Modelo  miModelo = new Modelo();
     //lista.setModel(new javax.swing.DefaultComboBoxModel(miModelo.getModeloDeCombo("select nombre, ID from TIPOCATEGORIA;")));
@@ -135,6 +158,8 @@ public class frameLista extends javax.swing.JFrame {
 
     private void botonAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAgregarMouseClicked
         // TODO add your handling code here:
+        miLista.setLista();
+        System.out.print(miLista.toString());
 }//GEN-LAST:event_botonAgregarMouseClicked
 
     private void botonSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSalirMouseClicked

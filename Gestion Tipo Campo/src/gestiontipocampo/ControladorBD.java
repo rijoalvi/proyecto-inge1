@@ -5,7 +5,9 @@
 package gestiontipocampo;
 
 import java.sql.*;
-
+import java.util.Vector;
+import java.util.Map;
+import java.util.HashMap;
 
 /**
  *
@@ -138,21 +140,38 @@ public class ControladorBD {
         return result;
     }
 
-    /*public ResultSet hacerConsulta(String consulta) {
-        String conexionAUtilizar=getConexionEstablecida();
+    public Vector getResultSetVector(String consulta) {
+        Vector miVector= new Vector();
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conexion = DriverManager.getConnection(conexionAUtilizar);
-            Statement query = null;
-            String SQL = consulta;
-            query = conexion.createStatement();
-            resultado = query.executeQuery(SQL);
+            ResultSet resultado = this.getResultSet("select correlativo ,nombre, descripcion, ultimaActualizacion from TIPOCAMPO where correlativo=31;");
+            if (resultado.next()) {
+                miVector.add(resultado.getObject("nombre"));
+            }
         } catch (SQLException e) {
-            System.out.println("*SQL Exception: *" + e.toString());
-        } catch (ClassNotFoundException cE) {
-            System.out.println("--Class Not Found Exception: --" + cE.toString());
+            System.out.println("*SQL Exception: aca?*" + e.toString());
         }
-        return resultado;
-    }*/
+        return miVector;
+    }
+    public Map getResultSetMap(String consulta,Vector campos) {
+        Map<String, String> miMapa = new HashMap<String, String>();
+
+        try {//no sé porque está subrayado resultado, si alguien sabe me avisa porfa, luis carlos
+            ResultSet resultado = this.getResultSet(consulta);
+            if (resultado.next()) {
+               // miVector.add(resultado.getObject("nombre"));
+
+                for(int i=0; i<campos.size();i++){
+                    miMapa.put(campos.get(i).toString(),resultado.getObject(campos.get(i).toString()).toString());
+                }
+              /*  miMapa.put("correlativo",resultado.getObject("correlativo").toString());
+                miMapa.put("nombre",resultado.getObject("nombre").toString());
+                miMapa.put("descripcion",resultado.getObject("descripcion").toString());
+                miMapa.put("ultimaActualizacion",resultado.getObject("ultimaActualizacion").toString());*/
+            }
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception: aca?*" + e.toString());
+        }
+        return miMapa;
+    }
 
 }
