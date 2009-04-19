@@ -31,7 +31,6 @@ public class frameLista extends javax.swing.JFrame {
 
 
 
-
     }
     public frameLista(int IDLista) {
         initComponents();
@@ -158,6 +157,11 @@ public class frameLista extends javax.swing.JFrame {
         botonPorDefecto.setText(resourceMap.getString("botonPorDefecto.text")); // NOI18N
         botonPorDefecto.setEnabled(false);
         botonPorDefecto.setName("botonPorDefecto"); // NOI18N
+        botonPorDefecto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonPorDefectoMouseClicked(evt);
+            }
+        });
 
         botonSalir.setText(resourceMap.getString("botonSalir.text")); // NOI18N
         botonSalir.setName("botonSalir"); // NOI18N
@@ -341,6 +345,13 @@ public class frameLista extends javax.swing.JFrame {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
 
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void botonPorDefectoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonPorDefectoMouseClicked
+        // TODO add your handling code here:
+        miLista.IDMiembroPorDefecto=(((MiDato)lista.getSelectedValue()).ID+"");
+      // miLista.IDMiembroPorDefecto=100+"";
+        lista.setListData(miLista.getModeloMiembrosVector());
+    }//GEN-LAST:event_botonPorDefectoMouseClicked
 
     /**
     * @param args the command line arguments
