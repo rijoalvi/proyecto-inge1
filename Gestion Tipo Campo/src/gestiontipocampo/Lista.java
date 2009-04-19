@@ -13,47 +13,38 @@ import java.util.*;
 
 /**
  *
- * @author Administrator
+ * @author luiscarlosch@gmail.com
  */
 public class Lista extends TipoCampo{
     
 
-    private SortedSet miembrosLista;
-   // public Map<String, String> miembroLista;
-    public  Modelo  miModelo = new Modelo();
+    private SortedSet miembroLista;
+    public  Modelo  miModelo;
 
     public Lista(){
-           //Map<String, String> miembroLista=new HashMap<String, String>();
+        miembroLista= new TreeSet();
+        miModelo = new Modelo();
+    }
+    public SortedSet getMiembroListaSet(){
+        return this.miembroLista;
+    }
 
-        miembrosLista= new TreeSet();
-    }
-    //  SortedSet set = new TreeSet();
-    public SortedSet getMiembrosListaSet(){
-        return this.miembrosLista;
-    }
     public void setMiembrosLista(Vector vector){
-   // miembroLista
+        miembroLista.clear();
            for(int i=0; i<vector.size();i++){
-
-               miembrosLista.add(vector.get(i).toString());
+               miembroLista.add(vector.get(i));
            }
+    }
 
-    }
-    public SortedSet getMiembrosLista(){
-        return this.miembrosLista;
-    }
+
     public Vector getModeloVector(String consulta,String campoTexto,String campoNumero){
-
         return miModelo.getModeloEnVector(consulta,campoTexto,campoNumero);
     }
 
     public void setLista(){
 
-      //  Map<String, String>  miMapa= new Map<String, String>();
         Map<String, String> miMapa;
         ControladorBD buscador=new ControladorBD();
-
-
 
         Vector campos=new Vector();
         campos.add("correlativo");
@@ -70,10 +61,54 @@ public class Lista extends TipoCampo{
         ControladorBD buscador= new ControladorBD();
         buscador.doUpdate("insert into MIEMBROLISTA (valor,IDLista) values ('"+nombreMiembro+"',"+this.correlativo+");");
     }
-    public void borrarMiembro(String nombreMiembro){
+
+  /*  public void borrarMiembro(String correlativo){
         ControladorBD buscador= new ControladorBD();
-        miembrosLista.remove(nombreMiembro);
-        buscador.doUpdate("delete from MIEMBROLISTA where valor like '"+nombreMiembro+"' and IDLista=31;");
+        buscador.doUpdate("delete from MIEMBROLISTA where correlativo = "+correlativo+" and IDLista=31;");
+       
+    }*/
+    public void borrarMiembro(Object miembro){
+        ControladorBD buscador= new ControladorBD();
+        buscador.doUpdate("delete from MIEMBROLISTA where correlativo = "+((MiDato)(miembro)).ID+" and IDLista=31;");
+        this.miembroLista.remove(miembro);
+
+    }
+    public Vector setAndGetMiembrosVectorActualizados(){
+        this.setMiembrosLista(this.getModeloVector("select valor, ml.correlativo from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo="+this.correlativo+"", "valor", "correlativo"));
+
+        SortedSet miembrosListaSet=new TreeSet();
+        Vector miembrosListaVector= new Vector();
+
+        miembrosListaSet=this.getMiembroListaSet();
+
+        Iterator it = miembrosListaSet.iterator();
+
+        while (it.hasNext()) {
+            miembrosListaVector.add( it.next());
+        }
+
+        return miembrosListaVector;
+       // lista.setListData(miembrosListaVector);
+        //lista.setListData(this.miLista.getModeloVector("select valor, ml.correlativo from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo="+this.IDTipoCampo+"", "valor", "correlativo"));
+    }
+
+     public Vector getModeloMiembrosVector(){
+      //  this.setMiembrosLista(this.getModeloVector("select valor, ml.correlativo from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo="+this.correlativo+"", "valor", "correlativo"));
+
+        SortedSet miembrosListaSet=new TreeSet();
+        Vector miembrosListaVector= new Vector();
+
+        miembrosListaSet=this.getMiembroListaSet();
+
+        Iterator it = miembrosListaSet.iterator();
+
+        while (it.hasNext()) {
+            miembrosListaVector.add( it.next());
+        }
+
+        return miembrosListaVector;
+       // lista.setListData(miembrosListaVector);
+        //lista.setListData(this.miLista.getModeloVector("select valor, ml.correlativo from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo="+this.IDTipoCampo+"", "valor", "correlativo"));
     }
 
     @Override

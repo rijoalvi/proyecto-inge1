@@ -6,16 +6,16 @@
 /*
  * frameLista.java
  *
- * Created on 17/04/2009, 08:57:58 PM
+ * Created on 17/04/2009, 08:57:58 PM luiscarlosch@gmail.com
  */
 
 package gestiontipocampo;
-import java.util.Vector;
-import java.util.SortedSet;
-import java.util.TreeSet;
+
 import java.util.*;
 import javax.swing.*;
 import java.awt.*;
+import java.*;
+import javax.swing.text.*;
 /**
  *
  * @author Administrator
@@ -24,59 +24,31 @@ public class frameLista extends javax.swing.JFrame {
 
     /** Creates new form frameLista */
     public Lista miLista = new Lista();
-    public String elementoSeleccionado;
+ //   public String elementoSeleccionado;
     private int IDTipoCampo;
     public frameLista() {
         initComponents();
 
 
-       // Modelo  miModelo = new Modelo();
-        //lista.setListData(miModelo.getModeloEnVector("select * from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo=31","valor","IDLIsta"));
 
 
-
-
-
-    //comboCategorias.setBounds(120, 90, 90, 20);//con esto creo que me quito la maldicion del combo, porque netbeans no se va a atrever a modificar este codigo
-  //  Modelo  miModelo = new Modelo();
-    //lista.setModel(new javax.swing.DefaultComboBoxModel(miModelo.getModeloDeCombo("select nombre, ID from TIPOCATEGORIA;")));
     }
     public frameLista(int IDLista) {
         initComponents();
 
-
-       // Modelo  miModelo = new Modelo();
-        //lista.setListData(miModelo.getModeloEnVector("select * from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo=31","valor","IDLIsta"));
         campoEntrada.setText("");
         campoEntrada.requestFocus();
         this.IDTipoCampo=IDLista;
-
+        miLista.setLista();
         this.actualizarLista();
 
-
-        miLista.setLista();
-        etiqueltaNombreLista.setText(miLista.getNombre());
-        etiquetalDescripcionLista.setText(miLista.getDescripcion());
-
-    //comboCategorias.setBounds(120, 90, 90, 20);//con esto creo que me quito la maldicion del combo, porque netbeans no se va a atrever a modificar este codigo
-  //  Modelo  miModelo = new Modelo();
-    //lista.setModel(new javax.swing.DefaultComboBoxModel(miModelo.getModeloDeCombo("select nombre, ID from TIPOCATEGORIA;")));
+        etiquetaNombreLista.setText(miLista.getNombre());
+        etiquetaDescripcionLista.setText(miLista.getDescripcion());
     }
     public void actualizarLista(){
-       // miLista.setMiembrosLista(this.m);
-        miLista.setMiembrosLista(this.miLista.getModeloVector("select valor, IDLista from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo="+this.IDTipoCampo+"", "valor", "IDLIsta"));
-
-                SortedSet miembrosLista=new TreeSet();
-        Vector miembrosListaVecto= new Vector();
-        miembrosLista=miLista.getMiembrosLista();
-        Iterator it = miembrosLista.iterator();
-        while (it.hasNext()) {
-            // Get element
-            miembrosListaVecto.add( it.next());
-        }
-        lista.setListData(miembrosListaVecto);
-
+        lista.setListData(miLista.setAndGetMiembrosVectorActualizados());
     }
+
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -94,10 +66,13 @@ public class frameLista extends javax.swing.JFrame {
         botonBorrar = new javax.swing.JButton();
         botonPorDefecto = new javax.swing.JButton();
         botonSalir = new javax.swing.JButton();
-        etiqueltaNombreLista = new javax.swing.JLabel();
-        etiquetalDescripcionLista = new javax.swing.JLabel();
+        etiquetaNombreLista = new javax.swing.JLabel();
+        etiquetaDescripcionLista = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setName("Form"); // NOI18N
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -112,6 +87,11 @@ public class frameLista extends javax.swing.JFrame {
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
+        lista.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "aasdfasf", "asdfasf", "asdfasdf", "asfasdfsadf", "asdfsfdsadf", " " };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
         lista.setName("lista"); // NOI18N
         lista.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -136,7 +116,10 @@ public class frameLista extends javax.swing.JFrame {
         });
 
         campoEntrada.setText(resourceMap.getString("campoEntrada.text")); // NOI18N
+        campoEntrada.setHighlighter(null);
         campoEntrada.setName("campoEntrada"); // NOI18N
+        campoEntrada.setSelectedTextColor(resourceMap.getColor("campoEntrada.selectedTextColor")); // NOI18N
+        campoEntrada.setSelectionColor(resourceMap.getColor("campoEntrada.selectionColor")); // NOI18N
         campoEntrada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoEntradaActionPerformed(evt);
@@ -184,11 +167,22 @@ public class frameLista extends javax.swing.JFrame {
             }
         });
 
-        etiqueltaNombreLista.setText(resourceMap.getString("etiqueltaNombreLista.text")); // NOI18N
-        etiqueltaNombreLista.setName("etiqueltaNombreLista"); // NOI18N
+        etiquetaNombreLista.setText(resourceMap.getString("etiquetaNombreLista.text")); // NOI18N
+        etiquetaNombreLista.setName("etiquetaNombreLista"); // NOI18N
 
-        etiquetalDescripcionLista.setText(resourceMap.getString("etiquetalDescripcionLista.text")); // NOI18N
-        etiquetalDescripcionLista.setName("etiquetalDescripcionLista"); // NOI18N
+        etiquetaDescripcionLista.setText(resourceMap.getString("etiquetaDescripcionLista.text")); // NOI18N
+        etiquetaDescripcionLista.setName("etiquetaDescripcionLista"); // NOI18N
+
+        jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
+        jButton1.setName("jButton1"); // NOI18N
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+
+        jTextField1.setText(resourceMap.getString("jTextField1.text")); // NOI18N
+        jTextField1.setName("jTextField1"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -207,11 +201,18 @@ public class frameLista extends javax.swing.JFrame {
                         .addComponent(botonSalir))
                     .addComponent(jScrollPane1)
                     .addComponent(campoEntrada))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(etiquetalDescripcionLista)
-                    .addComponent(etiqueltaNombreLista))
-                .addContainerGap(108, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(etiquetaDescripcionLista)
+                            .addComponent(etiquetaNombreLista)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(83, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)
+                        .addGap(23, 23, 23))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,9 +221,9 @@ public class frameLista extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
-                        .addComponent(etiqueltaNombreLista)
+                        .addComponent(etiquetaNombreLista)
                         .addGap(29, 29, 29)
-                        .addComponent(etiquetalDescripcionLista))
+                        .addComponent(etiquetaDescripcionLista))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -232,8 +233,11 @@ public class frameLista extends javax.swing.JFrame {
                             .addComponent(botonAgregar)
                             .addComponent(botonBorrar)
                             .addComponent(botonPorDefecto)
-                            .addComponent(botonSalir))))
-                .addContainerGap(64, Short.MAX_VALUE))
+                            .addComponent(botonSalir)
+                            .addComponent(jButton1))))
+                .addGap(18, 18, 18)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         botonAgregar.getAccessibleContext().setAccessibleName(resourceMap.getString("jButton1.AccessibleContext.accessibleName")); // NOI18N
@@ -244,18 +248,15 @@ public class frameLista extends javax.swing.JFrame {
     private void botonAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAgregarMouseClicked
         // TODO add your handling code here:
 
-        if(miLista.getMiembrosListaSet().contains(campoEntrada.getText())){
+        if(miLista.getMiembroListaSet().contains(new MiDato(campoEntrada.getText(),0))){
             JOptionPane.showMessageDialog(null,"Ya existe un elemento con ese nombre.");
         }else{
             miLista.agregarMiembro(campoEntrada.getText());
-            elementoSeleccionado=campoEntrada.getText();
+            //elementoSeleccionado=campoEntrada.getText();
             this.actualizarLista();
             campoEntrada.setText("");
-            //lista.setSelectedValue(new MiDato(elementoSeleccionado,31), true);
-         //   lista.setSelectedIndex(5);
 
         }
-       // System.out.print(miLista.toString());
 }//GEN-LAST:event_botonAgregarMouseClicked
 
     private void botonSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSalirMouseClicked
@@ -268,7 +269,6 @@ public class frameLista extends javax.swing.JFrame {
     }//GEN-LAST:event_formMouseClicked
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        // TODO add your handling code here:
 
    //     lista.setListData(this.miLista.getModeloVector("select valor, IDLista from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo=31", "valor", "IDLIsta"));
 
@@ -278,16 +278,13 @@ public class frameLista extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(lista.getSelectedValue()!=null){
         campoEntrada.setText( lista.getSelectedValue().toString());
-        this.elementoSeleccionado=lista.getSelectedValue().toString();
+      //  this.elementoSeleccionado=lista.getSelectedValue().toString();
         }else{
         campoEntrada.setText("");
         }
-  //      campoEntrada.setSelectedTextColor(Color.BLACK);
-        campoEntrada.setSelectionStart(0);
-        campoEntrada.setSelectionEnd(5);
-    //    campoEntrada.sets
 
-//elementoSeleccionado
+
+
     }//GEN-LAST:event_listaValueChanged
 
     private void campoEntradaInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_campoEntradaInputMethodTextChanged
@@ -322,9 +319,11 @@ public class frameLista extends javax.swing.JFrame {
 
             switch (respuesta) {
                 case 0:
-                        miLista.borrarMiembro(this.elementoSeleccionado);
-                        this.actualizarLista();
-                        botonBorrar.setEnabled(false);
+                       //miLista.borrarMiembro(((MiDato)lista.getSelectedValue()).ID+"");
+                       miLista.borrarMiembro(lista.getSelectedValue());
+                      // this.actualizarLista();
+                       lista.setListData(miLista.getModeloMiembrosVector());
+                       botonBorrar.setEnabled(false);
                     break;
                 case 1:
                     /*No quiso borrar*/
@@ -336,7 +335,12 @@ public class frameLista extends javax.swing.JFrame {
     private void listaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaMouseClicked
         // TODO add your handling code here:
         botonBorrar.setEnabled(true);
+        botonPorDefecto.setEnabled(true);
     }//GEN-LAST:event_listaMouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
     * @param args the command line arguments
@@ -355,9 +359,11 @@ public class frameLista extends javax.swing.JFrame {
     private javax.swing.JButton botonPorDefecto;
     private javax.swing.JButton botonSalir;
     private javax.swing.JTextField campoEntrada;
-    private javax.swing.JLabel etiqueltaNombreLista;
-    private javax.swing.JLabel etiquetalDescripcionLista;
+    private javax.swing.JLabel etiquetaDescripcionLista;
+    private javax.swing.JLabel etiquetaNombreLista;
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JList lista;
     // End of variables declaration//GEN-END:variables
 

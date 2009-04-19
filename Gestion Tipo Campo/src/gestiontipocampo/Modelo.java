@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.Vector;
 /**
  *
- * @author ea61521
+ * @author luiscarlosch@gmail.com
  */
 public class Modelo {
 
