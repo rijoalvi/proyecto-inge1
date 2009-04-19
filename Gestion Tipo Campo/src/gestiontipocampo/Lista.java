@@ -28,7 +28,9 @@ public class Lista extends TipoCampo{
         miembrosLista= new TreeSet();
     }
     //  SortedSet set = new TreeSet();
-
+    public SortedSet getMiembrosListaSet(){
+        return this.miembrosLista;
+    }
     public void setMiembrosLista(Vector vector){
    // miembroLista
            for(int i=0; i<vector.size();i++){
@@ -68,6 +70,12 @@ public class Lista extends TipoCampo{
         ControladorBD buscador= new ControladorBD();
         buscador.doUpdate("insert into MIEMBROLISTA (valor,IDLista) values ('"+nombreMiembro+"',"+this.correlativo+");");
     }
+    public void borrarMiembro(String nombreMiembro){
+        ControladorBD buscador= new ControladorBD();
+        miembrosLista.remove(nombreMiembro);
+        buscador.doUpdate("delete from MIEMBROLISTA where valor like '"+nombreMiembro+"' and IDLista=31;");
+    }
+
     @Override
     public String toString(){
         return super.toString();

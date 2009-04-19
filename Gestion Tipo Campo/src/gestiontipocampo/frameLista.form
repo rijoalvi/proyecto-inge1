@@ -99,6 +99,7 @@
             <Property name="name" type="java.lang.String" value="lista" noResource="true"/>
           </Properties>
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="listaMouseClicked"/>
             <EventHandler event="valueChanged" listener="javax.swing.event.ListSelectionListener" parameters="javax.swing.event.ListSelectionEvent" handler="listaValueChanged"/>
           </Events>
         </Component>
@@ -107,6 +108,7 @@
     <Component class="javax.swing.JButton" name="botonAgregar">
       <Properties>
         <Property name="text" type="java.lang.String" resourceKey="botonAgregar.text"/>
+        <Property name="enabled" type="boolean" value="false"/>
         <Property name="name" type="java.lang.String" value="botonAgregar" noResource="true"/>
       </Properties>
       <AccessibilityProperties>
@@ -121,16 +123,28 @@
         <Property name="text" type="java.lang.String" resourceKey="campoEntrada.text"/>
         <Property name="name" type="java.lang.String" value="campoEntrada" noResource="true"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoEntradaActionPerformed"/>
+        <EventHandler event="inputMethodTextChanged" listener="java.awt.event.InputMethodListener" parameters="java.awt.event.InputMethodEvent" handler="campoEntradaInputMethodTextChanged"/>
+        <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="campoEntradaPropertyChange"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="campoEntradaKeyPressed"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="campoEntradaKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="botonBorrar">
       <Properties>
         <Property name="text" type="java.lang.String" resourceKey="botonBorrar.text"/>
+        <Property name="enabled" type="boolean" value="false"/>
         <Property name="name" type="java.lang.String" value="botonBorrar" noResource="true"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonBorrarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="botonPorDefecto">
       <Properties>
         <Property name="text" type="java.lang.String" resourceKey="botonPorDefecto.text"/>
+        <Property name="enabled" type="boolean" value="false"/>
         <Property name="name" type="java.lang.String" value="botonPorDefecto" noResource="true"/>
       </Properties>
     </Component>

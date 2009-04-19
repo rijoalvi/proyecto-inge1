@@ -14,6 +14,8 @@ import java.util.Vector;
 import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.*;
+import javax.swing.*;
+import java.awt.*;
 /**
  *
  * @author Administrator
@@ -22,6 +24,7 @@ public class frameLista extends javax.swing.JFrame {
 
     /** Creates new form frameLista */
     public Lista miLista = new Lista();
+    public String elementoSeleccionado;
     private int IDTipoCampo;
     public frameLista() {
         initComponents();
@@ -44,7 +47,8 @@ public class frameLista extends javax.swing.JFrame {
 
        // Modelo  miModelo = new Modelo();
         //lista.setListData(miModelo.getModeloEnVector("select * from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo=31","valor","IDLIsta"));
-
+        campoEntrada.setText("");
+        campoEntrada.requestFocus();
         this.IDTipoCampo=IDLista;
 
         this.actualizarLista();
@@ -109,6 +113,11 @@ public class frameLista extends javax.swing.JFrame {
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
         lista.setName("lista"); // NOI18N
+        lista.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listaMouseClicked(evt);
+            }
+        });
         lista.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 listaValueChanged(evt);
@@ -118,6 +127,7 @@ public class frameLista extends javax.swing.JFrame {
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameLista.class);
         botonAgregar.setText(resourceMap.getString("botonAgregar.text")); // NOI18N
+        botonAgregar.setEnabled(false);
         botonAgregar.setName("botonAgregar"); // NOI18N
         botonAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -127,11 +137,43 @@ public class frameLista extends javax.swing.JFrame {
 
         campoEntrada.setText(resourceMap.getString("campoEntrada.text")); // NOI18N
         campoEntrada.setName("campoEntrada"); // NOI18N
+        campoEntrada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoEntradaActionPerformed(evt);
+            }
+        });
+        campoEntrada.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                campoEntradaInputMethodTextChanged(evt);
+            }
+        });
+        campoEntrada.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                campoEntradaPropertyChange(evt);
+            }
+        });
+        campoEntrada.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                campoEntradaKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoEntradaKeyTyped(evt);
+            }
+        });
 
         botonBorrar.setText(resourceMap.getString("botonBorrar.text")); // NOI18N
+        botonBorrar.setEnabled(false);
         botonBorrar.setName("botonBorrar"); // NOI18N
+        botonBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBorrarActionPerformed(evt);
+            }
+        });
 
         botonPorDefecto.setText(resourceMap.getString("botonPorDefecto.text")); // NOI18N
+        botonPorDefecto.setEnabled(false);
         botonPorDefecto.setName("botonPorDefecto"); // NOI18N
 
         botonSalir.setText(resourceMap.getString("botonSalir.text")); // NOI18N
@@ -201,8 +243,18 @@ public class frameLista extends javax.swing.JFrame {
 
     private void botonAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAgregarMouseClicked
         // TODO add your handling code here:
-        miLista.agregarMiembro(campoEntrada.getText());
-        this.actualizarLista();
+
+        if(miLista.getMiembrosListaSet().contains(campoEntrada.getText())){
+            JOptionPane.showMessageDialog(null,"Ya existe un elemento con ese nombre.");
+        }else{
+            miLista.agregarMiembro(campoEntrada.getText());
+            elementoSeleccionado=campoEntrada.getText();
+            this.actualizarLista();
+            campoEntrada.setText("");
+            //lista.setSelectedValue(new MiDato(elementoSeleccionado,31), true);
+         //   lista.setSelectedIndex(5);
+
+        }
        // System.out.print(miLista.toString());
 }//GEN-LAST:event_botonAgregarMouseClicked
 
@@ -224,9 +276,67 @@ public class frameLista extends javax.swing.JFrame {
 
     private void listaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaValueChanged
         // TODO add your handling code here:
+        if(lista.getSelectedValue()!=null){
         campoEntrada.setText( lista.getSelectedValue().toString());
+        this.elementoSeleccionado=lista.getSelectedValue().toString();
+        }else{
+        campoEntrada.setText("");
+        }
+  //      campoEntrada.setSelectedTextColor(Color.BLACK);
+        campoEntrada.setSelectionStart(0);
+        campoEntrada.setSelectionEnd(5);
+    //    campoEntrada.sets
 
+//elementoSeleccionado
     }//GEN-LAST:event_listaValueChanged
+
+    private void campoEntradaInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_campoEntradaInputMethodTextChanged
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoEntradaInputMethodTextChanged
+
+    private void campoEntradaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoEntradaKeyPressed
+
+    }//GEN-LAST:event_campoEntradaKeyPressed
+
+    private void campoEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoEntradaActionPerformed
+
+    }//GEN-LAST:event_campoEntradaActionPerformed
+
+    private void campoEntradaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_campoEntradaPropertyChange
+
+    }//GEN-LAST:event_campoEntradaPropertyChange
+
+    private void campoEntradaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoEntradaKeyTyped
+        if(!campoEntrada.getText().toString().equals("")){
+            botonAgregar.setEnabled(true);
+        }
+        else{
+            botonAgregar.setEnabled(false);
+        }
+    }//GEN-LAST:event_campoEntradaKeyTyped
+
+    private void botonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarActionPerformed
+            String[] opciones = {"Si", "No"};
+            int respuesta = JOptionPane.showOptionDialog(null, "¿Está seguro de que desea borrar esta entrada?", "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opciones, "No");
+
+            switch (respuesta) {
+                case 0:
+                        miLista.borrarMiembro(this.elementoSeleccionado);
+                        this.actualizarLista();
+                        botonBorrar.setEnabled(false);
+                    break;
+                case 1:
+                    /*No quiso borrar*/
+                    break;
+            }
+
+    }//GEN-LAST:event_botonBorrarActionPerformed
+
+    private void listaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaMouseClicked
+        // TODO add your handling code here:
+        botonBorrar.setEnabled(true);
+    }//GEN-LAST:event_listaMouseClicked
 
     /**
     * @param args the command line arguments
