@@ -10,7 +10,10 @@
  */
 
 package gestiontipocampo;
-
+import java.util.Vector;
+import java.util.SortedSet;
+import java.util.TreeSet;
+import java.util.*;
 /**
  *
  * @author Administrator
@@ -19,6 +22,7 @@ public class frameLista extends javax.swing.JFrame {
 
     /** Creates new form frameLista */
     public Lista miLista = new Lista();
+    private int IDTipoCampo;
     public frameLista() {
         initComponents();
 
@@ -27,7 +31,7 @@ public class frameLista extends javax.swing.JFrame {
         //lista.setListData(miModelo.getModeloEnVector("select * from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo=31","valor","IDLIsta"));
 
 
-        lista.setListData(this.miLista.getModeloVector("select valor, IDLista from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo=31", "valor", "IDLIsta"));
+
 
 
     //comboCategorias.setBounds(120, 90, 90, 20);//con esto creo que me quito la maldicion del combo, porque netbeans no se va a atrever a modificar este codigo
@@ -41,13 +45,33 @@ public class frameLista extends javax.swing.JFrame {
        // Modelo  miModelo = new Modelo();
         //lista.setListData(miModelo.getModeloEnVector("select * from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo=31","valor","IDLIsta"));
 
+        this.IDTipoCampo=IDLista;
 
-        lista.setListData(this.miLista.getModeloVector("select valor, IDLista from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo="+IDLista+"", "valor", "IDLIsta"));
+        this.actualizarLista();
 
+
+        miLista.setLista();
+        etiqueltaNombreLista.setText(miLista.getNombre());
+        etiquetalDescripcionLista.setText(miLista.getDescripcion());
 
     //comboCategorias.setBounds(120, 90, 90, 20);//con esto creo que me quito la maldicion del combo, porque netbeans no se va a atrever a modificar este codigo
   //  Modelo  miModelo = new Modelo();
     //lista.setModel(new javax.swing.DefaultComboBoxModel(miModelo.getModeloDeCombo("select nombre, ID from TIPOCATEGORIA;")));
+    }
+    public void actualizarLista(){
+       // miLista.setMiembrosLista(this.m);
+        miLista.setMiembrosLista(this.miLista.getModeloVector("select valor, IDLista from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo="+this.IDTipoCampo+"", "valor", "IDLIsta"));
+
+                SortedSet miembrosLista=new TreeSet();
+        Vector miembrosListaVecto= new Vector();
+        miembrosLista=miLista.getMiembrosLista();
+        Iterator it = miembrosLista.iterator();
+        while (it.hasNext()) {
+            // Get element
+            miembrosListaVecto.add( it.next());
+        }
+        lista.setListData(miembrosListaVecto);
+
     }
 
     /** This method is called from within the constructor to
@@ -62,10 +86,12 @@ public class frameLista extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         lista = new javax.swing.JList();
         botonAgregar = new javax.swing.JButton();
-        campoTextoEntrada = new javax.swing.JTextField();
+        campoEntrada = new javax.swing.JTextField();
         botonBorrar = new javax.swing.JButton();
         botonPorDefecto = new javax.swing.JButton();
         botonSalir = new javax.swing.JButton();
+        etiqueltaNombreLista = new javax.swing.JLabel();
+        etiquetalDescripcionLista = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("Form"); // NOI18N
@@ -99,8 +125,8 @@ public class frameLista extends javax.swing.JFrame {
             }
         });
 
-        campoTextoEntrada.setText(resourceMap.getString("campoTextoEntrada.text")); // NOI18N
-        campoTextoEntrada.setName("campoTextoEntrada"); // NOI18N
+        campoEntrada.setText(resourceMap.getString("campoEntrada.text")); // NOI18N
+        campoEntrada.setName("campoEntrada"); // NOI18N
 
         botonBorrar.setText(resourceMap.getString("botonBorrar.text")); // NOI18N
         botonBorrar.setName("botonBorrar"); // NOI18N
@@ -115,6 +141,12 @@ public class frameLista extends javax.swing.JFrame {
                 botonSalirMouseClicked(evt);
             }
         });
+
+        etiqueltaNombreLista.setText(resourceMap.getString("etiqueltaNombreLista.text")); // NOI18N
+        etiqueltaNombreLista.setName("etiqueltaNombreLista"); // NOI18N
+
+        etiquetalDescripcionLista.setText(resourceMap.getString("etiquetalDescripcionLista.text")); // NOI18N
+        etiquetalDescripcionLista.setName("etiquetalDescripcionLista"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -132,22 +164,33 @@ public class frameLista extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botonSalir))
                     .addComponent(jScrollPane1)
-                    .addComponent(campoTextoEntrada))
-                .addContainerGap(152, Short.MAX_VALUE))
+                    .addComponent(campoEntrada))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(etiquetalDescripcionLista)
+                    .addComponent(etiqueltaNombreLista))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoTextoEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonAgregar)
-                    .addComponent(botonBorrar)
-                    .addComponent(botonPorDefecto)
-                    .addComponent(botonSalir))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(etiqueltaNombreLista)
+                        .addGap(29, 29, 29)
+                        .addComponent(etiquetalDescripcionLista))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(campoEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(botonAgregar)
+                            .addComponent(botonBorrar)
+                            .addComponent(botonPorDefecto)
+                            .addComponent(botonSalir))))
                 .addContainerGap(64, Short.MAX_VALUE))
         );
 
@@ -158,27 +201,30 @@ public class frameLista extends javax.swing.JFrame {
 
     private void botonAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAgregarMouseClicked
         // TODO add your handling code here:
-        miLista.setLista();
-        System.out.print(miLista.toString());
+        miLista.agregarMiembro(campoEntrada.getText());
+        this.actualizarLista();
+       // System.out.print(miLista.toString());
 }//GEN-LAST:event_botonAgregarMouseClicked
 
     private void botonSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSalirMouseClicked
         // TODO add your handling code here:
+        this.dispose();
 }//GEN-LAST:event_botonSalirMouseClicked
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-        this.dispose();        // TODO add your handling code here:
+             // TODO add your handling code here:
     }//GEN-LAST:event_formMouseClicked
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // TODO add your handling code here:
 
+   //     lista.setListData(this.miLista.getModeloVector("select valor, IDLista from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo=31", "valor", "IDLIsta"));
 
     }//GEN-LAST:event_formComponentShown
 
     private void listaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaValueChanged
         // TODO add your handling code here:
-        campoTextoEntrada.setText( lista.getSelectedValue().toString());
+        campoEntrada.setText( lista.getSelectedValue().toString());
 
     }//GEN-LAST:event_listaValueChanged
 
@@ -198,7 +244,9 @@ public class frameLista extends javax.swing.JFrame {
     private javax.swing.JButton botonBorrar;
     private javax.swing.JButton botonPorDefecto;
     private javax.swing.JButton botonSalir;
-    private javax.swing.JTextField campoTextoEntrada;
+    private javax.swing.JTextField campoEntrada;
+    private javax.swing.JLabel etiqueltaNombreLista;
+    private javax.swing.JLabel etiquetalDescripcionLista;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList lista;
     // End of variables declaration//GEN-END:variables

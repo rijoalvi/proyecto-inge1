@@ -22,5 +22,12 @@ public class TipoCampo {
         this.descripcion+"\n";
         return aRetornar;
     }
+    public String getNombre(){
+        return this.nombre;
+    }
+
+    public String getDescripcion(){
+        return this.descripcion;
+    }
   
 }
