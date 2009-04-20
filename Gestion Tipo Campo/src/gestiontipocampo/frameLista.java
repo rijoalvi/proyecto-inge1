@@ -285,12 +285,7 @@ public class frameLista extends javax.swing.JFrame {
 
     private void listaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaValueChanged
         // TODO add your handling code here:
-        if(lista.getSelectedValue()!=null){
-        campoEntrada.setText( lista.getSelectedValue().toString());
-      //  this.elementoSeleccionado=lista.getSelectedValue().toString();
-        }else{
-        campoEntrada.setText("");
-        }
+
 
 
 
@@ -323,23 +318,36 @@ public class frameLista extends javax.swing.JFrame {
 
     private void listaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaMouseClicked
         // TODO add your handling code here:
-        botonBorrar.setEnabled(true);
-        botonPorDefecto.setEnabled(true);
-        botonAgregar.setEnabled(true);
-        
+
+       // botonAgregar.setEnabled(true);
+
+        if(evt.getClickCount()==2){
+                            botonBorrar.setEnabled(false);
+                botonPorDefecto.setEnabled(false);
+            if(lista.getSelectedValue()!=null){
+                campoEntrada.setText( lista.getSelectedValue().toString());
+                 botonAgregar.setEnabled(true);
+            }else{
+                campoEntrada.setText("");
+            }
+        }
+        else{
+            botonAgregar.setEnabled(false);
+                botonBorrar.setEnabled(true);
+                botonPorDefecto.setEnabled(true);
+                campoEntrada.setText("");
+        }
+
+
+
+     //   System.out.print(evt.getClickCount()+".");
     }//GEN-LAST:event_listaMouseClicked
 
     private void botonPorDefectoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonPorDefectoMouseClicked
         // TODO add your handling code here:
 
-
-
-
-
-
-
             String[] opciones = {"Si", "No"};
-            int respuesta = JOptionPane.showOptionDialog(null, "“¿Está seguro de que desea cambiar el valor por defecto?", "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opciones, "No");
+            int respuesta = JOptionPane.showOptionDialog(null, "¿Está seguro de que desea cambiar el valor por defecto?", "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opciones, "No");
 
             switch (respuesta) {
                 case 0:
