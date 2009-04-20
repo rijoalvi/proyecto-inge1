@@ -37,12 +37,14 @@ public class frameLista extends javax.swing.JFrame {
 
         campoEntrada.setText("");
         campoEntrada.requestFocus();
-        this.IDTipoCampo=IDLista;
+        //this.IDTipoCampo=IDLista;
+        miLista.correlativo=IDLista+"";
         miLista.setLista();
         this.actualizarLista();
 
         etiquetaNombreLista.setText(miLista.getNombre());
         etiquetaDescripcionLista.setText(miLista.getDescripcion());
+        nombreMiembroPorDefecto.setText(miLista.nombreMiembroPorDefecto);
     }
     public void actualizarLista(){
         lista.setListData(miLista.setAndGetMiembrosVectorActualizados());
@@ -61,14 +63,16 @@ public class frameLista extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         lista = new javax.swing.JList();
         botonAgregar = new javax.swing.JButton();
-        campoEntrada = new javax.swing.JTextField();
         botonBorrar = new javax.swing.JButton();
         botonPorDefecto = new javax.swing.JButton();
         botonSalir = new javax.swing.JButton();
         etiquetaNombreLista = new javax.swing.JLabel();
         etiquetaDescripcionLista = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        nombreMiembroPorDefecto = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        campoEntrada = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -113,35 +117,9 @@ public class frameLista extends javax.swing.JFrame {
                 botonAgregarMouseClicked(evt);
             }
         });
-
-        campoEntrada.setText(resourceMap.getString("campoEntrada.text")); // NOI18N
-        campoEntrada.setHighlighter(null);
-        campoEntrada.setName("campoEntrada"); // NOI18N
-        campoEntrada.setSelectedTextColor(resourceMap.getColor("campoEntrada.selectedTextColor")); // NOI18N
-        campoEntrada.setSelectionColor(resourceMap.getColor("campoEntrada.selectionColor")); // NOI18N
-        campoEntrada.addActionListener(new java.awt.event.ActionListener() {
+        botonAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoEntradaActionPerformed(evt);
-            }
-        });
-        campoEntrada.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                campoEntradaInputMethodTextChanged(evt);
-            }
-        });
-        campoEntrada.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                campoEntradaPropertyChange(evt);
-            }
-        });
-        campoEntrada.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                campoEntradaKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                campoEntradaKeyTyped(evt);
+                botonAgregarActionPerformed(evt);
             }
         });
 
@@ -177,16 +155,40 @@ public class frameLista extends javax.swing.JFrame {
         etiquetaDescripcionLista.setText(resourceMap.getString("etiquetaDescripcionLista.text")); // NOI18N
         etiquetaDescripcionLista.setName("etiquetaDescripcionLista"); // NOI18N
 
-        jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
-        jButton1.setName("jButton1"); // NOI18N
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+        nombreMiembroPorDefecto.setText(resourceMap.getString("nombreMiembroPorDefecto.text")); // NOI18N
+        nombreMiembroPorDefecto.setName("nombreMiembroPorDefecto"); // NOI18N
+
+        jLabel1.setFont(resourceMap.getFont("jLabel1.font")); // NOI18N
+        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
+        jLabel1.setName("jLabel1"); // NOI18N
+
+        jLabel2.setFont(resourceMap.getFont("jLabel2.font")); // NOI18N
+        jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
+        jLabel2.setName("jLabel2"); // NOI18N
+
+        jLabel3.setFont(resourceMap.getFont("jLabel3.font")); // NOI18N
+        jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
+        jLabel3.setName("jLabel3"); // NOI18N
+
+        campoEntrada.setText(resourceMap.getString("campoEntrada.text")); // NOI18N
+        campoEntrada.setName("campoEntrada"); // NOI18N
+        campoEntrada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoEntradaActionPerformed(evt);
             }
         });
-
-        jTextField1.setText(resourceMap.getString("jTextField1.text")); // NOI18N
-        jTextField1.setName("jTextField1"); // NOI18N
+        campoEntrada.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                campoEntradaInputMethodTextChanged(evt);
+            }
+        });
+        campoEntrada.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoEntradaKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -194,54 +196,58 @@ public class frameLista extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(botonAgregar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonBorrar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonPorDefecto, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonSalir))
-                    .addComponent(jScrollPane1)
-                    .addComponent(campoEntrada))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(botonAgregar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(botonBorrar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(botonPorDefecto, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(botonSalir)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(etiquetaDescripcionLista)
                             .addComponent(etiquetaNombreLista)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(83, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
-                        .addGap(23, 23, 23))))
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(etiquetaDescripcionLista)
+                            .addComponent(jLabel3)
+                            .addComponent(nombreMiembroPorDefecto))
+                        .addContainerGap(45, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(campoEntrada, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
+                        .addGap(152, 152, 152))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
+                        .addComponent(jLabel1)
+                        .addGap(5, 5, 5)
                         .addComponent(etiquetaNombreLista)
-                        .addGap(29, 29, 29)
-                        .addComponent(etiquetaDescripcionLista))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(campoEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(botonAgregar)
-                            .addComponent(botonBorrar)
-                            .addComponent(botonPorDefecto)
-                            .addComponent(botonSalir)
-                            .addComponent(jButton1))))
-                .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                        .addComponent(etiquetaDescripcionLista)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(nombreMiembroPorDefecto)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(campoEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonAgregar)
+                    .addComponent(botonBorrar)
+                    .addComponent(botonPorDefecto)
+                    .addComponent(botonSalir))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
 
         botonAgregar.getAccessibleContext().setAccessibleName(resourceMap.getString("jButton1.AccessibleContext.accessibleName")); // NOI18N
@@ -250,17 +256,7 @@ public class frameLista extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAgregarMouseClicked
-        // TODO add your handling code here:
 
-        if(miLista.getMiembroListaSet().contains(new MiDato(campoEntrada.getText(),0))){
-            JOptionPane.showMessageDialog(null,"Ya existe un elemento con ese nombre.");
-        }else{
-            miLista.agregarMiembro(campoEntrada.getText());
-            //elementoSeleccionado=campoEntrada.getText();
-            this.actualizarLista();
-            campoEntrada.setText("");
-
-        }
 }//GEN-LAST:event_botonAgregarMouseClicked
 
     private void botonSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSalirMouseClicked
@@ -291,33 +287,12 @@ public class frameLista extends javax.swing.JFrame {
 
     }//GEN-LAST:event_listaValueChanged
 
-    private void campoEntradaInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_campoEntradaInputMethodTextChanged
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoEntradaInputMethodTextChanged
-
-    private void campoEntradaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoEntradaKeyPressed
-
-    }//GEN-LAST:event_campoEntradaKeyPressed
-
-    private void campoEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoEntradaActionPerformed
-
-    }//GEN-LAST:event_campoEntradaActionPerformed
-
-    private void campoEntradaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_campoEntradaPropertyChange
-
-    }//GEN-LAST:event_campoEntradaPropertyChange
-
-    private void campoEntradaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoEntradaKeyTyped
-        if(!campoEntrada.getText().toString().equals("")){
-            botonAgregar.setEnabled(true);
-        }
-        else{
-            botonAgregar.setEnabled(false);
-        }
-    }//GEN-LAST:event_campoEntradaKeyTyped
-
     private void botonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarActionPerformed
+
+            if(((((MiDato)lista.getSelectedValue()).ID)+"").equals(miLista.IDMiembroPorDefecto)){
+                JOptionPane.showMessageDialog(null,"No se puede eliminar el elemento por defecto.");
+            }else{
+
             String[] opciones = {"Si", "No"};
             int respuesta = JOptionPane.showOptionDialog(null, "¿Está seguro de que desea borrar esta entrada?", "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opciones, "No");
 
@@ -333,6 +308,7 @@ public class frameLista extends javax.swing.JFrame {
                     /*No quiso borrar*/
                     break;
             }
+            }
 
     }//GEN-LAST:event_botonBorrarActionPerformed
 
@@ -340,18 +316,54 @@ public class frameLista extends javax.swing.JFrame {
         // TODO add your handling code here:
         botonBorrar.setEnabled(true);
         botonPorDefecto.setEnabled(true);
+        botonAgregar.setEnabled(true);
     }//GEN-LAST:event_listaMouseClicked
-
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-
-    }//GEN-LAST:event_jButton1MouseClicked
 
     private void botonPorDefectoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonPorDefectoMouseClicked
         // TODO add your handling code here:
-        miLista.IDMiembroPorDefecto=(((MiDato)lista.getSelectedValue()).ID+"");
+        miLista.IDMiembroPorDefecto=(((MiDato)lista.getSelectedValue()).ID)+"";
       // miLista.IDMiembroPorDefecto=100+"";
+        miLista.upDateIDMiembroPorDefecto((((MiDato)lista.getSelectedValue()).ID)+"");
+        
+
         lista.setListData(miLista.getModeloMiembrosVector());
+       miLista.setLista();
+       nombreMiembroPorDefecto.setText(miLista.nombreMiembroPorDefecto);
+       botonPorDefecto.setEnabled(false);
+       botonBorrar.setEnabled(false);
     }//GEN-LAST:event_botonPorDefectoMouseClicked
+
+    private void campoEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoEntradaActionPerformed
+
+    }//GEN-LAST:event_campoEntradaActionPerformed
+
+    private void campoEntradaInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_campoEntradaInputMethodTextChanged
+
+            
+
+    }//GEN-LAST:event_campoEntradaInputMethodTextChanged
+
+    private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
+        // TODO add your handling code here:
+
+        if(miLista.getMiembroListaSet().contains(new MiDato(campoEntrada.getText(),0))){
+            JOptionPane.showMessageDialog(null,"Ya existe un elemento con ese nombre.");
+        }else{
+            miLista.agregarMiembro(campoEntrada.getText());
+            //elementoSeleccionado=campoEntrada.getText();
+            this.actualizarLista();
+            campoEntrada.setText("");
+
+        }
+        campoEntrada.requestFocus();        // TODO add your handling code here:
+    }//GEN-LAST:event_botonAgregarActionPerformed
+
+    private void campoEntradaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoEntradaKeyTyped
+        botonAgregar.setEnabled(true);        // TODO add your handling code here:
+        if(campoEntrada.getText().isEmpty()){
+            botonAgregar.setEnabled(false);
+        }
+    }//GEN-LAST:event_campoEntradaKeyTyped
 
     /**
     * @param args the command line arguments
@@ -372,10 +384,12 @@ public class frameLista extends javax.swing.JFrame {
     private javax.swing.JTextField campoEntrada;
     private javax.swing.JLabel etiquetaDescripcionLista;
     private javax.swing.JLabel etiquetaNombreLista;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JList lista;
+    private javax.swing.JLabel nombreMiembroPorDefecto;
     // End of variables declaration//GEN-END:variables
 
 }

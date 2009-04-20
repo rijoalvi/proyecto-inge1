@@ -54,3 +54,9 @@ CREATE TABLE TIPOCAMPO(
   PRIMARY KEY (correlativo)
 
 );
+
+create table LISTA(
+    correlativo int not null,
+    IDMiembroPorDefecto int,
+    primary key(correlativo)
+);

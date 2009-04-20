@@ -20,24 +20,10 @@ public class MiDato implements Comparable{
     }
     public int compareTo(Object o){
         int aRetornar= this.nombre.toString().compareToIgnoreCase(o.toString());
-        /*if(this.ID==((MiDato)(o)).ID){
-            aRetornar=0;
-        }*/
-        
         return aRetornar;
     }
     @Override
     public String toString(){
-        String aRetornar;
-        if(valorDefecto.equals(ID+"")){
-            aRetornar= this.nombre+"*";
-        }
-        else{
-        
-            aRetornar= this.nombre;
-        }
-
-
-        return aRetornar;
+        return this.nombre;
     }
 }
