@@ -331,15 +331,38 @@ public class frameLista extends javax.swing.JFrame {
 
     private void botonPorDefectoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonPorDefectoMouseClicked
         // TODO add your handling code here:
+
+
+
+
+
+
+
+            String[] opciones = {"Si", "No"};
+            int respuesta = JOptionPane.showOptionDialog(null, "“¿Está seguro de que desea cambiar el valor por defecto?", "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opciones, "No");
+
+            switch (respuesta) {
+                case 0:
         miLista.IDMiembroPorDefecto=(((MiDato)lista.getSelectedValue()).ID)+"";
       // miLista.IDMiembroPorDefecto=100+"";
         miLista.upDateIDMiembroPorDefecto((((MiDato)lista.getSelectedValue()).ID)+"");
-        
+
 
         lista.setListData(miLista.getModeloMiembrosVector());
        miLista.setLista();
        nombreMiembroPorDefecto.setText(miLista.nombreMiembroPorDefecto);
        this.setConfiguracionBase();
+                    break;
+                case 1:
+                    /*No quiso borrar*/
+                    break;
+            }
+
+
+
+
+
+
     }//GEN-LAST:event_botonPorDefectoMouseClicked
 
     private void campoEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoEntradaActionPerformed
