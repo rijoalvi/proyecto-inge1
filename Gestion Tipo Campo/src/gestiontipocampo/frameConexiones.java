@@ -161,31 +161,32 @@ public class frameConexiones extends javax.swing.JFrame {
 
         btnEstablecerConexion.setEnabled(false);
         ControladorBD probadorConexiones = new ControladorBD();
-     /*   if (1 == probadorConexiones.probarConexion(1)) {
 
-            jRadioButton1.setEnabled(true);
-            jRadioButton1.setText("Disponible");
 
-        //         jRadioButton1.setBackground(Color.green);
-        } else {
-            jRadioButton1.setText("No disponible");
-            jRadioButton1.setSelected(false);
-            jRadioButton1.setEnabled(false);
-        }
-         /* */
-       
-        
+
+        //ATENCION: YA NO HAY QUE COMENTAR NADA AQUÍ*********************************
         if(1==probadorConexiones.probarConexion(2)){
-        jRadioButton2.setText("Disponible");
-        jRadioButton2.setEnabled(true);
+            jRadioButton2.setText("Disponible");
+            jRadioButton2.setEnabled(true);
         }
         else{
-        jRadioButton2.setText("No disponible");
-        jRadioButton2.setSelected(false);
-        jRadioButton2.setEnabled(false);
+            jRadioButton2.setText("No disponible");
+            jRadioButton2.setSelected(false);
+            jRadioButton2.setEnabled(false);
+
+            if (1 == probadorConexiones.probarConexion(1)) {
+
+                jRadioButton1.setEnabled(true);
+                jRadioButton1.setText("Disponible");
+        //         jRadioButton1.setBackground(Color.green);
+                } else {
+                    jRadioButton1.setText("No disponible");
+                    jRadioButton1.setSelected(false);
+                    jRadioButton1.setEnabled(false);
+                }
         }
-       /*  */
-        jLabel1.setText("Por favor elija la Base de Datos a la que sea conectarse.");
+
+        jLabel1.setText("Por favor elija la Base de Datos a la que desea conectarse.");
 
     }
     private void jRadioButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButton1MouseClicked
