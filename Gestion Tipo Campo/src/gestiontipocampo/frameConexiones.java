@@ -168,6 +168,10 @@ public class frameConexiones extends javax.swing.JFrame {
         if(1==probadorConexiones.probarConexion(2)){
             jRadioButton2.setText("Disponible");
             jRadioButton2.setEnabled(true);
+
+            jRadioButton1.setText("No disponible");
+            jRadioButton1.setSelected(false);
+            jRadioButton1.setEnabled(false);
         }
         else{
             jRadioButton2.setText("No disponible");
@@ -179,10 +183,6 @@ public class frameConexiones extends javax.swing.JFrame {
                 jRadioButton1.setEnabled(true);
                 jRadioButton1.setText("Disponible");
         //         jRadioButton1.setBackground(Color.green);
-                } else {
-                    jRadioButton1.setText("No disponible");
-                    jRadioButton1.setSelected(false);
-                    jRadioButton1.setEnabled(false);
                 }
         }
 
