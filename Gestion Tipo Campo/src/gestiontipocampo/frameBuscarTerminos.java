@@ -679,7 +679,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
     public boolean isJerarquiaVacia(){
         String valor = "";
         try {
-            ResultSet resultado = buscador.getResultSet("select IDNodoRaiz from JERARQUIA where nombreJerarquia = '" + nombreJerarquia + "'");
+            ResultSet resultado = buscador.getResultSet("select nombreJerarquia, IDNodoRaiz from JERARQUIA where nombreJerarquia = '" + nombreJerarquia + "'");
             if (resultado.next()) {
                 valor += resultado.getObject("IDNodoRaiz").toString(); //IDRaiz
             }
