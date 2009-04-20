@@ -11,7 +11,7 @@
 
 package gestiontipocampo;
 
-import java.util.*;
+import java.util.Timer;
 import javax.swing.*;
 import java.awt.*;
 import java.*;
@@ -26,6 +26,15 @@ public class frameLista extends javax.swing.JFrame {
     public Lista miLista = new Lista();
  //   public String elementoSeleccionado;
     private int IDTipoCampo;
+
+   public boolean wasDoubleClick;    // double-click speed in ms
+  public long timeMouseDown=0; // last mouse down time
+  public int lastX=0,lastY=0;  //  last x and y
+
+
+
+
+
     public frameLista() {
         initComponents();
 
@@ -302,7 +311,7 @@ public class frameLista extends javax.swing.JFrame {
                        miLista.borrarMiembro(lista.getSelectedValue());
                       // this.actualizarLista();
                        lista.setListData(miLista.getModeloMiembrosVector());
-                       botonBorrar.setEnabled(false);
+                       setConfiguracionBase();
                     break;
                 case 1:
                     /*No quiso borrar*/
@@ -317,6 +326,7 @@ public class frameLista extends javax.swing.JFrame {
         botonBorrar.setEnabled(true);
         botonPorDefecto.setEnabled(true);
         botonAgregar.setEnabled(true);
+        
     }//GEN-LAST:event_listaMouseClicked
 
     private void botonPorDefectoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonPorDefectoMouseClicked
@@ -329,8 +339,7 @@ public class frameLista extends javax.swing.JFrame {
         lista.setListData(miLista.getModeloMiembrosVector());
        miLista.setLista();
        nombreMiembroPorDefecto.setText(miLista.nombreMiembroPorDefecto);
-       botonPorDefecto.setEnabled(false);
-       botonBorrar.setEnabled(false);
+       this.setConfiguracionBase();
     }//GEN-LAST:event_botonPorDefectoMouseClicked
 
     private void campoEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoEntradaActionPerformed
@@ -339,7 +348,9 @@ public class frameLista extends javax.swing.JFrame {
 
     private void campoEntradaInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_campoEntradaInputMethodTextChanged
 
-            
+
+
+
 
     }//GEN-LAST:event_campoEntradaInputMethodTextChanged
 
@@ -352,15 +363,21 @@ public class frameLista extends javax.swing.JFrame {
             miLista.agregarMiembro(campoEntrada.getText());
             //elementoSeleccionado=campoEntrada.getText();
             this.actualizarLista();
-            campoEntrada.setText("");
+            this.setConfiguracionBase();
 
         }
         campoEntrada.requestFocus();        // TODO add your handling code here:
     }//GEN-LAST:event_botonAgregarActionPerformed
-
+    public void setConfiguracionBase(){
+        campoEntrada.setText("");
+        campoEntrada.requestFocus();
+        botonAgregar.setEnabled(false);
+        botonBorrar.setEnabled(false);
+        botonPorDefecto.setEnabled(false);
+    }
     private void campoEntradaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoEntradaKeyTyped
         botonAgregar.setEnabled(true);        // TODO add your handling code here:
-        if(campoEntrada.getText().isEmpty()){
+        if(campoEntrada.getText().trim().isEmpty()){
             botonAgregar.setEnabled(false);
         }
     }//GEN-LAST:event_campoEntradaKeyTyped
