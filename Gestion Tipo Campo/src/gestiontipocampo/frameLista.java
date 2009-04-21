@@ -11,7 +11,7 @@
 
 package gestiontipocampo;
 
-import java.util.Timer;
+
 import javax.swing.*;
 import java.awt.*;
 import java.*;
@@ -25,11 +25,10 @@ public class frameLista extends javax.swing.JFrame {
     /** Creates new form frameLista */
     public Lista miLista = new Lista();
  //   public String elementoSeleccionado;
-    private int IDTipoCampo;
+  //  private int IDTipoCampo;
 
-   public boolean wasDoubleClick;    // double-click speed in ms
-  public long timeMouseDown=0; // last mouse down time
-  public int lastX=0,lastY=0;  //  last x and y
+   public boolean modificando;
+
 
 
 
@@ -207,35 +206,32 @@ public class frameLista extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(botonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonBorrar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonPorDefecto, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonSalir))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(botonAgregar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(botonBorrar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(botonPorDefecto, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(botonSalir)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(campoEntrada, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(etiquetaNombreLista)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
                             .addComponent(etiquetaDescripcionLista)
-                            .addComponent(jLabel3)
-                            .addComponent(nombreMiembroPorDefecto))
-                        .addContainerGap(45, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(campoEntrada, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
-                        .addGap(152, 152, 152))))
+                            .addComponent(nombreMiembroPorDefecto)
+                            .addComponent(jLabel3))))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(5, 5, 5)
@@ -247,7 +243,8 @@ public class frameLista extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nombreMiembroPorDefecto)))
+                        .addComponent(nombreMiembroPorDefecto))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(campoEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
@@ -322,20 +319,25 @@ public class frameLista extends javax.swing.JFrame {
        // botonAgregar.setEnabled(true);
 
         if(evt.getClickCount()==2){
-                            botonBorrar.setEnabled(false);
-                botonPorDefecto.setEnabled(false);
+            modificando=true;
+            botonBorrar.setEnabled(false);
+            botonPorDefecto.setEnabled(false);
             if(lista.getSelectedValue()!=null){
                 campoEntrada.setText( lista.getSelectedValue().toString());
-                 botonAgregar.setEnabled(true);
+                botonAgregar.setEnabled(true);
+                botonAgregar.setText("Modificar");
             }else{
                 campoEntrada.setText("");
             }
+                            campoEntrada.requestFocus();
         }
         else{
+            botonAgregar.setText("Agregar");
+            modificando=false;
             botonAgregar.setEnabled(false);
-                botonBorrar.setEnabled(true);
-                botonPorDefecto.setEnabled(true);
-                campoEntrada.setText("");
+            botonBorrar.setEnabled(true);
+            botonPorDefecto.setEnabled(true);
+            campoEntrada.setText("");
         }
 
 
@@ -388,16 +390,30 @@ public class frameLista extends javax.swing.JFrame {
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
         // TODO add your handling code here:
 
+
         if(miLista.getMiembroListaSet().contains(new MiDato(campoEntrada.getText(),0))){
             JOptionPane.showMessageDialog(null,"Ya existe un elemento con ese nombre.");
         }else{
-            miLista.agregarMiembro(campoEntrada.getText());
-            //elementoSeleccionado=campoEntrada.getText();
-            this.actualizarLista();
-            this.setConfiguracionBase();
+            if(modificando){
+                miLista.upDateValorMiembro(lista.getSelectedValue(), campoEntrada.getText());
+                lista.setListData(miLista.getModeloMiembrosVector());
+                this.nombreMiembroPorDefecto.setText(miLista.nombreMiembroPorDefecto);
+                setConfiguracionBase();
+                modificando=false;
+            }
+            else{
+                miLista.agregarMiembro(campoEntrada.getText());
+                //elementoSeleccionado=campoEntrada.getText();
+                this.actualizarLista();
+                this.setConfiguracionBase();
 
-        }
-        campoEntrada.requestFocus();        // TODO add your handling code here:
+            }
+
+
+      //  campoEntrada.requestFocus();        // TODO add your handling code here:
+        botonAgregar.setText("Agregar");
+                }
+                campoEntrada.requestFocus();
     }//GEN-LAST:event_botonAgregarActionPerformed
     public void setConfiguracionBase(){
         campoEntrada.setText("");
@@ -407,6 +423,9 @@ public class frameLista extends javax.swing.JFrame {
         botonPorDefecto.setEnabled(false);
     }
     private void campoEntradaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoEntradaKeyTyped
+        if(!this.modificando){
+            lista.clearSelection();
+        }
         botonAgregar.setEnabled(true);        // TODO add your handling code here:
         if(campoEntrada.getText().trim().isEmpty()){
             botonAgregar.setEnabled(false);

@@ -84,6 +84,18 @@ public class Lista extends TipoCampo{
         //this.miembroLista.remove(miembro);
         
     }
+    public void upDateValorMiembro(Object miembroAActualizar, String valorNuevo){
+        int IDMiembroAActualizar=((MiDato)(miembroAActualizar)).ID;
+        ControladorBD buscador= new ControladorBD();
+        buscador.doUpdate("Update MIEMBROLISTA set valor='"+valorNuevo+"' where Correlativo="+IDMiembroAActualizar+";");
+        //this.miembroLista.remove(miembro);
+        this.miembroLista.remove(miembroAActualizar);
+        this.miembroLista.add(new MiDato(valorNuevo,IDMiembroAActualizar));
+        if((""+IDMiembroAActualizar).equalsIgnoreCase(this.IDMiembroPorDefecto)){
+            this.nombreMiembroPorDefecto=valorNuevo;
+        }
+
+    }
     public Vector setAndGetMiembrosVectorActualizados(){
         this.setMiembrosLista(this.getModeloVector("select valor, ml.correlativo from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo="+this.correlativo+"", "valor", "correlativo"));
 

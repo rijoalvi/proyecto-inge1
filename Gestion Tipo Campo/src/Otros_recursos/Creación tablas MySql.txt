@@ -60,3 +60,10 @@ create table LISTA(
     IDMiembroPorDefecto int,
     primary key(correlativo)
 );
+
+create table MIEMBROLISTA(
+    correlativo int not null,
+    valor char(50),
+    IDLista int not null,
+    primary key(correlativo)
+);
