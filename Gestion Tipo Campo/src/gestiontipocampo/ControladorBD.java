@@ -56,7 +56,7 @@ public class ControladorBD {
             System.out.println("No se pudo acceder a la conexion: " + numeroConexion+"\n");
             estado=-1;//error producido
         } catch (ClassNotFoundException cE) {
-            System.out.println("No se pudo acceder a la conexion: " + numeroConexion+"\n");
+            System.out.println("No se pudo acceder a la conexion: " + numeroConexion+".\n");
             //System.out.println("--Class Not Found Exception: --" + cE.toString());
             estado=-1;//error producido
         }

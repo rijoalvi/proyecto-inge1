@@ -380,7 +380,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         if (node != null) {
             //TreeNode[] jerPath = node.getPath();
             String nombreNodo = node.toString();
-            int nivel = node.getLevel() +1 ; //Agrega uno xq utilizamos raiz cmo nivel 1
+            int nivel = node.getLevel() + 1; //Agrega uno xq utilizamos raiz cmo nivel 1
             int IDJerarquia = getIDJerarquia(nombreJerarquia);
             int IDNodoPadre = getIDNodo(nombreNodo);
 
@@ -444,11 +444,11 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         String jerarq = arbolJerarquia.getModel().getRoot().toString();
         listaElementos = buscarNodos(jerarq);
         frameBusquedaNodos frame;
-        frame=new frameBusquedaNodos();
+        frame = new frameBusquedaNodos();
         frame.llenarTabla(listaElementos);
         System.out.println("listado elementos " + posicion + "");
-        //paneTree.setVisible(false);
-        //paneLista.setVisible(true);
+    //paneTree.setVisible(false);
+    //paneLista.setVisible(true);
 }//GEN-LAST:event_botonListarHijosActionPerformed
 
     private void botonListarSubarbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonListarSubarbolActionPerformed
@@ -465,12 +465,12 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         frameTermino fram;
         DefaultMutableTreeNode node = (DefaultMutableTreeNode) arbolJerarquia.getLastSelectedPathComponent();
         if (node != null) {
-         /*   TreeNode[] jerPath = node.getPath();
+            /*   TreeNode[] jerPath = node.getPath();
             for (int i = 0; i < jerPath.length; i++) {
-                System.out.println(i + " " + jerPath[i].toString());
+            System.out.println(i + " " + jerPath[i].toString());
             }*/
             String nombreNodo = node.toString();
-            int nivel = node.getLevel() +1 ; //Agrega uno xq utilizamos raiz cmo nivel 1
+            int nivel = node.getLevel() + 1; //Agrega uno xq utilizamos raiz cmo nivel 1
             int IDJerarquia = getIDJerarquia(nombreJerarquia);
             int IDNodoPadre = getIDNodo(nombreNodo);
 
@@ -498,44 +498,44 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
     private int getIDNodo(/*TreeNode[] path*/String nombre) {
         //TreeNode[] jerPath = path;
         String idNodo = "";
-       // String tempNodo = "";
+        // String tempNodo = "";
        /* try {
-            ResultSet resultado = buscador.getResultSet("select IDNodoRaiz from JERARQUIA where nombreJerarquia = '" + nombreJerarquia + "';");
+        ResultSet resultado = buscador.getResultSet("select IDNodoRaiz from JERARQUIA where nombreJerarquia = '" + nombreJerarquia + "';");
+        if (resultado.next()) {
+        idNodo = resultado.getObject("IDNodoRaiz").toString();
+        }
+        } catch (SQLException e) {
+        System.out.println("*SQL Exception: *" + e.toString());
+        }
+        for (int i = 1; i < jerPath.length; i++) {
+        tempNodo = idNodo;*/
+        try {
+            ResultSet resultado = buscador.getResultSet("select ID from NODO where nombre = '" + nombre + "';");
             if (resultado.next()) {
-                idNodo = resultado.getObject("IDNodoRaiz").toString();
+                idNodo = resultado.getObject("ID").toString();
             }
         } catch (SQLException e) {
             System.out.println("*SQL Exception: *" + e.toString());
         }
-        for (int i = 1; i < jerPath.length; i++) {
-            tempNodo = idNodo;*/
-            try {
-                ResultSet resultado = buscador.getResultSet("select ID from NODO where nombre = '" + nombre + "';");
-                if (resultado.next()) {
-                    idNodo = resultado.getObject("ID").toString();
-                }
-            } catch (SQLException e) {
-                System.out.println("*SQL Exception: *" + e.toString());
-            }
         //}
 
         return Integer.parseInt(idNodo);
     }
 
     private void busquedaSimple(String palabra, String[] lista) {
-/*
+        /*
         String consulta = "select * from NODO where (";
         consulta += "ID = '" + lista[0] + "'";
         for (int i = 1; i < lista.length; i++) {
-            consulta += " or ID = '" + lista[i] + "'";
+        consulta += " or ID = '" + lista[i] + "'";
         }
         consulta += ") and ( nombre = '*" + palabra + "*' or descripcion =  '*" + palabra + "*')";
 
         try {
-            ResultSet resultado = buscador.getResultSet(consulta);
+        ResultSet resultado = buscador.getResultSet(consulta);
 
         } catch (SQLException e) {
-            System.out.println("*SQL Exception: *" + e.toString());
+        System.out.println("*SQL Exception: *" + e.toString());
         }*/
     }
 
@@ -544,15 +544,15 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         String jerarq = arbolJerarquia.getModel().getRoot().toString();
         listaElementos = buscarNodos(jerarq);
         frameBusquedaNodos frame;
-        frame=new frameBusquedaNodos();
-        frame.llenarTablaBusqueda(listaElementos,fieldBusqueda.getText());
+        frame = new frameBusquedaNodos();
+        frame.llenarTablaBusqueda(listaElementos, fieldBusqueda.getText());
 }//GEN-LAST:event_botonBuscarActionPerformed
 
     private void botonContarTerminosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonContarTerminosActionPerformed
         String[] listaElementos;
         String jerarq = arbolJerarquia.getModel().getRoot().toString();
         listaElementos = buscarNodos(jerarq);
-        int temp=posicion+1;
+        int temp = posicion + 1;
         JOptionPane.showMessageDialog(this,
                 "La cantidad de términos en la Jerarquía es de " + temp + " términos.",
                 "Cantidad de Términos",
@@ -568,12 +568,10 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
             switch (respuesta) {
                 case 0:
                     /*Si esta seguro de borrar*/
-                    //TreeNode[] jerPath = node.getPath();
                     String nombreNodo = node.toString();
-                  //  int IDJerarquia = getIDJerarquia(nombreJerarquia);
                     int IDNodo = getIDNodo(nombreNodo);
+                    borrarHijo(IDNodo);
                     buscador.doUpdate("delete from NODO where ID = " + IDNodo);
-
                     break;
                 case 1:
                     /*No quiso borrar*/
@@ -586,6 +584,25 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_botonExcluirActionPerformed
 
+    /**
+     * Metodo recursivo para borrar todos los hijos del elemento que se borra
+     * @param padre - ID del padre
+     */
+    private void borrarHijo(int padre) {
+        
+        try {
+            ResultSet resultado = buscador.getResultSet("select ID from NODO where IDNodoPadre =" + padre);
+            while (resultado.next()) {
+                int IDNodo;
+                IDNodo = Integer.parseInt(resultado.getObject("ID").toString());
+                borrarHijo(IDNodo);
+                buscador.doUpdate("delete from NODO where ID = " + IDNodo);
+            }
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception: *" + e.toString());
+        }
+    }
+
     private void arbolJerarquiaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arbolJerarquiaMouseClicked
         llenarDatosNodo();
     }//GEN-LAST:event_arbolJerarquiaMouseClicked
@@ -593,32 +610,33 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
     /**
      * Llena los campos de atributos del nodo
      */
-    private void llenarDatosNodo(){
-        DefaultMutableTreeNode nodo = (DefaultMutableTreeNode)arbolJerarquia.getLastSelectedPathComponent();
-        if(nodo != null){
+    private void llenarDatosNodo() {
+        DefaultMutableTreeNode nodo = (DefaultMutableTreeNode) arbolJerarquia.getLastSelectedPathComponent();
+        if (nodo != null) {
             String nombre = nodo.toString(); //nombre del nodo
             String valores = "";
             try {
-                ResultSet resultado = buscador.getResultSet("SELECT * from NODO where nombre = '"+ nombre+" '");
-                if(resultado.next()){
+                ResultSet resultado = buscador.getResultSet("SELECT * from NODO where nombre = '" + nombre + " '");
+                if (resultado.next()) {
                     valores += resultado.getObject("descripcion").toString() + ";";
                     valores += resultado.getObject("fechaCreacion").toString() + ";";
                     valores += resultado.getObject("fechaUltimaModificacion").toString() + ";";
                     valores += resultado.getObject("numNivel").toString() + ";";
-                    //valores += resultado.getObject("IDInstanciaCategoria").toString() + ";";
+                //valores += resultado.getObject("IDInstanciaCategoria").toString() + ";";
                 }
             } catch (SQLException e) {
                 System.out.println("*SQL Exception: *" + e.toString());
             }
-            String [] val = valores.split(";"); //divide los valores
+            String[] val = valores.split(";"); //divide los valores
             valNombreNodo.setText(nombre);
             valDescripcionNodo.setText(val[0]);
             valNumNivelNodo.setText(val[1]);
             valFechaCreacionNodo.setText(val[2]);
             valFechaModifNodo.setText(val[3]);
-            //valNombreNodo.setText(val[0]);
+        //valNombreNodo.setText(val[0]);
         }
     }
+
     /**
      * @param args the command line arguments
      */
@@ -638,7 +656,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
     public void llenarTreeViewJerarquia(String nombreJer) {
         //Se llena el arbol
         //Llena los valores del Tree View
-        if( !isJerarquiaVacia() ){
+        if (!isJerarquiaVacia()) {
             String valores;
             String[] valTrim;
             valores = buscarDatosEnBD(nombreJer);
@@ -647,16 +665,16 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
             String trimIDsHijos[];
             DefaultMutableTreeNode nodoTemp;
             DefaultMutableTreeNode raizArbol = new DefaultMutableTreeNode(buscarNombreNodo(Integer.parseInt(valTrim[1])));
-           // if (Integer.parseInt(valTrim[2]) > 1) { //Si tiene mas de un nivel la jerarquia
-                IDsHijos = buscarIDHijos(Integer.parseInt(valTrim[1]));
-                if (IDsHijos.length() > 1) {
-                    trimIDsHijos = IDsHijos.split(";");
-                    for (int j = 0; j < trimIDsHijos.length; ++j) { //Mientras tenga hijos la raiz
-                        nodoTemp = llenarSubArbol(Integer.parseInt(trimIDsHijos[j]));
-                        raizArbol.add(nodoTemp);
-                    }
+            // if (Integer.parseInt(valTrim[2]) > 1) { //Si tiene mas de un nivel la jerarquia
+            IDsHijos = buscarIDHijos(Integer.parseInt(valTrim[1]));
+            if (IDsHijos.length() > 1) {
+                trimIDsHijos = IDsHijos.split(";");
+                for (int j = 0; j < trimIDsHijos.length; ++j) { //Mientras tenga hijos la raiz
+                    nodoTemp = llenarSubArbol(Integer.parseInt(trimIDsHijos[j]));
+                    raizArbol.add(nodoTemp);
                 }
-         //   }
+            }
+            //   }
             JTree arbolnuevo = new JTree(raizArbol);
             arbolJerarquia.setModel(arbolnuevo.getModel());
         }
@@ -680,7 +698,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         return nodoActual;
     }
 
-    public boolean isJerarquiaVacia(){
+    public boolean isJerarquiaVacia() {
         String valor = "";
         try {
             ResultSet resultado = buscador.getResultSet("select nombreJerarquia, IDNodoRaiz from JERARQUIA where nombreJerarquia = '" + nombreJerarquia + "'");
@@ -690,8 +708,10 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         } catch (SQLException e) {
             System.out.println("*SQL Exception: *" + e.toString());
         }
-        if(valor.equalsIgnoreCase("-1")) //Si esta vacia
+        if (valor.equalsIgnoreCase("-1")) //Si esta vacia
+        {
             return true;
+        }
         return false;
     }
 
@@ -701,14 +721,14 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
      */
     public String buscarDatosEnBD(String nombre) {
         String valores = "";
-                System.out.println(nombre);
+        System.out.println(nombre);
         try {
             ResultSet resultado = buscador.getResultSet("select correlativo, IDNodoRaiz, numeroDeNiveles from JERARQUIA where nombreJerarquia = '" + nombre + "'");
             if (resultado.next()) {
                 valores += resultado.getObject("correlativo").toString() + ";"; //ID correlativo
                 valores += resultado.getObject("IDNodoRaiz").toString() + ";"; //IDRaiz
                 valores += resultado.getObject("NumeroDeNiveles").toString() + ";"; //num niveles
-                //System.out.println("valores: "+valores);
+            //System.out.println("valores: "+valores);
             }
         } catch (SQLException e) {
             System.out.println("*SQL Exception: *" + e.toString());
@@ -754,9 +774,9 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         return valores;
     }
 
-    public void cambiarNumTerminos(int cant){
+    public void cambiarNumTerminos(int cant) {
         //System.out.println("suma/resta: "+ cant + " nombre: "+ nombreJerarquia);
-        buscador.doUpdate("UPDATE JERARQUIA SET numeroDeTerminos = (numeroDeTerminos +" + cant + ") WHERE (nombreJerarquia = '"+ nombreJerarquia +"')");
+        buscador.doUpdate("UPDATE JERARQUIA SET numeroDeTerminos = (numeroDeTerminos +" + cant + ") WHERE (nombreJerarquia = '" + nombreJerarquia + "')");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -31,6 +31,7 @@ public class Modelo {
             }
        return vectorValores;
     }
+    
     public Vector getModeloEnVector(String consulta,String campoTexto,String campoNumero){
     //  MiDato d= new MiDato("increible",2);
         Vector vectorValores = new Vector();
