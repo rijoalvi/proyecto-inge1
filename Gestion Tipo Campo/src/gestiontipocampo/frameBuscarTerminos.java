@@ -25,6 +25,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
     public frameBuscarTerminos() {
         initComponents();
         paneTree.setVisible(false);
+        paneDatosNodo.setVisible(false);
         paneLista.setVisible(true);
         buscador = new ControladorBD();
     }
@@ -33,6 +34,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         initComponents();
         if (i == 1) { //alfabeticamente
             paneTree.setVisible(false);
+            paneDatosNodo.setVisible(false);
             paneLista.setVisible(true);
         }
         buscador = new ControladorBD();
@@ -42,6 +44,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
     public frameBuscarTerminos(String nombreJer) {
         initComponents();
         paneTree.setVisible(true);
+        paneDatosNodo.setVisible(true);
         paneLista.setVisible(false);
         buscador = new ControladorBD();
         nombreJerarquia = nombreJer;
@@ -450,6 +453,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
 
     private void botonListarSubarbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonListarSubarbolActionPerformed
         paneTree.setVisible(false);
+        paneDatosNodo.setVisible(false);
         paneLista.setVisible(true);
 }//GEN-LAST:event_botonListarSubarbolActionPerformed
 
