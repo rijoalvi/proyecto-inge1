@@ -15,6 +15,7 @@ import java.text.ParseException;
 
 import java.text.SimpleDateFormat;
 import java.sql.Date;
+
 /**
  *
  * @author  ea60289
@@ -125,8 +126,8 @@ public class frameManejoCampos extends javax.swing.JFrame {
      * Activa un Pane en especifico
      * @param tipo El num de pane que va a activar
      */
-    public void activarPaneEspecifico(int tipo){
-            switch (tipo) {
+    public void activarPaneEspecifico(int tipo) {
+        switch (tipo) {
             case 1:
                 paneNumero.setVisible(true);
                 break;
@@ -626,12 +627,12 @@ public class frameManejoCampos extends javax.swing.JFrame {
 
         valorPorDefectoLista.setText(resourceMap.getString("valorPorDefectoLista.text")); // NOI18N
         valorPorDefectoLista.setName("valorPorDefectoLista"); // NOI18N
-        valorPorDefectoLista.setBounds(30, 40, 110, 20);
+        valorPorDefectoLista.setBounds(30, 40, 110, -1);
         paneLista.add(valorPorDefectoLista, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel25.setText(resourceMap.getString("jLabel25.text")); // NOI18N
         jLabel25.setName("jLabel25"); // NOI18N
-        jLabel25.setBounds(30, 20, 90, 14);
+        jLabel25.setBounds(30, 20, 90, -1);
         paneLista.add(jLabel25, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneLista.setBounds(0, 0, 530, 160);
@@ -884,7 +885,7 @@ private void botonBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     ventanaBusqueda.setLocationRelativeTo(this);
     ventanaBusqueda.setVisible(true);
     ventanaBusqueda.llenarTabla(valorBusqueda);
-    
+
 }//GEN-LAST:event_botonBusquedaActionPerformed
 
 private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
@@ -924,18 +925,18 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         /*
         //Si este tipocampo ya existe en la base de datos hay que actualizar los campos solamente
         if (existe) {
-            JOptionPane.showConfirmDialog(null, "Ya existe campo con este nombre!");
+        JOptionPane.showConfirmDialog(null, "Ya existe campo con este nombre!");
 
         //Por ahora no la boten, por si la ocupo mas tarde
         //conexionBD.getResultSet("Update TIPOCAMPO set nombre = '" + this.valorNombreGeneral.getText() + "', descripcion = '" + this.valorNota.getText() + "' where correlativo = " + ID);
         }
         else { //Si no existe en la base hay que agregar una entrada nueva
         }
-        */
-        SimpleDateFormat fecha = new SimpleDateFormat( "dd/MM/yyyy" );
+         */
+        SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy");
         switch (comboTipos.getSelectedIndex()) {
             case NUMERO: //HashCode para Número
-                if (existe) {                    
+                if (existe) {
                     conexionBD.doUpdate("Update TIPOCAMPO set descripcion = '" + this.valorNota.getText() + "' where correlativo = " + ID);
                     conexionBD.doUpdate("Update NUMERO set numeroDecimales = '" + this.valorNumDecimales.getText() + "', mascara = '" + this.valorNumeroMascara.getText() + "', valorDefecto = '" + this.valorValorDefectoNumero.getText() + "' where correlativo = " + ID);
                     limpiarValoresNumero();
@@ -959,7 +960,7 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             case BINARIO: //HashCode para Binario
                 if (existe) {
                     conexionBD.doUpdate("Update TIPOCAMPO set descripcion = '" + this.valorNota.getText() + "' where correlativo = " + ID);
-                    conexionBD.doUpdate("Update BINARIO set nombre1 = '" + this.valorNombreBinario1.getText() + "', valor1 = '"+ this.valorOpcionBinaria1.getText() + "' , nombre2 = '"+ this.valorNombreBinario2.getText() + "' , valor2 = '"+ this.valorOpcionBinaria2.getText() + "' , valorDefecto = '"+ radioOpcionBinaria1.isSelected() + "' where correlativo = " + ID);
+                    conexionBD.doUpdate("Update BINARIO set nombre1 = '" + this.valorNombreBinario1.getText() + "', valor1 = '" + this.valorOpcionBinaria1.getText() + "' , nombre2 = '" + this.valorNombreBinario2.getText() + "' , valor2 = '" + this.valorOpcionBinaria2.getText() + "' , valorDefecto = '" + radioOpcionBinaria1.isSelected() + "' where correlativo = " + ID);
                     limpiarValoresBinario();
                 } else {
                     conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 2)");
@@ -970,9 +971,9 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         }
                     } catch (SQLException e) {
                         System.out.println("*SQL Exception: *" + e.toString());
-                    }                    
-                    conexionBD.doUpdate("Insert Into BINARIO (correlativo, nombre1, valor1, nombre2, valor2, valorDefecto) VALUES (" + ID + ", '" + this.valorNombreBinario1.getText() + "', '" + this.valorOpcionBinaria1.getText() + "', '" + this.valorNombreBinario2.getText() + "', '" + this.valorOpcionBinaria2.getText() + "', '" + radioOpcionBinaria1.isSelected()  + "' where correlativo = " + ID);
-                    limpiarValoresBinario();                    
+                    }
+                    conexionBD.doUpdate("Insert Into BINARIO (correlativo, nombre1, valor1, nombre2, valor2, valorDefecto) VALUES (" + ID + ", '" + this.valorNombreBinario1.getText() + "', '" + this.valorOpcionBinaria1.getText() + "', '" + this.valorNombreBinario2.getText() + "', '" + this.valorOpcionBinaria2.getText() + "', '" + radioOpcionBinaria1.isSelected() + "' where correlativo = " + ID);
+                    limpiarValoresBinario();
                 }
                 break;
 
@@ -1023,8 +1024,7 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     conexionBD.doUpdate("Update TIPOCAMPO set descripcion = '" + this.valorNota.getText() + "' where correlativo = " + ID);
                     conexionBD.doUpdate("Update INCREMENTAL set valInicial = '" + this.valorValorInicial.getText() + "', incremento = '" + this.valorIncremento.getText() + "' where correlativo = " + ID);
                     limpiarValoresIncremental();
-                }
-                else {
+                } else {
                     conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 5)");
                     try { //Se busca el ID de los datos que acaba de insertar
                         ResultSet resultado = conexionBD.getResultSet("select correlativo from TIPOCAMPO where nombre = '" + this.valorNombreGeneral.getText() + "'");
@@ -1040,10 +1040,10 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 }
                 break;
 
-            case JERARQUIA:                                
+            case JERARQUIA:
                 if (existe) {
                     conexionBD.doUpdate("Update TIPOCAMPO set descripcion = '" + this.valorNota.getText() + "' where correlativo = " + ID);
-                    conexionBD.doUpdate("Update JERARQUIA set repeticionNombreNodo = '" + this.radioNomUnicoSi.isSelected() + "', conCategorias = '" + this.radioCategoriasSi.isSelected() + "' , IDTIpoCategoria = '" + this.comboCategorias.getSelectedItem().toString().charAt(0)+ "' where correlativo = " + ID);
+                    conexionBD.doUpdate("Update JERARQUIA set repeticionNombreNodo = '" + this.radioNomUnicoSi.isSelected() + "', conCategorias = '" + this.radioCategoriasSi.isSelected() + "' , IDTIpoCategoria = '" + this.comboCategorias.getSelectedItem().toString().charAt(0) + "' where correlativo = " + ID);
                 } else {
                     conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 6)");
                     try { //Se busca el ID de los datos que acaba de insertar
@@ -1055,17 +1055,14 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         System.out.println("*SQL Exception: *" + e.toString());
                     }
                     try {
-                        java.sql.Date sqlDate = new java.sql.Date ( new java.util.Date () .getTime ()) ;
+                        java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
                         //la raiz se guarada cmo -1 dado q no existe! NO CAMBIAR---> xq no simplemente null??????
-                        conexionBD.doUpdate("Insert Into JERARQUIA ( correlativo,nombreJerarquia, IDNodoRaiz, repeticionNombreNodo, "
-                                + "fechaCreacion," + " conCategorias, IDTIpoCategoria) VALUES (" + ID + ", '" + this.valorNombreGeneral.getText()
-                                + "', " + -1 + ", '" + this.radioNomUnicoNo.isSelected() + "', " + sqlDate/*new Date( fecha.parse( "15/02/1982" ).getTime() ) */+ " , '"
-                                + this.radioCategoriasSi.isSelected() + "' , '" + ((MiDato) comboCategorias.getSelectedItem()).ID + "')");
+                        conexionBD.doUpdate("Insert Into JERARQUIA ( correlativo,nombreJerarquia, IDNodoRaiz, repeticionNombreNodo, " + "fechaCreacion," + " conCategorias, IDTIpoCategoria) VALUES (" + ID + ", '" + this.valorNombreGeneral.getText() + "', " + -1 + ", '" + this.radioNomUnicoNo.isSelected() + "', " + sqlDate/*new Date( fecha.parse( "15/02/1982" ).getTime() ) */ + " , '" + this.radioCategoriasSi.isSelected() + "' , '" + ((MiDato) comboCategorias.getSelectedItem()).ID + "')");
                     } catch (Exception ex) {
                         Logger.getLogger(frameManejoCampos.class.getName()).log(Level.SEVERE, null, ex);
                     }
-               }                    
- //                 limpiarValoresNumero();
+                }
+                //                 limpiarValoresNumero();
                 break;
             case LISTA:
                 if (existe) {
@@ -1085,7 +1082,7 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         //java.sql.Date sqlDate = new java.sql.Date ( new java.util.Date () .getTime ()) ;
                         //guarda el miembro por defecto
                         conexionBD.doUpdate("insert into MIEMBROLISTA ( valor, IDLista) " +
-                                "values( '"+ this.valorPorDefectoLista.getText()+"', "+ ID +")");
+                                "values( '" + this.valorPorDefectoLista.getText() + "', " + ID + ")");
                         int IDMiembroPorDefecto = 0;
                         //obtiene el ID del miembro que acaba de guardar
                         ResultSet resultado = conexionBD.getResultSet("select correlativo from MIEMBROLISTA where valor = '" + this.valorPorDefectoLista.getText() + "'");
@@ -1094,11 +1091,11 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         }
                         //guarda la lista con valor por defecto el que acaba d insertar
                         conexionBD.doUpdate("insert into LISTA (correlativo, IDMiembroPorDefecto) " +
-                                "values ("+ ID + ", " + IDMiembroPorDefecto + ")");
+                                "values (" + ID + ", " + IDMiembroPorDefecto + ")");
                     } catch (Exception e) {
                         System.out.println("*SQL Exception: *" + e.toString());
                     }
-               }
+                }
                 frameLista fLista = new frameLista(ID);
                 fLista.setVisible(true);
                 //limpiarCamposLista();
@@ -1110,15 +1107,15 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     //this.dispose(); //Se cierra la ventana... No me parece hacer esto, por eso lo comente: Alberto
     }
 
-    public void limpiarValoresNumero(){
+    public void limpiarValoresNumero() {
         this.valorNombreGeneral.setText("");
         this.valorNota.setText("");
         this.valorNumDecimales.setText("");
         this.valorNumeroMascara.setText("");
         this.valorValorDefectoNumero.setText("");
     }
-    
-    public void limpiarValoresBinario(){
+
+    public void limpiarValoresBinario() {
         this.valorNombreGeneral.setText("");
         this.valorNota.setText("");
         this.valorNombreBinario1.setText("");
@@ -1126,34 +1123,33 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         this.valorNombreBinario2.setText("");
         this.valorOpcionBinaria2.setText("");
         this.radioOpcionBinaria1.setSelected(true);
-        this.radioOpcionBinaria2.setSelected(false);        
+        this.radioOpcionBinaria2.setSelected(false);
     }
-        
-    public void limpiarValoresFechaHora(){
+
+    public void limpiarValoresFechaHora() {
         this.valorNombreGeneral.setText("");
         this.valorNota.setText("");
         this.valorFechaDefecto.setText("");
         this.valorPreaviso.setText("");
         this.radioFechaHoraSi.setSelected(true);
-        this.radioFechaHoraNo.setSelected(false);        
+        this.radioFechaHoraNo.setSelected(false);
     }
-            
-            
-    public void limpiarValoresTexto(){
+
+    public void limpiarValoresTexto() {
         this.valorNombreGeneral.setText("");
         this.valorNota.setText("");
         this.valorTextoLargo.setText("");
-        this.valorTextoDefecto.setText("");        
+        this.valorTextoDefecto.setText("");
     }
-    
-    public void limpiarValoresIncremental(){
+
+    public void limpiarValoresIncremental() {
         this.valorNombreGeneral.setText("");
         this.valorNota.setText("");
         this.valorValorInicial.setText("");
         this.valorIncremento.setText("");
-    }        
-        
-    public void limpiarValoresJerarquia(){
+    }
+
+    public void limpiarValoresJerarquia() {
         this.valorNombreGeneral.setText("");
         this.valorNota.setText("");
     }
@@ -1262,7 +1258,7 @@ private void botonGuardarComoActionPerformed(java.awt.event.ActionEvent evt) {//
     } else {
         String nuevoNombre = "";
         //Strin opciones
-       // nuevoNombre = JOptionPane.showInputDialog(null, "Favor ingresar el nombre con el que desea guardar los nuevos datos" );
+        // nuevoNombre = JOptionPane.showInputDialog(null, "Favor ingresar el nombre con el que desea guardar los nuevos datos" );
         nuevoNombre = JOptionPane.showInputDialog(null, "Favor ingresar el nombre con el que desea guardar los nuevos datos", "Confirmación", JOptionPane.PLAIN_MESSAGE);//, null, JOptionPane.YES_NO_OPTION);
         valorNombreGeneral.setText(nuevoNombre);
         botonGuardarActionAccepted();
@@ -1315,7 +1311,7 @@ private void radioCategoriasNoActionPerformed(java.awt.event.ActionEvent evt) {/
 }//GEN-LAST:event_radioCategoriasNoActionPerformed
 
 private void radioNomUnicoSiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNomUnicoSiActionPerformed
-     if (radioNomUnicoSi.isSelected() == true) {
+    if (radioNomUnicoSi.isSelected() == true) {
         radioNomUnicoNo.setSelected(false);
     }
 }//GEN-LAST:event_radioNomUnicoSiActionPerformed
@@ -1328,7 +1324,7 @@ private void radioNomUnicoNoActionPerformed(java.awt.event.ActionEvent evt) {//G
 
 private void paneJerarquiaComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_paneJerarquiaComponentShown
     comboCategorias.setBounds(120, 90, 90, 20);//con esto creo que me quito la maldicion del combo, porque netbeans no se va a atrever a modificar este codigo
-    Modelo  miModelo = new Modelo();
+    Modelo miModelo = new Modelo();
     comboCategorias.setModel(new javax.swing.DefaultComboBoxModel(miModelo.getModeloDeCombo("select nombre, ID from TIPOCATEGORIA;")));
 }//GEN-LAST:event_paneJerarquiaComponentShown
 
@@ -1364,51 +1360,51 @@ private void botonAgregarNivelActionPerformed(java.awt.event.ActionEvent evt) {/
             resultado.next();
             resultadoGeneral.next();
 
-        if(tipoCampo<=comboTipos.getItemCount()){
-            comboTipos.setSelectedIndex(tipoCampo);
-            this.valorNombreGeneral.setText(resultadoGeneral.getObject(2).toString());
-            this.valorNota.setText(resultadoGeneral.getObject(3).toString());
-            switch(tipoCampo){
-                case 1:
-                    this.valorNumDecimales.setText(resultado.getObject(2).toString());
-                    this.valorNumeroMascara.setText(resultado.getObject(3).toString());
-                    this.valorValorDefectoNumero.setText(resultado.getObject(4).toString());
-                break;
-                case 2:
-                    this.valorNombreBinario1.setText(resultado.getObject(2).toString());
-                    this.valorOpcionBinaria1.setText(resultado.getObject(3).toString());
-                    this.valorNombreBinario2.setText(resultado.getObject(4).toString());
-                    this.valorOpcionBinaria2.setText(resultado.getObject(5).toString());
-                    System.out.println("valor por defecto: "+resultado.getObject(6).toString()+ " d la llave: " + llave);
-                    if(resultado.getObject(6).toString().equalsIgnoreCase("true")){
-                        this.radioOpcionBinaria1.setSelected(true);
-                        this.radioOpcionBinaria2.setSelected(false);
-                    }else{
-                        this.radioOpcionBinaria1.setSelected(false);
-                        this.radioOpcionBinaria2.setSelected(true);
-                    }
-                break;
-                case 3:
-                    this.comboFormatoFecha.setSelectedItem(resultado.getObject(2).toString());
-                    this.valorFechaDefecto.setText(resultado.getObject(3).toString());
-                    if(resultado.getObject(4).toString().equalsIgnoreCase("true")){
-                        this.radioFechaHoraSi.setSelected(true);
-                        this.radioFechaHoraNo.setSelected(false);
-                    }else{
-                        this.radioFechaHoraSi.setSelected(false);
-                        this.radioFechaHoraNo.setSelected(true);
-                    }
-                    this.valorPreaviso.setText(resultado.getObject(5).toString());
-                break;
-                case 4:
-                    this.valorTextoDefecto.setText(resultado.getObject(2).toString());
-                    this.valorTextoLargo.setText(resultado.getObject(3).toString());
-                break;
-                case 5:
-                    this.valorValorInicial.setText(resultado.getObject(2).toString());
-                    this.valorIncremento.setText(resultado.getObject(3).toString());
-                break;
-                default:
+            if (tipoCampo <= comboTipos.getItemCount()) {
+                comboTipos.setSelectedIndex(tipoCampo);
+                this.valorNombreGeneral.setText(resultadoGeneral.getObject(2).toString());
+                this.valorNota.setText(resultadoGeneral.getObject(3).toString());
+                switch (tipoCampo) {
+                    case 1:
+                        this.valorNumDecimales.setText(resultado.getObject(2).toString());
+                        this.valorNumeroMascara.setText(resultado.getObject(3).toString());
+                        this.valorValorDefectoNumero.setText(resultado.getObject(4).toString());
+                        break;
+                    case 2:
+                        this.valorNombreBinario1.setText(resultado.getObject(2).toString());
+                        this.valorOpcionBinaria1.setText(resultado.getObject(3).toString());
+                        this.valorNombreBinario2.setText(resultado.getObject(4).toString());
+                        this.valorOpcionBinaria2.setText(resultado.getObject(5).toString());
+                        System.out.println("valor por defecto: " + resultado.getObject(6).toString() + " d la llave: " + llave);
+                        if (resultado.getObject(6).toString().equalsIgnoreCase("true")) {
+                            this.radioOpcionBinaria1.setSelected(true);
+                            this.radioOpcionBinaria2.setSelected(false);
+                        } else {
+                            this.radioOpcionBinaria1.setSelected(false);
+                            this.radioOpcionBinaria2.setSelected(true);
+                        }
+                        break;
+                    case 3:
+                        this.comboFormatoFecha.setSelectedItem(resultado.getObject(2).toString());
+                        this.valorFechaDefecto.setText(resultado.getObject(3).toString());
+                        if (resultado.getObject(4).toString().equalsIgnoreCase("true")) {
+                            this.radioFechaHoraSi.setSelected(true);
+                            this.radioFechaHoraNo.setSelected(false);
+                        } else {
+                            this.radioFechaHoraSi.setSelected(false);
+                            this.radioFechaHoraNo.setSelected(true);
+                        }
+                        this.valorPreaviso.setText(resultado.getObject(5).toString());
+                        break;
+                    case 4:
+                        this.valorTextoDefecto.setText(resultado.getObject(2).toString());
+                        this.valorTextoLargo.setText(resultado.getObject(3).toString());
+                        break;
+                    case 5:
+                        this.valorValorInicial.setText(resultado.getObject(2).toString());
+                        this.valorIncremento.setText(resultado.getObject(3).toString());
+                        break;
+                    default:
 
                         break;
                 }

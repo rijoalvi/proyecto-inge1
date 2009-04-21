@@ -2,56 +2,49 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package gestiontipocampo;
-import java.util.Vector;
 
-import java.util.Map;
-import java.util.SortedSet;
-import java.util.TreeSet;
 import java.util.*;
 
 /**
  *
  * @author luiscarlosch@gmail.com
  */
-public class Lista extends TipoCampo{
-    
+public class Lista extends TipoCampo {
 
     private SortedSet miembroLista;
-    public  Modelo  miModelo;
-    public  String nombreMiembroPorDefecto;
-    public  String IDMiembroPorDefecto;
+    public Modelo miModelo;
+    public String nombreMiembroPorDefecto;
+    public String IDMiembroPorDefecto;
 
-    public Lista(){
-        miembroLista= new TreeSet();
+    public Lista() {
+        buscador = new ControladorBD();
+        miembroLista = new TreeSet();
         miModelo = new Modelo();
     }
-    public SortedSet getMiembroListaSet(){
+
+    public SortedSet getMiembroListaSet() {
         return this.miembroLista;
     }
 
-    public void setMiembrosLista(Vector vector){
+    public void setMiembrosLista(Vector vector) {
         miembroLista.clear();
-           for(int i=0; i<vector.size();i++){
-               miembroLista.add(vector.get(i));
-           }
+        for (int i = 0; i < vector.size(); i++) {
+            miembroLista.add(vector.get(i));
+        }
     }
 
-
-    public Vector getModeloVector(String consulta,String campoTexto,String campoNumero){
-        return miModelo.getModeloEnVector(consulta,campoTexto,campoNumero);
+    public Vector getModeloVector(String consulta, String campoTexto, String campoNumero) {
+        return miModelo.getModeloEnVector(consulta, campoTexto, campoNumero);
     }
 
-    public void setLista(){
-
+    public void setLista() {
         Map<String, String> miMapa;
-        ControladorBD buscador=new ControladorBD();
+        Vector campos = new Vector();
 
-        Vector campos=new Vector();
-        if(ControladorBD.conexionSeleccionada==1){
+        if (ControladorBD.conexionSeleccionada == 1) {
             campos.add("t.correlativo");
-        }else{
+        } else {
             campos.add("correlativo");//**********incompatiblidad mysql t.correlativo
         }
         campos.add("nombre");
@@ -59,103 +52,100 @@ public class Lista extends TipoCampo{
         campos.add("ultimaActualizacion");
         campos.add("IDMiembroPorDefecto");
 
-        if(ControladorBD.conexionSeleccionada==1){
+        if (ControladorBD.conexionSeleccionada == 1) {
             campos.add("m.valor");
-        }else{
-        campos.add("valor");//**********incompatiblidad mysql m.valor
+        } else {
+            campos.add("valor");//**********incompatiblidad mysql m.valor
         }
 
         //miMapa=buscador.getResultSetMap("select "+campos.get(0)+", "+campos.get(1)+", "+campos.get(2)+", "+campos.get(3)+", "+campos.get(4)+", "+campos.get(5)+" from TIPOCAMPO t, LISTA l,MIEMBROLISTA m where t.correlativo="+this.correlativo+" AND l.correlativo=t.correlativo  and m.correlativo=l.IDMiembroPorDefecto;",campos);
-        miMapa=buscador.getResultSetMap("select t.correlativo, nombre, descripcion, ultimaActualizacion, IDMiembroPorDefecto, m.valor from TIPOCAMPO t, LISTA l,MIEMBROLISTA m where t.correlativo=40 AND l.correlativo=t.correlativo  and m.correlativo=l.IDMiembroPorDefecto;",campos);
-        if(ControladorBD.conexionSeleccionada==1){
-            this.correlativo=miMapa.get("t.correlativo");
-        }else{
-            this.correlativo=miMapa.get("correlativo");
+        miMapa = buscador.getResultSetMap("select t.correlativo, nombre, descripcion, ultimaActualizacion, IDMiembroPorDefecto, m.valor from TIPOCAMPO t, LISTA l,MIEMBROLISTA m where t.correlativo=40 AND l.correlativo=t.correlativo  and m.correlativo=l.IDMiembroPorDefecto;", campos);
+        if (ControladorBD.conexionSeleccionada == 1) {
+            this.correlativo = miMapa.get("t.correlativo");
+        } else {
+            this.correlativo = miMapa.get("correlativo");
         }
 
-        this.nombre=miMapa.get("nombre");
-        this.descripcion=miMapa.get("descripcion");
-        this.IDMiembroPorDefecto=miMapa.get("IDMiembroPorDefecto");
+        this.nombre = miMapa.get("nombre");
+        this.descripcion = miMapa.get("descripcion");
+        this.IDMiembroPorDefecto = miMapa.get("IDMiembroPorDefecto");
 
-        if(ControladorBD.conexionSeleccionada==1){
-             this.nombreMiembroPorDefecto=miMapa.get("m.valor");
-        }else{
-          this.nombreMiembroPorDefecto=miMapa.get("valor");
+        if (ControladorBD.conexionSeleccionada == 1) {
+            this.nombreMiembroPorDefecto = miMapa.get("m.valor");
+        } else {
+            this.nombreMiembroPorDefecto = miMapa.get("valor");
         }
-
-    }
-    public void agregarMiembro(String nombreMiembro){//agregar elemento a la lista
-        ControladorBD buscador= new ControladorBD();
-        buscador.doUpdate("insert into MIEMBROLISTA (valor,IDLista) values ('"+nombreMiembro+"',"+this.correlativo+");");
     }
 
-    public void borrarMiembro(Object miembro){
-        ControladorBD buscador= new ControladorBD();
-        buscador.doUpdate("delete from MIEMBROLISTA where correlativo = "+((MiDato)(miembro)).ID+" and IDLista="+this.correlativo+";");
+    public void agregarMiembro(String nombreMiembro) {//agregar elemento a la lista
+        buscador.doUpdate("insert into MIEMBROLISTA (valor,IDLista) values ('" + nombreMiembro + "'," + this.correlativo + ");");
+    }
+
+    public void borrarMiembro(Object miembro) {
+        buscador.doUpdate("delete from MIEMBROLISTA where correlativo = " + ((MiDato) (miembro)).ID + " and IDLista=" + this.correlativo + ";");
         this.miembroLista.remove(miembro);
 
     }
-    public void upDateIDMiembroPorDefecto(String IDMiembroPorDefecto){
-        ControladorBD buscador= new ControladorBD();
-        buscador.doUpdate("UPDATE LISTA  SET IDMiembroPorDefecto="+IDMiembroPorDefecto+" where correlativo="+this.correlativo+";");
-        //this.miembroLista.remove(miembro);
-        
+
+    public void upDateIDMiembroPorDefecto(String IDMiembroPorDefecto) {
+        buscador.doUpdate("UPDATE LISTA  SET IDMiembroPorDefecto=" + IDMiembroPorDefecto + " where correlativo=" + this.correlativo + ";");
+    //this.miembroLista.remove(miembro);
+
     }
-    public void upDateValorMiembro(Object miembroAActualizar, String valorNuevo){
-        int IDMiembroAActualizar=((MiDato)(miembroAActualizar)).ID;
-        ControladorBD buscador= new ControladorBD();
-        buscador.doUpdate("Update MIEMBROLISTA set valor='"+valorNuevo+"' where Correlativo="+IDMiembroAActualizar+";");
+
+    public void upDateValorMiembro(Object miembroAActualizar, String valorNuevo) {
+        int IDMiembroAActualizar = ((MiDato) (miembroAActualizar)).ID;
+        buscador.doUpdate("Update MIEMBROLISTA set valor='" + valorNuevo + "' where Correlativo=" + IDMiembroAActualizar + ";");
         //this.miembroLista.remove(miembro);
         this.miembroLista.remove(miembroAActualizar);
-        this.miembroLista.add(new MiDato(valorNuevo,IDMiembroAActualizar));
-        if((""+IDMiembroAActualizar).equalsIgnoreCase(this.IDMiembroPorDefecto)){
-            this.nombreMiembroPorDefecto=valorNuevo;
+        this.miembroLista.add(new MiDato(valorNuevo, IDMiembroAActualizar));
+        if (("" + IDMiembroAActualizar).equalsIgnoreCase(this.IDMiembroPorDefecto)) {
+            this.nombreMiembroPorDefecto = valorNuevo;
         }
 
     }
-    public Vector setAndGetMiembrosVectorActualizados(){
-        this.setMiembrosLista(this.getModeloVector("select valor, ml.correlativo from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo="+this.correlativo+"", "valor", "correlativo"));
 
-        SortedSet miembrosListaSet=new TreeSet();
-        Vector miembrosListaVector= new Vector();
+    public Vector setAndGetMiembrosVectorActualizados() {
+        this.setMiembrosLista(this.getModeloVector("select valor, ml.correlativo from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo=" + this.correlativo + "", "valor", "correlativo"));
 
-        miembrosListaSet=this.getMiembroListaSet();
+        SortedSet miembrosListaSet = new TreeSet();
+        Vector miembrosListaVector = new Vector();
+
+        miembrosListaSet = this.getMiembroListaSet();
 
         Iterator it = miembrosListaSet.iterator();
 
         while (it.hasNext()) {
-            miembrosListaVector.add( it.next());
+            miembrosListaVector.add(it.next());
         }
-        MiDato.valorDefecto=this.IDMiembroPorDefecto+"";
+        MiDato.valorDefecto = this.IDMiembroPorDefecto + "";
         return miembrosListaVector;
-        
-       // lista.setListData(miembrosListaVector);
-        //lista.setListData(this.miLista.getModeloVector("select valor, ml.correlativo from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo="+this.IDTipoCampo+"", "valor", "correlativo"));
+
+    // lista.setListData(miembrosListaVector);
+    //lista.setListData(this.miLista.getModeloVector("select valor, ml.correlativo from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo="+this.IDTipoCampo+"", "valor", "correlativo"));
     }
 
-     public Vector getModeloMiembrosVector(){
-      //  this.setMiembrosLista(this.getModeloVector("select valor, ml.correlativo from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo="+this.correlativo+"", "valor", "correlativo"));
-        MiDato.valorDefecto=this.IDMiembroPorDefecto;
-        SortedSet miembrosListaSet=new TreeSet();
-        Vector miembrosListaVector= new Vector();
+    public Vector getModeloMiembrosVector() {
+        //  this.setMiembrosLista(this.getModeloVector("select valor, ml.correlativo from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo="+this.correlativo+"", "valor", "correlativo"));
+        MiDato.valorDefecto = this.IDMiembroPorDefecto;
+        SortedSet miembrosListaSet = new TreeSet();
+        Vector miembrosListaVector = new Vector();
 
-        miembrosListaSet=this.getMiembroListaSet();
+        miembrosListaSet = this.getMiembroListaSet();
 
         Iterator it = miembrosListaSet.iterator();
 
         while (it.hasNext()) {
-            miembrosListaVector.add( it.next());
+            miembrosListaVector.add(it.next());
         }
 
         return miembrosListaVector;
-       // lista.setListData(miembrosListaVector);
-        //lista.setListData(this.miLista.getModeloVector("select valor, ml.correlativo from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo="+this.IDTipoCampo+"", "valor", "correlativo"));
+    // lista.setListData(miembrosListaVector);
+    //lista.setListData(this.miLista.getModeloVector("select valor, ml.correlativo from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo="+this.IDTipoCampo+"", "valor", "correlativo"));
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return super.toString();
     }
-    
-
 }

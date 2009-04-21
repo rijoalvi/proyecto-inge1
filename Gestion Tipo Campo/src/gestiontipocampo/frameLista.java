@@ -8,14 +8,10 @@
  *
  * Created on 17/04/2009, 08:57:58 PM luiscarlosch@gmail.com
  */
-
 package gestiontipocampo;
-
-
 import javax.swing.*;
-import java.awt.*;
 import java.*;
-import javax.swing.text.*;
+
 /**
  *
  * @author Administrator
@@ -24,29 +20,21 @@ public class frameLista extends javax.swing.JFrame {
 
     /** Creates new form frameLista */
     public Lista miLista = new Lista();
- //   public String elementoSeleccionado;
-  //  private int IDTipoCampo;
-
-   public boolean modificando;
-
-
-
-
-
+    //   public String elementoSeleccionado;
+    //  private int IDTipoCampo;
+    public boolean modificando;
 
     public frameLista() {
         initComponents();
-
-
-
     }
+
     public frameLista(int IDLista) {
         initComponents();
 
         campoEntrada.setText("");
         campoEntrada.requestFocus();
         //this.IDTipoCampo=IDLista;
-        miLista.correlativo=IDLista+"";
+        miLista.correlativo = IDLista + "";
         miLista.setLista();
         this.actualizarLista();
 
@@ -54,10 +42,10 @@ public class frameLista extends javax.swing.JFrame {
         etiquetaDescripcionLista.setText(miLista.getDescripcion());
         nombreMiembroPorDefecto.setText(miLista.nombreMiembroPorDefecto);
     }
-    public void actualizarLista(){
+
+    public void actualizarLista() {
         lista.setListData(miLista.setAndGetMiembrosVectorActualizados());
     }
-
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -262,7 +250,6 @@ public class frameLista extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAgregarMouseClicked
-
 }//GEN-LAST:event_botonAgregarMouseClicked
 
     private void botonSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSalirMouseClicked
@@ -270,69 +257,63 @@ public class frameLista extends javax.swing.JFrame {
 }//GEN-LAST:event_botonSalirMouseClicked
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-             // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_formMouseClicked
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
 
-   //     lista.setListData(this.miLista.getModeloVector("select valor, IDLista from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo=31", "valor", "IDLIsta"));
-
+        //     lista.setListData(this.miLista.getModeloVector("select valor, IDLista from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo=31", "valor", "IDLIsta"));
     }//GEN-LAST:event_formComponentShown
 
     private void listaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaValueChanged
         // TODO add your handling code here:
-
-
-
-
     }//GEN-LAST:event_listaValueChanged
 
     private void botonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarActionPerformed
 
-            if(((((MiDato)lista.getSelectedValue()).ID)+"").equals(miLista.IDMiembroPorDefecto)){
-                JOptionPane.showMessageDialog(null,"No se puede eliminar el elemento por defecto.");
-            }else{
+        if (((((MiDato) lista.getSelectedValue()).ID) + "").equals(miLista.IDMiembroPorDefecto)) {
+            JOptionPane.showMessageDialog(null, "No se puede eliminar el elemento por defecto.");
+        } else {
 
             String[] opciones = {"Si", "No"};
             int respuesta = JOptionPane.showOptionDialog(null, "¿Está seguro de que desea borrar esta entrada?", "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opciones, "No");
 
             switch (respuesta) {
                 case 0:
-                       //miLista.borrarMiembro(((MiDato)lista.getSelectedValue()).ID+"");
-                       miLista.borrarMiembro(lista.getSelectedValue());
-                      // this.actualizarLista();
-                       lista.setListData(miLista.getModeloMiembrosVector());
-                       setConfiguracionBase();
+                    //miLista.borrarMiembro(((MiDato)lista.getSelectedValue()).ID+"");
+                    miLista.borrarMiembro(lista.getSelectedValue());
+                    // this.actualizarLista();
+                    lista.setListData(miLista.getModeloMiembrosVector());
+                    setConfiguracionBase();
                     break;
                 case 1:
                     /*No quiso borrar*/
                     break;
             }
-            }
+        }
 
     }//GEN-LAST:event_botonBorrarActionPerformed
 
     private void listaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaMouseClicked
         // TODO add your handling code here:
 
-       // botonAgregar.setEnabled(true);
+        // botonAgregar.setEnabled(true);
 
-        if(evt.getClickCount()==2){
-            modificando=true;
+        if (evt.getClickCount() == 2) {
+            modificando = true;
             botonBorrar.setEnabled(false);
             botonPorDefecto.setEnabled(false);
-            if(lista.getSelectedValue()!=null){
-                campoEntrada.setText( lista.getSelectedValue().toString());
+            if (lista.getSelectedValue() != null) {
+                campoEntrada.setText(lista.getSelectedValue().toString());
                 botonAgregar.setEnabled(true);
                 botonAgregar.setText("Modificar");
-            }else{
+            } else {
                 campoEntrada.setText("");
             }
-                            campoEntrada.requestFocus();
-        }
-        else{
+            campoEntrada.requestFocus();
+        } else {
             botonAgregar.setText("Agregar");
-            modificando=false;
+            modificando = false;
             botonAgregar.setEnabled(false);
             botonBorrar.setEnabled(true);
             botonPorDefecto.setEnabled(true);
@@ -341,31 +322,31 @@ public class frameLista extends javax.swing.JFrame {
 
 
 
-     //   System.out.print(evt.getClickCount()+".");
+    //   System.out.print(evt.getClickCount()+".");
     }//GEN-LAST:event_listaMouseClicked
 
     private void botonPorDefectoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonPorDefectoMouseClicked
         // TODO add your handling code here:
 
-            String[] opciones = {"Si", "No"};
-            int respuesta = JOptionPane.showOptionDialog(null, "¿Está seguro de que desea cambiar el valor por defecto?", "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opciones, "No");
+        String[] opciones = {"Si", "No"};
+        int respuesta = JOptionPane.showOptionDialog(null, "¿Está seguro de que desea cambiar el valor por defecto?", "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opciones, "No");
 
-            switch (respuesta) {
-                case 0:
-        miLista.IDMiembroPorDefecto=(((MiDato)lista.getSelectedValue()).ID)+"";
-      // miLista.IDMiembroPorDefecto=100+"";
-        miLista.upDateIDMiembroPorDefecto((((MiDato)lista.getSelectedValue()).ID)+"");
+        switch (respuesta) {
+            case 0:
+                miLista.IDMiembroPorDefecto = (((MiDato) lista.getSelectedValue()).ID) + "";
+                // miLista.IDMiembroPorDefecto=100+"";
+                miLista.upDateIDMiembroPorDefecto((((MiDato) lista.getSelectedValue()).ID) + "");
 
 
-        lista.setListData(miLista.getModeloMiembrosVector());
-       miLista.setLista();
-       nombreMiembroPorDefecto.setText(miLista.nombreMiembroPorDefecto);
-       this.setConfiguracionBase();
-                    break;
-                case 1:
-                    /*No quiso borrar*/
-                    break;
-            }
+                lista.setListData(miLista.getModeloMiembrosVector());
+                miLista.setLista();
+                nombreMiembroPorDefecto.setText(miLista.nombreMiembroPorDefecto);
+                this.setConfiguracionBase();
+                break;
+            case 1:
+                /*No quiso borrar*/
+                break;
+        }
 
 
 
@@ -375,32 +356,25 @@ public class frameLista extends javax.swing.JFrame {
     }//GEN-LAST:event_botonPorDefectoMouseClicked
 
     private void campoEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoEntradaActionPerformed
-
     }//GEN-LAST:event_campoEntradaActionPerformed
 
     private void campoEntradaInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_campoEntradaInputMethodTextChanged
-
-
-
-
-
     }//GEN-LAST:event_campoEntradaInputMethodTextChanged
 
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
         // TODO add your handling code here:
 
 
-        if(miLista.getMiembroListaSet().contains(new MiDato(campoEntrada.getText(),0))){
-            JOptionPane.showMessageDialog(null,"Ya existe un elemento con ese nombre.");
-        }else{
-            if(modificando){
+        if (miLista.getMiembroListaSet().contains(new MiDato(campoEntrada.getText(), 0))) {
+            JOptionPane.showMessageDialog(null, "Ya existe un elemento con ese nombre.");
+        } else {
+            if (modificando) {
                 miLista.upDateValorMiembro(lista.getSelectedValue(), campoEntrada.getText());
                 lista.setListData(miLista.getModeloMiembrosVector());
                 this.nombreMiembroPorDefecto.setText(miLista.nombreMiembroPorDefecto);
                 setConfiguracionBase();
-                modificando=false;
-            }
-            else{
+                modificando = false;
+            } else {
                 miLista.agregarMiembro(campoEntrada.getText());
                 //elementoSeleccionado=campoEntrada.getText();
                 this.actualizarLista();
@@ -409,12 +383,12 @@ public class frameLista extends javax.swing.JFrame {
             }
 
 
-      //  campoEntrada.requestFocus();        // TODO add your handling code here:
-        botonAgregar.setText("Agregar");
-                }
-                campoEntrada.requestFocus();
+            //  campoEntrada.requestFocus();        // TODO add your handling code here:
+            botonAgregar.setText("Agregar");
+        }
+        campoEntrada.requestFocus();
     }//GEN-LAST:event_botonAgregarActionPerformed
-    public void setConfiguracionBase(){
+    public void setConfiguracionBase() {
         campoEntrada.setText("");
         campoEntrada.requestFocus();
         botonAgregar.setEnabled(false);
@@ -422,20 +396,21 @@ public class frameLista extends javax.swing.JFrame {
         botonPorDefecto.setEnabled(false);
     }
     private void campoEntradaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoEntradaKeyTyped
-        if(!this.modificando){
+        if (!this.modificando) {
             lista.clearSelection();
         }
         botonAgregar.setEnabled(true);        // TODO add your handling code here:
-        if(campoEntrada.getText().trim().isEmpty()){
+        if (campoEntrada.getText().trim().isEmpty()) {
             botonAgregar.setEnabled(false);
         }
     }//GEN-LAST:event_campoEntradaKeyTyped
 
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 new frameLista().setVisible(true);
             }
@@ -457,5 +432,4 @@ public class frameLista extends javax.swing.JFrame {
     private javax.swing.JList lista;
     private javax.swing.JLabel nombreMiembroPorDefecto;
     // End of variables declaration//GEN-END:variables
-
 }
