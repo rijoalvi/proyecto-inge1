@@ -62,7 +62,7 @@ create table LISTA(
 );
 
 create table MIEMBROLISTA(
-    correlativo int not null,
+    correlativo int auto_increment NOT NULL,
     valor char(50),
     IDLista int not null,
     primary key(correlativo)

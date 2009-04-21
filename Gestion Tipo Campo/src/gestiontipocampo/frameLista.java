@@ -266,7 +266,6 @@ public class frameLista extends javax.swing.JFrame {
 }//GEN-LAST:event_botonAgregarMouseClicked
 
     private void botonSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSalirMouseClicked
-        // TODO add your handling code here:
         this.dispose();
 }//GEN-LAST:event_botonSalirMouseClicked
 

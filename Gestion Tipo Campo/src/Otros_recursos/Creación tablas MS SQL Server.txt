@@ -54,5 +54,18 @@ CREATE TABLE TIPOCAMPO(
   tipo int,
 );
 
+create table LISTA(
+    correlativo int not null,
+    IDMiembroPorDefecto int,
+    primary key(correlativo)
+);
+
+create table MIEMBROLISTA(
+    correlativo int identity (1,1) NOT NULL,
+    valor char(50),
+    IDLista int not null,
+    primary key(correlativo)
+);
+
 insert into TIPOCAMPO (nombre,descripcion) values ('pruebaNombre','PruebaDescripsion')
 select * from TIPOCAMPO

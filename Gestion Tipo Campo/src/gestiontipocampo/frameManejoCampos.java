@@ -28,6 +28,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
     static final int TEXTO = 4;// 80703682;
     static final int BINARIO = 2;// 1556351614;
     static final int JERARQUIA = 6;// 304540448;
+    static final int LISTA = 7;
     ControladorBD conexionBD = new ControladorBD();
 
     /** Creates new form frameManejoCampos */
@@ -144,6 +145,9 @@ public class frameManejoCampos extends javax.swing.JFrame {
             case 6:
                 paneJerarquia.setVisible(true);
                 break;
+            case 7:
+                paneLista.setVisible(true);
+                break;
             default:
                 //Si se selecciona algo raro o el campito en blanco.
                 break;
@@ -223,6 +227,9 @@ public class frameManejoCampos extends javax.swing.JFrame {
         valorNumeroMascara = new javax.swing.JTextField();
         valorValorDefectoNumero = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
+        paneLista = new javax.swing.JLayeredPane();
+        valorPorDefectoLista = new javax.swing.JTextField();
+        jLabel25 = new javax.swing.JLabel();
         botonGuardar = new javax.swing.JButton();
         botonGuardarComo = new javax.swing.JButton();
         botonBorrar = new javax.swing.JButton();
@@ -281,13 +288,13 @@ public class frameManejoCampos extends javax.swing.JFrame {
 
         labelCategorias.setText(resourceMap.getString("labelCategorias.text")); // NOI18N
         labelCategorias.setName("labelCategorias"); // NOI18N
-        labelCategorias.setBounds(150, 60, 60, 14);
+        labelCategorias.setBounds(150, 60, 60, -1);
         paneJerarquia.add(labelCategorias, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         comboCategorias.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1- Categoria 1", "2- Categoria 2", "3- Categoría 3", "4- Categoría 4" }));
         comboCategorias.setEnabled(false);
         comboCategorias.setName("comboCategorias"); // NOI18N
-        comboCategorias.setBounds(150, 80, 130, 20);
+        comboCategorias.setBounds(150, 80, 130, -1);
         paneJerarquia.add(comboCategorias, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         botonAgregarCategoria.setText(resourceMap.getString("botonAgregarCategoria.text")); // NOI18N
@@ -297,7 +304,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 botonAgregarCategoriaActionPerformed(evt);
             }
         });
-        botonAgregarCategoria.setBounds(300, 80, 140, 23);
+        botonAgregarCategoria.setBounds(300, 80, 140, -1);
         paneJerarquia.add(botonAgregarCategoria, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         radioNivelesSi.setText(resourceMap.getString("radioNivelesSi.text")); // NOI18N
@@ -307,7 +314,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 radioNivelesSiActionPerformed(evt);
             }
         });
-        radioNivelesSi.setBounds(10, 30, 33, 23);
+        radioNivelesSi.setBounds(10, 30, -1, -1);
         paneJerarquia.add(radioNivelesSi, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         radioNivelesNo.setText(resourceMap.getString("radioNivelesNo.text")); // NOI18N
@@ -317,12 +324,12 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 radioNivelesNoActionPerformed(evt);
             }
         });
-        radioNivelesNo.setBounds(50, 30, 50, 23);
+        radioNivelesNo.setBounds(50, 30, 50, -1);
         paneJerarquia.add(radioNivelesNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel21.setText(resourceMap.getString("jLabel21.text")); // NOI18N
         jLabel21.setName("jLabel21"); // NOI18N
-        jLabel21.setBounds(10, 10, 130, 14);
+        jLabel21.setBounds(10, 10, 130, -1);
         paneJerarquia.add(jLabel21, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         radioCategoriasSi.setText(resourceMap.getString("radioCategoriasSi.text")); // NOI18N
@@ -332,7 +339,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 radioCategoriasSiActionPerformed(evt);
             }
         });
-        radioCategoriasSi.setBounds(10, 80, 33, 23);
+        radioCategoriasSi.setBounds(10, 80, -1, -1);
         paneJerarquia.add(radioCategoriasSi, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         radioCategoriasNo.setText(resourceMap.getString("radioCategoriasNo.text")); // NOI18N
@@ -342,12 +349,12 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 radioCategoriasNoActionPerformed(evt);
             }
         });
-        radioCategoriasNo.setBounds(50, 80, 50, 23);
+        radioCategoriasNo.setBounds(50, 80, 50, -1);
         paneJerarquia.add(radioCategoriasNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel22.setText(resourceMap.getString("jLabel22.text")); // NOI18N
         jLabel22.setName("jLabel22"); // NOI18N
-        jLabel22.setBounds(10, 60, 80, 14);
+        jLabel22.setBounds(10, 60, 80, -1);
         paneJerarquia.add(jLabel22, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         radioNomUnicoSi.setText(resourceMap.getString("radioNomUnicoSi.text")); // NOI18N
@@ -357,7 +364,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 radioNomUnicoSiActionPerformed(evt);
             }
         });
-        radioNomUnicoSi.setBounds(10, 130, 33, 23);
+        radioNomUnicoSi.setBounds(10, 130, -1, -1);
         paneJerarquia.add(radioNomUnicoSi, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         radioNomUnicoNo.setText(resourceMap.getString("radioNomUnicoNo.text")); // NOI18N
@@ -367,23 +374,23 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 radioNomUnicoNoActionPerformed(evt);
             }
         });
-        radioNomUnicoNo.setBounds(50, 130, 50, 23);
+        radioNomUnicoNo.setBounds(50, 130, 50, -1);
         paneJerarquia.add(radioNomUnicoNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel23.setText(resourceMap.getString("jLabel23.text")); // NOI18N
         jLabel23.setName("jLabel23"); // NOI18N
-        jLabel23.setBounds(10, 110, 70, 14);
+        jLabel23.setBounds(10, 110, 70, -1);
         paneJerarquia.add(jLabel23, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel24.setText(resourceMap.getString("jLabel24.text")); // NOI18N
         jLabel24.setName("jLabel24"); // NOI18N
-        jLabel24.setBounds(150, 10, 34, 14);
+        jLabel24.setBounds(150, 10, -1, -1);
         paneJerarquia.add(jLabel24, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         comboNiveles.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1- Categoria 1", "2- Categoria 2", "3- Categoría 3", "4- Categoría 4" }));
         comboNiveles.setEnabled(false);
         comboNiveles.setName("comboNiveles"); // NOI18N
-        comboNiveles.setBounds(150, 30, 130, 20);
+        comboNiveles.setBounds(150, 30, 130, -1);
         paneJerarquia.add(comboNiveles, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         botonAgregarNivel.setText(resourceMap.getString("botonAgregarNivel.text")); // NOI18N
@@ -393,7 +400,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 botonAgregarNivelActionPerformed(evt);
             }
         });
-        botonAgregarNivel.setBounds(300, 30, 140, 23);
+        botonAgregarNivel.setBounds(300, 30, 140, -1);
         paneJerarquia.add(botonAgregarNivel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneJerarquia.setBounds(10, 0, 480, 160);
@@ -615,6 +622,21 @@ public class frameManejoCampos extends javax.swing.JFrame {
         paneNumero.setBounds(0, 0, 400, 160);
         panePrincipal.add(paneNumero, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        paneLista.setName("paneLista"); // NOI18N
+
+        valorPorDefectoLista.setText(resourceMap.getString("valorPorDefectoLista.text")); // NOI18N
+        valorPorDefectoLista.setName("valorPorDefectoLista"); // NOI18N
+        valorPorDefectoLista.setBounds(30, 40, 110, 20);
+        paneLista.add(valorPorDefectoLista, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel25.setText(resourceMap.getString("jLabel25.text")); // NOI18N
+        jLabel25.setName("jLabel25"); // NOI18N
+        jLabel25.setBounds(30, 20, 90, 14);
+        paneLista.add(jLabel25, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        paneLista.setBounds(0, 0, 530, 160);
+        panePrincipal.add(paneLista, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         botonGuardar.setText(resourceMap.getString("botonGuardar.text")); // NOI18N
         botonGuardar.setName("botonGuardar"); // NOI18N
         botonGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -647,7 +669,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
             }
         });
 
-        comboTipos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Número", "Binario", "FechaHora", "Texto", "Incremental", "Jerarquía" }));
+        comboTipos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Número", "Binario", "FechaHora", "Texto", "Incremental", "Jerarquía", "Lista" }));
         comboTipos.setName("comboTipos"); // NOI18N
         comboTipos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -801,7 +823,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
         paneTexto.setVisible(false);
         paneIncremental.setVisible(false);
         paneJerarquia.setVisible(false);
-
+        paneLista.setVisible(false);
     }
 
     private Object[] buscarTipoCampo(String llave) {
@@ -815,7 +837,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
             resultado = control.getResultSet("Select * from TIPOCAMPO where correlativo = " + llave);
             if (resultado.next()) {
                 tipoCampo = Integer.parseInt(resultado.getObject(5).toString());
-                //////////////////////////////////////////////////////////////JOptionPane.showMessageDialog(null, "Tipo de campo = "+tipoCampo);
+                //JOptionPane.showMessageDialog(null, "Tipo de campo = "+tipoCampo);
                 switch (tipoCampo) {
                     case 1:
                         tipo = "NUMERO";
@@ -839,6 +861,9 @@ public class frameManejoCampos extends javax.swing.JFrame {
                         break;
                     case 6:
                         tipo = "JERARQUIA";
+                        break;
+                    case 7:
+                        tipo = "LISTA";
                         break;
                     default:
 
@@ -1028,7 +1053,7 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         }
                     } catch (SQLException e) {
                         System.out.println("*SQL Exception: *" + e.toString());
-                    }                    
+                    }
                     try {
                         java.sql.Date sqlDate = new java.sql.Date ( new java.util.Date () .getTime ()) ;
                         //la raiz se guarada cmo -1 dado q no existe! NO CAMBIAR---> xq no simplemente null??????
@@ -1042,7 +1067,42 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                }                    
  //                 limpiarValoresNumero();
                 break;
-
+            case LISTA:
+                if (existe) {
+                    conexionBD.doUpdate("Update TIPOCAMPO set descripcion = '" + this.valorNota.getText() + "' where correlativo = " + ID);
+                    conexionBD.doUpdate("Update LISTA set valorPorDefecto = '" + this.valorPorDefectoLista.getText() + "' where correlativo = " + ID);
+                } else {
+                    conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 7)");
+                    try { //Se busca el ID de los datos que acaba de insertar
+                        ResultSet resultado = conexionBD.getResultSet("select correlativo from TIPOCAMPO where nombre = '" + this.valorNombreGeneral.getText() + "'");
+                        if (resultado.next()) {
+                            ID = resultado.getInt("correlativo");
+                        }
+                    } catch (SQLException e) {
+                        System.out.println("*SQL Exception: *" + e.toString());
+                    }
+                    try {
+                        //java.sql.Date sqlDate = new java.sql.Date ( new java.util.Date () .getTime ()) ;
+                        //guarda el miembro por defecto
+                        conexionBD.doUpdate("insert into MIEMBROLISTA ( valor, IDLista) " +
+                                "values( '"+ this.valorPorDefectoLista.getText()+"', "+ ID +")");
+                        int IDMiembroPorDefecto = 0;
+                        //obtiene el ID del miembro que acaba de guardar
+                        ResultSet resultado = conexionBD.getResultSet("select correlativo from MIEMBROLISTA where valor = '" + this.valorPorDefectoLista.getText() + "'");
+                        if (resultado.next()) {
+                            IDMiembroPorDefecto = resultado.getInt("correlativo");
+                        }
+                        //guarda la lista con valor por defecto el que acaba d insertar
+                        conexionBD.doUpdate("insert into LISTA (correlativo, IDMiembroPorDefecto) " +
+                                "values ("+ ID + ", " + IDMiembroPorDefecto + ")");
+                    } catch (Exception e) {
+                        System.out.println("*SQL Exception: *" + e.toString());
+                    }
+               }
+                frameLista fLista = new frameLista(ID);
+                fLista.setVisible(true);
+                //limpiarCamposLista();
+                break;
             default: //Si se selecciona algo raro o el campito en blanco.
 
                 break;
@@ -1404,6 +1464,7 @@ private void botonAgregarNivelActionPerformed(java.awt.event.ActionEvent evt) {/
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1416,6 +1477,7 @@ private void botonAgregarNivelActionPerformed(java.awt.event.ActionEvent evt) {/
     private javax.swing.JLayeredPane paneFechaHora;
     private javax.swing.JLayeredPane paneIncremental;
     private javax.swing.JLayeredPane paneJerarquia;
+    private javax.swing.JLayeredPane paneLista;
     private javax.swing.JLayeredPane paneNumero;
     private javax.swing.JLayeredPane panePrincipal;
     private javax.swing.JLayeredPane paneTexto;
@@ -1440,6 +1502,7 @@ private void botonAgregarNivelActionPerformed(java.awt.event.ActionEvent evt) {/
     private javax.swing.JTextField valorNumeroMascara;
     private javax.swing.JTextField valorOpcionBinaria1;
     private javax.swing.JTextField valorOpcionBinaria2;
+    private javax.swing.JTextField valorPorDefectoLista;
     private javax.swing.JTextField valorPreaviso;
     private javax.swing.JTextField valorTextoDefecto;
     private javax.swing.JTextField valorTextoLargo;

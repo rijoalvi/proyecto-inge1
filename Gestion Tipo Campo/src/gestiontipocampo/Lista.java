@@ -67,11 +67,6 @@ public class Lista extends TipoCampo{
         buscador.doUpdate("insert into MIEMBROLISTA (valor,IDLista) values ('"+nombreMiembro+"',"+this.correlativo+");");
     }
 
-  /*  public void borrarMiembro(String correlativo){
-        ControladorBD buscador= new ControladorBD();
-
-       
-    }*/
     public void borrarMiembro(Object miembro){
         ControladorBD buscador= new ControladorBD();
         buscador.doUpdate("delete from MIEMBROLISTA where correlativo = "+((MiDato)(miembro)).ID+" and IDLista="+this.correlativo+";");
