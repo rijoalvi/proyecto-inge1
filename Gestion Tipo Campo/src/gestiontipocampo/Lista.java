@@ -49,18 +49,40 @@ public class Lista extends TipoCampo{
         ControladorBD buscador=new ControladorBD();
 
         Vector campos=new Vector();
-        campos.add("t.correlativo");
+        if(ControladorBD.conexionSeleccionada==1){
+            campos.add("t.correlativo");
+        }else{
+            campos.add("correlativo");//**********incompatiblidad mysql t.correlativo
+        }
         campos.add("nombre");
         campos.add("descripcion");
         campos.add("ultimaActualizacion");
         campos.add("IDMiembroPorDefecto");
-        campos.add("m.valor");
-        miMapa=buscador.getResultSetMap("select "+campos.get(0)+", "+campos.get(1)+", "+campos.get(2)+", "+campos.get(3)+", "+campos.get(4)+", "+campos.get(5)+" from TIPOCAMPO t, LISTA l,MIEMBROLISTA m where t.correlativo="+this.correlativo+" AND l.correlativo=t.correlativo  and m.correlativo=l.IDMiembroPorDefecto;",campos);
-        this.correlativo=miMapa.get("t.correlativo");
+
+        if(ControladorBD.conexionSeleccionada==1){
+            campos.add("m.valor");
+        }else{
+        campos.add("valor");//**********incompatiblidad mysql m.valor
+        }
+
+        //miMapa=buscador.getResultSetMap("select "+campos.get(0)+", "+campos.get(1)+", "+campos.get(2)+", "+campos.get(3)+", "+campos.get(4)+", "+campos.get(5)+" from TIPOCAMPO t, LISTA l,MIEMBROLISTA m where t.correlativo="+this.correlativo+" AND l.correlativo=t.correlativo  and m.correlativo=l.IDMiembroPorDefecto;",campos);
+        miMapa=buscador.getResultSetMap("select t.correlativo, nombre, descripcion, ultimaActualizacion, IDMiembroPorDefecto, m.valor from TIPOCAMPO t, LISTA l,MIEMBROLISTA m where t.correlativo=40 AND l.correlativo=t.correlativo  and m.correlativo=l.IDMiembroPorDefecto;",campos);
+        if(ControladorBD.conexionSeleccionada==1){
+            this.correlativo=miMapa.get("t.correlativo");
+        }else{
+            this.correlativo=miMapa.get("correlativo");
+        }
+
         this.nombre=miMapa.get("nombre");
         this.descripcion=miMapa.get("descripcion");
         this.IDMiembroPorDefecto=miMapa.get("IDMiembroPorDefecto");
-        this.nombreMiembroPorDefecto=miMapa.get("m.valor");
+
+        if(ControladorBD.conexionSeleccionada==1){
+             this.nombreMiembroPorDefecto=miMapa.get("m.valor");
+        }else{
+          this.nombreMiembroPorDefecto=miMapa.get("valor");
+        }
+
     }
     public void agregarMiembro(String nombreMiembro){//agregar elemento a la lista
         ControladorBD buscador= new ControladorBD();
@@ -75,7 +97,7 @@ public class Lista extends TipoCampo{
     }
     public void upDateIDMiembroPorDefecto(String IDMiembroPorDefecto){
         ControladorBD buscador= new ControladorBD();
-        buscador.doUpdate("UPDATE LISTA l SET IDMiembroPorDefecto="+IDMiembroPorDefecto+" where l.correlativo="+this.correlativo+";");
+        buscador.doUpdate("UPDATE LISTA  SET IDMiembroPorDefecto="+IDMiembroPorDefecto+" where correlativo="+this.correlativo+";");
         //this.miembroLista.remove(miembro);
         
     }
