@@ -164,8 +164,6 @@ public class frameConexiones extends javax.swing.JFrame {
         btnEstablecerConexion.setEnabled(false);
         ControladorBD probadorConexiones = new ControladorBD();
 
-
-
         //ATENCION: YA NO HAY QUE COMENTAR NADA AQUÍ*********************************
         if(1==probadorConexiones.probarConexion(2)){
             jRadioButton2.setText("Disponible");

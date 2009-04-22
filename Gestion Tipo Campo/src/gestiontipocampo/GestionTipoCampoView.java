@@ -133,7 +133,7 @@ public class GestionTipoCampoView extends FrameView {
 
     public void llenarTreeView(){
         //Llena los valores del Tree View
-        String [] tiposCampo = {"Numero", "Binario", "FechaHora", "Texto", "Incremental", "Jerarquia"};
+        String [] tiposCampo = {"Numero", "Binario", "FechaHora", "Texto", "Incremental", "Jerarquia", "Lista"};
         String valores;
         String [] valTrim;
         DefaultMutableTreeNode nodoTipoCampo;
@@ -224,7 +224,7 @@ public class GestionTipoCampoView extends FrameView {
     public String buscarPorTipoEnBD(int ID, int tipo){
         System.out.println("entro con ID: " + ID + " tipo: "+ tipo);
         ControladorBD buscador = new ControladorBD();
-        String [] tiposCampo = {"NUMERO", "BINARIO", "FECHAHORA", "TEXTO", "INCREMENTAL", "JERARQUIA"};
+        String [] tiposCampo = {"NUMERO", "BINARIO", "FECHAHORA", "TEXTO", "INCREMENTAL", "JERARQUIA", "LISTA"};
         String valores = "";
         try { 
             ResultSet resultado = buscador.getResultSet("select * from " + tiposCampo[tipo-1] + " where correlativo = '" + Integer.toString(ID) + "';");
@@ -256,7 +256,7 @@ public class GestionTipoCampoView extends FrameView {
         canvas3 = new java.awt.Canvas();
         canvas4 = new java.awt.Canvas();
         jPanel1 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        botonActualizar = new javax.swing.JButton();
         paneDatosAbrir = new javax.swing.JLayeredPane();
         panePrincipal = new javax.swing.JLayeredPane();
         paneBinario = new javax.swing.JLayeredPane();
@@ -379,11 +379,11 @@ public class GestionTipoCampoView extends FrameView {
         jPanel1.setName("jPanel1"); // NOI18N
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(GestionTipoCampoView.class);
-        jButton2.setText(resourceMap.getString("jButton2.text")); // NOI18N
-        jButton2.setName("jButton2"); // NOI18N
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonActualizar.setText(resourceMap.getString("botonActualizar.text")); // NOI18N
+        botonActualizar.setName("botonActualizar"); // NOI18N
+        botonActualizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                botonActualizarMouseClicked(evt);
             }
         });
 
@@ -393,14 +393,14 @@ public class GestionTipoCampoView extends FrameView {
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(71, Short.MAX_VALUE)
-                .add(jButton2)
+                .add(botonActualizar)
                 .add(47, 47, 47))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jButton2)
+                .add(botonActualizar)
                 .addContainerGap(11, Short.MAX_VALUE))
         );
 
@@ -607,13 +607,13 @@ public class GestionTipoCampoView extends FrameView {
 
         labelCategorias.setText(resourceMap.getString("labelCategorias.text")); // NOI18N
         labelCategorias.setName("labelCategorias"); // NOI18N
-        labelCategorias.setBounds(200, 70, 60, 14);
+        labelCategorias.setBounds(200, 70, 60, -1);
         paneJerarquia.add(labelCategorias, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         comboCategorias.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1- Categoria 1", "2- Categoria 2", "3- Categoría 3", "4- Categoría 4" }));
         comboCategorias.setEnabled(false);
         comboCategorias.setName("comboCategorias"); // NOI18N
-        comboCategorias.setBounds(200, 90, 130, 20);
+        comboCategorias.setBounds(200, 90, 130, -1);
         paneJerarquia.add(comboCategorias, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         botonAgregarCategoria.setText(resourceMap.getString("botonAgregarCategoria.text")); // NOI18N
@@ -623,7 +623,7 @@ public class GestionTipoCampoView extends FrameView {
                 botonAgregarCategoriaActionPerformed(evt);
             }
         });
-        botonAgregarCategoria.setBounds(350, 90, 130, 23);
+        botonAgregarCategoria.setBounds(350, 90, 130, -1);
         paneJerarquia.add(botonAgregarCategoria, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         radioNivelesSi.setText(resourceMap.getString("radioNivelesSi.text")); // NOI18N
@@ -634,7 +634,7 @@ public class GestionTipoCampoView extends FrameView {
                 radioNivelesSiActionPerformed(evt);
             }
         });
-        radioNivelesSi.setBounds(20, 40, 33, 23);
+        radioNivelesSi.setBounds(20, 40, -1, -1);
         paneJerarquia.add(radioNivelesSi, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         radioNivelesNo.setText(resourceMap.getString("radioNivelesNo.text")); // NOI18N
@@ -645,12 +645,12 @@ public class GestionTipoCampoView extends FrameView {
                 radioNivelesNoActionPerformed(evt);
             }
         });
-        radioNivelesNo.setBounds(60, 40, 50, 23);
+        radioNivelesNo.setBounds(60, 40, 50, -1);
         paneJerarquia.add(radioNivelesNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel21.setText(resourceMap.getString("jLabel21.text")); // NOI18N
         jLabel21.setName("jLabel21"); // NOI18N
-        jLabel21.setBounds(20, 20, 130, 14);
+        jLabel21.setBounds(20, 20, 130, -1);
         paneJerarquia.add(jLabel21, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         radioCategoriasSi.setText(resourceMap.getString("radioCategoriasSi.text")); // NOI18N
@@ -661,7 +661,7 @@ public class GestionTipoCampoView extends FrameView {
                 radioCategoriasSiActionPerformed(evt);
             }
         });
-        radioCategoriasSi.setBounds(20, 90, 33, 23);
+        radioCategoriasSi.setBounds(20, 90, -1, -1);
         paneJerarquia.add(radioCategoriasSi, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         radioCategoriasNo.setText(resourceMap.getString("radioCategoriasNo.text")); // NOI18N
@@ -672,13 +672,13 @@ public class GestionTipoCampoView extends FrameView {
                 radioCategoriasNoActionPerformed(evt);
             }
         });
-        radioCategoriasNo.setBounds(60, 90, 50, 23);
+        radioCategoriasNo.setBounds(60, 90, 50, -1);
         paneJerarquia.add(radioCategoriasNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel22.setText(resourceMap.getString("jLabel22.text")); // NOI18N
         jLabel22.setEnabled(false);
         jLabel22.setName("jLabel22"); // NOI18N
-        jLabel22.setBounds(20, 70, 80, 14);
+        jLabel22.setBounds(20, 70, 80, -1);
         paneJerarquia.add(jLabel22, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         radioNomUnicoSi.setText(resourceMap.getString("radioNomUnicoSi.text")); // NOI18N
@@ -689,7 +689,7 @@ public class GestionTipoCampoView extends FrameView {
                 radioNomUnicoSiActionPerformed(evt);
             }
         });
-        radioNomUnicoSi.setBounds(20, 140, 33, 23);
+        radioNomUnicoSi.setBounds(20, 140, -1, -1);
         paneJerarquia.add(radioNomUnicoSi, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         radioNomUnicoNo.setText(resourceMap.getString("radioNomUnicoNo.text")); // NOI18N
@@ -700,13 +700,13 @@ public class GestionTipoCampoView extends FrameView {
                 radioNomUnicoNoActionPerformed(evt);
             }
         });
-        radioNomUnicoNo.setBounds(60, 140, 50, 23);
+        radioNomUnicoNo.setBounds(60, 140, 50, -1);
         paneJerarquia.add(radioNomUnicoNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel23.setText(resourceMap.getString("jLabel23.text")); // NOI18N
         jLabel23.setEnabled(false);
         jLabel23.setName("jLabel23"); // NOI18N
-        jLabel23.setBounds(20, 120, 70, 14);
+        jLabel23.setBounds(20, 120, 70, -1);
         paneJerarquia.add(jLabel23, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
@@ -716,18 +716,18 @@ public class GestionTipoCampoView extends FrameView {
                 jButton1ActionPerformed(evt);
             }
         });
-        jButton1.setBounds(350, 140, 130, 23);
+        jButton1.setBounds(350, 140, 130, -1);
         paneJerarquia.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel20.setText(resourceMap.getString("jLabel20.text")); // NOI18N
         jLabel20.setName("jLabel20"); // NOI18N
-        jLabel20.setBounds(200, 20, 34, 14);
+        jLabel20.setBounds(200, 20, -1, -1);
         paneJerarquia.add(jLabel20, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         comboNiveles.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1- Categoria 1", "2- Categoria 2", "3- Categoría 3", "4- Categoría 4" }));
         comboNiveles.setEnabled(false);
         comboNiveles.setName("comboNiveles"); // NOI18N
-        comboNiveles.setBounds(200, 40, 130, 20);
+        comboNiveles.setBounds(200, 40, 130, -1);
         paneJerarquia.add(comboNiveles, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         botonAgregarNivel.setText(resourceMap.getString("botonAgregarNivel.text")); // NOI18N
@@ -737,29 +737,29 @@ public class GestionTipoCampoView extends FrameView {
                 botonAgregarNivelActionPerformed(evt);
             }
         });
-        botonAgregarNivel.setBounds(350, 40, 130, 23);
+        botonAgregarNivel.setBounds(350, 40, 130, -1);
         paneJerarquia.add(botonAgregarNivel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel24.setText(resourceMap.getString("jLabel24.text")); // NOI18N
         jLabel24.setName("jLabel24"); // NOI18N
-        jLabel24.setBounds(200, 170, 110, 14);
+        jLabel24.setBounds(200, 170, 110, -1);
         paneJerarquia.add(jLabel24, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel25.setText(resourceMap.getString("jLabel25.text")); // NOI18N
         jLabel25.setName("jLabel25"); // NOI18N
-        jLabel25.setBounds(20, 170, 110, 14);
+        jLabel25.setBounds(20, 170, 110, -1);
         paneJerarquia.add(jLabel25, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorNumNiveles.setText(resourceMap.getString("valorNumNiveles.text")); // NOI18N
         valorNumNiveles.setEnabled(false);
         valorNumNiveles.setName("valorNumNiveles"); // NOI18N
-        valorNumNiveles.setBounds(200, 190, 70, 20);
+        valorNumNiveles.setBounds(200, 190, 70, -1);
         paneJerarquia.add(valorNumNiveles, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorNumTerminos.setText(resourceMap.getString("valorNumTerminos.text")); // NOI18N
         valorNumTerminos.setEnabled(false);
         valorNumTerminos.setName("valorNumTerminos"); // NOI18N
-        valorNumTerminos.setBounds(20, 190, 70, 20);
+        valorNumTerminos.setBounds(20, 190, 70, -1);
         paneJerarquia.add(valorNumTerminos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneJerarquia.setBounds(30, -10, 510, 250);
@@ -795,34 +795,34 @@ public class GestionTipoCampoView extends FrameView {
 
         jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
         jLabel2.setName("jLabel2"); // NOI18N
-        jLabel2.setBounds(50, 70, 41, 14);
+        jLabel2.setBounds(50, 70, -1, -1);
         paneDatosAbrir.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorNombreGeneral.setEditable(false);
         valorNombreGeneral.setName("valorNombreGeneral"); // NOI18N
-        valorNombreGeneral.setBounds(50, 90, 120, 20);
+        valorNombreGeneral.setBounds(50, 90, 120, -1);
         paneDatosAbrir.add(valorNombreGeneral, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
         jLabel3.setName("jLabel3"); // NOI18N
-        jLabel3.setBounds(230, 70, 58, 14);
+        jLabel3.setBounds(230, 70, -1, -1);
         paneDatosAbrir.add(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorNota.setEditable(false);
         valorNota.setName("valorNota"); // NOI18N
-        valorNota.setBounds(230, 90, 120, 20);
+        valorNota.setBounds(230, 90, 120, -1);
         paneDatosAbrir.add(valorNota, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
-        jLabel1.setBounds(50, 30, 73, 14);
+        jLabel1.setBounds(50, 30, -1, -1);
         paneDatosAbrir.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         comboTipos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Número", "Binario", "FechaHora", "Texto", "Incremental", "Jerarquia" }));
         comboTipos.setEnabled(false);
         comboTipos.setFocusable(false);
         comboTipos.setName("comboTipos"); // NOI18N
-        comboTipos.setBounds(50, 50, 120, 20);
+        comboTipos.setBounds(50, 50, 120, -1);
         paneDatosAbrir.add(comboTipos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         botonCancelarPanel.setText(resourceMap.getString("botonCancelarPanel.text")); // NOI18N
@@ -832,7 +832,7 @@ public class GestionTipoCampoView extends FrameView {
                 botonCancelarPanelActionPerformed(evt);
             }
         });
-        botonCancelarPanel.setBounds(360, 330, 80, 23);
+        botonCancelarPanel.setBounds(360, 330, 80, -1);
         paneDatosAbrir.add(botonCancelarPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         botonEditar.setText(resourceMap.getString("botonEditar.text")); // NOI18N
@@ -847,7 +847,7 @@ public class GestionTipoCampoView extends FrameView {
                 botonEditarActionPerformed(evt);
             }
         });
-        botonEditar.setBounds(240, 330, 80, 23);
+        botonEditar.setBounds(240, 330, 80, -1);
         paneDatosAbrir.add(botonEditar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
@@ -1183,11 +1183,11 @@ public class GestionTipoCampoView extends FrameView {
         // TODO add your handling code here:
     }//GEN-LAST:event_mainPanelFocusGained
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+    private void botonActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonActualizarMouseClicked
         //Se actualiza el tree View
         llenarTreeView();
         ocultarPanes();       
-    }//GEN-LAST:event_jButton2MouseClicked
+}//GEN-LAST:event_botonActualizarMouseClicked
 
     private void paneDatosAbrirComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_paneDatosAbrirComponentShown
         botonEditar.setBounds(240, 330, 80, 20);
@@ -1204,7 +1204,7 @@ public class GestionTipoCampoView extends FrameView {
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         // TODO add your handling code here:
-        frameLista ventanaLista = new frameLista(40);
+        frameLista ventanaLista = new frameLista(31);
         //frameLista ventanaLista = new frameLista(42);
      //   ventanaManejoCampos.llenarFormularioCampos(ID);
        // JFrame mainFrame = GestionTipoCampoApp.getApplication().getMainFrame();
@@ -1448,6 +1448,7 @@ public class GestionTipoCampoView extends FrameView {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTree arbolPrincipal;
+    private javax.swing.JButton botonActualizar;
     private javax.swing.JButton botonAgregarCategoria;
     private javax.swing.JButton botonAgregarNivel;
     private javax.swing.JButton botonCancelarPanel;
@@ -1461,7 +1462,6 @@ public class GestionTipoCampoView extends FrameView {
     private javax.swing.JComboBox comboNiveles;
     private javax.swing.JComboBox comboTipos;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

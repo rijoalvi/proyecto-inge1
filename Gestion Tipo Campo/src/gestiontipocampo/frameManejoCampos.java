@@ -627,12 +627,12 @@ public class frameManejoCampos extends javax.swing.JFrame {
 
         valorPorDefectoLista.setText(resourceMap.getString("valorPorDefectoLista.text")); // NOI18N
         valorPorDefectoLista.setName("valorPorDefectoLista"); // NOI18N
-        valorPorDefectoLista.setBounds(30, 40, 110, -1);
+        valorPorDefectoLista.setBounds(10, 40, 110, 20);
         paneLista.add(valorPorDefectoLista, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel25.setText(resourceMap.getString("jLabel25.text")); // NOI18N
         jLabel25.setName("jLabel25"); // NOI18N
-        jLabel25.setBounds(30, 20, 90, -1);
+        jLabel25.setBounds(10, 20, 90, 14);
         paneLista.add(jLabel25, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneLista.setBounds(0, 0, 530, 160);
@@ -1069,6 +1069,7 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     conexionBD.doUpdate("Update TIPOCAMPO set descripcion = '" + this.valorNota.getText() + "' where correlativo = " + ID);
                     conexionBD.doUpdate("Update LISTA set valorPorDefecto = '" + this.valorPorDefectoLista.getText() + "' where correlativo = " + ID);
                 } else {
+                    System.out.println("guarda en tipo campo la lista");
                     conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 7)");
                     try { //Se busca el ID de los datos que acaba de insertar
                         ResultSet resultado = conexionBD.getResultSet("select correlativo from TIPOCAMPO where nombre = '" + this.valorNombreGeneral.getText() + "'");
@@ -1079,17 +1080,20 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         System.out.println("*SQL Exception: *" + e.toString());
                     }
                     try {
+                        System.out.println("Entro a guardar Lista con ID: "+ ID);
                         //java.sql.Date sqlDate = new java.sql.Date ( new java.util.Date () .getTime ()) ;
                         //guarda el miembro por defecto
                         conexionBD.doUpdate("insert into MIEMBROLISTA ( valor, IDLista) " +
                                 "values( '" + this.valorPorDefectoLista.getText() + "', " + ID + ")");
                         int IDMiembroPorDefecto = 0;
                         //obtiene el ID del miembro que acaba de guardar
+                        System.out.println("obtengo IDValorPordefecto");
                         ResultSet resultado = conexionBD.getResultSet("select correlativo from MIEMBROLISTA where valor = '" + this.valorPorDefectoLista.getText() + "'");
                         if (resultado.next()) {
                             IDMiembroPorDefecto = resultado.getInt("correlativo");
                         }
                         //guarda la lista con valor por defecto el que acaba d insertar
+                        System.out.println("guardo Lista, IDDefecto: "+ IDMiembroPorDefecto);
                         conexionBD.doUpdate("insert into LISTA (correlativo, IDMiembroPorDefecto) " +
                                 "values (" + ID + ", " + IDMiembroPorDefecto + ")");
                     } catch (Exception e) {
