@@ -345,6 +345,8 @@ public class GestionTipoCampoView extends FrameView {
         jLabel18 = new javax.swing.JLabel();
         valorTextoDefecto = new javax.swing.JTextField();
         paneLista = new javax.swing.JLayeredPane();
+        valorPorDefectoLista = new javax.swing.JTextField();
+        jLabel26 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         valorNombreGeneral = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -378,8 +380,6 @@ public class GestionTipoCampoView extends FrameView {
         progressBar = new javax.swing.JProgressBar();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        valorPorDefectoLista = new javax.swing.JTextField();
-        jLabel26 = new javax.swing.JLabel();
 
         mainPanel.setMaximumSize(new java.awt.Dimension(471, 659));
         mainPanel.setMinimumSize(new java.awt.Dimension(471, 659));
@@ -819,6 +819,18 @@ public class GestionTipoCampoView extends FrameView {
         panePrincipal.add(paneTexto, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneLista.setName("paneLista"); // NOI18N
+
+        valorPorDefectoLista.setEnabled(false);
+        valorPorDefectoLista.setName("valorPorDefectoLista"); // NOI18N
+        valorPorDefectoLista.setBounds(30, 40, 110, 20);
+        paneLista.add(valorPorDefectoLista, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel26.setText(resourceMap.getString("jLabel26.text")); // NOI18N
+        jLabel26.setEnabled(false);
+        jLabel26.setName("jLabel26"); // NOI18N
+        jLabel26.setBounds(30, 20, 90, 14);
+        paneLista.add(jLabel26, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         paneLista.setBounds(0, 0, 530, 160);
         panePrincipal.add(paneLista, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -1115,13 +1127,6 @@ public class GestionTipoCampoView extends FrameView {
                 .add(jPanel4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-
-        valorPorDefectoLista.setEnabled(false);
-        valorPorDefectoLista.setName("valorPorDefectoLista"); // NOI18N
-
-        jLabel26.setText(resourceMap.getString("jLabel26.text")); // NOI18N
-        jLabel26.setEnabled(false);
-        jLabel26.setName("jLabel26"); // NOI18N
 
         setComponent(mainPanel);
         setMenuBar(menuBar);
