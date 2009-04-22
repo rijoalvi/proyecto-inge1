@@ -445,7 +445,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         listaElementos = buscarNodos(jerarq);
         frameBusquedaNodos frame;
         frame = new frameBusquedaNodos();
-        frame.llenarTabla(listaElementos);
+        frame.llenarTabla(listaElementos, posicion+1);
         System.out.println("listado elementos " + posicion + "");
     //paneTree.setVisible(false);
     //paneLista.setVisible(true);
@@ -545,7 +545,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         listaElementos = buscarNodos(jerarq);
         frameBusquedaNodos frame;
         frame = new frameBusquedaNodos();
-        frame.llenarTablaBusqueda(listaElementos, fieldBusqueda.getText());
+        frame.llenarTablaBusqueda(listaElementos, fieldBusqueda.getText(), posicion+1);
 }//GEN-LAST:event_botonBuscarActionPerformed
 
     private void botonContarTerminosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonContarTerminosActionPerformed

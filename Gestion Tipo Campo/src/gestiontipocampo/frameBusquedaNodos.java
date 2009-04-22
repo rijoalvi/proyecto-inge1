@@ -159,13 +159,13 @@ public class frameBusquedaNodos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_formMouseClicked
 
-    public void llenarTabla(String[] ids) {
+    public void llenarTabla(String[] ids, int cantElementos) {
         ControladorBD miPrueba = new ControladorBD();
         DefaultTableModel modelo = new DefaultTableModel();
         modelo = (DefaultTableModel) tablaBusqueda.getModel();
 
         Object[] fila = new Object[3];
-        for (int i = 0; i < ids.length; ++i) {
+        for (int i = 0; i < cantElementos; ++i) {
             try {
                 ResultSet resultado = miPrueba.getResultSet("select * from NODO where ID = '" + ids[i] + "'");
                 while (resultado.next()) {
@@ -184,17 +184,17 @@ public class frameBusquedaNodos extends javax.swing.JFrame {
         this.setVisible(true);
     }
 
-    public void llenarTablaBusqueda(String[] ids, String palabraClave) {
+    public void llenarTablaBusqueda(String[] ids, String palabraClave, int cantElem) {
         ControladorBD miPrueba = new ControladorBD();
         DefaultTableModel modelo = new DefaultTableModel();
         modelo = (DefaultTableModel) tablaBusqueda.getModel();
 
         Object[] fila = new Object[3];
-        for (int i = 0; i < ids.length; ++i) {
+        for (int i = 0; i < cantElem; ++i) {
             try {
                 ResultSet resultado = miPrueba.getResultSet("select * from NODO where ID = '" + ids[i] + "'");
                 while (resultado.next()) {
-                    if (resultado.getObject("nombre").toString() == palabraClave) {
+                    if (palabraClave.equals(resultado.getObject("nombre").toString())) {
                         fila[0] = resultado.getObject("ID").toString();
                         fila[1] = resultado.getObject("nombre").toString();
                         fila[2] = resultado.getObject("descripcion").toString();
