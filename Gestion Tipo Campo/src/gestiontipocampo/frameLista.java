@@ -19,18 +19,19 @@ import java.*;
 public class frameLista extends javax.swing.JFrame {
 
     /** Creates new form frameLista */
-    public Lista miLista = new Lista();
+    public Lista miLista;
     //   public String elementoSeleccionado;
     //  private int IDTipoCampo;
     public boolean modificando;
 
     public frameLista() {
         initComponents();
+        miLista = new Lista();
     }
 
     public frameLista(int IDLista) {
         initComponents();
-
+        miLista = new Lista();
         campoEntrada.setText("");
         campoEntrada.requestFocus();
         //this.IDTipoCampo=IDLista;

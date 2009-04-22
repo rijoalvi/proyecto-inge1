@@ -165,25 +165,27 @@ public class frameConexiones extends javax.swing.JFrame {
         ControladorBD probadorConexiones = new ControladorBD();
 
         //ATENCION: YA NO HAY QUE COMENTAR NADA AQUÍ*********************************
-        if(1==probadorConexiones.probarConexion(2)){
+        if (1 == probadorConexiones.probarConexion(2)) {
+            System.out.println("Probando 2");
             jRadioButton2.setText("Disponible");
             jRadioButton2.setEnabled(true);
 
             jRadioButton1.setText("No disponible");
             jRadioButton1.setSelected(false);
             jRadioButton1.setEnabled(false);
-        }
-        else{
+        } else {
+            System.out.println("Probando 1");
             jRadioButton2.setText("No disponible");
             jRadioButton2.setSelected(false);
             jRadioButton2.setEnabled(false);
 
             if (1 == probadorConexiones.probarConexion(1)) {
-
+                System.out.println("Entro?");
                 jRadioButton1.setEnabled(true);
                 jRadioButton1.setText("Disponible");
-        //         jRadioButton1.setBackground(Color.green);
-                }
+            //         jRadioButton1.setBackground(Color.green);
+            }
+            System.out.println("No se pudo establecer nada :(");
         }
 
         jLabel1.setText("Por favor elija la Base de Datos a la que desea conectarse.");
