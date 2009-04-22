@@ -1100,6 +1100,7 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         System.out.println("*SQL Exception: *" + e.toString());
                     }
                 }
+                System.out.println("abre lista de ID: "+ ID);
                 frameLista fLista = new frameLista(ID);
                 fLista.setVisible(true);
                 //limpiarCamposLista();

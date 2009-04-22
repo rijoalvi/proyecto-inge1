@@ -321,7 +321,7 @@ public class frameLista extends javax.swing.JFrame {
             campoEntrada.setText("");
         }
 
-
+        this.campoEntrada.setText(this.campoEntrada.getText().trim());
 
     //   System.out.print(evt.getClickCount()+".");
     }//GEN-LAST:event_listaMouseClicked
