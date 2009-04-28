@@ -9,6 +9,7 @@
  * Created on 17/04/2009, 08:57:58 PM luiscarlosch@gmail.com
  */
 package gestiontipocampo;
+
 import javax.swing.*;
 import java.*;
 
@@ -26,11 +27,13 @@ public class frameLista extends javax.swing.JFrame {
 
     public frameLista() {
         initComponents();
+        SidePanel.setVisible(false);
         miLista = new Lista();
     }
 
     public frameLista(int IDLista) {
         initComponents();
+        SidePanel.setVisible(false);
         miLista = new Lista();
         campoEntrada.setText("");
         campoEntrada.requestFocus();
@@ -78,7 +81,7 @@ public class frameLista extends javax.swing.JFrame {
         botonDown = new javax.swing.JButton();
         botonBottom = new javax.swing.JButton();
         panelBotonPersonalizado = new javax.swing.JPanel();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        botonPersonalizado = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -101,6 +104,7 @@ public class frameLista extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        lista.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         lista.setName("lista"); // NOI18N
         lista.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -154,7 +158,7 @@ public class frameLista extends javax.swing.JFrame {
                 .addGroup(LabelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(nombreMiembroPorDefecto)
                     .addComponent(jLabel3))
-                .addContainerGap(182, Short.MAX_VALUE))
+                .addContainerGap(271, Short.MAX_VALUE))
         );
         LabelPanelLayout.setVerticalGroup(
             LabelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,7 +256,7 @@ public class frameLista extends javax.swing.JFrame {
                         .addComponent(botonPorDefecto, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botonSalir)))
-                .addGap(154, 154, 154))
+                .addGap(243, 243, 243))
         );
         ButtonPanelLayout.setVerticalGroup(
             ButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -270,12 +274,19 @@ public class frameLista extends javax.swing.JFrame {
 
         botonAgregar.getAccessibleContext().setAccessibleName(resourceMap.getString("jButton1.AccessibleContext.accessibleName")); // NOI18N
 
+        SidePanel.setMaximumSize(new java.awt.Dimension(43, 137));
+        SidePanel.setMinimumSize(new java.awt.Dimension(43, 137));
         SidePanel.setName("SidePanel"); // NOI18N
 
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getActionMap(frameLista.class, this);
         botonTop.setAction(actionMap.get("botonPrimeroAccion")); // NOI18N
         botonTop.setText(resourceMap.getString("botonTop.text")); // NOI18N
         botonTop.setName("botonTop"); // NOI18N
+        botonTop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonTopActionPerformed(evt);
+            }
+        });
 
         botonUp.setAction(actionMap.get("botonSubirAccion")); // NOI18N
         botonUp.setText(resourceMap.getString("botonUp.text")); // NOI18N
@@ -316,19 +327,24 @@ public class frameLista extends javax.swing.JFrame {
 
         panelBotonPersonalizado.setName("panelBotonPersonalizado"); // NOI18N
 
+        botonPersonalizado.setAction(actionMap.get("botonOrdenPersonalizado")); // NOI18N
+        botonPersonalizado.setText(resourceMap.getString("botonPersonalizado.text")); // NOI18N
+        botonPersonalizado.setName("botonPersonalizado"); // NOI18N
+
         javax.swing.GroupLayout panelBotonPersonalizadoLayout = new javax.swing.GroupLayout(panelBotonPersonalizado);
         panelBotonPersonalizado.setLayout(panelBotonPersonalizadoLayout);
         panelBotonPersonalizadoLayout.setHorizontalGroup(
             panelBotonPersonalizadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 14, Short.MAX_VALUE)
+            .addGroup(panelBotonPersonalizadoLayout.createSequentialGroup()
+                .addComponent(botonPersonalizado, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         panelBotonPersonalizadoLayout.setVerticalGroup(
             panelBotonPersonalizadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 23, Short.MAX_VALUE)
+            .addGroup(panelBotonPersonalizadoLayout.createSequentialGroup()
+                .addComponent(botonPersonalizado)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        jToggleButton1.setText(resourceMap.getString("jToggleButton1.text")); // NOI18N
-        jToggleButton1.setName("jToggleButton1"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -342,13 +358,11 @@ public class frameLista extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jToggleButton1)
-                            .addComponent(SidePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(panelBotonPersonalizado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
+                            .addComponent(SidePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(panelBotonPersonalizado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(187, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(ButtonPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
+                        .addComponent(ButtonPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -356,20 +370,19 @@ public class frameLista extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(LabelPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(SidePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(panelBotonPersonalizado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(14, 14, 14))
-                            .addComponent(jToggleButton1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(ButtonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(SidePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(panelBotonPersonalizado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addComponent(ButtonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        SidePanel.getAccessibleContext().setAccessibleDescription(resourceMap.getString("SidePanel.AccessibleContext.accessibleDescription")); // NOI18N
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -395,7 +408,6 @@ public class frameLista extends javax.swing.JFrame {
     }//GEN-LAST:event_listaValueChanged
 
     private void botonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarActionPerformed
-
         if (((((MiDato) lista.getSelectedValue()).ID) + "").equals(miLista.IDMiembroPorDefecto)) {
             JOptionPane.showMessageDialog(null, "No se puede eliminar el elemento por defecto.");
         } else {
@@ -420,10 +432,6 @@ public class frameLista extends javax.swing.JFrame {
     }//GEN-LAST:event_botonBorrarActionPerformed
 
     private void listaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaMouseClicked
-        // TODO add your handling code here:
-
-        // botonAgregar.setEnabled(true);
-
         if (evt.getClickCount() == 2) {
             modificando = true;
             botonBorrar.setEnabled(false);
@@ -451,8 +459,6 @@ public class frameLista extends javax.swing.JFrame {
     }//GEN-LAST:event_listaMouseClicked
 
     private void botonPorDefectoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonPorDefectoMouseClicked
-        // TODO add your handling code here:
-
         String[] opciones = {"Si", "No"};
         int respuesta = JOptionPane.showOptionDialog(null, "¿Está seguro de que desea cambiar el valor por defecto?", "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opciones, "No");
 
@@ -472,12 +478,6 @@ public class frameLista extends javax.swing.JFrame {
                 /*No quiso borrar*/
                 break;
         }
-
-
-
-
-
-
     }//GEN-LAST:event_botonPorDefectoMouseClicked
 
     private void campoEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoEntradaActionPerformed
@@ -513,6 +513,7 @@ public class frameLista extends javax.swing.JFrame {
         }
         campoEntrada.requestFocus();
     }//GEN-LAST:event_botonAgregarActionPerformed
+
     public void setConfiguracionBase() {
         campoEntrada.setText("");
         campoEntrada.requestFocus();
@@ -520,6 +521,7 @@ public class frameLista extends javax.swing.JFrame {
         botonBorrar.setEnabled(false);
         botonPorDefecto.setEnabled(false);
     }
+
     private void campoEntradaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoEntradaKeyTyped
         if (!this.modificando) {
             lista.clearSelection();
@@ -529,6 +531,9 @@ public class frameLista extends javax.swing.JFrame {
             botonAgregar.setEnabled(false);
         }
     }//GEN-LAST:event_campoEntradaKeyTyped
+
+    private void botonTopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTopActionPerformed
+    }//GEN-LAST:event_botonTopActionPerformed
 
     /**
      * @param args the command line arguments
@@ -540,6 +545,15 @@ public class frameLista extends javax.swing.JFrame {
                 new frameLista().setVisible(true);
             }
         });
+    }
+
+    @org.jdesktop.application.Action
+    public void botonOrdenPersonalizado() {
+        if (botonPersonalizado.isSelected()) {
+            SidePanel.setVisible(true);
+        } else {
+            SidePanel.setVisible(false);
+        }
     }
 
     @org.jdesktop.application.Action
@@ -566,6 +580,7 @@ public class frameLista extends javax.swing.JFrame {
     private javax.swing.JButton botonBorrar;
     private javax.swing.JButton botonBottom;
     private javax.swing.JButton botonDown;
+    private javax.swing.JToggleButton botonPersonalizado;
     private javax.swing.JButton botonPorDefecto;
     private javax.swing.JButton botonSalir;
     private javax.swing.JButton botonTop;
@@ -577,7 +592,6 @@ public class frameLista extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JList lista;
     private javax.swing.JLabel nombreMiembroPorDefecto;
     private javax.swing.JPanel panelBotonPersonalizado;
