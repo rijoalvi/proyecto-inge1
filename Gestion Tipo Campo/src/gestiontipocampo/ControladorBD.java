@@ -141,9 +141,9 @@ public class ControladorBD {
     public Vector getResultSetVector(String consulta) {
         Vector miVector = new Vector();
         try {
-            ResultSet resultado = this.getResultSet("select correlativo ,nombre, descripcion, ultimaActualizacion from TIPOCAMPO where correlativo=31;");
-            if (resultado.next()) {
-                miVector.add(resultado.getObject("nombre"));
+            ResultSet result = this.getResultSet("select correlativo ,nombre, descripcion, ultimaActualizacion from TIPOCAMPO where correlativo=31;");
+            if (result.next()) {
+                miVector.add(result.getObject("nombre"));
             }
         } catch (SQLException e) {
             System.out.println("*SQL Exception: aca?*" + e.toString());
