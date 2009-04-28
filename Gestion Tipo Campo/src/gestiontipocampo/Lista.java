@@ -26,6 +26,7 @@ public class Lista extends TipoCampo {
     public SortedSet getMiembroListaSet() {
         return this.miembroLista;
     }
+
     /**
      * Cargo los miembros de la lista a partir de un vector
      * @param vector
@@ -40,6 +41,7 @@ public class Lista extends TipoCampo {
     public Vector getModeloVector(String consulta, String campoTexto, String campoNumero) {
         return miModelo.getModeloEnVector(consulta, campoTexto, campoNumero);
     }
+
     /**
      * Cargo en la clase Lista los datos respectivos de ésta, como nombre, descripcion y valor por defecto
      */
@@ -63,7 +65,7 @@ public class Lista extends TipoCampo {
             campos.add("valor");//**********incompatiblidad mysql m.valor
         }
 
-       
+
         miMapa = buscador.getResultSetMap("select t.correlativo, nombre, descripcion, ultimaActualizacion, IDMiembroPorDefecto, m.valor from TIPOCAMPO t, LISTA l,MIEMBROLISTA m where t.correlativo=" + this.correlativo + " AND l.correlativo=t.correlativo  and m.correlativo=l.IDMiembroPorDefecto;", campos);
         if (ControladorBD.conexionSeleccionada == 1) {
             this.correlativo = miMapa.get("t.correlativo");
@@ -89,8 +91,8 @@ public class Lista extends TipoCampo {
     public void borrarMiembro(Object miembro) {
         buscador.doUpdate("delete from MIEMBROLISTA where correlativo = " + ((MiDato) (miembro)).ID + " and IDLista=" + this.correlativo + ";");
         this.miembroLista.remove(miembro);
-
     }
+
     /**
      * Actualiza en la lista, el ID del miembro lista que ahora será el valor por defecto
      * @param IDMiembroPorDefecto
@@ -98,8 +100,8 @@ public class Lista extends TipoCampo {
     public void upDateIDMiembroPorDefecto(String IDMiembroPorDefecto) {
         buscador.doUpdate("UPDATE LISTA  SET IDMiembroPorDefecto=" + IDMiembroPorDefecto + " where correlativo=" + this.correlativo + ";");
     //this.miembroLista.remove(miembro);
-
     }
+
     /**
      *
      * @param miembroAActualizar Objeto que contiene el MiDato (MiembroLista) a actualizar, a este se se castea para conseguir el ID y el nombre
@@ -114,8 +116,8 @@ public class Lista extends TipoCampo {
         if (("" + IDMiembroAActualizar).equalsIgnoreCase(this.IDMiembroPorDefecto)) {
             this.nombreMiembroPorDefecto = valorNuevo;
         }
-
     }
+
     /**
      * Se llama despues de agregar o modificar un elemento de la lista. Sí agregé un elemento al control lista, este lo tengo que agregar a la base de datos y volver a hacer la consulta para ver en que orden quedó, para actualizar el control lista
      * @return Vector con el modelo para el control de la lista ya actualizado por hago consulta a la BD para ver el orden
@@ -135,8 +137,8 @@ public class Lista extends TipoCampo {
         }
         MiDato.valorDefecto = this.IDMiembroPorDefecto + "";
         return miembrosListaVector;
-
     }
+
     /**
      * Se llama despues de borrar un miembro de la lista, Aquí es diferente a setAndGet, se usa en un caso como el de borrar, que no tengo que actualizar el modelo ya que con solo eliminarlo del control lista, ya es sufuciente
      * @return Un vector con con el modelo actual.
@@ -156,8 +158,8 @@ public class Lista extends TipoCampo {
         }
 
         return miembrosListaVector;
-    
     }
+
     /**
      * Sobre escribe el toString del padre
      * @return
