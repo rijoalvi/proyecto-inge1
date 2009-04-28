@@ -64,7 +64,7 @@ public class Lista extends TipoCampo {
         }
 
        
-        miMapa = buscador.getResultSetMap("select t.correlativo, nombre, descripcion, ultimaActualizacion, IDMiembroPorDefecto, m.valor from TIPOCAMPO t, LISTA l,MIEMBROLISTA m where t.correlativo="+this.correlativo+" AND l.correlativo=t.correlativo  and m.correlativo=l.IDMiembroPorDefecto;", campos);
+        miMapa = buscador.getResultSetMap("select t.correlativo, nombre, descripcion, ultimaActualizacion, IDMiembroPorDefecto, m.valor from TIPOCAMPO t, LISTA l,MIEMBROLISTA m where t.correlativo=" + this.correlativo + " AND l.correlativo=t.correlativo  and m.correlativo=l.IDMiembroPorDefecto;", campos);
         if (ControladorBD.conexionSeleccionada == 1) {
             this.correlativo = miMapa.get("t.correlativo");
         } else {

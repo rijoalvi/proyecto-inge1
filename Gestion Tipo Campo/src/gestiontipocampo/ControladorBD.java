@@ -17,50 +17,49 @@ public class ControladorBD {
 
     private String conexionString1 = "jdbc:mysql://grupoingegift5.bluechiphosting.com/grupoin2_GiftBD?user=grupoin2_user&password=Qwerty123";
     private String conexionString2 = "jdbc:sqlserver://bd;databaseName=bdInge1g2_g2;user=usuarioInge1_g2;password=ui1_g2";
-    protected static int conexionSeleccionada=-1;
+    protected static int conexionSeleccionada = -1;
     private Connection conexion = null;
     private ResultSet resultado = null;
 
-    public int probarConexion(int  numeroConexion){
-        String conexionStringAProbar="";
-        switch(numeroConexion){
+    public int probarConexion(int numeroConexion) {
+        String conexionStringAProbar = "";
+        switch (numeroConexion) {
             case 1:
-                conexionStringAProbar=conexionString1;
-            break;
+                conexionStringAProbar = conexionString1;
+                break;
             case 2:
-                conexionStringAProbar=conexionString2;
-            break;
+                conexionStringAProbar = conexionString2;
+                break;
         }
 
-        int estado=1;// en caso de exito se retorna1
+        int estado = 1;// en caso de exito se retorna1
         try {
-            switch(numeroConexion){
+            switch (numeroConexion) {
                 case 1:
                     Class.forName("com.mysql.jdbc.Driver");
-                break;
+                    break;
                 case 2:
                     Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-                break;
+                    break;
                 default:
                     estado = -1;
             }
-            if(estado == 1){
-                    //Class.forName("com.microsoft.sqlserver.jdbc.Driver");
-               // Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            if (estado == 1) {
+                //Class.forName("com.microsoft.sqlserver.jdbc.Driver");
+                // Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
                 conexion = DriverManager.getConnection(conexionStringAProbar);
-                System.out.println("Conexión exitosa: "+numeroConexion+"\n");
+                System.out.println("Conexión exitosa: " + numeroConexion + "\n");
             }
-        }
-        catch (SQLException e) {
-          //  System.out.println("*SQL Exception: *" + e.toString());
-            System.out.println("No se pudo acceder a la conexion: " + numeroConexion+"\n");
-            estado=-1;//error producido
+        } catch (SQLException e) {
+            //  System.out.println("*SQL Exception: *" + e.toString());
+            System.out.println("No se pudo acceder a la conexion: " + numeroConexion + "\n");
+            estado = -1;//error producido
         } catch (ClassNotFoundException cE) {
-            System.out.println("No se pudo acceder a la conexion: " + numeroConexion+".\n");
+            System.out.println("No se pudo acceder a la conexion: " + numeroConexion + ".\n");
             //System.out.println("--Class Not Found Exception: --" + cE.toString());
-            estado=-1;//error producido
+            estado = -1;//error producido
         }
-        
+
         return estado;
 
 
@@ -70,31 +69,31 @@ public class ControladorBD {
      * Constructor por omisión
      */
     public ControladorBD() {
-     //   System.out.print("HOla Mundo");
+        //   System.out.print("HOla Mundo");
     }
 
-    private String getConexionEstablecida(){
+    private String getConexionEstablecida() {
         String conexionEstablecida = "";
-       switch(conexionSeleccionada){
+        switch (conexionSeleccionada) {
             case 1:
-                conexionEstablecida  = conexionString1;
-            break;
+                conexionEstablecida = conexionString1;
+                break;
             case 2:
-                conexionEstablecida  = conexionString2;
-            break;
+                conexionEstablecida = conexionString2;
+                break;
             default:
-                conexionEstablecida  = "";
+                conexionEstablecida = "";
         }
-       return conexionEstablecida ;
+        return conexionEstablecida;
     }
+
     public ResultSet getResultSet(String consulta) {
-        String conexionAUtilizar=getConexionEstablecida();
-        if(conexionSeleccionada != -1){
+        String conexionAUtilizar = getConexionEstablecida();
+        if (conexionSeleccionada != -1) {
             try {
-                if(getConexionEstablecida().equals(conexionString1)){
+                if (getConexionEstablecida().equals(conexionString1)) {
                     Class.forName("com.mysql.jdbc.Driver");
-                }
-                else{
+                } else {
                     Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
                 }
                 conexion = DriverManager.getConnection(conexionAUtilizar);
@@ -102,28 +101,27 @@ public class ControladorBD {
                 String SQL = consulta;
                 query = conexion.createStatement();
                 resultado = query.executeQuery(SQL);
-                System.out.println("Se realizo la consula con la conexion # "+conexionSeleccionada+"");
+                System.out.println("Se realizo la consula con la conexion # " + conexionSeleccionada + "");
             } catch (SQLException e) {
                 System.out.println("*SQL Exception: *" + e.toString());
             } catch (ClassNotFoundException cE) {
                 System.out.println("--Class Not Found Exception: --" + cE.toString());
             }
-        }else{
+        } else {
             System.out.println("GIFT Configurador no se encuentra conectado a ninguna base de datos");
-            
+
             resultado = null;
         }
         return resultado;
     }
-    
+
     public int doUpdate(String consulta) {
-        String conexionAUtilizar=getConexionEstablecida();
+        String conexionAUtilizar = getConexionEstablecida();
         int result = -1;
         try {
-            if(getConexionEstablecida() == conexionString1){
+            if (getConexionEstablecida().equals(conexionString1)) {
                 Class.forName("com.mysql.jdbc.Driver");
-            }
-            else{
+            } else {
                 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             }
             conexion = DriverManager.getConnection(conexionAUtilizar);
@@ -131,7 +129,7 @@ public class ControladorBD {
             String SQL = consulta;
             query = conexion.createStatement();
             result = query.executeUpdate(SQL);
-            System.out.println("Se realizo la consula con la conexion # "+conexionSeleccionada+"");
+            System.out.println("Se realizo la consula con la conexion # " + conexionSeleccionada + "");
         } catch (SQLException e) {
             System.out.println("*SQL Exception: *" + e.toString());
         } catch (ClassNotFoundException cE) {
@@ -141,7 +139,7 @@ public class ControladorBD {
     }
 
     public Vector getResultSetVector(String consulta) {
-        Vector miVector= new Vector();
+        Vector miVector = new Vector();
         try {
             ResultSet resultado = this.getResultSet("select correlativo ,nombre, descripcion, ultimaActualizacion from TIPOCAMPO where correlativo=31;");
             if (resultado.next()) {
@@ -152,26 +150,27 @@ public class ControladorBD {
         }
         return miVector;
     }
-    public Map getResultSetMap(String consulta,Vector campos) {
+
+    public Map getResultSetMap(String consulta, Vector campos) {
         Map<String, String> miMapa = new HashMap<String, String>();
 
         try {//no sé porque está subrayado resultado, si alguien sabe me avisa porfa, luis carlos
-            ResultSet resultado = this.getResultSet(consulta);
-            if (resultado.next()) {
-               // miVector.add(resultado.getObject("nombre"));
+            //No se, le cambie el nombre y dejo de subrayarlo, Roman.
+            ResultSet result = this.getResultSet(consulta);
+            if (result.next()) {
+                // miVector.add(resultado.getObject("nombre"));
 
-                for(int i=0; i<campos.size();i++){
-                    miMapa.put(campos.get(i).toString(),resultado.getObject(campos.get(i).toString()).toString());
+                for (int i = 0; i < campos.size(); i++) {
+                    miMapa.put(campos.get(i).toString(), result.getObject(campos.get(i).toString()).toString());
                 }
-              /*  miMapa.put("correlativo",resultado.getObject("correlativo").toString());
-                miMapa.put("nombre",resultado.getObject("nombre").toString());
-                miMapa.put("descripcion",resultado.getObject("descripcion").toString());
-                miMapa.put("ultimaActualizacion",resultado.getObject("ultimaActualizacion").toString());*/
+            /*  miMapa.put("correlativo",resultado.getObject("correlativo").toString());
+            miMapa.put("nombre",resultado.getObject("nombre").toString());
+            miMapa.put("descripcion",resultado.getObject("descripcion").toString());
+            miMapa.put("ultimaActualizacion",resultado.getObject("ultimaActualizacion").toString());*/
             }
         } catch (SQLException e) {
             System.out.println("*SQL Exception: aca?*" + e.toString());
         }
         return miMapa;
     }
-
 }

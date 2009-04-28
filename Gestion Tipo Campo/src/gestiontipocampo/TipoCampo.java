@@ -16,6 +16,10 @@ public class TipoCampo {
     protected String ultimaActualizacion;
     protected ControladorBD buscador;
 
+    public void TipoCampo(){
+        buscador = new ControladorBD();
+    }
+
     @Override
     public String toString() {
         String aRetornar =
@@ -29,7 +33,16 @@ public class TipoCampo {
         return this.nombre;
     }
 
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
     public String getDescripcion() {
         return this.descripcion;
     }
+
+    public void setDescripcion(String descr) {
+        this.descripcion = descr;
+    }
+    
 }
