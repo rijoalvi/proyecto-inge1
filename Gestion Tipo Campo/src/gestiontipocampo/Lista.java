@@ -26,7 +26,10 @@ public class Lista extends TipoCampo {
     public SortedSet getMiembroListaSet() {
         return this.miembroLista;
     }
-
+    /**
+     * Cargo los miembros de la lista a partir de un vector
+     * @param vector
+     */
     public void setMiembrosLista(Vector vector) {
         miembroLista.clear();
         for (int i = 0; i < vector.size(); i++) {
@@ -37,7 +40,9 @@ public class Lista extends TipoCampo {
     public Vector getModeloVector(String consulta, String campoTexto, String campoNumero) {
         return miModelo.getModeloEnVector(consulta, campoTexto, campoNumero);
     }
-
+    /**
+     * Cargo en la clase Lista los datos respectivos de ésta, como nombre, descripcion y valor por defecto
+     */
     public void setLista() {
         Map<String, String> miMapa;
         Vector campos = new Vector();
@@ -58,7 +63,7 @@ public class Lista extends TipoCampo {
             campos.add("valor");//**********incompatiblidad mysql m.valor
         }
 
-        //miMapa=buscador.getResultSetMap("select "+campos.get(0)+", "+campos.get(1)+", "+campos.get(2)+", "+campos.get(3)+", "+campos.get(4)+", "+campos.get(5)+" from TIPOCAMPO t, LISTA l,MIEMBROLISTA m where t.correlativo="+this.correlativo+" AND l.correlativo=t.correlativo  and m.correlativo=l.IDMiembroPorDefecto;",campos);
+       
         miMapa = buscador.getResultSetMap("select t.correlativo, nombre, descripcion, ultimaActualizacion, IDMiembroPorDefecto, m.valor from TIPOCAMPO t, LISTA l,MIEMBROLISTA m where t.correlativo="+this.correlativo+" AND l.correlativo=t.correlativo  and m.correlativo=l.IDMiembroPorDefecto;", campos);
         if (ControladorBD.conexionSeleccionada == 1) {
             this.correlativo = miMapa.get("t.correlativo");
@@ -86,13 +91,20 @@ public class Lista extends TipoCampo {
         this.miembroLista.remove(miembro);
 
     }
-
+    /**
+     * Actualiza en la lista, el ID del miembro lista que ahora será el valor por defecto
+     * @param IDMiembroPorDefecto
+     */
     public void upDateIDMiembroPorDefecto(String IDMiembroPorDefecto) {
         buscador.doUpdate("UPDATE LISTA  SET IDMiembroPorDefecto=" + IDMiembroPorDefecto + " where correlativo=" + this.correlativo + ";");
     //this.miembroLista.remove(miembro);
 
     }
-
+    /**
+     *
+     * @param miembroAActualizar Objeto que contiene el MiDato (MiembroLista) a actualizar, a este se se castea para conseguir el ID y el nombre
+     * @param valorNuevo Nombre nuevo a asignar al elemento seleccionado
+     */
     public void upDateValorMiembro(Object miembroAActualizar, String valorNuevo) {
         int IDMiembroAActualizar = ((MiDato) (miembroAActualizar)).ID;
         buscador.doUpdate("Update MIEMBROLISTA set valor='" + valorNuevo + "' where Correlativo=" + IDMiembroAActualizar + ";");
@@ -104,7 +116,10 @@ public class Lista extends TipoCampo {
         }
 
     }
-
+    /**
+     * Se llama despues de agregar o modificar un elemento de la lista. Sí agregé un elemento al control lista, este lo tengo que agregar a la base de datos y volver a hacer la consulta para ver en que orden quedó, para actualizar el control lista
+     * @return Vector con el modelo para el control de la lista ya actualizado por hago consulta a la BD para ver el orden
+     */
     public Vector setAndGetMiembrosVectorActualizados() {
         this.setMiembrosLista(this.getModeloVector("select valor, ml.correlativo from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo=" + this.correlativo + "", "valor", "correlativo"));
 
@@ -121,10 +136,11 @@ public class Lista extends TipoCampo {
         MiDato.valorDefecto = this.IDMiembroPorDefecto + "";
         return miembrosListaVector;
 
-    // lista.setListData(miembrosListaVector);
-    //lista.setListData(this.miLista.getModeloVector("select valor, ml.correlativo from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo="+this.IDTipoCampo+"", "valor", "correlativo"));
     }
-
+    /**
+     * Se llama despues de borrar un miembro de la lista, Aquí es diferente a setAndGet, se usa en un caso como el de borrar, que no tengo que actualizar el modelo ya que con solo eliminarlo del control lista, ya es sufuciente
+     * @return Un vector con con el modelo actual.
+     */
     public Vector getModeloMiembrosVector() {
         //  this.setMiembrosLista(this.getModeloVector("select valor, ml.correlativo from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo="+this.correlativo+"", "valor", "correlativo"));
         MiDato.valorDefecto = this.IDMiembroPorDefecto;
@@ -140,10 +156,12 @@ public class Lista extends TipoCampo {
         }
 
         return miembrosListaVector;
-    // lista.setListData(miembrosListaVector);
-    //lista.setListData(this.miLista.getModeloVector("select valor, ml.correlativo from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo="+this.IDTipoCampo+"", "valor", "correlativo"));
+    
     }
-
+    /**
+     * Sobre escribe el toString del padre
+     * @return
+     */
     @Override
     public String toString() {
         return super.toString();
