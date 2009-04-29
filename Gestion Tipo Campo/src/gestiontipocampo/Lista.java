@@ -87,10 +87,12 @@ public class Lista extends TipoCampo {
         this.descripcion = miMapa.get("descripcion");
         this.IDMiembroPorDefecto = miMapa.get("IDMiembroPorDefecto");
 
-        if(miMapa.get("conOrden").equalsIgnoreCase("true")){
+        if(miMapa.get("conOrden").trim().equalsIgnoreCase("True")){
+            System.out.println(miMapa.get("conOrden"));
             this.ordenPersonalizado = true;
         }
         else{
+            System.out.println(miMapa.get("conOrden")+"cogio false");
             this.ordenPersonalizado = false;
         }
 

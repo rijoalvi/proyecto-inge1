@@ -47,7 +47,7 @@ public class frameLista extends javax.swing.JFrame {
     }
 
     public void actualizarLista() {
-        if (miLista.ordenPersonalizado == true) {
+        if (miLista.ordenPersonalizado==true) {
             SidePanel.setVisible(true);
         } else {
             SidePanel.setVisible(false);
@@ -332,7 +332,7 @@ public class frameLista extends javax.swing.JFrame {
         panelBotonPersonalizado.setName("panelBotonPersonalizado"); // NOI18N
 
         botonPersonalizado.setAction(actionMap.get("botonOrdenPersonalizado")); // NOI18N
-        botonPersonalizado.setText(resourceMap.getString("botonPersonalizado.text")); // NOI18N
+        botonPersonalizado.setText(null);
         botonPersonalizado.setName("botonPersonalizado"); // NOI18N
 
         javax.swing.GroupLayout panelBotonPersonalizadoLayout = new javax.swing.GroupLayout(panelBotonPersonalizado);
@@ -483,10 +483,9 @@ public class frameLista extends javax.swing.JFrame {
     }//GEN-LAST:event_campoEntradaInputMethodTextChanged
 
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
-        // TODO add your handling code here:
-
 
         if (miLista.getMiembroListaSet().contains(new MiDato(campoEntrada.getText(), 0))) {
+            
             JOptionPane.showMessageDialog(null, "Ya existe un elemento con ese nombre.");
         } else {
             if (modificando) {
@@ -556,7 +555,7 @@ public class frameLista extends javax.swing.JFrame {
         return ID;
     }
 
-    @org.jdesktop.application.Action
+        @org.jdesktop.application.Action
     public void botonOrdenPersonalizado() {
         if (botonPersonalizado.isSelected()) {
             miLista.setConOrdenPersonalizado(true);

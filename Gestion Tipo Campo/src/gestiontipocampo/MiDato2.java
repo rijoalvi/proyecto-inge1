@@ -24,6 +24,8 @@ public class MiDato2 implements Comparable {
 
     public int compareTo(Object o) {
         int aRetornar = this.nombre.toString().compareToIgnoreCase(o.toString());
+        if (aRetornar == 0)
+            return 0;
         return this.orden - ((MiDato2)o).orden;
     }
 

@@ -250,7 +250,7 @@ public class GestionTipoCampoView extends FrameView {
         try {
             ResultSet resultado = buscador.getResultSet("select valor from MIEMBROLISTA where correlativo = " + ID + ";");
             if(resultado.next()){
-                valores += resultado.getObject("valor").toString();                
+                valores += resultado.getObject("valor").toString();
             }
         } catch (SQLException e) {
             System.out.println("*SQL Exception: *" + e.toString());
@@ -351,7 +351,6 @@ public class GestionTipoCampoView extends FrameView {
         jScrollPane1 = new javax.swing.JScrollPane();
         arbolPrincipal = new javax.swing.JTree();
         pathPane = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -811,7 +810,7 @@ public class GestionTipoCampoView extends FrameView {
 
         paneLista.setName("paneLista"); // NOI18N
 
-        valorPorDefectoLista.setEnabled(false);
+        valorPorDefectoLista.setEditable(false);
         valorPorDefectoLista.setName("valorPorDefectoLista"); // NOI18N
         valorPorDefectoLista.setBounds(30, 40, 110, 20);
         paneLista.add(valorPorDefectoLista, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -911,14 +910,6 @@ public class GestionTipoCampoView extends FrameView {
         pathPane.setName("pathPane"); // NOI18N
         pathPane.setLayout(new javax.swing.BoxLayout(pathPane, javax.swing.BoxLayout.LINE_AXIS));
 
-        jButton3.setText(resourceMap.getString("jButton3.text")); // NOI18N
-        jButton3.setName("jButton3"); // NOI18N
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
-            }
-        });
-
         org.jdesktop.layout.GroupLayout mainPanelLayout = new org.jdesktop.layout.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
@@ -926,12 +917,8 @@ public class GestionTipoCampoView extends FrameView {
             .add(mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
-                        .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, mainPanelLayout.createSequentialGroup()
-                        .add(jButton3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 130, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)))
+                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
+                    .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(mainPanelLayout.createSequentialGroup()
                         .add(236, 236, 236)
@@ -971,9 +958,7 @@ public class GestionTipoCampoView extends FrameView {
                 .add(mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(canvas2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(mainPanelLayout.createSequentialGroup()
-                        .add(14, 14, 14)
-                        .add(jButton3)
-                        .add(68, 68, 68)
+                        .add(105, 105, 105)
                         .add(canvas3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 298, Short.MAX_VALUE)
                         .add(canvas4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
@@ -1139,7 +1124,8 @@ public class GestionTipoCampoView extends FrameView {
         if(comboTipos.getSelectedItem().toString().equals("Lista")){
             String IDLista = getIDTipoCampo(valorNombreGeneral.getText());
             frameLista ventanaLista = new frameLista( Integer.parseInt(IDLista));
-        ventanaLista.setVisible(true);
+            ventanaLista.setLocationRelativeTo(GestionTipoCampoApp.getApplication().getMainFrame());
+            ventanaLista.setVisible(true);
         }
         else{
             String ID = getIDTipoCampo(valorNombreGeneral.getText());
@@ -1238,11 +1224,6 @@ public class GestionTipoCampoView extends FrameView {
         // TODO add your handling code here:
 }//GEN-LAST:event_botonAgregarNivelActionPerformed
 
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-        frameLista ventanaLista = new frameLista(31);
-        ventanaLista.setVisible(true);
-    }//GEN-LAST:event_jButton3MouseClicked
-
     public void llenarDatosReadOnly(String nombre, int tipo){
         //Trae todos los valores de la tabla TIPOCAMPO
         String valoresGlobales = buscarDatosEnBD(nombre);
@@ -1298,7 +1279,6 @@ public class GestionTipoCampoView extends FrameView {
                 break;
             //Jerarquia
             case(6):
-//                System.out.println("cantidda valores en vector "+valoresEspSep[0]+valoresEspSep[1]);
                 if(valoresEspSep[3].equalsIgnoreCase("true")){
                     this.radioNomUnicoSi.setSelected(false);
                     this.radioNomUnicoNo.setSelected(true);
@@ -1326,8 +1306,8 @@ public class GestionTipoCampoView extends FrameView {
                 break;
             //Lista
             case(7):
-                String val = buscarMiembroLista( Integer.parseInt(valoresEspSep[1]));
-                valorPorDefectoLista.setText( val );
+                valoresEspSep[1] = buscarMiembroLista( Integer.parseInt(valoresEspSep[1]));
+                this.valorPorDefectoLista.setText(valoresEspSep[1].trim());
                 break;
 
             default:
@@ -1497,7 +1477,6 @@ public class GestionTipoCampoView extends FrameView {
     private javax.swing.JComboBox comboNiveles;
     private javax.swing.JComboBox comboTipos;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
