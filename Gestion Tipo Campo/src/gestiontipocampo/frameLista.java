@@ -543,6 +543,19 @@ public class frameLista extends javax.swing.JFrame {
         });
     }
 
+    private int getID(Object obj) {
+        int ID = 0;
+        try {
+            ID = ((MiDato) obj).ID;
+        } catch (java.lang.ClassCastException e) {
+            try {
+                ID = ((MiDato2) obj).ID;
+            } catch (java.lang.ClassCastException ex) {
+            }
+        }
+        return ID;
+    }
+
     @org.jdesktop.application.Action
     public void botonOrdenPersonalizado() {
         if (botonPersonalizado.isSelected()) {
@@ -555,7 +568,20 @@ public class frameLista extends javax.swing.JFrame {
 
     @org.jdesktop.application.Action
     public void botonPrimeroAccion() {
+        int posicion = lista.getSelectedIndex();
+        int ID = 0;
+        ListModel otraLista = lista.getModel();
+        ID = getID(otraLista.getElementAt(posicion));
 
+        for (int i = 0; i < posicion; i++) {
+            try {
+                int correlativo = getID(otraLista.getElementAt(i));
+                miLista.setOrdenDeElemento(correlativo, i + 1);
+            } catch (java.lang.ClassCastException ex) {
+            }
+        }
+        miLista.setOrdenDeElemento(ID, 0);
+        this.actualizarLista();
     }
 
     @org.jdesktop.application.Action

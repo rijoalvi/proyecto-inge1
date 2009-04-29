@@ -194,6 +194,14 @@ public class Lista extends TipoCampo {
         buscador.doUpdate("UPDATE LISTA  SET conOrden = '" + orden + "' where correlativo = " + this.correlativo + ";");
     }
 
+    /**
+     * Cambia la posicion del elemento de la lista
+     * @param ID - correlativo del elemento
+     * @param posicion - nueva posicion
+     */
+    public void setOrdenDeElemento(int ID, int posicion){
+        buscador.doUpdate("UPDATE MIEMBROLISTA  SET numeroElemento = " + posicion + " where correlativo = " + ID + ";");
+    }
 
 
     /**
