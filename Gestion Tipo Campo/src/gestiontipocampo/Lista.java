@@ -44,6 +44,12 @@ public class Lista extends TipoCampo {
         return miModelo.getModeloEnVector(consulta, campoTexto, campoNumero);
     }
 
+    public Vector getModeloVector(String consulta, String campoTexto, String campoNumero, String campoNumero2) {
+        return miModelo.getModeloEnVector(consulta, campoTexto, campoNumero, campoNumero2);
+    }
+
+
+
     /**
      * Cargo en la clase Lista los datos respectivos de ésta, como nombre, descripcion y valor por defecto
      */
@@ -134,7 +140,12 @@ public class Lista extends TipoCampo {
      * @return Vector con el modelo para el control de la lista ya actualizado por hago consulta a la BD para ver el orden
      */
     public Vector setAndGetMiembrosVectorActualizados() {
-        this.setMiembrosLista(this.getModeloVector("select valor, ml.correlativo from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo=" + this.correlativo + "", "valor", "correlativo"));
+        if(this.ordenPersonalizado){
+            this.setMiembrosLista(this.getModeloVector("select valor, ml.correlativo, ml.numeroElemento from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo=" + this.correlativo + "", "valor", "correlativo", "numeroElemento"));
+        }
+        else{
+            this.setMiembrosLista(this.getModeloVector("select valor, ml.correlativo from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo=" + this.correlativo + "", "valor", "correlativo"));
+        }
 
         SortedSet miembrosListaSet = new TreeSet();
         Vector miembrosListaVector = new Vector();

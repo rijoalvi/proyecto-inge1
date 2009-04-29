@@ -52,4 +52,19 @@ public class Modelo {
         }
         return vectorValores;
     }
+
+    public Vector getModeloEnVector(String consulta, String campoTexto, String campoNumero, String campoNumero2) {
+        Vector vectorValores = new Vector();
+        try {
+            ResultSet resultado = buscador.getResultSet(consulta);
+            int contador = 0;
+            while (resultado.next()) {
+                vectorValores.add(new MiDato2(resultado.getObject(campoTexto).toString(), Integer.parseInt(resultado.getObject(campoNumero).toString()), Integer.parseInt(resultado.getObject(campoNumero2).toString())));
+                contador++;
+            }
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception: *" + e.toString());
+        }
+        return vectorValores;
+    }
 }
