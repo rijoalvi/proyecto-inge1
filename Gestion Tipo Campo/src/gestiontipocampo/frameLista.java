@@ -47,10 +47,9 @@ public class frameLista extends javax.swing.JFrame {
     }
 
     public void actualizarLista() {
-        if(miLista.ordenPersonalizado == true){
+        if (miLista.ordenPersonalizado == true) {
             SidePanel.setVisible(true);
-        }
-        else{
+        } else {
             SidePanel.setVisible(false);
         }
         lista.setListData(miLista.setAndGetMiembrosVectorActualizados());
@@ -413,27 +412,22 @@ public class frameLista extends javax.swing.JFrame {
     }//GEN-LAST:event_listaValueChanged
 
     private void botonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarActionPerformed
-        if (((((MiDato) lista.getSelectedValue()).ID) + "").equals(miLista.IDMiembroPorDefecto)) {
-            JOptionPane.showMessageDialog(null, "No se puede eliminar el elemento por defecto.");
-        } else {
+        JOptionPane.showMessageDialog(null, "No se puede eliminar el elemento por defecto.");
+        String[] opciones = {"Si", "No"};
+        int respuesta = JOptionPane.showOptionDialog(null, "¿Está seguro de que desea borrar esta entrada?", "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opciones, "No");
 
-            String[] opciones = {"Si", "No"};
-            int respuesta = JOptionPane.showOptionDialog(null, "¿Está seguro de que desea borrar esta entrada?", "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opciones, "No");
-
-            switch (respuesta) {
-                case 0:
-                    //miLista.borrarMiembro(((MiDato)lista.getSelectedValue()).ID+"");
-                    miLista.borrarMiembro(lista.getSelectedValue());
-                    // this.actualizarLista();
-                    lista.setListData(miLista.getModeloMiembrosVector());
-                    setConfiguracionBase();
-                    break;
-                case 1:
-                    /*No quiso borrar*/
-                    break;
-            }
+        switch (respuesta) {
+            case 0:
+                //miLista.borrarMiembro(((MiDato)lista.getSelectedValue()).ID+"");
+                miLista.borrarMiembro(lista.getSelectedValue());
+                // this.actualizarLista();
+                lista.setListData(miLista.getModeloMiembrosVector());
+                setConfiguracionBase();
+                break;
+            case 1:
+                /*No quiso borrar*/
+                break;
         }
-
     }//GEN-LAST:event_botonBorrarActionPerformed
 
     private void listaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaMouseClicked
@@ -464,29 +458,22 @@ public class frameLista extends javax.swing.JFrame {
     }//GEN-LAST:event_listaMouseClicked
 
     private void botonPorDefectoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonPorDefectoMouseClicked
-        /*
-        String[] opciones = {"Si", "No"};
-        int respuesta = JOptionPane.showOptionDialog(null, "¿Está seguro de que desea cambiar el valor por defecto?", "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opciones, "No");
+        try {
+            miLista.IDMiembroPorDefecto = (((MiDato) lista.getSelectedValue()).ID) + "";
+            miLista.upDateIDMiembroPorDefecto((((MiDato) lista.getSelectedValue()).ID) + "");
+        } catch (java.lang.ClassCastException e) {
+            try {
+                miLista.IDMiembroPorDefecto = (((MiDato2) lista.getSelectedValue()).ID) + "";
+                miLista.upDateIDMiembroPorDefecto((((MiDato2) lista.getSelectedValue()).ID) + "");
+            } catch (java.lang.ClassCastException e2) {
+            }
+        }
 
-        switch (respuesta) {
-            case 0:
-         */
-                miLista.IDMiembroPorDefecto = (((MiDato) lista.getSelectedValue()).ID) + "";
-                // miLista.IDMiembroPorDefecto=100+"";
-                miLista.upDateIDMiembroPorDefecto((((MiDato) lista.getSelectedValue()).ID) + "");
 
-
-                lista.setListData(miLista.getModeloMiembrosVector());
-                miLista.setLista();
-                nombreMiembroPorDefecto.setText(miLista.nombreMiembroPorDefecto);
-                this.setConfiguracionBase();
-                /*
-                break;
-            case 1:
-                
-                break;
-
-        }*/
+        lista.setListData(miLista.getModeloMiembrosVector());
+        miLista.setLista();
+        nombreMiembroPorDefecto.setText(miLista.nombreMiembroPorDefecto);
+        this.setConfiguracionBase();
     }//GEN-LAST:event_botonPorDefectoMouseClicked
 
     private void campoEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoEntradaActionPerformed
@@ -559,16 +546,16 @@ public class frameLista extends javax.swing.JFrame {
     @org.jdesktop.application.Action
     public void botonOrdenPersonalizado() {
         if (botonPersonalizado.isSelected()) {
-            miLista.ordenPersonalizado = true;
-            this.actualizarLista();
+            miLista.setConOrdenPersonalizado(true);
         } else {
-            miLista.ordenPersonalizado = false;
-            this.actualizarLista();
+            miLista.setConOrdenPersonalizado(false);
         }
+        this.actualizarLista();
     }
 
     @org.jdesktop.application.Action
     public void botonPrimeroAccion() {
+
     }
 
     @org.jdesktop.application.Action

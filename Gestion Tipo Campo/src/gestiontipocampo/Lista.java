@@ -182,6 +182,20 @@ public class Lista extends TipoCampo {
         return miembrosListaVector;
     }
 
+    public void setConOrdenPersonalizado(boolean conOrden){
+        String orden;
+        this.ordenPersonalizado = conOrden;
+        if(conOrden){
+            orden = "True";
+        }
+        else{
+            orden = "False";
+        }
+        buscador.doUpdate("UPDATE LISTA  SET conOrden = '" + orden + "' where correlativo = " + this.correlativo + ";");
+    }
+
+
+
     /**
      * Sobre escribe el toString del padre
      * @return
