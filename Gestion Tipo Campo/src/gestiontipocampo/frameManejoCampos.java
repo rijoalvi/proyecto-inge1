@@ -1083,7 +1083,7 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         //java.sql.Date sqlDate = new java.sql.Date ( new java.util.Date () .getTime ()) ;
                         //guarda el miembro por defecto
                         conexionBD.doUpdate("insert into MIEMBROLISTA ( valor, IDLista, numeroElemento) " +
-                                "values( '" + this.valorPorDefectoLista.getText() + "', " + ID + ", 1)");
+                                "values( '" + this.valorPorDefectoLista.getText() + "', " + ID + ", 0)");
                         int IDMiembroPorDefecto = 0;
                         //obtiene el ID del miembro que acaba de guardar
                         System.out.println("obtengo IDValorPordefecto");

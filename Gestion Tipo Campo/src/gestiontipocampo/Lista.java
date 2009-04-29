@@ -101,12 +101,25 @@ public class Lista extends TipoCampo {
         }
     }
 
-    public void agregarMiembro(String nombreMiembro) {//agregar elemento a la lista
-        buscador.doUpdate("insert into MIEMBROLISTA (valor,IDLista) values ('" + nombreMiembro + "'," + this.correlativo + ");");
+    private int getID(Object obj) {
+        int ID = 0;
+        try {
+            ID = ((MiDato) obj).ID;
+        } catch (java.lang.ClassCastException e) {
+            try {
+                ID = ((MiDato2) obj).ID;
+            } catch (java.lang.ClassCastException ex) {
+            }
+        }
+        return ID;
+    }
+
+    public void agregarMiembro(String nombreMiembro, int posicion) {//agregar elemento a la lista
+        buscador.doUpdate("insert into MIEMBROLISTA (valor,IDLista, numeroElemento) values ('" + nombreMiembro + "'," + this.correlativo + ", " + posicion + ");");
     }
 
     public void borrarMiembro(Object miembro) {
-        buscador.doUpdate("delete from MIEMBROLISTA where correlativo = " + ((MiDato) (miembro)).ID + " and IDLista=" + this.correlativo + ";");
+        buscador.doUpdate("delete from MIEMBROLISTA where correlativo = " + getID(miembro) + " and IDLista=" + this.correlativo + ";");
         this.miembroLista.remove(miembro);
     }
 

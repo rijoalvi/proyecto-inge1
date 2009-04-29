@@ -496,7 +496,7 @@ public class frameLista extends javax.swing.JFrame {
                 setConfiguracionBase();
                 modificando = false;
             } else {
-                miLista.agregarMiembro(campoEntrada.getText());
+                miLista.agregarMiembro(campoEntrada.getText(), lista.getModel().getSize());
                 //elementoSeleccionado=campoEntrada.getText();
                 this.actualizarLista();
                 this.setConfiguracionBase();
@@ -586,14 +586,56 @@ public class frameLista extends javax.swing.JFrame {
 
     @org.jdesktop.application.Action
     public void botonSubirAccion() {
+        int posicion = lista.getSelectedIndex();
+        int ID = 0;
+        ListModel otraLista = lista.getModel();
+        ID = getID(otraLista.getElementAt(posicion));
+        if (posicion > 0) {
+            try {
+                int correlativo = getID(otraLista.getElementAt(posicion - 1));
+                miLista.setOrdenDeElemento(correlativo, posicion);
+            } catch (java.lang.ClassCastException ex) {
+            }
+            miLista.setOrdenDeElemento(ID, posicion - 1);
+            this.actualizarLista();
+        }
     }
 
     @org.jdesktop.application.Action
     public void botonBajarAccion() {
+        int posicion = lista.getSelectedIndex();
+        int ID = 0;
+        ListModel otraLista = lista.getModel();
+        ID = getID(otraLista.getElementAt(posicion));
+        if (posicion < otraLista.getSize() - 1) {
+            try {
+                int correlativo = getID(otraLista.getElementAt(posicion + 1));
+                miLista.setOrdenDeElemento(correlativo, posicion);
+            } catch (java.lang.ClassCastException ex) {
+            }
+            miLista.setOrdenDeElemento(ID, posicion + 1);
+            this.actualizarLista();
+        }
     }
 
     @org.jdesktop.application.Action
     public void botonUltimoAccion() {
+        int posicion = lista.getSelectedIndex();
+        int posFinal;
+        int ID = 0;
+        ListModel otraLista = lista.getModel();
+        posFinal = otraLista.getSize() - 1;
+        ID = getID(otraLista.getElementAt(posicion));
+
+        for (int i = posFinal; i > posicion; i--) {
+            try {
+                int correlativo = getID(otraLista.getElementAt(i));
+                miLista.setOrdenDeElemento(correlativo, i - 1);
+            } catch (java.lang.ClassCastException ex) {
+            }
+        }
+        miLista.setOrdenDeElemento(ID, posFinal);
+        this.actualizarLista();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
