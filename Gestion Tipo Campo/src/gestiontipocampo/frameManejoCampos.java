@@ -14,7 +14,6 @@ import javax.swing.text.MaskFormatter;
 import java.text.ParseException;
 
 import java.text.SimpleDateFormat;
-import java.sql.Date;
 
 /**
  *
@@ -627,12 +626,12 @@ public class frameManejoCampos extends javax.swing.JFrame {
 
         valorPorDefectoLista.setText(resourceMap.getString("valorPorDefectoLista.text")); // NOI18N
         valorPorDefectoLista.setName("valorPorDefectoLista"); // NOI18N
-        valorPorDefectoLista.setBounds(10, 40, 110, 20);
+        valorPorDefectoLista.setBounds(10, 40, 110, -1);
         paneLista.add(valorPorDefectoLista, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel25.setText(resourceMap.getString("jLabel25.text")); // NOI18N
         jLabel25.setName("jLabel25"); // NOI18N
-        jLabel25.setBounds(10, 20, 90, 14);
+        jLabel25.setBounds(10, 20, 90, -1);
         paneLista.add(jLabel25, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneLista.setBounds(0, 0, 530, 160);
@@ -1080,11 +1079,11 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         System.out.println("*SQL Exception: *" + e.toString());
                     }
                     try {
-                        System.out.println("Entro a guardar Lista con ID: "+ ID);
+                        System.out.println("Entro a guardar Lista con ID: " + ID);
                         //java.sql.Date sqlDate = new java.sql.Date ( new java.util.Date () .getTime ()) ;
                         //guarda el miembro por defecto
-                        conexionBD.doUpdate("insert into MIEMBROLISTA ( valor, IDLista) " +
-                                "values( '" + this.valorPorDefectoLista.getText() + "', " + ID + ")");
+                        conexionBD.doUpdate("insert into MIEMBROLISTA ( valor, IDLista, numeroElemento) " +
+                                "values( '" + this.valorPorDefectoLista.getText() + "', " + ID + ", 1)");
                         int IDMiembroPorDefecto = 0;
                         //obtiene el ID del miembro que acaba de guardar
                         System.out.println("obtengo IDValorPordefecto");
@@ -1093,16 +1092,17 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                             IDMiembroPorDefecto = resultado.getInt("correlativo");
                         }
                         //guarda la lista con valor por defecto el que acaba d insertar
-                        System.out.println("guardo Lista, IDDefecto: "+ IDMiembroPorDefecto);
-                        conexionBD.doUpdate("insert into LISTA (correlativo, IDMiembroPorDefecto) " +
-                                "values (" + ID + ", " + IDMiembroPorDefecto + ")");
+                        System.out.println("guardo Lista, IDDefecto: " + IDMiembroPorDefecto);
+                        conexionBD.doUpdate("insert into LISTA (correlativo, IDMiembroPorDefecto, conOrden) " +
+                                "values (" + ID + ", " + IDMiembroPorDefecto + ", 'False')");
                     } catch (Exception e) {
                         System.out.println("*SQL Exception: *" + e.toString());
                     }
                 }
-                System.out.println("abre lista de ID: "+ ID);
+                System.out.println("abre lista de ID: " + ID);
                 frameLista fLista = new frameLista(ID);
                 fLista.setVisible(true);
+                this.dispose();
                 //limpiarCamposLista();
                 break;
             default: //Si se selecciona algo raro o el campito en blanco.

@@ -16,11 +16,13 @@ public class Lista extends TipoCampo {
     public Modelo miModelo;
     public String nombreMiembroPorDefecto;
     public String IDMiembroPorDefecto;
+    public boolean ordenPersonalizado;
 
     public Lista() {
         buscador = new ControladorBD();
         miembroLista = new TreeSet();
         miModelo = new Modelo();
+        ordenPersonalizado = false;
     }
 
     public SortedSet getMiembroListaSet() {
@@ -58,6 +60,7 @@ public class Lista extends TipoCampo {
         campos.add("descripcion");
         campos.add("ultimaActualizacion");
         campos.add("IDMiembroPorDefecto");
+        campos.add("conOrden");
 
         if (ControladorBD.conexionSeleccionada == 1) {
             campos.add("m.valor");
@@ -66,16 +69,24 @@ public class Lista extends TipoCampo {
         }
 
 
-        miMapa = buscador.getResultSetMap("select t.correlativo, nombre, descripcion, ultimaActualizacion, IDMiembroPorDefecto, m.valor from TIPOCAMPO t, LISTA l,MIEMBROLISTA m where t.correlativo=" + this.correlativo + " AND l.correlativo=t.correlativo  and m.correlativo=l.IDMiembroPorDefecto;", campos);
+        miMapa = buscador.getResultSetMap("select t.correlativo, nombre, descripcion, ultimaActualizacion, IDMiembroPorDefecto, conOrden, m.valor from TIPOCAMPO t, LISTA l,MIEMBROLISTA m where t.correlativo=" + this.correlativo + " AND l.correlativo=t.correlativo  and m.correlativo=l.IDMiembroPorDefecto;", campos);
+        /* //No tiene sentido hacer esto ya que obtiene el mapa usando correlativo
         if (ControladorBD.conexionSeleccionada == 1) {
             this.correlativo = miMapa.get("t.correlativo");
         } else {
             this.correlativo = miMapa.get("correlativo");
-        }
+        }*/
 
         this.nombre = miMapa.get("nombre");
         this.descripcion = miMapa.get("descripcion");
         this.IDMiembroPorDefecto = miMapa.get("IDMiembroPorDefecto");
+
+        if(miMapa.get("conOrden").equalsIgnoreCase("true")){
+            this.ordenPersonalizado = true;
+        }
+        else{
+            this.ordenPersonalizado = false;
+        }
 
         if (ControladorBD.conexionSeleccionada == 1) {
             this.nombreMiembroPorDefecto = miMapa.get("m.valor");
