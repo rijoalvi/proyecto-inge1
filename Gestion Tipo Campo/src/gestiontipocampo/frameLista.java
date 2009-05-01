@@ -162,7 +162,7 @@ public class frameLista extends javax.swing.JFrame {
                 .addGroup(LabelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(nombreMiembroPorDefecto)
                     .addComponent(jLabel3))
-                .addContainerGap(271, Short.MAX_VALUE))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
         LabelPanelLayout.setVerticalGroup(
             LabelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -332,7 +332,6 @@ public class frameLista extends javax.swing.JFrame {
         panelBotonPersonalizado.setName("panelBotonPersonalizado"); // NOI18N
 
         botonPersonalizado.setAction(actionMap.get("botonOrdenPersonalizado")); // NOI18N
-        botonPersonalizado.setText(null);
         botonPersonalizado.setName("botonPersonalizado"); // NOI18N
 
         javax.swing.GroupLayout panelBotonPersonalizadoLayout = new javax.swing.GroupLayout(panelBotonPersonalizado);
@@ -364,9 +363,9 @@ public class frameLista extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(SidePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(panelBotonPersonalizado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(187, Short.MAX_VALUE))
+                        .addContainerGap(26, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(ButtonPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
+                        .addComponent(ButtonPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
