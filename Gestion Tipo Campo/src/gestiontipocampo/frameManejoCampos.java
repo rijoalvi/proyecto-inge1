@@ -288,13 +288,18 @@ public class frameManejoCampos extends javax.swing.JFrame {
 
         labelCategorias.setText(resourceMap.getString("labelCategorias.text")); // NOI18N
         labelCategorias.setName("labelCategorias"); // NOI18N
-        labelCategorias.setBounds(150, 60, 60, -1);
+        labelCategorias.setBounds(150, 60, 60, 14);
         paneJerarquia.add(labelCategorias, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         comboCategorias.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1- Categoria 1", "2- Categoria 2", "3- Categoría 3", "4- Categoría 4" }));
         comboCategorias.setEnabled(false);
         comboCategorias.setName("comboCategorias"); // NOI18N
-        comboCategorias.setBounds(150, 80, 130, -1);
+        comboCategorias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboCategoriasActionPerformed(evt);
+            }
+        });
+        comboCategorias.setBounds(150, 80, 130, 20);
         paneJerarquia.add(comboCategorias, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         botonAgregarCategoria.setText(resourceMap.getString("botonAgregarCategoria.text")); // NOI18N
@@ -304,7 +309,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 botonAgregarCategoriaActionPerformed(evt);
             }
         });
-        botonAgregarCategoria.setBounds(300, 80, 140, -1);
+        botonAgregarCategoria.setBounds(300, 80, 140, 23);
         paneJerarquia.add(botonAgregarCategoria, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         radioNivelesSi.setText(resourceMap.getString("radioNivelesSi.text")); // NOI18N
@@ -314,7 +319,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 radioNivelesSiActionPerformed(evt);
             }
         });
-        radioNivelesSi.setBounds(10, 30, -1, -1);
+        radioNivelesSi.setBounds(10, 30, 33, 23);
         paneJerarquia.add(radioNivelesSi, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         radioNivelesNo.setText(resourceMap.getString("radioNivelesNo.text")); // NOI18N
@@ -324,12 +329,12 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 radioNivelesNoActionPerformed(evt);
             }
         });
-        radioNivelesNo.setBounds(50, 30, 50, -1);
+        radioNivelesNo.setBounds(50, 30, 50, 23);
         paneJerarquia.add(radioNivelesNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel21.setText(resourceMap.getString("jLabel21.text")); // NOI18N
         jLabel21.setName("jLabel21"); // NOI18N
-        jLabel21.setBounds(10, 10, 130, -1);
+        jLabel21.setBounds(10, 10, 130, 14);
         paneJerarquia.add(jLabel21, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         radioCategoriasSi.setText(resourceMap.getString("radioCategoriasSi.text")); // NOI18N
@@ -339,7 +344,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 radioCategoriasSiActionPerformed(evt);
             }
         });
-        radioCategoriasSi.setBounds(10, 80, -1, -1);
+        radioCategoriasSi.setBounds(10, 80, 33, 23);
         paneJerarquia.add(radioCategoriasSi, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         radioCategoriasNo.setText(resourceMap.getString("radioCategoriasNo.text")); // NOI18N
@@ -349,12 +354,12 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 radioCategoriasNoActionPerformed(evt);
             }
         });
-        radioCategoriasNo.setBounds(50, 80, 50, -1);
+        radioCategoriasNo.setBounds(50, 80, 50, 23);
         paneJerarquia.add(radioCategoriasNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel22.setText(resourceMap.getString("jLabel22.text")); // NOI18N
         jLabel22.setName("jLabel22"); // NOI18N
-        jLabel22.setBounds(10, 60, 80, -1);
+        jLabel22.setBounds(10, 60, 80, 14);
         paneJerarquia.add(jLabel22, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         radioNomUnicoSi.setText(resourceMap.getString("radioNomUnicoSi.text")); // NOI18N
@@ -364,7 +369,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 radioNomUnicoSiActionPerformed(evt);
             }
         });
-        radioNomUnicoSi.setBounds(10, 130, -1, -1);
+        radioNomUnicoSi.setBounds(10, 130, 33, 23);
         paneJerarquia.add(radioNomUnicoSi, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         radioNomUnicoNo.setText(resourceMap.getString("radioNomUnicoNo.text")); // NOI18N
@@ -374,23 +379,23 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 radioNomUnicoNoActionPerformed(evt);
             }
         });
-        radioNomUnicoNo.setBounds(50, 130, 50, -1);
+        radioNomUnicoNo.setBounds(50, 130, 50, 23);
         paneJerarquia.add(radioNomUnicoNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel23.setText(resourceMap.getString("jLabel23.text")); // NOI18N
         jLabel23.setName("jLabel23"); // NOI18N
-        jLabel23.setBounds(10, 110, 70, -1);
+        jLabel23.setBounds(10, 110, 70, 14);
         paneJerarquia.add(jLabel23, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel24.setText(resourceMap.getString("jLabel24.text")); // NOI18N
         jLabel24.setName("jLabel24"); // NOI18N
-        jLabel24.setBounds(150, 10, -1, -1);
+        jLabel24.setBounds(150, 10, 34, 14);
         paneJerarquia.add(jLabel24, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         comboNiveles.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1- Categoria 1", "2- Categoria 2", "3- Categoría 3", "4- Categoría 4" }));
         comboNiveles.setEnabled(false);
         comboNiveles.setName("comboNiveles"); // NOI18N
-        comboNiveles.setBounds(150, 30, 130, -1);
+        comboNiveles.setBounds(150, 30, 130, 20);
         paneJerarquia.add(comboNiveles, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         botonAgregarNivel.setText(resourceMap.getString("botonAgregarNivel.text")); // NOI18N
@@ -400,7 +405,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 botonAgregarNivelActionPerformed(evt);
             }
         });
-        botonAgregarNivel.setBounds(300, 30, 140, -1);
+        botonAgregarNivel.setBounds(300, 30, 140, 23);
         paneJerarquia.add(botonAgregarNivel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneJerarquia.setBounds(10, 0, 480, 160);
@@ -626,12 +631,12 @@ public class frameManejoCampos extends javax.swing.JFrame {
 
         valorPorDefectoLista.setText(resourceMap.getString("valorPorDefectoLista.text")); // NOI18N
         valorPorDefectoLista.setName("valorPorDefectoLista"); // NOI18N
-        valorPorDefectoLista.setBounds(10, 40, 110, -1);
+        valorPorDefectoLista.setBounds(10, 40, 110, 20);
         paneLista.add(valorPorDefectoLista, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel25.setText(resourceMap.getString("jLabel25.text")); // NOI18N
         jLabel25.setName("jLabel25"); // NOI18N
-        jLabel25.setBounds(10, 20, 90, -1);
+        jLabel25.setBounds(10, 20, 90, 14);
         paneLista.add(jLabel25, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneLista.setBounds(0, 0, 530, 160);
@@ -807,6 +812,8 @@ public class frameManejoCampos extends javax.swing.JFrame {
         return alerta;
     }
 
+    //ESTO LO COMENTE PORQUE HACE LO MISMO QUE hayCamposSinLlenar()
+/*
     private boolean alertaCamposSinLlenar() {
         boolean alerta = hayCamposSinLlenar();
         if (alerta) {
@@ -814,7 +821,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
         }
         return alerta;
     }
-
+*/
     private void ocultarPanes() {
         panePrincipal.setVisible(true);
         paneNumero.setVisible(false);
@@ -835,8 +842,9 @@ public class frameManejoCampos extends javax.swing.JFrame {
         this.ocultarPanes();
         try {
             resultado = control.getResultSet("Select * from TIPOCAMPO where correlativo = " + llave);
+            //resultado = consulta.seleccionarTodoTipoCampo("correlativo", llave); //consulta es una variable global de tipo consultasSQL. Es para el modelo de 3 capas
             if (resultado.next()) {
-                tipoCampo = Integer.parseInt(resultado.getObject(5).toString());
+                tipoCampo = Integer.parseInt(resultado.getObject("tipo").toString());
                 //JOptionPane.showMessageDialog(null, "Tipo de campo = "+tipoCampo);
                 switch (tipoCampo) {
                     case 1:
@@ -871,6 +879,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 }
             }
             resultado = control.getResultSet("Select * from " + tipo + " where correlativo = " + llave);
+            //resultado = consulta.seleccionarTodoGenerico(tipo, "correlativo, llave); // para modelo 3 capas
         } catch (SQLException e) {
             System.out.println("*SQL Exception: *" + e.toString());
         }
@@ -888,7 +897,7 @@ private void botonBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN
 }//GEN-LAST:event_botonBusquedaActionPerformed
 
 private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
-    if (alertaCamposSinLlenar()) {
+    if (hayCamposSinLlenar()) {
     } else {
         String[] opciones = {"Si", "No"};
         int respuesta = JOptionPane.showOptionDialog(null, "¿Seguro que desea guardar este campo?", "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opciones, "No");
@@ -902,6 +911,7 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 /*No quiere modificar el campo*/
                 break;
         }
+        this.dispose();
     }
 }//GEN-LAST:event_botonGuardarActionPerformed
 
@@ -971,7 +981,7 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     } catch (SQLException e) {
                         System.out.println("*SQL Exception: *" + e.toString());
                     }
-                    conexionBD.doUpdate("Insert Into BINARIO (correlativo, nombre1, valor1, nombre2, valor2, valorDefecto) VALUES (" + ID + ", '" + this.valorNombreBinario1.getText() + "', '" + this.valorOpcionBinaria1.getText() + "', '" + this.valorNombreBinario2.getText() + "', '" + this.valorOpcionBinaria2.getText() + "', '" + radioOpcionBinaria1.isSelected() + "' where correlativo = " + ID);
+                    conexionBD.doUpdate("Insert Into BINARIO (correlativo, nombre1, valor1, nombre2, valor2, valorDefecto) VALUES (" + ID + ", '" + this.valorNombreBinario1.getText() + "', '" + this.valorOpcionBinaria1.getText() + "', '" + this.valorNombreBinario2.getText() + "', '" + this.valorOpcionBinaria2.getText() + "', '" + radioOpcionBinaria1.isSelected() + "')"/*"' where correlativo = " + ID*/); //OJO COMENTE ESTO PORQUE ME PARECE QUE NO ES NECESARIO
                     limpiarValoresBinario();
                 }
                 break;
@@ -1259,7 +1269,7 @@ private void botonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
 }//GEN-LAST:event_botonBorrarActionPerformed
 
 private void botonGuardarComoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarComoActionPerformed
-    if (alertaCamposSinLlenar()) {
+    if (hayCamposSinLlenar()) {
     } else {
         String nuevoNombre = "";
         //Strin opciones
@@ -1336,6 +1346,10 @@ private void paneJerarquiaComponentShown(java.awt.event.ComponentEvent evt) {//G
 private void botonAgregarNivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarNivelActionPerformed
     // TODO add your handling code here:
 }//GEN-LAST:event_botonAgregarNivelActionPerformed
+
+private void comboCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCategoriasActionPerformed
+    // TODO add your handling code here:
+}//GEN-LAST:event_comboCategoriasActionPerformed
 
     /**
      * Cambia la mascara del valorFechaDefecto

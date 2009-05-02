@@ -992,7 +992,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-                  <JLayeredPaneConstraints x="220" y="70" width="-1" height="-1" layer="0" position="-1"/>
+                  <JLayeredPaneConstraints x="230" y="70" width="-1" height="-1" layer="0" position="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -1003,7 +1003,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-                  <JLayeredPaneConstraints x="220" y="90" width="120" height="-1" layer="0" position="-1"/>
+                  <JLayeredPaneConstraints x="230" y="90" width="120" height="-1" layer="0" position="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
