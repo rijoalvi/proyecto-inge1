@@ -67,3 +67,18 @@ create table MIEMBROLISTA(
     IDLista int not null,
     primary key(correlativo)
 );
+
+create table FORMULARIO(
+    correlativo int NOT NULL,
+    primary key(correlativo)
+);
+
+create table MIEMBROFORMULARIO(
+    correlativo int auto_increment NOT NULL,
+    valor char(50),
+    IDTipoCampo int,
+    etiqueta varchar(50),
+    tipoLetra varchar(20),
+    IDFormulario int NOT NULL,
+    primary key(correlativo)
+);

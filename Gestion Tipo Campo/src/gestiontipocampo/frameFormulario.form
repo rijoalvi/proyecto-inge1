@@ -27,25 +27,104 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="121" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="paneDatosAbrir" min="-2" pref="581" max="-2" attributes="1"/>
-              <EmptySpace pref="41" max="32767" attributes="0"/>
+              <Component id="paneDatos" min="-2" pref="449" max="-2" attributes="1"/>
+              <EmptySpace pref="54" max="32767" attributes="0"/>
+              <Component id="paneListaDatosFormulario" min="-2" pref="280" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="paneDatosAbrir" alignment="1" min="-2" pref="371" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" alignment="1" min="-2" pref="376" max="-2" attributes="0"/>
+                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                      <Component id="paneListaDatosFormulario" alignment="0" min="-2" pref="340" max="-2" attributes="0"/>
+                      <Component id="paneDatos" alignment="0" min="-2" pref="371" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="256" max="32767" attributes="0"/>
+              <EmptySpace pref="116" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
+    <Container class="javax.swing.JLayeredPane" name="paneListaDatosFormulario">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="paneListaDatosFormulario" noResource="true"/>
+      </Properties>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JButton" name="botonBottom">
+          <Properties>
+            <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
+              <action class="gestiontipocampo.frameLista" id="botonUltimoAccion" methodName="botonUltimoAccion"/>
+            </Property>
+            <Property name="name" type="java.lang.String" value="botonBottom" noResource="true"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
+              <JLayeredPaneConstraints x="230" y="180" width="26" height="-1" layer="0" position="-1"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JButton" name="botonDown">
+          <Properties>
+            <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
+              <action class="gestiontipocampo.frameLista" id="botonBajarAccion" methodName="botonBajarAccion"/>
+            </Property>
+            <Property name="name" type="java.lang.String" value="botonDown" noResource="true"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
+              <JLayeredPaneConstraints x="230" y="150" width="26" height="-1" layer="0" position="-1"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JButton" name="botonUp">
+          <Properties>
+            <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
+              <action class="gestiontipocampo.frameLista" id="botonSubirAccion" methodName="botonSubirAccion"/>
+            </Property>
+            <Property name="name" type="java.lang.String" value="botonUp" noResource="true"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
+              <JLayeredPaneConstraints x="230" y="120" width="26" height="-1" layer="0" position="-1"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JButton" name="botonTop">
+          <Properties>
+            <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
+              <action class="gestiontipocampo.frameLista" id="botonPrimeroAccion" methodName="botonPrimeroAccion"/>
+            </Property>
+            <Property name="name" type="java.lang.String" value="botonTop" noResource="true"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonTopActionPerformed"/>
+          </Events>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
+              <JLayeredPaneConstraints x="230" y="90" width="26" height="-1" layer="0" position="-1"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="java.awt.List" name="listaFormulario">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="listaFormulario" noResource="true"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
+              <JLayeredPaneConstraints x="30" y="30" width="190" height="270" layer="0" position="-1"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+      </SubComponents>
+    </Container>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <Properties>
         <Property name="name" type="java.lang.String" value="jScrollPane1" noResource="true"/>
@@ -72,12 +151,12 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JLayeredPane" name="paneDatosAbrir">
+    <Container class="javax.swing.JLayeredPane" name="paneDatos">
       <Properties>
-        <Property name="name" type="java.lang.String" value="paneDatosAbrir" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="paneDatos" noResource="true"/>
       </Properties>
       <Events>
-        <EventHandler event="componentShown" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="paneDatosAbrirComponentShown"/>
+        <EventHandler event="componentShown" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="paneDatosComponentShown"/>
       </Events>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout"/>
@@ -89,7 +168,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-              <JLayeredPaneConstraints x="10" y="120" width="550" height="210" layer="0" position="-1"/>
+              <JLayeredPaneConstraints x="10" y="120" width="420" height="210" layer="0" position="-1"/>
             </Constraint>
           </Constraints>
 
@@ -101,7 +180,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-                  <JLayeredPaneConstraints x="30" y="-10" width="450" height="210" layer="0" position="-1"/>
+                  <JLayeredPaneConstraints x="30" y="-10" width="390" height="210" layer="0" position="-1"/>
                 </Constraint>
               </Constraints>
 
@@ -511,7 +590,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-                  <JLayeredPaneConstraints x="30" y="-10" width="510" height="250" layer="0" position="-1"/>
+                  <JLayeredPaneConstraints x="30" y="-10" width="390" height="250" layer="0" position="-1"/>
                 </Constraint>
               </Constraints>
 
@@ -976,18 +1055,6 @@
               </Constraints>
             </Component>
           </SubComponents>
-        </Container>
-        <Container class="javax.swing.JLayeredPane" name="paneListaDatosFormulario">
-          <Properties>
-            <Property name="name" type="java.lang.String" value="paneListaDatosFormulario" noResource="true"/>
-          </Properties>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-              <JLayeredPaneConstraints x="390" y="0" width="190" height="290" layer="0" position="-1"/>
-            </Constraint>
-          </Constraints>
-
-          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout"/>
         </Container>
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
