@@ -180,7 +180,6 @@ public class frameConexiones extends javax.swing.JFrame {
             jRadioButton2.setEnabled(false);
 
             if (1 == probadorConexiones.probarConexion(1)) {
-                System.out.println("Entro?");
                 jRadioButton1.setEnabled(true);
                 jRadioButton1.setText("Disponible");
             //         jRadioButton1.setBackground(Color.green);

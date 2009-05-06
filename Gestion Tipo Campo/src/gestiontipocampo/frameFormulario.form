@@ -68,7 +68,7 @@
         <Component class="javax.swing.JButton" name="botonBottom">
           <Properties>
             <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-              <action class="gestiontipocampo.frameLista" id="botonUltimoAccion" methodName="botonUltimoAccion"/>
+              <action class="gestiontipocampo.frameFormulario" id="moverAlUltimo" methodName="moverAlUltimo"/>
             </Property>
             <Property name="name" type="java.lang.String" value="botonBottom" noResource="true"/>
           </Properties>
@@ -81,7 +81,7 @@
         <Component class="javax.swing.JButton" name="botonDown">
           <Properties>
             <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-              <action class="gestiontipocampo.frameLista" id="botonBajarAccion" methodName="botonBajarAccion"/>
+              <action class="gestiontipocampo.frameFormulario" id="moverAbajo" methodName="moverAbajo"/>
             </Property>
             <Property name="name" type="java.lang.String" value="botonDown" noResource="true"/>
           </Properties>
@@ -94,7 +94,7 @@
         <Component class="javax.swing.JButton" name="botonUp">
           <Properties>
             <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-              <action class="gestiontipocampo.frameLista" id="botonSubirAccion" methodName="botonSubirAccion"/>
+              <action class="gestiontipocampo.frameFormulario" id="moverArriba" methodName="moverArriba"/>
             </Property>
             <Property name="name" type="java.lang.String" value="botonUp" noResource="true"/>
           </Properties>
@@ -107,7 +107,7 @@
         <Component class="javax.swing.JButton" name="botonTop">
           <Properties>
             <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-              <action class="gestiontipocampo.frameLista" id="botonPrimeroAccion" methodName="botonPrimeroAccion"/>
+              <action class="gestiontipocampo.frameFormulario" id="moverAlPrimero" methodName="moverAlPrimero"/>
             </Property>
             <Property name="name" type="java.lang.String" value="botonTop" noResource="true"/>
           </Properties>

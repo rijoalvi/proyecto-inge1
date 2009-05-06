@@ -10,6 +10,7 @@ import java.sql.*;
 import javax.swing.tree.*;
 import javax.swing.JTree;
 import javax.swing.JOptionPane;
+import org.jdesktop.application.Action;
 
 /**
  *
@@ -133,22 +134,22 @@ public class frameFormulario extends javax.swing.JFrame {
         paneListaDatosFormulario.setName("paneListaDatosFormulario"); // NOI18N
 
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getActionMap(frameFormulario.class, this);
-        botonBottom.setAction(actionMap.get("botonUltimoAccion")); // NOI18N
+        botonBottom.setAction(actionMap.get("moverAlUltimo")); // NOI18N
         botonBottom.setName("botonBottom"); // NOI18N
         botonBottom.setBounds(230, 180, 26, 27);
         paneListaDatosFormulario.add(botonBottom, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        botonDown.setAction(actionMap.get("botonBajarAccion")); // NOI18N
+        botonDown.setAction(actionMap.get("moverAbajo")); // NOI18N
         botonDown.setName("botonDown"); // NOI18N
         botonDown.setBounds(230, 150, 26, 27);
         paneListaDatosFormulario.add(botonDown, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        botonUp.setAction(actionMap.get("botonSubirAccion")); // NOI18N
+        botonUp.setAction(actionMap.get("moverArriba")); // NOI18N
         botonUp.setName("botonUp"); // NOI18N
         botonUp.setBounds(230, 120, 26, 27);
         paneListaDatosFormulario.add(botonUp, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        botonTop.setAction(actionMap.get("botonPrimeroAccion")); // NOI18N
+        botonTop.setAction(actionMap.get("moverAlPrimero")); // NOI18N
         botonTop.setName("botonTop"); // NOI18N
         botonTop.setBounds(230, 90, 26, 27);
         paneListaDatosFormulario.add(botonTop, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -201,34 +202,34 @@ public class frameFormulario extends javax.swing.JFrame {
 
         jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
         jLabel2.setName("jLabel2"); // NOI18N
-        jLabel2.setBounds(20, 70, 41, 14);
+        jLabel2.setBounds(20, 70, -1, -1);
         panePrincipal.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorNombreGeneral.setEditable(false);
         valorNombreGeneral.setName("valorNombreGeneral"); // NOI18N
-        valorNombreGeneral.setBounds(20, 90, 120, 20);
+        valorNombreGeneral.setBounds(20, 90, 120, -1);
         panePrincipal.add(valorNombreGeneral, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
         jLabel3.setName("jLabel3"); // NOI18N
-        jLabel3.setBounds(200, 70, 58, 14);
+        jLabel3.setBounds(200, 70, -1, -1);
         panePrincipal.add(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorNota.setEditable(false);
         valorNota.setName("valorNota"); // NOI18N
-        valorNota.setBounds(200, 90, 120, 20);
+        valorNota.setBounds(200, 90, 120, -1);
         panePrincipal.add(valorNota, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
-        jLabel1.setBounds(20, 20, 73, 14);
+        jLabel1.setBounds(20, 20, -1, -1);
         panePrincipal.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         comboTipos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Número", "Binario", "FechaHora", "Texto", "Incremental", "Jerarquia", "Lista" }));
         comboTipos.setEnabled(false);
         comboTipos.setFocusable(false);
         comboTipos.setName("comboTipos"); // NOI18N
-        comboTipos.setBounds(20, 40, 120, 20);
+        comboTipos.setBounds(20, 40, 120, -1);
         panePrincipal.add(comboTipos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneBinario.setName("paneBinario"); // NOI18N
@@ -595,22 +596,22 @@ public class frameFormulario extends javax.swing.JFrame {
 
         jLabel27.setText(resourceMap.getString("jLabel27.text")); // NOI18N
         jLabel27.setName("jLabel27"); // NOI18N
-        jLabel27.setBounds(150, 80, 80, 14);
+        jLabel27.setBounds(150, 80, 80, -1);
         paneFormulario.add(jLabel27, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel28.setText(resourceMap.getString("jLabel28.text")); // NOI18N
         jLabel28.setName("jLabel28"); // NOI18N
-        jLabel28.setBounds(20, 30, 60, 14);
+        jLabel28.setBounds(20, 30, 60, -1);
         paneFormulario.add(jLabel28, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         comboTipoLetra.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Arial", "Times New Roman", "????????" }));
         comboTipoLetra.setName("comboTipoLetra"); // NOI18N
-        comboTipoLetra.setBounds(20, 100, 80, 20);
+        comboTipoLetra.setBounds(20, 100, 80, -1);
         paneFormulario.add(comboTipoLetra, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         etiquetaDato.setText(resourceMap.getString("etiquetaDato.text")); // NOI18N
         etiquetaDato.setName("etiquetaDato"); // NOI18N
-        etiquetaDato.setBounds(150, 50, 80, 20);
+        etiquetaDato.setBounds(150, 50, 80, -1);
         paneFormulario.add(etiquetaDato, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         botonGuardar.setText(resourceMap.getString("botonGuardar.text")); // NOI18N
@@ -620,26 +621,26 @@ public class frameFormulario extends javax.swing.JFrame {
                 botonGuardarActionPerformed(evt);
             }
         });
-        botonGuardar.setBounds(30, 180, 71, 23);
+        botonGuardar.setBounds(30, 180, -1, -1);
         paneFormulario.add(botonGuardar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         tamanoLetra.setText(resourceMap.getString("tamanoLetra.text")); // NOI18N
         tamanoLetra.setName("tamanoLetra"); // NOI18N
-        tamanoLetra.setBounds(150, 100, 80, 20);
+        tamanoLetra.setBounds(150, 100, 80, -1);
         paneFormulario.add(tamanoLetra, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel29.setText(resourceMap.getString("jLabel29.text")); // NOI18N
         jLabel29.setName("jLabel29"); // NOI18N
-        jLabel29.setBounds(20, 80, 60, 14);
+        jLabel29.setBounds(20, 80, 60, -1);
         paneFormulario.add(jLabel29, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel30.setText(resourceMap.getString("jLabel30.text")); // NOI18N
         jLabel30.setName("jLabel30"); // NOI18N
-        jLabel30.setBounds(150, 30, 60, 14);
+        jLabel30.setBounds(150, 30, 60, -1);
         paneFormulario.add(jLabel30, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         nombreDato.setName("nombreDato"); // NOI18N
-        nombreDato.setBounds(20, 50, 80, 20);
+        nombreDato.setBounds(20, 50, 80, -1);
         paneFormulario.add(nombreDato, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneFormulario.setBounds(10, 60, 390, 250);
@@ -652,7 +653,7 @@ public class frameFormulario extends javax.swing.JFrame {
                 botonAgregarActionPerformed(evt);
             }
         });
-        botonAgregar.setBounds(290, 340, 73, 23);
+        botonAgregar.setBounds(290, 340, 73, -1);
         paneDatos.add(botonAgregar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton3.setText(resourceMap.getString("jButton3.text")); // NOI18N
@@ -1077,6 +1078,22 @@ public class frameFormulario extends javax.swing.JFrame {
                 new frameFormulario().setVisible(true);
             }
         });
+    }
+
+    @Action
+    public void moverAlPrimero() {
+    }
+
+    @Action
+    public void moverArriba() {
+    }
+
+    @Action
+    public void moverAbajo() {
+    }
+
+    @Action
+    public void moverAlUltimo() {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
