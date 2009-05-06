@@ -20,6 +20,10 @@ public class frameFormulario extends javax.swing.JFrame {
     /** Creates new form frameFormulario */
     public frameFormulario() {
         initComponents();
+        //Inicializa el arbol para obtener nodo seleccionado
+        arbolPrincipal.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+
+        llenarTreeView();                
 
         ocultarPanes();
     }
@@ -39,10 +43,17 @@ public class frameFormulario extends javax.swing.JFrame {
         botonUp = new javax.swing.JButton();
         botonTop = new javax.swing.JButton();
         listaFormulario = new java.awt.List();
+        botonVistaPrevia = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         arbolPrincipal = new javax.swing.JTree();
         paneDatos = new javax.swing.JLayeredPane();
         panePrincipal = new javax.swing.JLayeredPane();
+        jLabel2 = new javax.swing.JLabel();
+        valorNombreGeneral = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        valorNota = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        comboTipos = new javax.swing.JComboBox();
         paneBinario = new javax.swing.JLayeredPane();
         jLabel7 = new javax.swing.JLabel();
         valorNombreBinario1 = new javax.swing.JTextField();
@@ -103,19 +114,18 @@ public class frameFormulario extends javax.swing.JFrame {
         paneLista = new javax.swing.JLayeredPane();
         valorPorDefectoLista = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        valorNombreGeneral = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        valorNota = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        comboTipos = new javax.swing.JComboBox();
         paneFormulario = new javax.swing.JLayeredPane();
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
         comboTipoLetra = new javax.swing.JComboBox();
         etiquetaDato = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        botonGuardar = new javax.swing.JButton();
+        tamanoLetra = new javax.swing.JTextField();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        nombreDato = new javax.swing.JTextField();
+        botonAgregar = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setName("Form"); // NOI18N
@@ -140,17 +150,18 @@ public class frameFormulario extends javax.swing.JFrame {
 
         botonTop.setAction(actionMap.get("botonPrimeroAccion")); // NOI18N
         botonTop.setName("botonTop"); // NOI18N
-        botonTop.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonTopActionPerformed(evt);
-            }
-        });
         botonTop.setBounds(230, 90, 26, 27);
         paneListaDatosFormulario.add(botonTop, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         listaFormulario.setName("listaFormulario"); // NOI18N
         listaFormulario.setBounds(30, 30, 190, 270);
         paneListaDatosFormulario.add(listaFormulario, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameFormulario.class);
+        botonVistaPrevia.setText(resourceMap.getString("botonVistaPrevia.text")); // NOI18N
+        botonVistaPrevia.setName("botonVistaPrevia"); // NOI18N
+        botonVistaPrevia.setBounds(70, 310, 110, 23);
+        paneListaDatosFormulario.add(botonVistaPrevia, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
@@ -188,9 +199,40 @@ public class frameFormulario extends javax.swing.JFrame {
         panePrincipal.setAutoscrolls(true);
         panePrincipal.setName("panePrincipal"); // NOI18N
 
+        jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
+        jLabel2.setName("jLabel2"); // NOI18N
+        jLabel2.setBounds(20, 70, 41, 14);
+        panePrincipal.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        valorNombreGeneral.setEditable(false);
+        valorNombreGeneral.setName("valorNombreGeneral"); // NOI18N
+        valorNombreGeneral.setBounds(20, 90, 120, 20);
+        panePrincipal.add(valorNombreGeneral, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
+        jLabel3.setName("jLabel3"); // NOI18N
+        jLabel3.setBounds(200, 70, 58, 14);
+        panePrincipal.add(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        valorNota.setEditable(false);
+        valorNota.setName("valorNota"); // NOI18N
+        valorNota.setBounds(200, 90, 120, 20);
+        panePrincipal.add(valorNota, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
+        jLabel1.setName("jLabel1"); // NOI18N
+        jLabel1.setBounds(20, 20, 73, 14);
+        panePrincipal.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        comboTipos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Número", "Binario", "FechaHora", "Texto", "Incremental", "Jerarquia", "Lista" }));
+        comboTipos.setEnabled(false);
+        comboTipos.setFocusable(false);
+        comboTipos.setName("comboTipos"); // NOI18N
+        comboTipos.setBounds(20, 40, 120, 20);
+        panePrincipal.add(comboTipos, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         paneBinario.setName("paneBinario"); // NOI18N
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameFormulario.class);
         jLabel7.setText(resourceMap.getString("jLabel7.text")); // NOI18N
         jLabel7.setName("jLabel7"); // NOI18N
         jLabel7.setBounds(0, 10, 100, 20);
@@ -251,7 +293,7 @@ public class frameFormulario extends javax.swing.JFrame {
         radioOpcionBinaria2.setBounds(0, 170, 100, 20);
         paneBinario.add(radioOpcionBinaria2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        paneBinario.setBounds(30, -10, 390, 210);
+        paneBinario.setBounds(20, 110, 390, 210);
         panePrincipal.add(paneBinario, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneNumero.setName("paneNumero"); // NOI18N
@@ -287,7 +329,7 @@ public class frameFormulario extends javax.swing.JFrame {
         jLabel12.setBounds(10, 60, 90, -1);
         paneNumero.add(jLabel12, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        paneNumero.setBounds(30, -10, 410, 200);
+        paneNumero.setBounds(20, 110, 410, 200);
         panePrincipal.add(paneNumero, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneIncremental.setName("paneIncremental"); // NOI18N
@@ -312,7 +354,7 @@ public class frameFormulario extends javax.swing.JFrame {
         valorIncremento.setBounds(210, 30, 120, 20);
         paneIncremental.add(valorIncremento, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        paneIncremental.setBounds(20, -10, 440, 190);
+        paneIncremental.setBounds(10, 110, 440, 190);
         panePrincipal.add(paneIncremental, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneFechaHora.setName("paneFechaHora"); // NOI18N
@@ -370,7 +412,7 @@ public class frameFormulario extends javax.swing.JFrame {
         comboFormatoFecha.setBounds(10, 40, 90, -1);
         paneFechaHora.add(comboFormatoFecha, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        paneFechaHora.setBounds(30, -20, 340, 220);
+        paneFechaHora.setBounds(20, 100, 340, 220);
         panePrincipal.add(paneFechaHora, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneJerarquia.setName("paneJerarquia"); // NOI18N
@@ -503,7 +545,7 @@ public class frameFormulario extends javax.swing.JFrame {
         valorNumTerminos.setBounds(20, 190, 70, -1);
         paneJerarquia.add(valorNumTerminos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        paneJerarquia.setBounds(30, -10, 390, 250);
+        paneJerarquia.setBounds(20, 110, 390, 250);
         panePrincipal.add(paneJerarquia, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneTexto.setName("paneTexto"); // NOI18N
@@ -528,7 +570,7 @@ public class frameFormulario extends javax.swing.JFrame {
         valorTextoDefecto.setBounds(200, 30, 120, 20);
         paneTexto.add(valorTextoDefecto, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        paneTexto.setBounds(20, -10, 360, 220);
+        paneTexto.setBounds(10, 110, 360, 220);
         panePrincipal.add(paneTexto, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneLista.setName("paneLista"); // NOI18N
@@ -543,78 +585,83 @@ public class frameFormulario extends javax.swing.JFrame {
         jLabel26.setBounds(30, 20, 90, -1);
         paneLista.add(jLabel26, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        paneLista.setBounds(0, 0, 530, 160);
+        paneLista.setBounds(0, 120, 530, 160);
         panePrincipal.add(paneLista, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        panePrincipal.setBounds(10, 120, 420, 210);
+        panePrincipal.setBounds(10, 20, 420, 210);
         paneDatos.add(panePrincipal, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
-        jLabel2.setName("jLabel2"); // NOI18N
-        jLabel2.setBounds(40, 70, 41, 14);
-        paneDatos.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        valorNombreGeneral.setEditable(false);
-        valorNombreGeneral.setName("valorNombreGeneral"); // NOI18N
-        valorNombreGeneral.setBounds(40, 90, 120, 20);
-        paneDatos.add(valorNombreGeneral, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
-        jLabel3.setName("jLabel3"); // NOI18N
-        jLabel3.setBounds(220, 70, 58, 14);
-        paneDatos.add(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        valorNota.setEditable(false);
-        valorNota.setName("valorNota"); // NOI18N
-        valorNota.setBounds(220, 90, 120, 20);
-        paneDatos.add(valorNota, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
-        jLabel1.setName("jLabel1"); // NOI18N
-        jLabel1.setBounds(40, 20, 73, 14);
-        paneDatos.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        comboTipos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Número", "Binario", "FechaHora", "Texto", "Incremental", "Jerarquia", "Lista" }));
-        comboTipos.setEnabled(false);
-        comboTipos.setFocusable(false);
-        comboTipos.setName("comboTipos"); // NOI18N
-        comboTipos.setBounds(40, 40, 120, 20);
-        paneDatos.add(comboTipos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneFormulario.setName("paneFormulario"); // NOI18N
 
         jLabel27.setText(resourceMap.getString("jLabel27.text")); // NOI18N
         jLabel27.setName("jLabel27"); // NOI18N
-        jLabel27.setBounds(20, 80, 60, -1);
+        jLabel27.setBounds(150, 80, 80, 14);
         paneFormulario.add(jLabel27, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel28.setText(resourceMap.getString("jLabel28.text")); // NOI18N
         jLabel28.setName("jLabel28"); // NOI18N
-        jLabel28.setBounds(20, 30, 60, -1);
+        jLabel28.setBounds(20, 30, 60, 14);
         paneFormulario.add(jLabel28, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         comboTipoLetra.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Arial", "Times New Roman", "????????" }));
         comboTipoLetra.setName("comboTipoLetra"); // NOI18N
-        comboTipoLetra.setBounds(20, 100, 80, -1);
+        comboTipoLetra.setBounds(20, 100, 80, 20);
         paneFormulario.add(comboTipoLetra, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         etiquetaDato.setText(resourceMap.getString("etiquetaDato.text")); // NOI18N
         etiquetaDato.setName("etiquetaDato"); // NOI18N
-        etiquetaDato.setBounds(20, 50, 80, -1);
+        etiquetaDato.setBounds(150, 50, 80, 20);
         paneFormulario.add(etiquetaDato, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButton2.setText(resourceMap.getString("jButton2.text")); // NOI18N
-        jButton2.setName("jButton2"); // NOI18N
-        jButton2.setBounds(20, 180, -1, -1);
-        paneFormulario.add(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        botonGuardar.setText(resourceMap.getString("botonGuardar.text")); // NOI18N
+        botonGuardar.setName("botonGuardar"); // NOI18N
+        botonGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGuardarActionPerformed(evt);
+            }
+        });
+        botonGuardar.setBounds(30, 180, 71, 23);
+        paneFormulario.add(botonGuardar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        paneFormulario.setBounds(20, 90, 390, 250);
+        tamanoLetra.setText(resourceMap.getString("tamanoLetra.text")); // NOI18N
+        tamanoLetra.setName("tamanoLetra"); // NOI18N
+        tamanoLetra.setBounds(150, 100, 80, 20);
+        paneFormulario.add(tamanoLetra, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel29.setText(resourceMap.getString("jLabel29.text")); // NOI18N
+        jLabel29.setName("jLabel29"); // NOI18N
+        jLabel29.setBounds(20, 80, 60, 14);
+        paneFormulario.add(jLabel29, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel30.setText(resourceMap.getString("jLabel30.text")); // NOI18N
+        jLabel30.setName("jLabel30"); // NOI18N
+        jLabel30.setBounds(150, 30, 60, 14);
+        paneFormulario.add(jLabel30, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        nombreDato.setName("nombreDato"); // NOI18N
+        nombreDato.setBounds(20, 50, 80, 20);
+        paneFormulario.add(nombreDato, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        paneFormulario.setBounds(10, 60, 390, 250);
         paneDatos.add(paneFormulario, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
-        jButton1.setName("jButton1"); // NOI18N
-        jButton1.setBounds(290, 340, 73, 23);
-        paneDatos.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        botonAgregar.setText(resourceMap.getString("botonAgregar.text")); // NOI18N
+        botonAgregar.setName("botonAgregar"); // NOI18N
+        botonAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAgregarActionPerformed(evt);
+            }
+        });
+        botonAgregar.setBounds(290, 340, 73, 23);
+        paneDatos.add(botonAgregar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jButton3.setText(resourceMap.getString("jButton3.text")); // NOI18N
+        jButton3.setName("jButton3"); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -626,7 +673,9 @@ public class frameFormulario extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(paneDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                .addComponent(paneListaDatosFormulario, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(paneListaDatosFormulario, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -636,7 +685,10 @@ public class frameFormulario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(paneListaDatosFormulario, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(paneListaDatosFormulario, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jButton3))
                         .addComponent(paneDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(116, Short.MAX_VALUE))
         );
@@ -698,9 +750,71 @@ public class frameFormulario extends javax.swing.JFrame {
         abrirNodoHoja();
 }//GEN-LAST:event_arbolPrincipalMouseClicked
 
-    private void botonTopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTopActionPerformed
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
-}//GEN-LAST:event_botonTopActionPerformed
+    private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
+        //Se agrega el valor al formulario
+        //FALTA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        String nombre = valorNombreGeneral.getText();
+        //Se abre el pane de formulario
+        ocultarPanes();
+        paneDatos.setVisible(true);
+        paneFormulario.setVisible(true);
+        nombreDato.setText(nombre);
+}//GEN-LAST:event_botonAgregarActionPerformed
+
+    private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
+        //Se tienen que guardar los datos en la tabla MIEMBROFORMULARIO
+
+        //desp de guardar se ocultan los panes
+        ocultarPanes();
+    }//GEN-LAST:event_botonGuardarActionPerformed
+
+    public void llenarTreeView(){
+        //Llena los valores del Tree View
+        String [] tiposCampo = {"Numero", "Binario", "FechaHora", "Texto", "Incremental", "Jerarquia", "Lista"};
+        String valores;
+        String [] valTrim;
+        DefaultMutableTreeNode nodoTipoCampo;
+        DefaultMutableTreeNode nodoTemp;
+        DefaultMutableTreeNode raizArbol = new DefaultMutableTreeNode("Gift");
+
+        for(int k = 0; k < tiposCampo.length; k++){
+            nodoTipoCampo = new DefaultMutableTreeNode(tiposCampo[k]);
+            //Se llenan los datos con los valores que contenga la base de datos con el tipo campo:
+            valores = buscarNombreEnBD(k+1);
+           // System.out.println("valores: " + valores);
+            valTrim = valores.split("\n");
+            for(int i= 0; i < valTrim.length; ++i){
+                nodoTemp = new DefaultMutableTreeNode(valTrim[i]);
+                nodoTipoCampo.add(nodoTemp); //agrega el nodo
+            }
+            raizArbol.add(nodoTipoCampo);
+        }
+        JTree arbolnuevo = new JTree(raizArbol);
+        arbolPrincipal.setModel(arbolnuevo.getModel());
+    }
+
+     /**
+     * Encargado de buscar el valor del nombre en la base de datos
+     * @param num: Indica el tipo de campo que va a buscar
+     */
+    public String buscarNombreEnBD(int num){
+        ControladorBD buscador = new ControladorBD();
+        String valores = "";
+        try {
+            ResultSet resultado = buscador.getResultSet("select * from TIPOCAMPO where tipo = '" + num + "';");
+            if(resultado != null)
+                while (resultado.next()) {
+                    valores += resultado.getObject(2).toString()+"\n";
+                }
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception: *" + e.toString());
+        }
+        return valores;
+    }
 
     /**
      * Muestra los panes necesarios segun lo que se vaya a mostrar
@@ -967,18 +1081,20 @@ public class frameFormulario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTree arbolPrincipal;
+    private javax.swing.JButton botonAgregar;
     private javax.swing.JButton botonBottom;
     private javax.swing.JButton botonDown;
+    private javax.swing.JButton botonGuardar;
     private javax.swing.JButton botonTop;
     private javax.swing.JButton botonUp;
+    private javax.swing.JButton botonVistaPrevia;
     private javax.swing.JComboBox comboCategorias;
     private javax.swing.JComboBox comboFormatoFecha;
     private javax.swing.JComboBox comboNiveles;
     private javax.swing.JComboBox comboTipoLetra;
     private javax.swing.JComboBox comboTipos;
     private javax.swing.JTextField etiquetaDato;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1000,7 +1116,9 @@ public class frameFormulario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1010,6 +1128,7 @@ public class frameFormulario extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelCategorias;
     private java.awt.List listaFormulario;
+    private javax.swing.JTextField nombreDato;
     private javax.swing.JLayeredPane paneBinario;
     private javax.swing.JLayeredPane paneDatos;
     private javax.swing.JLayeredPane paneFechaHora;
@@ -1031,6 +1150,7 @@ public class frameFormulario extends javax.swing.JFrame {
     private javax.swing.JRadioButton radioNomUnicoSi;
     private javax.swing.JRadioButton radioOpcionBinaria1;
     private javax.swing.JRadioButton radioOpcionBinaria2;
+    private javax.swing.JTextField tamanoLetra;
     private javax.swing.JFormattedTextField valorFechaDefecto;
     private javax.swing.JTextField valorIncremento;
     private javax.swing.JTextField valorNombreBinario1;
