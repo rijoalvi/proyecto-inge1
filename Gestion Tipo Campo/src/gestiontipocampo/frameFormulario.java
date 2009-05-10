@@ -25,14 +25,31 @@ import javax.swing.*;
 public class frameFormulario extends javax.swing.JFrame {
 
     /** Creates new form frameFormulario */
-    public frameFormulario() {
+    public frameFormulario( ) {
 
         String nombre = JOptionPane.showInputDialog(this, "Favor ingresar el nombre del formulario a crear", "", JOptionPane.QUESTION_MESSAGE);
         String descripcion = JOptionPane.showInputDialog(this, "Favor ingresar la descripcion del formulario a crear", "", JOptionPane.QUESTION_MESSAGE);
 
         miFormulario = new Formulario( nombre, descripcion );
-        //miFormulario.setNombre(nombre);
-        //miFormulario.setDescripcion(descripcion);
+        initComponents();
+
+        //Inicializa los recolectores de eventos del mouse
+        listener = new DragMouseAdapter();
+        motionListener= new DragMouseAdapter();
+
+        //Inicializa el arbol para obtener nodo seleccionado
+        arbolPrincipal.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+        llenarTreeView();
+        ocultarPanes();
+    }
+
+    /** Creates new form frameFormulario */
+    public frameFormulario( TreeModel arbolHeredado) {
+
+        String nombre = JOptionPane.showInputDialog(this, "Favor ingresar el nombre del formulario a crear", "", JOptionPane.QUESTION_MESSAGE);
+        String descripcion = JOptionPane.showInputDialog(this, "Favor ingresar la descripcion del formulario a crear", "", JOptionPane.QUESTION_MESSAGE);
+
+        miFormulario = new Formulario( nombre, descripcion );
         initComponents();
 
         //Inicializa los recolectores de eventos del mouse
@@ -42,7 +59,7 @@ public class frameFormulario extends javax.swing.JFrame {
         //Inicializa el arbol para obtener nodo seleccionado
         arbolPrincipal.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
 
-        llenarTreeView();             
+        arbolPrincipal.setModel(arbolHeredado);
         ocultarPanes();
 
         jButton1.addMouseListener(listener);

@@ -182,9 +182,8 @@ public class frameConexiones extends javax.swing.JFrame {
             if (1 == probadorConexiones.probarConexion(1)) {
                 jRadioButton1.setEnabled(true);
                 jRadioButton1.setText("Disponible");
-            //         jRadioButton1.setBackground(Color.green);
+            //  jRadioButton1.setBackground(Color.green);
             }
-            System.out.println("No se pudo establecer nada :(");
         }
 
         jLabel1.setText("Por favor elija la Base de Datos a la que desea conectarse.");

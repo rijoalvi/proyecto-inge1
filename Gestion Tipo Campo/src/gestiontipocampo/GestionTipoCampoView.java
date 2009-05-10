@@ -1234,7 +1234,7 @@ public class GestionTipoCampoView extends FrameView {
 }//GEN-LAST:event_botonAgregarNivelActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        frameFormulario frameForm = new frameFormulario();
+        frameFormulario frameForm = new frameFormulario( arbolPrincipal.getModel() );
         frameForm.setLocationRelativeTo(GestionTipoCampoApp.getApplication().getMainFrame());
         frameForm.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
