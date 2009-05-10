@@ -11,7 +11,7 @@ package gestiontipocampo;
  */
 public class MiembroFormulario {
 
-    
+    private int IDFormulario;
     private int correlativo;
     private String nombre;
     private int valX;
@@ -27,7 +27,9 @@ public class MiembroFormulario {
     }
 
     ///Constructor que recibe parametros de inicialización
-    public MiembroFormulario(String nombre, int valX, int valY, String tipoLetra, String color, int tamanoLetra, int IDTipoC){
+    public MiembroFormulario(int ID, int IDForm, String nombre, int valX, int valY, String tipoLetra, String color, int tamanoLetra, int IDTipoC){
+        this.correlativo = ID;
+        this.IDFormulario = IDForm;
         this.nombre = nombre;
         this.valX = valX;
         this.valY = valY;
@@ -41,7 +43,7 @@ public class MiembroFormulario {
      * Se indica el nombre del miembro
      * @param y
      */
-    public void setNoombre(String name){
+    public void setNombre(String name){
         nombre = name;
     }
 
@@ -59,6 +61,13 @@ public class MiembroFormulario {
      */
     public void setValY(int y){
         valY = y;
+    }
+
+    /**
+     * Indica el correlativo(ID) del miembro
+     */
+    public int getID( ){
+        return correlativo;
     }
 
     /**

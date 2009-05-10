@@ -14,16 +14,14 @@ import java.util.*;
 public class Formulario extends TipoCampo{
 
     private MiembroFormulario [] miembrosFormulario;
-    public Modelo miModelo;
     public boolean ordenPersonalizado;
-    public FormularioBD formBD;
+    public ConsultaFormulario formBD;
 
     public Formulario( String nombre, String desc) {
         this.nombre = nombre;
         this.descripcion = desc;
-        formBD = new FormularioBD( );
+        formBD = new ConsultaFormulario( );
         this.correlativo = formBD.guardaFormulario(nombre, descripcion);
-        miModelo = new Modelo();
     }
 
     /**
@@ -32,14 +30,6 @@ public class Formulario extends TipoCampo{
      */
     public MiembroFormulario [] getMiembroFormularioSet() {
         return this.miembrosFormulario;
-    }
-
-    public Vector getModeloVector(String consulta, String campoTexto, String campoNumero) {
-        return miModelo.getModeloEnVector(consulta, campoTexto, campoNumero);
-    }
-
-    public Vector getModeloVector(String consulta, String campoTexto, String campoNumero, String campoNumero2) {
-        return miModelo.getModeloEnVector(consulta, campoTexto, campoNumero, campoNumero2);
     }
 
     /**
@@ -52,9 +42,12 @@ public class Formulario extends TipoCampo{
      * @param tamañoLetra
      */
     public void agregarMiembro(String nombre, int valX, int valY, String tipoLetra, String color, int tamanoLetra, int IDTP){
-        MiembroFormulario datoNuevo = new MiembroFormulario(nombre, valX, valY, tipoLetra, color, tamanoLetra, IDTP);
+        //agrega en la BD el dato nuevo
+        int ID = formBD.agregarMiembro(this.correlativo, nombre, valX, valY, tipoLetra, color, tamanoLetra, IDTP);
+        //crea una instancia del miembro
+        MiembroFormulario datoNuevo = new MiembroFormulario(ID, this.correlativo, nombre, valX, valY, tipoLetra, color, tamanoLetra, IDTP);
         miembrosFormulario[miembrosFormulario.length] = datoNuevo;
-        System.out.println("agregue miembro: "+ datoNuevo.getNombre());
+        System.out.println("agregue miembro: "+ datoNuevo.getNombre()+ " ID: "+ datoNuevo.getID());
     }
 
     /**
@@ -62,67 +55,37 @@ public class Formulario extends TipoCampo{
      * @param nombre Nombre del componente a eliminar
      */
     public void borrarMiembro(String nombre) {
-        //buscador.doUpdate("delete from MIEMBROFORMULARIO where correlativo = " + getID(miembro) + " and IDFormulario=" + this.correlativo + ";");
         int indiceABorrar = 0;
-        for(int i = 0; i< miembrosFormulario.length; ++i){
+        int ID = -1;
+        int size = miembrosFormulario.length;
+        for(int i = 0; i< size; ++i){
             if(miembrosFormulario[i].getNombre().equalsIgnoreCase(nombre)){
                 //guarda el valor
                 indiceABorrar = i;
+                miembrosFormulario[i].getID();
                 //borra el elemento hay q borrar de la BD tamb
                 miembrosFormulario[i] = null;
                 //termina el for
                 i = miembrosFormulario.length;
             }
         }
-        //se hace hasta length -1 por el valor que se eliminara
-        System.out.println("debria de servir, pero puede haber un error aqui");
-        for(int i = indiceABorrar; i < miembrosFormulario.length-1; ++i){
+        //se hace hasta size -1 por el valor que se eliminara
+        for(int i = indiceABorrar; i < size-1; ++i){
             miembrosFormulario[i] = miembrosFormulario[i+1];
         }
+        if(ID != -1)
+            formBD.borrarMiembro(ID);
     }
 
-    /*
-     * Esto es de BD
-    public void borrarMiembro(Object miembro) {
-        buscador.doUpdate("delete from MIEMBROFORMULARIO where correlativo = " + getID(miembro) + " and IDFormulario=" + this.correlativo + ";");
-        this.miembrosFormulario.remove(miembro);
-    }
-     */
 
-    /**
-     * Recibe el ID del miembro del fromulario
-     * @param obj
-     * @return
-     */
-    private int getID(Object obj) {
-
-        int ID = 0;
-        /*
-        try {
-            ID = ((MiDato) obj).ID;
-        } catch (java.lang.ClassCastException e) {
-            try {
-                ID = ((MiDato2) obj).ID;
-            } catch (java.lang.ClassCastException ex) {
-            }
-        }
-         */
-        return ID;
-    }
-
-    /**
-     *
-     * @param miembroAActualizar Objeto que contiene el MiDato (MIEMBROFORMULARIO) a actualizar, a este se se castea para conseguir el ID y el nombre
-     * @param valorNuevo Nombre nuevo a asignar al elemento seleccionado
-     */
-    public void upDateValorMiembro(Object miembroAActualizar, String valorNuevo) {
-  /*
-        int IDMiembroAActualizar = ((MiDato) (miembroAActualizar)).ID;
-        buscador.doUpdate("Update MIEMBROFORMULARIO set valor='" + valorNuevo + "' where Correlativo=" + IDMiembroAActualizar + ";");
-        //this.MIEMBROFORMULARIO.remove(miembro);
-        this.miembrosFormulario.remove(miembroAActualizar);
-        this.miembrosFormulario.add(new MiDato(valorNuevo, IDMiembroAActualizar));
-   */
+    public void upDateValoresMiembro(int ID, String nombre, int valX, int valY, String tipoLetra, String color, int tamanoLetra, int IDTP){
+        //agrega en la BD el dato nuevo
+        formBD.updateMiembro(ID, nombre, valX, valY, tipoLetra, color, tamanoLetra, IDTP);
+        //borra el miembro viejo
+        borrarMiembro(nombre);
+        MiembroFormulario datoNuevo = new MiembroFormulario(ID, this.correlativo, nombre, valX, valY, tipoLetra, color, tamanoLetra, IDTP);
+        //agrega el nuevo con los valores nuevos
+        miembrosFormulario[miembrosFormulario.length] = datoNuevo;
     }
 
     /**

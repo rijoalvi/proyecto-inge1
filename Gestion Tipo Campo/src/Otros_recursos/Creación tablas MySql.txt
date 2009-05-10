@@ -68,17 +68,28 @@ create table MIEMBROLISTA(
     primary key(correlativo)
 );
 
+drop table FORMULARIO;
 create table FORMULARIO(
     correlativo int NOT NULL,
-    primary key(correlativo)
+    primary key(correlativo),
+    CONSTRAINT Formulario_correlativo
+        FOREIGN KEY(correlativo)		REFERENCES TIPOCAMPO(correlativo)
+            ON DELETE CASCADE
 );
 
+drop table MIEMBROFORMULARIO;
 create table MIEMBROFORMULARIO(
     correlativo int auto_increment NOT NULL,
-    valor char(50),
-    IDTipoCampo int,
-    etiqueta varchar(50),
-    tipoLetra varchar(20),
     IDFormulario int NOT NULL,
-    primary key(correlativo)
+    nombre varchar(50),
+    valX int,
+    valY int,
+    tipoLetra varchar(20),
+    color varchar(10),
+    tamanoLetra int,
+    IDTipoCampo int,
+    primary key(correlativo),
+	CONSTRAINT Miembro_Formulario_IDFormulario
+        FOREIGN KEY(IDFormulario)		REFERENCES FORMULARIO(correlativo)
+            ON DELETE CASCADE
 );

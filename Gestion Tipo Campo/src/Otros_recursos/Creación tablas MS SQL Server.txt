@@ -67,5 +67,28 @@ create table MIEMBROLISTA(
     primary key(correlativo)
 );
 
-insert into TIPOCAMPO (nombre,descripcion) values ('pruebaNombre','PruebaDescripsion')
-select * from TIPOCAMPO
+drop table FORMULARIO;
+create table FORMULARIO(
+    correlativo int NOT NULL,
+    primary key(correlativo),
+    CONSTRAINT Formulario_correlativo
+        FOREIGN KEY(correlativo)		REFERENCES TIPOCAMPO(correlativo)
+            ON DELETE CASCADE
+);
+
+drop table MIEMBROFORMULARIO;
+create table MIEMBROFORMULARIO(
+    correlativo int auto_increment NOT NULL,
+    IDFormulario int NOT NULL,
+    nombre varchar(50),
+    valX int,
+    valY int,
+    tipoLetra varchar(20),
+    color varchar(10),
+    tamanoLetra int,
+    IDTipoCampo int,
+    primary key(correlativo),
+	CONSTRAINT Miembro_Formulario_IDFormulario
+        FOREIGN KEY(IDFormulario)		REFERENCES FORMULARIO(correlativo)
+            ON DELETE CASCADE
+);

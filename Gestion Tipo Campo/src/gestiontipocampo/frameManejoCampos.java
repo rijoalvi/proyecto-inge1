@@ -1072,7 +1072,7 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         Logger.getLogger(frameManejoCampos.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
-                //                 limpiarValoresNumero();
+                //limpiarValoresJerarquia();
                 break;
             case LISTA:
                 if (existe) {
