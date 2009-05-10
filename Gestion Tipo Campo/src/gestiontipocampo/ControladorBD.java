@@ -22,6 +22,7 @@ public class ControladorBD {
     private ResultSet resultado = null;
 
     public int probarConexion(int numeroConexion) {
+
         String conexionStringAProbar = "";
         switch (numeroConexion) {
             case 1:
