@@ -17,8 +17,10 @@ public class Lista extends TipoCampo {
     public String nombreMiembroPorDefecto;
     public String IDMiembroPorDefecto;
     public boolean ordenPersonalizado;
+    public ConsultaLista consultaLista;
 
     public Lista() {
+        consultaLista = buscador.getConsultaLista();
         buscador = new ControladorBD();
         miembroLista = new TreeSet();
         miModelo = new Modelo();
@@ -115,9 +117,14 @@ public class Lista extends TipoCampo {
         }
         return ID;
     }
+    /**
+     * agrega elemento a la lista
+     * @param nombreMiembro Nombre del item de la lista a agregar
+     * @param posicion
+     */
+    public void agregarMiembro(String nombreMiembro, int posicion) {
+       this.consultaLista.agregarMiembro(nombreMiembro, this.correlativo, posicion);
 
-    public void agregarMiembro(String nombreMiembro, int posicion) {//agregar elemento a la lista
-        buscador.doUpdate("insert into MIEMBROLISTA (valor,IDLista, numeroElemento) values ('" + nombreMiembro + "'," + this.correlativo + ", " + posicion + ");");
     }
 
     public void borrarMiembro(Object miembro) {

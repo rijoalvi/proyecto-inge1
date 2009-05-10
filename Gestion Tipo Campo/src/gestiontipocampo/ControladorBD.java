@@ -174,4 +174,12 @@ public class ControladorBD {
         }
         return miMapa;
     }
+    public ConsultaLista getConsultaLista(){
+        if(1==conexionSeleccionada){
+            return new ConsultaListaMySQL();
+        }
+        else{
+            return new ConsultaListaSQLServer();
+        }
+    }
 }

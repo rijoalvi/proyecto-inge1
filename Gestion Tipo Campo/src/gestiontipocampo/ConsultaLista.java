@@ -9,6 +9,6 @@ package gestiontipocampo;
  *
  * @author luiscarlosch
  */
-public abstract class  ConsultaLista {
-
+public abstract class  ConsultaLista extends ControladorBD{
+    public abstract void agregarMiembro(String nombreMiembro,int correlativo , int posicion);
 }
