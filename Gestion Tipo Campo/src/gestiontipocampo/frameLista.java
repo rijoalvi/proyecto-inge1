@@ -37,7 +37,7 @@ public class frameLista extends javax.swing.JFrame {
         campoEntrada.setText("");
         campoEntrada.requestFocus();
         //this.IDTipoCampo=IDLista;
-        miLista.correlativo = IDLista + "";
+        miLista.correlativo = IDLista;
         miLista.setLista();
         this.actualizarLista();
 

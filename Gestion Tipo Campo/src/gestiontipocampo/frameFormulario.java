@@ -26,6 +26,13 @@ public class frameFormulario extends javax.swing.JFrame {
 
     /** Creates new form frameFormulario */
     public frameFormulario() {
+
+        String nombre = JOptionPane.showInputDialog(this, "Favor ingresar el nombre del formulario a crear", "", JOptionPane.QUESTION_MESSAGE);
+        String descripcion = JOptionPane.showInputDialog(this, "Favor ingresar la descripcion del formulario a crear", "", JOptionPane.QUESTION_MESSAGE);
+
+        miFormulario = new Formulario( nombre, descripcion );
+        //miFormulario.setNombre(nombre);
+        //miFormulario.setDescripcion(descripcion);
         initComponents();
 
         //Inicializa los recolectores de eventos del mouse
@@ -51,8 +58,7 @@ public class frameFormulario extends javax.swing.JFrame {
         @Override
         public void mousePressed(MouseEvent e){
             System.out.println("Se dio click al mouse");
-            JComponent c = (JComponent)e.getSource();
-          
+            JComponent c = (JComponent)e.getSource();          
             //  mostrarDatosComponente( c.getName()); //tuve q comentarlo xq se jodia el mover los iconos
             //Aqui hay q mostrar los valores del componente...
         }
@@ -780,11 +786,7 @@ public class frameFormulario extends javax.swing.JFrame {
         switch(comboTipos.getSelectedIndex()){
             case 0:
                 //Numero
-                //esto es temporal, xq no hay clases todavia
-                JTextField jtf = new JTextField(10);
-                jtf.addMouseListener(listener);
-                jtf.addMouseMotionListener(motionListener);
-                frameVistaPrevia.add( jtf );
+                agregarTipoNumero(nombre);
                 break;
             case 1:
                 //Binario
@@ -813,6 +815,23 @@ public class frameFormulario extends javax.swing.JFrame {
         paneFormulario.setVisible(true);
         valorDato.setText(nombre);
 }//GEN-LAST:event_botonAgregarActionPerformed
+
+    /**
+     * Agrega al formulario un campo nuevo tipo numero
+     * @param nombre
+     */
+    private void agregarTipoNumero(String nombre){
+        //Agrega todos los otros datos por defecto
+        miFormulario.agregarMiembro(nombre, 1, 1, "Arial", "negro", 12, Integer.parseInt(getIDTipoCampo(nombre)));
+
+        //Esto es temporal!! se debe crear un objeto de numero...
+        JTextField jtf = new JTextField(10);
+        jtf.setName(nombre);
+        jtf.addMouseListener(listener);
+        jtf.addMouseMotionListener(motionListener);
+        frameVistaPrevia.add( jtf );
+        frameVistaPrevia.repaint();
+    }
 
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
         //Se tienen que guardar los datos en la tabla MIEMBROFORMULARIO
@@ -1257,4 +1276,5 @@ public class frameFormulario extends javax.swing.JFrame {
     public float maxY;
     public float startX;
     public float startY;
+    public Formulario miFormulario;
 }

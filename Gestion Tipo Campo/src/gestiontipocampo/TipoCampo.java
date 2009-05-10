@@ -10,19 +10,21 @@ package gestiontipocampo;
  */
 public class TipoCampo {
 
-    protected String correlativo;
+    //lo cambie a INT, no c porq estaba en STRING - beto
+    protected int correlativo;
     protected String nombre;
     protected String descripcion;
     protected String ultimaActualizacion;
     protected ControladorBD buscador;
 
-    public void TipoCampo(){
+    ///Constructor por omision
+    public TipoCampo(){
         buscador = new ControladorBD();
     }
 
     @Override
     public String toString() {
-        String aRetornar =
+        String aRetornar = 
                 this.correlativo + "\n" +
                 this.nombre + "\n" +
                 this.descripcion + "\n";
