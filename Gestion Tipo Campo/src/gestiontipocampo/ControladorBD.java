@@ -20,15 +20,17 @@ public class ControladorBD {
     protected static int conexionSeleccionada = -1;
     private Connection conexion = null;
     private ResultSet resultado = null;
+    protected final int CONEXION_MYSQL=1;
+    protected final int CONEXION_SQLSERVER=2;
 
     public int probarConexion(int numeroConexion) {
 
         String conexionStringAProbar = "";
         switch (numeroConexion) {
-            case 1:
+            case CONEXION_MYSQL:
                 conexionStringAProbar = conexionString1;
                 break;
-            case 2:
+            case CONEXION_SQLSERVER:
                 conexionStringAProbar = conexionString2;
                 break;
         }
@@ -36,10 +38,10 @@ public class ControladorBD {
         int estado = 1;// en caso de exito se retorna1
         try {
             switch (numeroConexion) {
-                case 1:
+                case CONEXION_MYSQL:
                     Class.forName("com.mysql.jdbc.Driver");
                     break;
-                case 2:
+                case CONEXION_SQLSERVER:
                     Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
                     break;
                 default:
