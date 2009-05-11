@@ -41,7 +41,7 @@ public class Formulario extends TipoCampo{
      * @param color
      * @param tamañoLetra
      */
-    public void agregarMiembro(String nombre, int valX, int valY, String tipoLetra, String color, int tamanoLetra, int IDTP){
+    public void agregarMiembro(String nombre, int valX, int valY, String tipoLetra, int color, int tamanoLetra, int IDTP){
         //agrega en la BD el dato nuevo
         int ID = formBD.agregarMiembro(this.correlativo, nombre, valX, valY, tipoLetra, color, tamanoLetra, IDTP);
         //crea una instancia del miembro
@@ -77,8 +77,19 @@ public class Formulario extends TipoCampo{
             formBD.borrarMiembro(ID);
     }
 
-
-    public void upDateValoresMiembro(int ID, String nombre, int valX, int valY, String tipoLetra, String color, int tamanoLetra, int IDTP){
+    /**
+     * Modifica los valores del miembro
+     * @param ID
+     * @param nombre
+     * @param valX
+     * @param valY
+     * @param tipoLetra
+     * @param color
+     * @param tamanoLetra
+     * @param IDTP
+     */
+    public void upDateValoresMiembro(int ID, String nombre, int valX, int valY, String tipoLetra, int color, int tamanoLetra){
+        int IDTP = getIDTipoCampo(ID);
         //agrega en la BD el dato nuevo
         formBD.updateMiembro(ID, nombre, valX, valY, tipoLetra, color, tamanoLetra, IDTP);
         //borra el miembro viejo
@@ -86,6 +97,18 @@ public class Formulario extends TipoCampo{
         MiembroFormulario datoNuevo = new MiembroFormulario(ID, this.correlativo, nombre, valX, valY, tipoLetra, color, tamanoLetra, IDTP);
         //agrega el nuevo con los valores nuevos
         miembrosFormulario[miembrosFormulario.length] = datoNuevo;
+    }
+
+    private int getIDTipoCampo( int ID){
+        int IDTP = -1;
+        for(int i = 0; i< miembrosFormulario.length; ++i){
+            if(miembrosFormulario[i].getID() == ID){
+                IDTP = miembrosFormulario[i].getIDTipoCampo();
+                //termina el for
+                i = miembrosFormulario.length;
+            }
+        }
+        return IDTP;
     }
 
     /**

@@ -17,7 +17,7 @@ public class MiembroFormulario {
     private int valX;
     private int valY;
     private String tipoLetra;
-    private String color;
+    private int color;
     private int tamanoLetra;
     private int IDTipoCampo;
 
@@ -27,7 +27,7 @@ public class MiembroFormulario {
     }
 
     ///Constructor que recibe parametros de inicialización
-    public MiembroFormulario(int ID, int IDForm, String nombre, int valX, int valY, String tipoLetra, String color, int tamanoLetra, int IDTipoC){
+    public MiembroFormulario(int ID, int IDForm, String nombre, int valX, int valY, String tipoLetra, int color, int tamanoLetra, int IDTipoC){
         this.correlativo = ID;
         this.IDFormulario = IDForm;
         this.nombre = nombre;
@@ -68,6 +68,13 @@ public class MiembroFormulario {
      */
     public int getID( ){
         return correlativo;
+    }
+
+    /**
+     * Indica el ID del tipo campo del miembro
+     */
+    public int getIDTipoCampo( ){
+        return IDTipoCampo;
     }
 
     /**

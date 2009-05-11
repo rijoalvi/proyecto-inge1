@@ -22,7 +22,6 @@ import javax.swing.tree.*;
 import javax.swing.JTree;
 import javax.swing.JOptionPane;
 
-
 /**
  * The application's main frame.
  */

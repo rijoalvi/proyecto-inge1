@@ -54,7 +54,7 @@ public class ConsultaFormulario {
      * @param IDTP
      * @return El ID del nuevo miembro
      */
-    public int agregarMiembro(int IDFormulario, String nombre, int valX, int valY, String tipoLetra, String color, int tamanoLetra, int IDTP){
+    public int agregarMiembro(int IDFormulario, String nombre, int valX, int valY, String tipoLetra, int color, int tamanoLetra, int IDTP){
         buscador.doUpdate("insert into MIEMBROFORMULARIO (IDFormulario, nombre, valX, valY, tipoLetra, color, tamanoLetra, IDTipoCampo) values ('"+ IDFormulario +"', '"+ nombre+"', "+ valX+", "+ valY+", '"+ tipoLetra+"', '"+  color+"', '"+ tamanoLetra+"', "+ IDTP +");");
         int ID = -1;
         try { //Se busca el ID de los datos que acaba de insertar
@@ -76,7 +76,7 @@ public class ConsultaFormulario {
         buscador.doUpdate("delete from MIEMBROFORMULARIO where correlativo = " + ID +";");
     }
 
-    public void updateMiembro(int ID, String nombre, int valX, int valY, String tipoLetra, String color, int tamanoLetra, int IDTP){
+    public void updateMiembro(int ID, String nombre, int valX, int valY, String tipoLetra, int color, int tamanoLetra, int IDTP){
         buscador.doUpdate("UPDATE MIEMBROFORMULARIO set nombre = '"+ nombre +"', valX = " +valX+ ", valY = "+valY+", tipoLetra = '"+ tipoLetra+ "', color = '"+color+"', tamanoLetra = "+ tamanoLetra +", IDTipoCampo = "+ IDTP+" WHERE correlativo = " + ID + ";");
     }
 
