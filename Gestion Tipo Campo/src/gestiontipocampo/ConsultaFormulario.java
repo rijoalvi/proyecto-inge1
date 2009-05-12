@@ -76,8 +76,19 @@ public class ConsultaFormulario {
         buscador.doUpdate("delete from MIEMBROFORMULARIO where correlativo = " + ID +";");
     }
 
+    /**
+     * Modifica los datos del miembro
+     * @param ID ID del miembro a modificar
+     * @param nombre
+     * @param valX
+     * @param valY
+     * @param tipoLetra
+     * @param color
+     * @param tamanoLetra
+     * @param IDTP
+     */
     public void updateMiembro(int ID, String nombre, int valX, int valY, String tipoLetra, int color, int tamanoLetra, int IDTP){
-        buscador.doUpdate("UPDATE MIEMBROFORMULARIO set nombre = '"+ nombre +"', valX = " +valX+ ", valY = "+valY+", tipoLetra = '"+ tipoLetra+ "', color = '"+color+"', tamanoLetra = "+ tamanoLetra +", IDTipoCampo = "+ IDTP+" WHERE correlativo = " + ID + ";");
+        buscador.doUpdate("UPDATE MIEMBROFORMULARIO set nombre = '"+ nombre +"', valX = " +valX+ ", valY = "+valY+", tipoLetra = '"+ tipoLetra+ "', color = "+color+", tamanoLetra = "+ tamanoLetra +", IDTipoCampo = "+ IDTP+" WHERE correlativo = " + ID + ";");
     }
 
 }

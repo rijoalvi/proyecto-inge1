@@ -9,7 +9,7 @@ package gestiontipocampo;
  *
  * @author Alberto
  */
-public class MiembroFormulario {
+public class MiembroFormulario implements Comparable {
 
     private int IDFormulario;
     private int correlativo;
@@ -26,6 +26,11 @@ public class MiembroFormulario {
 
     }
 
+   ///Constructor que recibe nada mas el ID
+    public MiembroFormulario( int ID){
+        this.correlativo = ID;
+    }
+
     ///Constructor que recibe parametros de inicialización
     public MiembroFormulario(int ID, int IDForm, String nombre, int valX, int valY, String tipoLetra, int color, int tamanoLetra, int IDTipoC){
         this.correlativo = ID;
@@ -37,6 +42,13 @@ public class MiembroFormulario {
         this.color = color;
         this.tamanoLetra = tamanoLetra;
         this.IDTipoCampo = IDTipoC;
+    }
+
+   public int compareTo(Object o) {
+        if(this.correlativo == ((MiembroFormulario)o).correlativo){
+            return 0;
+        }
+        return 1;
     }
 
     /**
@@ -98,6 +110,31 @@ public class MiembroFormulario {
         return nombre;
     }
 
+    /**
+     * Indica el ID del formulario al cual pertenece el miembro
+     */
+    public int getIDFormulario( ){
+        return IDFormulario;
+    }
 
+    /**
+     * Indica el tamaño de letra del miembro
+     */
+    public int getTamanoLetra( ){
+        return tamanoLetra;
+    }
 
+    /**
+     * Indica el color del miembro
+     */
+    public int getColor( ){
+        return color;
+    }
+
+    /**
+     * Devuelve el tipo de Letra
+     */
+    public String getTipoLetra( ){
+        return tipoLetra;
+    }
 }

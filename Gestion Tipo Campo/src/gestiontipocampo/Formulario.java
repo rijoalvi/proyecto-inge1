@@ -4,6 +4,8 @@
  */
 
 package gestiontipocampo;
+
+import java.lang.reflect.Array;
 import java.util.*;
 
 
@@ -13,7 +15,7 @@ import java.util.*;
  */
 public class Formulario extends TipoCampo{
 
-    private MiembroFormulario [] miembrosFormulario;
+    private SortedSet miembrosFormulario;
     public boolean ordenPersonalizado;
     public ConsultaFormulario formBD;
 
@@ -22,13 +24,14 @@ public class Formulario extends TipoCampo{
         this.descripcion = desc;
         formBD = new ConsultaFormulario( );
         this.correlativo = formBD.guardaFormulario(nombre, descripcion);
+        miembrosFormulario = new TreeSet();
     }
 
     /**
      * Devuelve todos los datos de los miembros del fomulario
      * @return
      */
-    public MiembroFormulario [] getMiembroFormularioSet() {
+    public SortedSet getMiembroFormularioSet() {
         return this.miembrosFormulario;
     }
 
@@ -41,13 +44,14 @@ public class Formulario extends TipoCampo{
      * @param color
      * @param tamañoLetra
      */
-    public void agregarMiembro(String nombre, int valX, int valY, String tipoLetra, int color, int tamanoLetra, int IDTP){
+    public int agregarMiembro(String nombre, int valX, int valY, String tipoLetra, int color, int tamanoLetra, int IDTP){
         //agrega en la BD el dato nuevo
         int ID = formBD.agregarMiembro(this.correlativo, nombre, valX, valY, tipoLetra, color, tamanoLetra, IDTP);
         //crea una instancia del miembro
         MiembroFormulario datoNuevo = new MiembroFormulario(ID, this.correlativo, nombre, valX, valY, tipoLetra, color, tamanoLetra, IDTP);
-        miembrosFormulario[miembrosFormulario.length] = datoNuevo;
+        miembrosFormulario.add(datoNuevo);
         System.out.println("agregue miembro: "+ datoNuevo.getNombre()+ " ID: "+ datoNuevo.getID());
+        return ID;
     }
 
     /**
@@ -55,23 +59,16 @@ public class Formulario extends TipoCampo{
      * @param nombre Nombre del componente a eliminar
      */
     public void borrarMiembro(String nombre) {
-        int indiceABorrar = 0;
         int ID = -1;
-        int size = miembrosFormulario.length;
-        for(int i = 0; i< size; ++i){
-            if(miembrosFormulario[i].getNombre().equalsIgnoreCase(nombre)){
-                //guarda el valor
-                indiceABorrar = i;
-                miembrosFormulario[i].getID();
+        Object[] vecMiembros = miembrosFormulario.toArray();
+        for(int i = 0; i< vecMiembros.length; ++i){
+            if(((MiembroFormulario)vecMiembros[i]).getNombre().equalsIgnoreCase(nombre)){
+                ID = ((MiembroFormulario)vecMiembros[i]).getID();
                 //borra el elemento hay q borrar de la BD tamb
-                miembrosFormulario[i] = null;
+                miembrosFormulario.remove(vecMiembros[i]);
                 //termina el for
-                i = miembrosFormulario.length;
+                i = vecMiembros.length;
             }
-        }
-        //se hace hasta size -1 por el valor que se eliminara
-        for(int i = indiceABorrar; i < size-1; ++i){
-            miembrosFormulario[i] = miembrosFormulario[i+1];
         }
         if(ID != -1)
             formBD.borrarMiembro(ID);
@@ -93,22 +90,38 @@ public class Formulario extends TipoCampo{
         //agrega en la BD el dato nuevo
         formBD.updateMiembro(ID, nombre, valX, valY, tipoLetra, color, tamanoLetra, IDTP);
         //borra el miembro viejo
-        borrarMiembro(nombre);
+        miembrosFormulario.remove( new MiembroFormulario(ID));
         MiembroFormulario datoNuevo = new MiembroFormulario(ID, this.correlativo, nombre, valX, valY, tipoLetra, color, tamanoLetra, IDTP);
         //agrega el nuevo con los valores nuevos
-        miembrosFormulario[miembrosFormulario.length] = datoNuevo;
+        miembrosFormulario.add(datoNuevo);
     }
 
     private int getIDTipoCampo( int ID){
         int IDTP = -1;
-        for(int i = 0; i< miembrosFormulario.length; ++i){
-            if(miembrosFormulario[i].getID() == ID){
-                IDTP = miembrosFormulario[i].getIDTipoCampo();
+        Object[] vecMiembros = miembrosFormulario.toArray();        
+        for(int i = 0; i< vecMiembros.length; ++i){
+            if(((MiembroFormulario)vecMiembros[i]).getID() == ID){
+                IDTP = ((MiembroFormulario)vecMiembros[i]).getIDTipoCampo();
                 //termina el for
-                i = miembrosFormulario.length;
+                i = vecMiembros.length;
             }
         }
         return IDTP;
+    }
+
+    /**
+     * Devuelve una instancia del Miembro formulario, para poder utilizar sus datos
+     * @param ID
+     * @return
+     */
+    public MiembroFormulario getMiembro(int ID){
+        Object[] vecMiembros = miembrosFormulario.toArray();
+        for(int i = 0; i< vecMiembros.length; ++i){
+            if(((MiembroFormulario)vecMiembros[i]).getID() == ID){
+                return ((MiembroFormulario)vecMiembros[i]);
+            }
+        }
+        return new MiembroFormulario(-1);
     }
 
     /**
