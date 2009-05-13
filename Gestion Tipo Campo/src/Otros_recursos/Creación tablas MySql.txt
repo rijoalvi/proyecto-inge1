@@ -70,11 +70,11 @@ create table MIEMBROLISTA(
 
 drop table FORMULARIO;
 create table FORMULARIO(
-    correlativo int NOT NULL,
-    primary key(correlativo),
-    CONSTRAINT Formulario_correlativo
-        FOREIGN KEY(correlativo)		REFERENCES TIPOCAMPO(correlativo)
-            ON DELETE CASCADE
+    correlativo int auto_increment NOT NULL,
+    nombre varchar(20) NOT NULL,
+    descripcion varchar(150),
+    ultimaActualizacion timestamp,
+    primary key(correlativo)
 );
 
 drop table MIEMBROFORMULARIO;

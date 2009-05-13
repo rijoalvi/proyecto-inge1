@@ -27,18 +27,17 @@ public class ConsultaFormulario {
      */
     public int guardaFormulario(String nombre, String descripcion){
         int ID = -1;
-        //Guarda en TIPOCAMPO
-        buscador.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('" + nombre + "', '" + descripcion + "', 8)");
+        //Guarda en FORMULARIO
+        buscador.doUpdate("Insert Into FORMULARIO (nombre, descripcion) VALUES ('" + nombre + "', '" + descripcion + "')");
         try { //Se busca el ID de los datos que acaba de insertar
-            ResultSet resultado = buscador.getResultSet("select correlativo from TIPOCAMPO where nombre = '" + nombre + "'");
+            ResultSet resultado = buscador.getResultSet("select correlativo from FORMULARIO where nombre = '" + nombre + "'");
             if (resultado.next()) {
                 ID = resultado.getInt("correlativo");
             }
         } catch (SQLException e) {
             System.out.println("*SQL Exception: *" + e.toString());
         }
-        //Guarda en FORMULARIO
-        buscador.doUpdate("Insert Into FORMULARIO (correlativo) VALUES (" + ID + ")");
+        
         return ID;
     }
 
@@ -89,6 +88,24 @@ public class ConsultaFormulario {
      */
     public void updateMiembro(int ID, String nombre, int valX, int valY, String tipoLetra, int color, int tamanoLetra, int IDTP){
         buscador.doUpdate("UPDATE MIEMBROFORMULARIO set nombre = '"+ nombre +"', valX = " +valX+ ", valY = "+valY+", tipoLetra = '"+ tipoLetra+ "', color = "+color+", tamanoLetra = "+ tamanoLetra +", IDTipoCampo = "+ IDTP+" WHERE correlativo = " + ID + ";");
+    }
+
+    /**
+     * Modifica el nombre del formulario
+     * @param nombre
+     * @param ID
+     */
+    public void modificarNombre(String nombre, int ID){
+        buscador.doUpdate("UPDATE MIEMBROFORMULARIO set nombre = '"+ nombre +" WHERE correlativo = " + ID + ";");
+    }
+
+    /**
+     * Modifica la descripcion del formulario
+     * @param descp
+     * @param ID
+     */
+    public void modificarDescripcion(String descp, int ID){
+        buscador.doUpdate("UPDATE MIEMBROFORMULARIO set descripcion = '"+ descp +" WHERE correlativo = " + ID + ";");
     }
 
 }

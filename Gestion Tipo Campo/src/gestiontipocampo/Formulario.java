@@ -5,7 +5,6 @@
 
 package gestiontipocampo;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 
@@ -13,8 +12,12 @@ import java.util.*;
  *
  * @author Alberto
  */
-public class Formulario extends TipoCampo{
-
+public class Formulario{
+    protected int correlativo;
+    protected String nombre;
+    protected String descripcion;
+    protected String ultimaActualizacion;
+    protected ControladorBD buscador;
     private SortedSet miembrosFormulario;
     public boolean ordenPersonalizado;
     public ConsultaFormulario formBD;
@@ -50,7 +53,6 @@ public class Formulario extends TipoCampo{
         //crea una instancia del miembro
         MiembroFormulario datoNuevo = new MiembroFormulario(ID, this.correlativo, nombre, valX, valY, tipoLetra, color, tamanoLetra, IDTP);
         miembrosFormulario.add(datoNuevo);
-        System.out.println("agregue miembro: "+ datoNuevo.getNombre()+ " ID: "+ datoNuevo.getID());
         return ID;
     }
 
@@ -122,6 +124,40 @@ public class Formulario extends TipoCampo{
             }
         }
         return new MiembroFormulario(-1);
+    }
+
+    /**
+     * * Retorna el nombre del formulario
+     * @return
+     */
+    public String getNombre() {
+        return this.nombre;
+    }
+
+    /**
+     * Modifica el nombre del formulario
+     * @param nombre
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+        formBD.modificarNombre(nombre, correlativo);
+    }
+
+    /**
+     * Retorna la descripcion del formulario
+     * @return
+     */
+    public String getDescripcion() {
+        return this.descripcion;
+    }
+
+    /**
+     * Modifica la descripcion
+     * @param descr
+     */
+    public void setDescripcion(String descr) {
+        this.descripcion = descr;
+        formBD.modificarDescripcion(nombre, correlativo);
     }
 
     /**

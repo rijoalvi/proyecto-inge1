@@ -29,7 +29,6 @@ public class frameManejoCampos extends javax.swing.JFrame {
     static final int BINARIO = 2;// 1556351614;
     static final int JERARQUIA = 6;// 304540448;
     static final int LISTA = 7;
-    static final int FORMULARIO = 8;
     ControladorBD conexionBD = new ControladorBD();
 
     /** Creates new form frameManejoCampos */
