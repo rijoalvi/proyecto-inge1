@@ -98,6 +98,23 @@ public class Formulario{
         miembrosFormulario.add(datoNuevo);
     }
 
+    /**
+     * Modifica la posicion del componente
+     * @param ID
+     * @param valX
+     * @param valY
+     */
+    public void updatePosicion(int ID, int valX, int valY){
+        //agrega en la BD el dato nuevo
+        formBD.updatePosicion(ID, valX, valY);
+        //borra el miembro viejo
+        MiembroFormulario tmp = getMiembro(ID);
+        miembrosFormulario.remove( new MiembroFormulario(ID));
+        MiembroFormulario datoNuevo = new MiembroFormulario(ID, tmp.getID(), tmp.getNombre(), valX, valY, tmp.getTipoLetra(), tmp.getColor(), tmp.getTamanoLetra(), tmp.getIDTipoCampo());
+        //agrega el nuevo con los valores nuevos
+        miembrosFormulario.add(datoNuevo);
+    }
+
     private int getIDTipoCampo( int ID){
         int IDTP = -1;
         Object[] vecMiembros = miembrosFormulario.toArray();        

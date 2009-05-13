@@ -79,24 +79,23 @@ public class frameFormulario extends javax.swing.JFrame {
             maxY = frameVistaPrevia.getHeight();
 
             float tx = e.getX()+c.getX();
-            System.out.println("posicion del componente en x "+c.getX());
-            System.out.println("posicion en x "+ tx);
             if(tx < 0) { tx = 0; }
             if(tx > maxX - c.getWidth()) { tx = maxX-c.getWidth(); }
             float ty = e.getY()+c.getY();
-            System.out.println("posicion del componente en y "+c.getY());
-            System.out.println("posicion en y "+ ty);
             if(ty < 0) { ty = 0; }
             if(ty > maxY-c.getHeight()) { ty = maxY-c.getHeight(); }
 
             c.setBounds((int)tx, (int)ty, c.getWidth(), c.getHeight() );
+            valEjeX.setText(""+ (int)tx);
+            valEjeY.setText(""+ (int)ty);
         }
 
         @Override
-        public void mouseReleased(MouseEvent e){
-            System.out.println("Se solto el mouse");
-            JComponent c = (JComponent)e.getSource();
+        public void mouseReleased(MouseEvent e){            
+            JComponent c = (JComponent)e.getSource();                        
             //Aqui hay q guardar los nuevos valores a la BD...
+            int ID = Integer.parseInt(c.getName());
+            miFormulario.updatePosicion(ID, Integer.parseInt(valEjeX.getText()), Integer.parseInt(valEjeY.getText()));
         }
     }
 
@@ -840,7 +839,7 @@ public class frameFormulario extends javax.swing.JFrame {
 
         //Esto es temporal!! se debe crear un objeto de numero...
         JTextField jtf = new JTextField(10);
-        jtf.setName(nombre);
+        jtf.setName(""+IDEnUso);
         jtf.addMouseListener(listener);
         jtf.addMouseMotionListener(motionListener);
         frameVistaPrevia.add( jtf );
@@ -1094,7 +1093,7 @@ public class frameFormulario extends javax.swing.JFrame {
                                         llenarDatosReadOnly(nombre, 7);
                                     }
                                     else{
-                                        paneDatos.setVisible(false);
+                                        ocultarPanes();
                                         //JOptionPane.showMessageDialog(null, "¡Favor seleccionar un dato hoja!", "", JOptionPane.ERROR_MESSAGE);
                                     }
                                 }

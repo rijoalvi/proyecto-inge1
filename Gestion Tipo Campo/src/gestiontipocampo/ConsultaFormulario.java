@@ -91,6 +91,16 @@ public class ConsultaFormulario {
     }
 
     /**
+     * Actualiza la posicion del componente
+     * @param ID
+     * @param valX
+     * @param valY
+     */
+    public void updatePosicion(int ID, int valX, int valY){
+        buscador.doUpdate("UPDATE MIEMBROFORMULARIO set valX = " +valX+ ", valY = "+valY+ " WHERE correlativo = " + ID + ";");
+    }
+
+    /**
      * Modifica el nombre del formulario
      * @param nombre
      * @param ID

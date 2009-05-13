@@ -177,11 +177,13 @@ public class ControladorBD {
         return miMapa;
     }
     public ConsultaLista getConsultaLista(){
-        if(1==conexionSeleccionada){
-            return new ConsultaListaMySQL();
+        ConsultaLista consulta;
+        if(CONEXION_MYSQL==conexionSeleccionada){
+            consulta = new ConsultaListaMySQL();
         }
         else{
-            return new ConsultaListaSQLServer();
+            consulta = new ConsultaListaSQLServer();
         }
+        return consulta;
     }
 }
