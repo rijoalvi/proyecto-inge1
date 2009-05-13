@@ -1128,10 +1128,8 @@ public class frameFormulario extends javax.swing.JFrame {
      */
     public void llenarDatosReadOnly(String nombre, int tipo){
         //Trae todos los valores de la tabla TIPOCAMPO
-        System.out.println("nombre: "+nombre+ " tipo: "+tipo);
         String valoresGlobales = buscarDatosEnBD(nombre);
         String [] valoresSeparados = valoresGlobales.split(";");
-        System.out.println("val[0] : "+ valoresSeparados[0]);
         String valoresEspecificos = buscarPorTipoEnBD(Integer.parseInt(valoresSeparados[0]), tipo);
         String [] valoresEspSep = valoresEspecificos.split(";");
         comboTipos.setSelectedIndex(tipo);
@@ -1268,13 +1266,11 @@ public class frameFormulario extends javax.swing.JFrame {
         ControladorBD buscador = new ControladorBD();
         String [] tiposCampo = {"NUMERO", "BINARIO", "FECHAHORA", "TEXTO", "INCREMENTAL", "JERARQUIA", "LISTA"};
         String valores = "";
-        System.out.println("ID: "+ ID+" tipo: "+tipo);
         try {
             ResultSet resultado = buscador.getResultSet("select * from " + tiposCampo[tipo-1] + " where correlativo = "+ID +";");
             if(resultado.next()){
                 for(int i = 1; i<=resultado.getMetaData().getColumnCount(); ++i){
                     valores += resultado.getObject(i)!=null?resultado.getObject(i).toString() + ";":";";
-                    System.out.println(valores);
                 }
             }
         } catch (SQLException e) {
