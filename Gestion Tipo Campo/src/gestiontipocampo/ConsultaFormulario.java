@@ -6,6 +6,8 @@
 package gestiontipocampo;
 
 import java.sql.*;
+import java.util.Map;
+import java.util.Vector;
 
 /**
  *
@@ -116,6 +118,51 @@ public class ConsultaFormulario {
      */
     public void modificarDescripcion(String descp, int ID){
         buscador.doUpdate("UPDATE MIEMBROFORMULARIO set descripcion = '"+ descp +" WHERE correlativo = " + ID + ";");
+    }
+
+    /**
+     * Obtiene los datos del formulario
+     * @param correlativo
+     * @return Vector con los datos del formulario en este orden: nombre, descripcion, ultimaActualizacion
+     */
+    public Vector obtenerDatosFormulario(int correlativo){
+        String consulta = "Select nombre,descripcion,ultimaActualizacion From Formulario Where correlativo = " + correlativo;
+        Vector campos = new Vector();
+        campos.add("nombre");
+        campos.add("descripcion");
+        campos.add("ultimaActualizacion");
+        Map<String, String> mapaDatos = buscador.getResultSetMap(consulta,campos);
+        campos.clear();
+        campos.add(mapaDatos.get("nombre"));
+        campos.add(mapaDatos.get("descripcion"));
+        campos.add(mapaDatos.get("ultimaActualizacion"));
+        return campos;
+    }
+
+
+    //**************************Debo seguir aca.....(es para no perderme XD)
+    public Vector obtenerMiembros(int correlativoFormulario){
+        Vector miembros = new Vector();
+        //ID, this.correlativo, nombre, valX, valY, tipoLetra, color, tamanoLetra, IDTP
+        String consulta = "Select id,nombre,valX,valY,tipoLetra,color,tamanoLetra From MIEMBROLISTA Where IDFormulario = " + correlativoFormulario;
+        
+        miembros.add("id");
+        miembros.add("nombre");
+        miembros.add("valX");
+        miembros.add("valY");
+        miembros.add("tipoLetra");
+        miembros.add("color");
+        miembros.add("tamanoLetra");
+        Map<String, String> mapaDatos = buscador.getResultSetMap(consulta,miembros);
+        miembros.clear();
+        miembros.add(mapaDatos.get("nombre"));
+        miembros.add(mapaDatos.get("nombre"));
+        miembros.add(mapaDatos.get("nombre"));
+        miembros.add(mapaDatos.get("descripcion"));
+        miembros.add(mapaDatos.get("ultimaActualizacion"));
+        miembros.add(mapaDatos.get("nombre"));
+        miembros.add(mapaDatos.get("nombre"));
+        return miembros;
     }
 
 }

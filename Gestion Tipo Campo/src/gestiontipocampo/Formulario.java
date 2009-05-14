@@ -22,12 +22,45 @@ public class Formulario{
     public boolean ordenPersonalizado;
     public ConsultaFormulario formBD;
 
+    /**
+     *
+     * @param nombre
+     * @param desc
+     */
     public Formulario( String nombre, String desc) {
         this.nombre = nombre;
         this.descripcion = desc;
         formBD = new ConsultaFormulario( );
         this.correlativo = formBD.guardaFormulario(nombre, descripcion);
         miembrosFormulario = new TreeSet();
+    }
+
+    /**
+     * Crea un nuevo Formulario extrayendo los datos de la base de datos por medio de la clase consultaFormulario
+     * @param correlativo el correlativo del Formulario en la base de datos
+     */
+    public Formulario( int correlativo) {
+        this.correlativo = correlativo;
+        formBD = new ConsultaFormulario();
+        Vector datos = this.formBD.obtenerDatosFormulario(correlativo);
+        nombre =  datos.get(0).toString();
+        descripcion =  datos.get(1).toString();
+        ultimaActualizacion =  datos.get(1).toString();
+        
+        miembrosFormulario = new TreeSet();
+        
+        cargarMiembros();
+
+    }
+
+    /**************************Debo seguir aca.....(es para no perderme XD)
+     * Carga y crea los miembros en miembrosFormulario
+     */
+    private void cargarMiembros(){
+        Vector miembros = formBD.obtenerMiembros(correlativo);
+                 //crea una instancia del miembro
+       // MiembroFormulario datoNuevo = new MiembroFormulario(ID, this.correlativo, nombre, valX, valY, tipoLetra, color, tamanoLetra, IDTP);
+       // miembrosFormulario.add(datoNuevo);
     }
 
     /**

@@ -72,7 +72,6 @@ public class ControladorBD {
      * Constructor por omisión
      */
     public ControladorBD() {
-        //   System.out.print("HOla Mundo");
     }
 
     private String getConexionEstablecida() {
@@ -141,7 +140,7 @@ public class ControladorBD {
         return result;
     }
 
-    public Vector getResultSetVector(String consulta) {
+   /* public Vector getResultSetVector(String consulta) {
         Vector miVector = new Vector();
         try {
             ResultSet result = this.getResultSet("select correlativo ,nombre, descripcion, ultimaActualizacion from TIPOCAMPO where correlativo=31;");
@@ -152,13 +151,14 @@ public class ControladorBD {
             System.out.println("*SQL Exception: aca?*" + e.toString());
         }
         return miVector;
-    }
+    }*/
 
     public Map getResultSetMap(String consulta, Vector campos) {
         Map<String, String> miMapa = new HashMap<String, String>();
 
         try {//no sé porque está subrayado resultado, si alguien sabe me avisa porfa, luis carlos
             //No se, le cambie el nombre y dejo de subrayarlo, Roman.
+            //Maes lo subrayaba porque tenia el mismo nombre de un atributo........ Entonces "ocultaba" al atributo
             ResultSet result = this.getResultSet(consulta);
             if (result.next()) {
                 // miVector.add(resultado.getObject("nombre"));
@@ -176,6 +176,7 @@ public class ControladorBD {
         }
         return miMapa;
     }
+
     public ConsultaLista getConsultaLista(){
         ConsultaLista consulta;
         if(CONEXION_MYSQL==conexionSeleccionada){

@@ -26,13 +26,15 @@ public class frameFormulario extends javax.swing.JFrame {
 
     /** Creates new form frameFormulario */
     public frameFormulario( ) {
-
+        this.setTitle("GIFT Configurador - Edición de Formularios1");
         String nombre = JOptionPane.showInputDialog(this, "Favor ingresar el nombre del formulario a crear", "", JOptionPane.QUESTION_MESSAGE);
         String descripcion = JOptionPane.showInputDialog(this, "Favor ingresar la descripcion del formulario a crear", "", JOptionPane.QUESTION_MESSAGE);
 
-        miFormulario = new Formulario( nombre, descripcion );
         initComponents();
-
+        miFormulario = new Formulario( nombre, descripcion );
+        frameVistaPrevia.setResizable(false);
+        this.frameVistaPrevia.setTitle(nombre);
+        
         //Inicializa los recolectores de eventos del mouse
         listener = new DragMouseAdapter();
         motionListener= new DragMouseAdapter();
@@ -45,13 +47,15 @@ public class frameFormulario extends javax.swing.JFrame {
 
     /** Creates new form frameFormulario */
     public frameFormulario( TreeModel arbolHeredado) {
-
+        this.setTitle("GIFT Configurador - Edición de Formularios2");
         String nombre = JOptionPane.showInputDialog(this, "Favor ingresar el nombre del formulario a crear", "", JOptionPane.QUESTION_MESSAGE);
         String descripcion = JOptionPane.showInputDialog(this, "Favor ingresar la descripcion del formulario a crear", "", JOptionPane.QUESTION_MESSAGE);
 
-        frameVistaPrevia = new JInternalFrame(nombre, false);
-        miFormulario = new Formulario( nombre, descripcion );
         initComponents();
+       // frameVistaPrevia = new JInternalFrame(nombre, false);
+        miFormulario = new Formulario( nombre, descripcion );
+        frameVistaPrevia.setResizable(false);
+        frameVistaPrevia.setTitle(nombre);
 
         //Inicializa los recolectores de eventos del mouse
         listener = new DragMouseAdapter();
@@ -61,6 +65,31 @@ public class frameFormulario extends javax.swing.JFrame {
         arbolPrincipal.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         arbolPrincipal.setModel(arbolHeredado);
         ocultarPanes();              
+    }
+/** Creates new form frameFormulario */
+    public frameFormulario( TreeModel arbolHeredado, int correlativo) {
+        this.setTitle("GIFT Configurador - Edición de Formularios con correlativo");
+        miFormulario = new Formulario(correlativo);
+        String nombre = miFormulario.getNombre();
+        String descripcion = miFormulario.getDescripcion();
+        initComponents();
+        frameVistaPrevia.setResizable(false);
+        frameVistaPrevia.setTitle(nombre);
+
+        //Inicializa los recolectores de eventos del mouse
+        listener = new DragMouseAdapter();
+        motionListener= new DragMouseAdapter();
+
+        //Inicializa el arbol para obtener nodo seleccionado
+        arbolPrincipal.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+        arbolPrincipal.setModel(arbolHeredado);
+        ocultarPanes();
+      /*  nombre = JOptionPane.showInputDialog(this, "Favor ingresar el nombre del formulario a crear", "", JOptionPane.QUESTION_MESSAGE);
+        String descripcion = JOptionPane.showInputDialog(this, "Favor ingresar la descripcion del formulario a crear", "", JOptionPane.QUESTION_MESSAGE);
+
+        initComponents();
+       // frameVistaPrevia = new JInternalFrame(nombre, false);
+        */
     }
 
     private class DragMouseAdapter extends MouseAdapter {
