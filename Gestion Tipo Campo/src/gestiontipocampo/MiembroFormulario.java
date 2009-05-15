@@ -100,7 +100,7 @@ public class MiembroFormulario implements Comparable {
      * Indica la posicion en X del miembro
      */
     public int getValY( ){
-        return valX;
+        return valY;
     }
 
     /**

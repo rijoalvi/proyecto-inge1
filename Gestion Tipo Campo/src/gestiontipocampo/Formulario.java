@@ -142,7 +142,7 @@ public class Formulario{
         formBD.updatePosicion(ID, valX, valY);
         //borra el miembro viejo
         MiembroFormulario tmp = getMiembro(ID);
-        miembrosFormulario.remove( new MiembroFormulario(ID));
+        miembrosFormulario.remove(tmp);
         MiembroFormulario datoNuevo = new MiembroFormulario(ID, tmp.getID(), tmp.getNombre(), valX, valY, tmp.getTipoLetra(), tmp.getColor(), tmp.getTamanoLetra(), tmp.getIDTipoCampo());
         //agrega el nuevo con los valores nuevos
         miembrosFormulario.add(datoNuevo);

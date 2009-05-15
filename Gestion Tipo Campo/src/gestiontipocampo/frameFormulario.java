@@ -8,7 +8,6 @@ package gestiontipocampo;
 
 import java.sql.*;
 import javax.swing.tree.*;
-import org.jdesktop.application.Action;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -66,7 +65,10 @@ public class frameFormulario extends javax.swing.JFrame {
         arbolPrincipal.setModel(arbolHeredado);
         ocultarPanes();              
     }
-/** Creates new form frameFormulario */
+
+    /**
+     * Creates new form frameFormulario
+     */
     public frameFormulario( TreeModel arbolHeredado, int correlativo) {
         this.setTitle("GIFT Configurador - Edición de Formularios con correlativo");
         miFormulario = new Formulario(correlativo);
@@ -95,7 +97,7 @@ public class frameFormulario extends javax.swing.JFrame {
     private class DragMouseAdapter extends MouseAdapter {
         @Override
         public void mousePressed(MouseEvent e){
-            System.out.println("Se dio click al mouse");
+            //System.out.println("Se dio click al mouse");
             JComponent c = (JComponent)e.getSource();          
             //  mostrarDatosComponente( c.getName()); //tuve q comentarlo xq se jodia el mover los iconos
             //Aqui hay q mostrar los valores del componente...
@@ -121,10 +123,13 @@ public class frameFormulario extends javax.swing.JFrame {
 
         @Override
         public void mouseReleased(MouseEvent e){            
-            JComponent c = (JComponent)e.getSource();                        
-            //Aqui hay q guardar los nuevos valores a la BD...
+            JComponent c = (JComponent)e.getSource();
+            //Actualiza cual componente es el ultimo en poseer el focus
+            compEnUso = c;
             int ID = Integer.parseInt(c.getName());
+            //Aqui hay q guardar los nuevos valores a la BD...
             miFormulario.updatePosicion(ID, Integer.parseInt(valEjeX.getText()), Integer.parseInt(valEjeY.getText()));
+            llenarDatosMiembro(ID);
         }
     }
 
@@ -841,14 +846,18 @@ public class frameFormulario extends javax.swing.JFrame {
                 break;
 
         }
-        //Se abre el pane de formulario
-        ocultarPanes();
-        paneFormulario.setVisible(true);
-        llenarDatosMiembro();
+        //Se abre el pane de formulario                
+        llenarDatosMiembro( IDEnUso);
 }//GEN-LAST:event_botonAgregarActionPerformed
 
-    private void llenarDatosMiembro(){
-        MiembroFormulario temp = miFormulario.getMiembro(IDEnUso);
+    /**
+     * Llena los datos del componente para que el usuaro pueda modificarlos
+     * @param ID ID del componente a mostrar los datos
+     */
+    private void llenarDatosMiembro(int ID){
+        ocultarPanes();
+        paneFormulario.setVisible(true);
+        MiembroFormulario temp = miFormulario.getMiembro(ID);
         valorDato.setText(temp.getNombre());
         colorDato.setForeground(new Color(temp.getColor()));
         valEjeX.setText(""+temp.getValX());
@@ -885,26 +894,24 @@ public class frameFormulario extends javax.swing.JFrame {
         IDEnUso = miFormulario.agregarMiembro(nombre, 1, 1, "Arial", Color.BLACK.getRGB(), 12, 2);
 
         //Esto es temporal!! se debe crear un objeto de binario...
-        String nR1 = valorNombreBinario1.getText();
-        String nR2 = valorNombreBinario2.getText();
+        String nR1 = valorNombreBinario1.getText();        
         JRadioButton r1 = new JRadioButton(nR1);
-        JRadioButton r2 = new JRadioButton(nR2);
-        r1.setName(""+IDEnUso);
+        
+        r1.setName(""+IDEnUso+".1");
         r1.addMouseListener(listener);
         r1.addMouseMotionListener(motionListener);
         frameVistaPrevia.add( r1 );
         r1.setBounds(1, 1, 100, 20);
         frameVistaPrevia.repaint();
 
-        /*
-        r2.setName(nR2);
+        String nR2 = valorNombreBinario2.getText();
+        JRadioButton r2 = new JRadioButton(nR2);
+        r2.setName(""+IDEnUso+".2");
         r2.addMouseListener(listener);
         r2.addMouseMotionListener(motionListener);
-        frameVistaPrevia.add( r2 );
-        
+        frameVistaPrevia.add( r2 );        
         r2.setBounds(10, 10, 100, 20);
         frameVistaPrevia.repaint();
-         * */
     }
 
     /**
@@ -917,7 +924,7 @@ public class frameFormulario extends javax.swing.JFrame {
 
         //Esto es temporal!! se debe crear un objeto de fechahora...
         JTextField jtf = new JTextField(15);
-        jtf.setName(nombre);
+        jtf.setName(""+IDEnUso);
         jtf.addMouseListener(listener);
         jtf.addMouseMotionListener(motionListener);
         frameVistaPrevia.add( jtf );
@@ -935,7 +942,7 @@ public class frameFormulario extends javax.swing.JFrame {
 
         //Esto es temporal!! se debe crear un objeto de texto...
         JTextField jtf = new JTextField(15);
-        jtf.setName(nombre);
+        jtf.setName(""+IDEnUso);
         jtf.addMouseListener(listener);
         jtf.addMouseMotionListener(motionListener);
         frameVistaPrevia.add( jtf );
@@ -953,7 +960,7 @@ public class frameFormulario extends javax.swing.JFrame {
 
         //Esto es temporal!! se debe crear un objeto de incremental...
         JTextField jtf = new JTextField(15);
-        jtf.setName(nombre);
+        jtf.setName(""+IDEnUso);
         jtf.addMouseListener(listener);
         jtf.addMouseMotionListener(motionListener);
         frameVistaPrevia.add( jtf );
@@ -971,7 +978,7 @@ public class frameFormulario extends javax.swing.JFrame {
 
         //Esto es temporal!! se debe crear un objeto de Jerarquia...
         JTextField jtf = new JTextField(15);
-        jtf.setName(nombre);
+        jtf.setName(""+IDEnUso);
         jtf.addMouseListener(listener);
         jtf.addMouseMotionListener(motionListener);
         frameVistaPrevia.add( jtf );
@@ -989,7 +996,7 @@ public class frameFormulario extends javax.swing.JFrame {
 
         //Esto es temporal!! se debe crear un objeto de Lista...
         JTextField jtf = new JTextField(15);
-        jtf.setName(nombre);
+        jtf.setName(""+IDEnUso);
         jtf.addMouseListener(listener);
         jtf.addMouseMotionListener(motionListener);
         frameVistaPrevia.add( jtf );
@@ -998,13 +1005,31 @@ public class frameFormulario extends javax.swing.JFrame {
     }
 
 
-
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
-        //Se tienen que guardar los datos en la tabla MIEMBROFORMULARIO
+        //Se guardan los datos en la instancia del Formulario, al igual que en la BD
         miFormulario.upDateValoresMiembro(IDEnUso, valorDato.getText(), Integer.parseInt(valEjeX.getText()), Integer.parseInt(valEjeY.getText()), comboTipoLetra.getSelectedItem().toString() , colorDato.getForeground().getRGB() , Integer.parseInt(tamanoLetra.getText()) );
+        //Se actualiza el componente en el preview
+        actualizarComponente( valorDato.getText(), Integer.parseInt(valEjeX.getText()), Integer.parseInt(valEjeY.getText()), comboTipoLetra.getSelectedItem().toString() , colorDato.getForeground().getRGB() , Integer.parseInt(tamanoLetra.getText()) );
         //desp de guardar se ocultan los panes
         ocultarPanes();
     }//GEN-LAST:event_botonGuardarActionPerformed
+
+    /**
+     * Actualiza el componente en el preview
+     * @param etiq
+     * @param valX
+     * @param valY
+     * @param tipoLetra
+     * @param color
+     * @param tamanoLetra
+     */
+    private void actualizarComponente( String etiq, int valX, int valY, String tipoLetra, int color , int tamanoLetra){
+        //hay q cambiar el tamaño!!!!!!!!!!!!!!!!!!1
+        compEnUso.setBounds(valX, valY, 100, 20);
+        //cambia color
+        compEnUso.setForeground(new Color(color));
+    }
+
 
     private void bottonColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bottonColorActionPerformed
         Color color = Color.BLACK;
@@ -1015,18 +1040,6 @@ public class frameFormulario extends javax.swing.JFrame {
         // cambiar color de la letra del campo de texto
         colorDato.setForeground( color );
     }//GEN-LAST:event_bottonColorActionPerformed
-
-    /**
-     * Muestra los datos del componente, valor, tipoLetra, tamaño, etc...
-     * @param nombre
-     */
-    public void mostrarDatosComponente( String nombre){
-        ocultarPanes();
-        paneFormulario.setVisible(true);
-
-        //se llenan los datos
-        valorDato.setText(nombre);
-    }
 
     /**
      * Llena el tree view
@@ -1337,21 +1350,6 @@ public class frameFormulario extends javax.swing.JFrame {
         });
     }
 
-    @Action
-    public void moverAlPrimero() {
-    }
-
-    @Action
-    public void moverArriba() {
-    }
-
-    @Action
-    public void moverAbajo() {
-    }
-
-    @Action
-    public void moverAlUltimo() {
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTree arbolPrincipal;
@@ -1452,4 +1450,5 @@ public class frameFormulario extends javax.swing.JFrame {
     public float startY;
     public Formulario miFormulario;
     public int IDEnUso;
+    public JComponent compEnUso;
 }
