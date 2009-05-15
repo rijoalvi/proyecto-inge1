@@ -1480,7 +1480,7 @@ public class GestionTipoCampoView extends FrameView {
 
     @Action
     public void AbrirFormulario() {
-        frameFormulario frameForm = new frameFormulario( arbolPrincipal.getModel(),6 );
+        frameFormulario frameForm = new frameFormulario( arbolPrincipal.getModel(),16 );
 
         frameForm.setLocationRelativeTo(GestionTipoCampoApp.getApplication().getMainFrame());
         frameForm.setVisible(true);

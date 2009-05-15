@@ -16,6 +16,8 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.*;
 import javax.swing.JColorChooser;
 import java.awt.Color;
+import java.util.Iterator;
+import java.util.SortedSet;
 
 /**
  *
@@ -86,12 +88,109 @@ public class frameFormulario extends javax.swing.JFrame {
         arbolPrincipal.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         arbolPrincipal.setModel(arbolHeredado);
         ocultarPanes();
-      /*  nombre = JOptionPane.showInputDialog(this, "Favor ingresar el nombre del formulario a crear", "", JOptionPane.QUESTION_MESSAGE);
-        String descripcion = JOptionPane.showInputDialog(this, "Favor ingresar la descripcion del formulario a crear", "", JOptionPane.QUESTION_MESSAGE);
 
-        initComponents();
-       // frameVistaPrevia = new JInternalFrame(nombre, false);
-        */
+        cargarMiembros();
+    }
+
+    private void cargarMiembros() {
+            //En este switch se debe crear una instancia del nuevo tipo campo a agregar al formulario
+        SortedSet miembros = this.miFormulario.getMiembroFormularioSet();
+        Iterator iterador = miembros.iterator();
+
+        for(int i=0; i<miembros.size();i++){
+            MiembroFormulario miembro = (MiembroFormulario)iterador.next();
+
+            String nombre = miembro.getNombre();
+            int color = miembro.getColor();
+            int id = miembro.getID();
+            int idTipoCampo = miembro.getIDTipoCampo();
+            int tamanoLetra = miembro.getTamanoLetra();
+            String tipoLetra = miembro.getTipoLetra();
+            int valx= miembro.getValX();
+            int valy= miembro.getValY();
+            JTextField campo;
+            switch(idTipoCampo){
+                case 1:
+                    //Numero
+                     
+                    campo = agregarTipoNumero(nombre);
+                    campo.setName(""+IDEnUso);
+                    campo.addMouseListener(listener);
+                    campo.addMouseMotionListener(motionListener);
+                    frameVistaPrevia.add( campo );
+                    campo.setBounds(valx, valy, 100, 20);
+                    frameVistaPrevia.repaint();
+                    break;
+                case 2:
+                    //Binario
+                    campo = new JTextField();
+                    agregarTipoBinario(nombre);
+                    campo.setName(""+IDEnUso);
+                    campo.addMouseListener(listener);
+                    campo.addMouseMotionListener(motionListener);
+                    frameVistaPrevia.add( campo );
+                    campo.setBounds(valx, valy, 100, 20);
+                    frameVistaPrevia.repaint();
+                    break;
+                case 3:
+                    //FechaHora
+                    campo = new JTextField();
+                    agregarTipoFechaHora(nombre);
+                    campo.setName(""+IDEnUso);
+                    campo.addMouseListener(listener);
+                    campo.addMouseMotionListener(motionListener);
+                    frameVistaPrevia.add( campo );
+                    campo.setBounds(valx, valy, 100, 20);
+                    frameVistaPrevia.repaint();
+                   break;
+                case 4:
+                    //Texto
+                    campo = new JTextField();
+                    agregarTipoTexto(nombre);
+                    campo.setName(""+IDEnUso);
+                    campo.addMouseListener(listener);
+                    campo.addMouseMotionListener(motionListener);
+                    frameVistaPrevia.add( campo );
+                    campo.setBounds(valx, valy, 100, 20);
+                    frameVistaPrevia.repaint();
+                    break;
+                case 5:
+                    //Incremental
+                    campo = new JTextField();
+                    agregarTipoIncremental(nombre);
+                    campo.setName(""+IDEnUso);
+                    campo.addMouseListener(listener);
+                    campo.addMouseMotionListener(motionListener);
+                    frameVistaPrevia.add( campo );
+                    campo.setBounds(valx, valy, 100, 20);
+                    frameVistaPrevia.repaint();
+                    break;
+                case 6:
+                    //Jerarquia
+                    campo = new JTextField();
+                    agregarTipoJerarquia(nombre);
+                    campo.setName(""+IDEnUso);
+                    campo.addMouseListener(listener);
+                    campo.addMouseMotionListener(motionListener);
+                    frameVistaPrevia.add( campo );
+                    campo.setBounds(valx, valy, 100, 20);
+                    frameVistaPrevia.repaint();
+                    break;
+                case 7:
+                    //Lista
+                    campo = new JTextField();
+                    agregarTipoLista(nombre);
+                    campo.setName(""+IDEnUso);
+                    campo.addMouseListener(listener);
+                    campo.addMouseMotionListener(motionListener);
+                    frameVistaPrevia.add( campo );
+                    campo.setBounds(valx, valy, 100, 20);
+                    frameVistaPrevia.repaint();
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     private class DragMouseAdapter extends MouseAdapter {
@@ -816,30 +915,52 @@ public class frameFormulario extends javax.swing.JFrame {
         switch(comboTipos.getSelectedIndex()){
             case 1:
                 //Numero
-                agregarTipoNumero(nombre);
+
+                //Agrega todos los otros datos por defecto
+                IDEnUso = miFormulario.agregarMiembro(nombre, 1, 1, "Arial", Color.BLACK.getRGB(), 12, 1);
+                JTextField texto = agregarTipoNumero(nombre);
+
                 break;
             case 2:
                 //Binario
+                //Agrega todos los otros datos por defecto
+        IDEnUso = miFormulario.agregarMiembro(nombre, 1, 1, "Arial", Color.BLACK.getRGB(), 12, 2);
+
                 agregarTipoBinario(nombre);
                 break;
             case 3:
+                        //Agrega todos los otros datos por defecto
+        IDEnUso = miFormulario.agregarMiembro(nombre, 1, 1, "Arial", Color.BLACK.getRGB(), 12, 1);
+
                 //FechaHora
                 agregarTipoFechaHora(nombre);
                 break;
             case 4:
                 //Texto
+                        //Agrega todos los otros datos por defecto
+        IDEnUso = miFormulario.agregarMiembro(nombre, 1, 1, "Arial", Color.BLACK.getRGB(), 12, 1);
+
                 agregarTipoTexto(nombre);
                 break;
             case 5:
                 //Incremental
+                       //Agrega todos los otros datos por defecto
+        IDEnUso = miFormulario.agregarMiembro(nombre, 1, 1, "Arial", Color.BLACK.getRGB(), 12, 1);
+
                 agregarTipoIncremental(nombre);
                 break;
             case 6:
                 //Jerarquia
+                        //Agrega todos los otros datos por defecto
+        IDEnUso = miFormulario.agregarMiembro(nombre, 1, 1, "Arial", Color.BLACK.getRGB(), 12, 1);
+
                 agregarTipoJerarquia(nombre);
                 break;
             case 7:
                 //Lista
+                        //Agrega todos los otros datos por defecto
+        IDEnUso = miFormulario.agregarMiembro(nombre, 1, 1, "Arial", Color.BLACK.getRGB(), 12, 1);
+
                 agregarTipoLista(nombre);
                 break;
             default:
@@ -871,9 +992,7 @@ public class frameFormulario extends javax.swing.JFrame {
      * Agrega al formulario un campo nuevo tipo numero
      * @param nombre
      */
-    private void agregarTipoNumero(String nombre){
-        //Agrega todos los otros datos por defecto
-        IDEnUso = miFormulario.agregarMiembro(nombre, 1, 1, "Arial", Color.BLACK.getRGB(), 12, 1);
+    private JTextField agregarTipoNumero(String nombre){
 
         //Esto es temporal!! se debe crear un objeto de numero...
         JTextField jtf = new JTextField(10);
@@ -883,6 +1002,7 @@ public class frameFormulario extends javax.swing.JFrame {
         frameVistaPrevia.add( jtf );
         jtf.setBounds(1, 1, 100, 20);
         frameVistaPrevia.repaint();
+        return jtf;
     }
 
     /**
@@ -890,8 +1010,6 @@ public class frameFormulario extends javax.swing.JFrame {
      * @param nombre
      */
     private void agregarTipoBinario(String nombre){
-        //Agrega todos los otros datos por defecto
-        IDEnUso = miFormulario.agregarMiembro(nombre, 1, 1, "Arial", Color.BLACK.getRGB(), 12, 2);
 
         //Esto es temporal!! se debe crear un objeto de binario...
         String nR1 = valorNombreBinario1.getText();        
@@ -912,6 +1030,8 @@ public class frameFormulario extends javax.swing.JFrame {
         frameVistaPrevia.add( r2 );        
         r2.setBounds(10, 10, 100, 20);
         frameVistaPrevia.repaint();
+
+
     }
 
     /**
@@ -919,8 +1039,6 @@ public class frameFormulario extends javax.swing.JFrame {
      * @param nombre
      */
     private void agregarTipoFechaHora(String nombre){
-        //Agrega todos los otros datos por defecto
-        IDEnUso = miFormulario.agregarMiembro(nombre, 1, 1, "Arial", Color.BLACK.getRGB(), 12, 1);
 
         //Esto es temporal!! se debe crear un objeto de fechahora...
         JTextField jtf = new JTextField(15);
@@ -937,8 +1055,6 @@ public class frameFormulario extends javax.swing.JFrame {
      * @param nombre
      */
     private void agregarTipoTexto(String nombre){
-        //Agrega todos los otros datos por defecto
-        IDEnUso = miFormulario.agregarMiembro(nombre, 1, 1, "Arial", Color.BLACK.getRGB(), 12, 1);
 
         //Esto es temporal!! se debe crear un objeto de texto...
         JTextField jtf = new JTextField(15);
@@ -955,9 +1071,7 @@ public class frameFormulario extends javax.swing.JFrame {
      * @param nombre
      */
     private void agregarTipoIncremental(String nombre){
-        //Agrega todos los otros datos por defecto
-        IDEnUso = miFormulario.agregarMiembro(nombre, 1, 1, "Arial", Color.BLACK.getRGB(), 12, 1);
-
+ 
         //Esto es temporal!! se debe crear un objeto de incremental...
         JTextField jtf = new JTextField(15);
         jtf.setName(""+IDEnUso);
@@ -973,8 +1087,6 @@ public class frameFormulario extends javax.swing.JFrame {
      * @param nombre
      */
     private void agregarTipoJerarquia(String nombre){
-        //Agrega todos los otros datos por defecto
-        IDEnUso = miFormulario.agregarMiembro(nombre, 1, 1, "Arial", Color.BLACK.getRGB(), 12, 1);
 
         //Esto es temporal!! se debe crear un objeto de Jerarquia...
         JTextField jtf = new JTextField(15);
@@ -991,8 +1103,6 @@ public class frameFormulario extends javax.swing.JFrame {
      * @param nombre
      */
     private void agregarTipoLista(String nombre){
-        //Agrega todos los otros datos por defecto
-        IDEnUso = miFormulario.agregarMiembro(nombre, 1, 1, "Arial", Color.BLACK.getRGB(), 12, 1);
 
         //Esto es temporal!! se debe crear un objeto de Lista...
         JTextField jtf = new JTextField(15);

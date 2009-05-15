@@ -141,11 +141,42 @@ public class ConsultaFormulario {
 
 
     //**************************Debo seguir aca.....(es para no perderme XD)
+    /**
+     * Obtiene todos los miembros del formulario y los retorna dentro de un vector
+     * @param correlativoFormulario
+     * @return
+     */
     public Vector obtenerMiembros(int correlativoFormulario){
         Vector miembros = new Vector();
         //ID, this.correlativo, nombre, valX, valY, tipoLetra, color, tamanoLetra, IDTP
-        String consulta = "Select id,nombre,valX,valY,tipoLetra,color,tamanoLetra From MIEMBROLISTA Where IDFormulario = " + correlativoFormulario;
-        
+        String consulta = "Select correlativo,nombre,valX,valY,tipoLetra,color,tamanoLetra,IDTipoCampo From MIEMBROFORMULARIO Where IDFormulario = " + correlativoFormulario;
+        ResultSet resultado = buscador.getResultSet(consulta);
+
+
+         try {
+            while (resultado.next()) {
+                miembros.add(resultado.getObject("correlativo"));
+                miembros.add(resultado.getObject("nombre"));
+                miembros.add(resultado.getObject("valX"));
+                miembros.add(resultado.getObject("valY"));
+                miembros.add(resultado.getObject("tipoLetra"));
+                miembros.add(resultado.getObject("color"));
+                miembros.add(resultado.getObject("tamanoLetra"));
+                miembros.add(resultado.getObject("IDTipoCampo"));
+
+
+                /*for (int i = 0; i < campos.size(); i++) {
+                    miMapa.put(campos.get(i).toString(), result.getObject(campos.get(i).toString()).toString());
+                }*/
+            /*  miMapa.put("correlativo",resultado.getObject("correlativo").toString());
+            miMapa.put("nombre",resultado.getObject("nombre").toString());
+            miMapa.put("descripcion",resultado.getObject("descripcion").toString());
+            miMapa.put("ultimaActualizacion",resultado.getObject("ultimaActualizacion").toString());*/
+            }
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception: aca?*" + e.toString());
+        }
+        /*
         miembros.add("id");
         miembros.add("nombre");
         miembros.add("valX");
@@ -161,7 +192,7 @@ public class ConsultaFormulario {
         miembros.add(mapaDatos.get("descripcion"));
         miembros.add(mapaDatos.get("ultimaActualizacion"));
         miembros.add(mapaDatos.get("nombre"));
-        miembros.add(mapaDatos.get("nombre"));
+        miembros.add(mapaDatos.get("nombre"));*/
         return miembros;
     }
 

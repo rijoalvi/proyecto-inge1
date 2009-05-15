@@ -58,9 +58,22 @@ public class Formulario{
      */
     private void cargarMiembros(){
         Vector miembros = formBD.obtenerMiembros(correlativo);
-                 //crea una instancia del miembro
-       // MiembroFormulario datoNuevo = new MiembroFormulario(ID, this.correlativo, nombre, valX, valY, tipoLetra, color, tamanoLetra, IDTP);
-       // miembrosFormulario.add(datoNuevo);
+
+
+        /////////lleva la cuenta de por cual valor del vector va....
+        int indice=0;
+        while(indice<miembros.size()){
+            //crea una instancia del miembro
+            MiembroFormulario datoNuevo = new MiembroFormulario(Integer.parseInt(miembros.get(indice++).toString()),
+                                                                this.correlativo, miembros.get(indice++).toString(),
+                                                                Integer.parseInt(miembros.get(indice++).toString()),
+                                                                Integer.parseInt(miembros.get(indice++).toString()),
+                                                                miembros.get(indice++).toString(),
+                                                                Integer.parseInt(miembros.get(indice++).toString()),
+                                                                Integer.parseInt(miembros.get(indice++).toString()),
+                                                                Integer.parseInt(miembros.get(indice++).toString()));
+            miembrosFormulario.add(datoNuevo);
+        }
     }
 
     /**
