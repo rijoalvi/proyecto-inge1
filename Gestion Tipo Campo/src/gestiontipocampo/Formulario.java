@@ -104,24 +104,16 @@ public class Formulario{
 
     /**
      * Borra a un componente del formulario
-     * @param nombre Nombre del componente a eliminar
+     * @param ID ID del componente a eliminar
      */
-    public void borrarMiembro(String nombre) {
-        int ID = -1;
-        Object[] vecMiembros = miembrosFormulario.toArray();
-        for(int i = 0; i< vecMiembros.length; ++i){
-            if(((MiembroFormulario)vecMiembros[i]).getNombre().equalsIgnoreCase(nombre)){
-                ID = ((MiembroFormulario)vecMiembros[i]).getID();
-                //borra el elemento hay q borrar de la BD tamb
-                miembrosFormulario.remove(vecMiembros[i]);
-                //termina el for
-                i = vecMiembros.length;
-            }
-        }
-        if(ID != -1)
-            formBD.borrarMiembro(ID);
+    public void eliminarMiembro(int ID) {
+        //borra la instancia del elemento
+        miembrosFormulario.remove(new MiembroFormulario(ID));
+        //borra en la BD
+        formBD.borrarMiembro(ID);
     }
 
+    
     /**
      * Modifica los valores del miembro
      * @param ID
