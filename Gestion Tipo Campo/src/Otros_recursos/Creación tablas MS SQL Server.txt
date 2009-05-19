@@ -83,6 +83,8 @@ create table MIEMBROFORMULARIO(
     nombre varchar(50),
     valX int,
     valY int,
+    ancho int,
+    alto int,
     tipoLetra varchar(20),
     color varchar(10),
     tamanoLetra int,

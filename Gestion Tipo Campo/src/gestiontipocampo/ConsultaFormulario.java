@@ -55,8 +55,8 @@ public class ConsultaFormulario {
      * @param IDTP
      * @return El ID del nuevo miembro
      */
-    public int agregarMiembro(int IDFormulario, String nombre, int valX, int valY, String tipoLetra, int color, int tamanoLetra, int IDTP){
-        buscador.doUpdate("insert into MIEMBROFORMULARIO (IDFormulario, nombre, valX, valY, tipoLetra, color, tamanoLetra, IDTipoCampo) values ('"+ IDFormulario +"', '"+ nombre+"', "+ valX+", "+ valY+", '"+ tipoLetra+"', '"+  color+"', '"+ tamanoLetra+"', "+ IDTP +");");
+    public int agregarMiembro(int IDFormulario, String nombre, int valX, int valY, int ancho, int alto, String tipoLetra, int color, int tamanoLetra, int IDTP){
+        buscador.doUpdate("insert into MIEMBROFORMULARIO (IDFormulario, nombre, valX, valY, ancho, alto, tipoLetra, color, tamanoLetra, IDTipoCampo) values ('"+ IDFormulario +"', '"+ nombre+"', "+ valX+", "+ valY+", "+ ancho+", "+ alto+", '"+ tipoLetra+"', '"+  color+"', '"+ tamanoLetra+"', "+ IDTP +");");
         int ID = -1;
         try { //Se busca el ID de los datos que acaba de insertar
             ResultSet resultado = buscador.getResultSet("select correlativo from MIEMBROFORMULARIO where nombre = '" + nombre + "' AND IDFormulario = "+ IDFormulario+";");
@@ -88,8 +88,8 @@ public class ConsultaFormulario {
      * @param tamanoLetra
      * @param IDTP
      */
-    public void updateMiembro(int ID, String nombre, int valX, int valY, String tipoLetra, int color, int tamanoLetra, int IDTP){
-        buscador.doUpdate("UPDATE MIEMBROFORMULARIO set nombre = '"+ nombre +"', valX = " +valX+ ", valY = "+valY+", tipoLetra = '"+ tipoLetra+ "', color = "+color+", tamanoLetra = "+ tamanoLetra +", IDTipoCampo = "+ IDTP+" WHERE correlativo = " + ID + ";");
+    public void updateMiembro(int ID, String nombre, int valX, int valY, int ancho, int alto, String tipoLetra, int color, int tamanoLetra, int IDTP){
+        buscador.doUpdate("UPDATE MIEMBROFORMULARIO set nombre = '"+ nombre +"', valX = " +valX+ ", valY = "+valY+", ancho = " +ancho+ ", alto = "+ alto + ", tipoLetra = '"+ tipoLetra+ "', color = "+color+", tamanoLetra = "+ tamanoLetra +", IDTipoCampo = "+ IDTP+" WHERE correlativo = " + ID + ";");
     }
 
     /**
@@ -159,6 +159,8 @@ public class ConsultaFormulario {
                 miembros.add(resultado.getObject("nombre"));
                 miembros.add(resultado.getObject("valX"));
                 miembros.add(resultado.getObject("valY"));
+                miembros.add(resultado.getObject("ancho"));
+                miembros.add(resultado.getObject("alto"));
                 miembros.add(resultado.getObject("tipoLetra"));
                 miembros.add(resultado.getObject("color"));
                 miembros.add(resultado.getObject("tamanoLetra"));
@@ -181,6 +183,8 @@ public class ConsultaFormulario {
         miembros.add("nombre");
         miembros.add("valX");
         miembros.add("valY");
+        miembros.add("ancho");
+        miembros.add("alto");
         miembros.add("tipoLetra");
         miembros.add("color");
         miembros.add("tamanoLetra");

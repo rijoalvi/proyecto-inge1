@@ -16,6 +16,8 @@ public class MiembroFormulario implements Comparable {
     private String nombre;
     private int valX;
     private int valY;
+    private int ancho;
+    private int alto;
     private String tipoLetra;
     private int color;
     private int tamanoLetra;
@@ -32,12 +34,14 @@ public class MiembroFormulario implements Comparable {
     }
 
     ///Constructor que recibe parametros de inicialización
-    public MiembroFormulario(int ID, int IDForm, String nombre, int valX, int valY, String tipoLetra, int color, int tamanoLetra, int IDTipoC){
+    public MiembroFormulario(int ID, int IDForm, String nombre, int valX, int valY, int ancho, int alto, String tipoLetra, int color, int tamanoLetra, int IDTipoC){
         this.correlativo = ID;
         this.IDFormulario = IDForm;
         this.nombre = nombre;
         this.valX = valX;
         this.valY = valY;
+        this.ancho = ancho;
+        this.alto = alto;
         this.tipoLetra = tipoLetra;
         this.color = color;
         this.tamanoLetra = tamanoLetra;
@@ -101,6 +105,20 @@ public class MiembroFormulario implements Comparable {
      */
     public int getValY( ){
         return valY;
+    }
+
+    /**
+     * Indica el ancho del miembro
+     */
+    public int getAncho( ){
+        return ancho;
+    }
+
+    /**
+     * Indica el alto del miembro
+     */
+    public int getAlto( ){
+        return alto;
     }
 
     /**
