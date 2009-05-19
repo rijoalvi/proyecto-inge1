@@ -49,8 +49,8 @@ public class ConsultaFormularioMySQL extends ConsultaFormulario{
      * @param IDTP
      * @return El ID del nuevo miembro
      */
-    public int agregarMiembro(int IDFormulario, String nombre, int valX, int valY, int ancho, int alto, String tipoLetra, int color, int tamanoLetra, int IDTP){
-        this.doUpdate("insert into MIEMBROFORMULARIO (IDFormulario, nombre, valX, valY, ancho, alto, tipoLetra, color, tamanoLetra, IDTipoCampo) values ('"+ IDFormulario +"', '"+ nombre+"', "+ valX+", "+ valY+", "+ ancho+", "+ alto+", '"+ tipoLetra+"', '"+  color+"', '"+ tamanoLetra+"', "+ IDTP +");");
+    public int agregarMiembro(int IDFormulario, String nombre, int valX, int valY, int ancho, int alto, String tipoLetra, int color, int tamanoLetra, int IDTP, int tabIndex){
+        this.doUpdate("insert into MIEMBROFORMULARIO (IDFormulario, nombre, valX, valY, ancho, alto, tipoLetra, color, tamanoLetra, IDTipoCampo, tabIndex) values ('"+ IDFormulario +"', '"+ nombre+"', "+ valX+", "+ valY+", "+ ancho+", "+ alto+", '"+ tipoLetra+"', '"+  color+"', '"+ tamanoLetra+"', "+ IDTP +", "+tabIndex+");");
         int ID = -1;
         try { //Se busca el ID de los datos que acaba de insertar
             ResultSet resultado = this.getResultSet("select correlativo from MIEMBROFORMULARIO where nombre = '" + nombre + "' AND IDFormulario = "+ IDFormulario+";");
@@ -82,8 +82,8 @@ public class ConsultaFormularioMySQL extends ConsultaFormulario{
      * @param tamanoLetra
      * @param IDTP
      */
-    public void updateMiembro(int ID, String nombre, int valX, int valY, int ancho, int alto, String tipoLetra, int color, int tamanoLetra, int IDTP){
-        this.doUpdate("UPDATE MIEMBROFORMULARIO set nombre = '"+ nombre +"', valX = " +valX+ ", valY = "+valY+", ancho = " +ancho+ ", alto = "+ alto + ", tipoLetra = '"+ tipoLetra+ "', color = "+color+", tamanoLetra = "+ tamanoLetra +", IDTipoCampo = "+ IDTP+" WHERE correlativo = " + ID + ";");
+    public void updateMiembro(int ID, String nombre, int valX, int valY, int ancho, int alto, String tipoLetra, int color, int tamanoLetra, int IDTP, int tabIndex){
+        this.doUpdate("UPDATE MIEMBROFORMULARIO set nombre = '"+ nombre +"', valX = " +valX+ ", valY = "+valY+", ancho = " +ancho+ ", alto = "+ alto + ", tipoLetra = '"+ tipoLetra+ "', color = "+color+", tamanoLetra = "+ tamanoLetra +", IDTipoCampo = "+ IDTP+ ", tabIndex = "+tabIndex+" WHERE correlativo = " + ID +";");
     }
 
     /**
@@ -159,6 +159,7 @@ public class ConsultaFormularioMySQL extends ConsultaFormulario{
                 miembros.add(resultado.getObject("color"));
                 miembros.add(resultado.getObject("tamanoLetra"));
                 miembros.add(resultado.getObject("IDTipoCampo"));
+                miembros.add(resultado.getObject("tabIndex"));
 
 
                 /*for (int i = 0; i < campos.size(); i++) {
@@ -182,6 +183,7 @@ public class ConsultaFormularioMySQL extends ConsultaFormulario{
         miembros.add("tipoLetra");
         miembros.add("color");
         miembros.add("tamanoLetra");
+        miembros.add(resultado.getObject("tabIndex"));
         Map<String, String> mapaDatos = this.getResultSetMap(consulta,miembros);
         miembros.clear();
         miembros.add(mapaDatos.get("nombre"));

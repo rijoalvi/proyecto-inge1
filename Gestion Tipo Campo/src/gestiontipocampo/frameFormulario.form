@@ -1206,6 +1206,20 @@
             </Constraint>
           </Constraints>
         </Component>
+        <Component class="javax.swing.JButton" name="botonTabIndex">
+          <Properties>
+            <Property name="text" type="java.lang.String" resourceKey="botonTabIndex.text"/>
+            <Property name="name" type="java.lang.String" value="botonTabIndex" noResource="true"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonTabIndexActionPerformed"/>
+          </Events>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
+              <JLayeredPaneConstraints x="190" y="10" width="180" height="-1" layer="0" position="-1"/>
+            </Constraint>
+          </Constraints>
+        </Component>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JButton" name="jButton3">
@@ -1243,7 +1257,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="806" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="838" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>

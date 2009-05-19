@@ -18,6 +18,7 @@ import javax.swing.JColorChooser;
 import java.awt.Color;
 import java.util.Iterator;
 import java.util.SortedSet;
+import java.util.TreeSet;
 
 /**
  *
@@ -36,6 +37,10 @@ public class frameFormulario extends javax.swing.JFrame {
         frameVistaPrevia.setResizable(false);
         this.frameVistaPrevia.setTitle(nombre);
         
+        //Inicializa el valor de los tabOrder
+        tabOrder = new TreeSet();
+        tabIndex = 0;
+
         //Inicializa los recolectores de eventos del mouse
         listener = new DragMouseAdapter();
         motionListener= new DragMouseAdapter();
@@ -58,6 +63,10 @@ public class frameFormulario extends javax.swing.JFrame {
         frameVistaPrevia.setResizable(false);
         frameVistaPrevia.setTitle(nombre);
 
+        //Inicializa el valor de los tabOrder
+        tabOrder = new TreeSet();
+        tabIndex = 0;
+
         //Inicializa los recolectores de eventos del mouse
         listener = new DragMouseAdapter();
         motionListener= new DragMouseAdapter();
@@ -79,6 +88,10 @@ public class frameFormulario extends javax.swing.JFrame {
         initComponents();
         frameVistaPrevia.setResizable(false);
         frameVistaPrevia.setTitle(nombre);
+
+        //Inicializa el valor de los tabOrder
+        tabOrder = new TreeSet();
+        tabIndex = 0;
 
         //Inicializa los recolectores de eventos del mouse
         listener = new DragMouseAdapter();
@@ -334,6 +347,7 @@ public class frameFormulario extends javax.swing.JFrame {
         botonMenosAlto = new javax.swing.JButton();
         botonMenosAncho = new javax.swing.JButton();
         botonAgregarEtq = new javax.swing.JButton();
+        botonTabIndex = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         botonActualizar = new javax.swing.JButton();
         frameVistaPrevia = new javax.swing.JInternalFrame();
@@ -897,8 +911,18 @@ public class frameFormulario extends javax.swing.JFrame {
                 botonAgregarEtqActionPerformed(evt);
             }
         });
-        botonAgregarEtq.setBounds(30, 10, 120, -1);
+        botonAgregarEtq.setBounds(30, 10, 120, 23);
         paneDatos.add(botonAgregarEtq, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        botonTabIndex.setText(resourceMap.getString("botonTabIndex.text")); // NOI18N
+        botonTabIndex.setName("botonTabIndex"); // NOI18N
+        botonTabIndex.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonTabIndexActionPerformed(evt);
+            }
+        });
+        botonTabIndex.setBounds(190, 10, 180, 23);
+        paneDatos.add(botonTabIndex, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton3.setText(resourceMap.getString("jButton3.text")); // NOI18N
         jButton3.setName("jButton3"); // NOI18N
@@ -926,7 +950,7 @@ public class frameFormulario extends javax.swing.JFrame {
         );
         frameVistaPreviaLayout.setVerticalGroup(
             frameVistaPreviaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 806, Short.MAX_VALUE)
+            .addGap(0, 834, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -993,56 +1017,63 @@ public class frameFormulario extends javax.swing.JFrame {
             case 1:
                 //Numero
                 //Agrega todos los otros datos por defecto
-                IDEnUso = miFormulario.agregarMiembro("", 1, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1);
+                IDEnUso = miFormulario.agregarMiembro("", 1, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, tabIndex++);
                 JTextField texto = agregarTipoNumero(nombre);
-
+                tabOrder.add((Object)(""+IDEnUso+"      "+valorNombreGeneral.getText()));
                 break;
             case 2:
                 //Binario
                 //agrega el componente 1:
                 String temp = valorOpcionBinaria1.getText();
                 //Agrega todos los otros datos por defecto
-                IDEnUso = miFormulario.agregarMiembro(temp, 1, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 2);
+                IDEnUso = miFormulario.agregarMiembro(temp, 1, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 2, tabIndex++);
                 agregarTipoBinario(temp);
+                tabOrder.add((Object)(""+IDEnUso+"      "+valorNombreBinario1.getText()));
 
                 //agrega el componente 2:
                 temp = valorOpcionBinaria2.getText();
-                IDEnUso = miFormulario.agregarMiembro(temp, 1, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 2);
+                IDEnUso = miFormulario.agregarMiembro(temp, 1, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 2, tabIndex++);
                 agregarTipoBinario(temp);
+                tabOrder.add((Object)(""+IDEnUso+"      "+valorNombreBinario2.getText()));
                 break;
             case 3:
                 //Agrega todos los otros datos por defecto
-                IDEnUso = miFormulario.agregarMiembro("", 1, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1);
+                IDEnUso = miFormulario.agregarMiembro("", 1, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, tabIndex++);
                 //FechaHora
                 agregarTipoFechaHora(nombre);
+                tabOrder.add((Object)(""+IDEnUso+"      "+valorNombreGeneral.getText()));
                 break;
             case 4:
                 //Texto
                 //Agrega todos los otros datos por defecto
-                IDEnUso = miFormulario.agregarMiembro("", 1, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1);
+                IDEnUso = miFormulario.agregarMiembro("", 1, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, tabIndex++);
                 agregarTipoTexto(nombre);
+                tabOrder.add((Object)(""+IDEnUso+"      "+valorNombreGeneral.getText()));
                 break;
             case 5:
                 //Incremental
                 //Agrega todos los otros datos por defecto
-                IDEnUso = miFormulario.agregarMiembro("", 1, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1);
+                IDEnUso = miFormulario.agregarMiembro("", 1, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, tabIndex++);
                 agregarTipoIncremental(nombre);
+                tabOrder.add((Object)(""+IDEnUso+"      "+valorNombreGeneral.getText()));
                 break;
             case 6:
                 //Jerarquia
                 //Agrega todos los otros datos por defecto
-                IDEnUso = miFormulario.agregarMiembro("", 1, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1);
+                IDEnUso = miFormulario.agregarMiembro("", 1, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, tabIndex++);
                 agregarTipoJerarquia(nombre);
+                tabOrder.add((Object)(""+IDEnUso+"      "+valorNombreGeneral.getText()));
                 break;
             case 7:
                 //Lista
                 //Agrega todos los otros datos por defecto
-                IDEnUso = miFormulario.agregarMiembro("", 1, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1);
+                IDEnUso = miFormulario.agregarMiembro("", 1, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, tabIndex++);
                 agregarTipoLista(nombre);
+                tabOrder.add((Object)(""+IDEnUso+"      "+valorNombreGeneral.getText()));
                 break;
             default:
                 break;
-        }
+        }        
         //Se abre el pane de formulario                
         llenarDatosMiembro( IDEnUso);
 }//GEN-LAST:event_botonAgregarActionPerformed
@@ -1244,7 +1275,8 @@ public class frameFormulario extends javax.swing.JFrame {
     private void botonAgregarEtqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarEtqActionPerformed
         String texto = JOptionPane.showInputDialog(this, "Favor ingresar el texto para la etiqueta", "", JOptionPane.QUESTION_MESSAGE);
         //Agrega todos los otros datos por defecto
-        IDEnUso = miFormulario.agregarMiembro(texto, 1, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1);
+        //Como es etiqueta uso tabIndex -1
+        IDEnUso = miFormulario.agregarMiembro(texto, 1, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, -1);
         agregarEtiqueta(texto);
         llenarDatosMiembro(IDEnUso);
     }//GEN-LAST:event_botonAgregarEtqActionPerformed
@@ -1286,6 +1318,25 @@ public class frameFormulario extends javax.swing.JFrame {
         //hay q actualizar la instancia del componente!!!
         //miFormulario
     }//GEN-LAST:event_botonMenosAltoActionPerformed
+
+    private void botonTabIndexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTabIndexActionPerformed
+        escogerTabIndex();
+    }//GEN-LAST:event_botonTabIndexActionPerformed
+
+    /**
+     * Abre la ventana donde se muestran los componentes del formulario para ordenar el tab index
+     */
+    private void escogerTabIndex(){
+        Object vals[] = tabOrder.toArray();
+        String[] valores = new String[vals.length];
+        for(int i = 0; i< vals.length; ++i){
+            valores[i] = vals[i].toString();
+        }
+        frameTabIndex frameTI = new frameTabIndex( valores );
+        frameTI.setLocationRelativeTo(GestionTipoCampoApp.getApplication().getMainFrame());
+        frameTI.setVisible(true);
+
+    }
 
     /**
      * Llena el tree view
@@ -1608,6 +1659,7 @@ public class frameFormulario extends javax.swing.JFrame {
     private javax.swing.JButton botonMasAncho;
     private javax.swing.JButton botonMenosAlto;
     private javax.swing.JButton botonMenosAncho;
+    private javax.swing.JButton botonTabIndex;
     private javax.swing.JButton bottonColor;
     private javax.swing.JTextField colorDato;
     private javax.swing.JComboBox comboCategorias;
@@ -1705,4 +1757,6 @@ public class frameFormulario extends javax.swing.JFrame {
     public Formulario miFormulario;
     public int IDEnUso;
     public JComponent compEnUso;
+    public SortedSet tabOrder;
+    public int tabIndex;
 }

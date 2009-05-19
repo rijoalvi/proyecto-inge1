@@ -22,6 +22,7 @@ public class MiembroFormulario implements Comparable {
     private int color;
     private int tamanoLetra;
     private int IDTipoCampo;
+    private int tabIndex;
 
     ///Constructor por omision
     public MiembroFormulario(){
@@ -34,7 +35,7 @@ public class MiembroFormulario implements Comparable {
     }
 
     ///Constructor que recibe parametros de inicialización
-    public MiembroFormulario(int ID, int IDForm, String nombre, int valX, int valY, int ancho, int alto, String tipoLetra, int color, int tamanoLetra, int IDTipoC){
+    public MiembroFormulario(int ID, int IDForm, String nombre, int valX, int valY, int ancho, int alto, String tipoLetra, int color, int tamanoLetra, int IDTipoC, int tabIndex){
         this.correlativo = ID;
         this.IDFormulario = IDForm;
         this.nombre = nombre;
@@ -46,6 +47,7 @@ public class MiembroFormulario implements Comparable {
         this.color = color;
         this.tamanoLetra = tamanoLetra;
         this.IDTipoCampo = IDTipoC;
+        this.tabIndex = tabIndex;
     }
 
    public int compareTo(Object o) {
@@ -154,5 +156,12 @@ public class MiembroFormulario implements Comparable {
      */
     public String getTipoLetra( ){
         return tipoLetra;
+    }
+
+    /**
+     * Devuelve tab index
+     */
+    public int getTabIndex( ){
+        return tabIndex;
     }
 }

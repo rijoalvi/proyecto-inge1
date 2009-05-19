@@ -33,7 +33,7 @@ public abstract class ConsultaFormulario extends ControladorBD{
      * @param IDTP
      * @return El ID del nuevo miembro
      */
-    public abstract int agregarMiembro(int IDFormulario, String nombre, int valX, int valY, int ancho, int alto, String tipoLetra, int color, int tamanoLetra, int IDTP);
+    public abstract int agregarMiembro(int IDFormulario, String nombre, int valX, int valY, int ancho, int alto, String tipoLetra, int color, int tamanoLetra, int IDTP, int tabIndex);
 
     /**
      * Borra un miembro formulario en la BD
@@ -52,7 +52,7 @@ public abstract class ConsultaFormulario extends ControladorBD{
      * @param tamanoLetra
      * @param IDTP
      */
-    public abstract void updateMiembro(int ID, String nombre, int valX, int valY, int ancho, int alto, String tipoLetra, int color, int tamanoLetra, int IDTP);
+    public abstract void updateMiembro(int ID, String nombre, int valX, int valY, int ancho, int alto, String tipoLetra, int color, int tamanoLetra, int IDTP, int tabIndex);
 
     /**
      * Actualiza la posicion del componente
