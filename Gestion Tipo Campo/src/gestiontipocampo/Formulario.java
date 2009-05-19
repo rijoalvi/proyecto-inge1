@@ -30,7 +30,8 @@ public class Formulario{
     public Formulario( String nombre, String desc) {
         this.nombre = nombre;
         this.descripcion = desc;
-        formBD = new ConsultaFormulario( );
+        buscador = new ControladorBD();
+        formBD = buscador.getConsultaFormulario();;
         this.correlativo = formBD.guardaFormulario(nombre, descripcion);
         miembrosFormulario = new TreeSet();
     }
@@ -41,7 +42,8 @@ public class Formulario{
      */
     public Formulario( int correlativo) {
         this.correlativo = correlativo;
-        formBD = new ConsultaFormulario();
+        buscador = new ControladorBD();
+        formBD = buscador.getConsultaFormulario();;
         Vector datos = this.formBD.obtenerDatosFormulario(correlativo);
         nombre =  datos.get(0).toString();
         descripcion =  datos.get(1).toString();

@@ -187,4 +187,15 @@ public class ControladorBD {
         }
         return consulta;
     }
+
+        public ConsultaFormulario getConsultaFormulario(){
+        ConsultaFormulario consulta;
+        if(CONEXION_MYSQL==conexionSeleccionada){
+            consulta = new ConsultaFormularioMySQL();
+        }
+        else{
+            consulta = new ConsultaFormularioSQLServer();
+        }
+        return consulta;
+    }
 }

@@ -59,7 +59,6 @@ public class Lista extends TipoCampo {
         Map<String, String> miMapa;
         miMapa=consultaLista.getInfoLista(this.correlativo);
 
-
         this.nombre = miMapa.get("nombre");
         this.descripcion = miMapa.get("descripcion");
         this.IDMiembroPorDefecto = miMapa.get("IDMiembroPorDefecto");
