@@ -53,7 +53,7 @@ public class ConsultaFormularioSQLServer extends ConsultaFormulario{
         this.doUpdate("insert into MIEMBROFORMULARIO (IDFormulario, nombre, valX, valY, ancho, alto, tipoLetra, color, tamanoLetra, IDTipoCampo, tabIndex) values ('"+ IDFormulario +"', '"+ nombre+"', "+ valX+", "+ valY+", "+ ancho+", "+ alto+", '"+ tipoLetra+"', '"+  color+"', '"+ tamanoLetra+"', "+ IDTP +", "+tabIndex+");");
         int ID = -1;
         try { //Se busca el ID de los datos que acaba de insertar
-            ResultSet resultado = this.getResultSet("select correlativo from MIEMBROFORMULARIO where nombre = '" + nombre + "' AND IDFormulario = "+ IDFormulario+";");
+            ResultSet resultado = this.getResultSet("select correlativo from MIEMBROFORMULARIO where tabIndex = '" + tabIndex + "' AND IDFormulario = "+ IDFormulario+";");
             if (resultado.next()) {
                 ID = resultado.getInt("correlativo");
             }
@@ -83,7 +83,7 @@ public class ConsultaFormularioSQLServer extends ConsultaFormulario{
      * @param IDTP
      */
     public void updateMiembro(int ID, String nombre, int valX, int valY, int ancho, int alto, String tipoLetra, int color, int tamanoLetra, int IDTP, int tabIndex){
-        this.doUpdate("UPDATE MIEMBROFORMULARIO set nombre = '"+ nombre +"', valX = " +valX+ ", valY = "+valY+", ancho = " +ancho+ ", alto = "+ alto + ", tipoLetra = '"+ tipoLetra+ "', color = "+color+", tamanoLetra = "+ tamanoLetra +", IDTipoCampo = "+ IDTP+ " tabIndex = "+tabIndex+" WHERE correlativo = " + ID +";");
+        this.doUpdate("UPDATE MIEMBROFORMULARIO set nombre = '"+ nombre +"', valX = " +valX+ ", valY = "+valY+", ancho = " +ancho+ ", alto = "+ alto + ", tipoLetra = '"+ tipoLetra+ "', color = "+color+", tamanoLetra = "+ tamanoLetra +", IDTipoCampo = "+ IDTP+ ", tabIndex = "+tabIndex+" WHERE correlativo = " + ID +";");
     }
 
     /**
@@ -143,7 +143,7 @@ public class ConsultaFormularioSQLServer extends ConsultaFormulario{
     public Vector obtenerMiembros(int correlativoFormulario){
         Vector miembros = new Vector();
         //ID, this.correlativo, nombre, valX, valY, tipoLetra, color, tamanoLetra, IDTP
-        String consulta = "Select correlativo,nombre,valX,valY,tipoLetra,color,tamanoLetra,IDTipoCampo From MIEMBROFORMULARIO Where IDFormulario = " + correlativoFormulario;
+        String consulta = "Select correlativo,nombre,valX,valY,ancho, alto, tipoLetra, color, tamanoLetra, IDTipoCampo, tabIndex From MIEMBROFORMULARIO Where IDFormulario = " + correlativoFormulario;
         ResultSet resultado = this.getResultSet(consulta);
 
 

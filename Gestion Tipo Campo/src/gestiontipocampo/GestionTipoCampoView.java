@@ -22,6 +22,9 @@ import javax.swing.tree.*;
 import javax.swing.JTree;
 import javax.swing.JOptionPane;
 
+
+import javax.swing.*;
+
 /**
  * The application's main frame.
  */
@@ -970,6 +973,11 @@ public class GestionTipoCampoView extends FrameView {
 
         fileMenu.setText(resourceMap.getString("fileMenu.text")); // NOI18N
         fileMenu.setName("fileMenu"); // NOI18N
+        fileMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fileMenuActionPerformed(evt);
+            }
+        });
 
         jMenuItem7.setText(resourceMap.getString("jMenuItem7.text")); // NOI18N
         jMenuItem7.setName("jMenuItem7"); // NOI18N
@@ -998,6 +1006,11 @@ public class GestionTipoCampoView extends FrameView {
         jMenuItem8.setAction(actionMap.get("AbrirFormulario")); // NOI18N
         jMenuItem8.setText(resourceMap.getString("jMenuItem8.text")); // NOI18N
         jMenuItem8.setName("jMenuItem8"); // NOI18N
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
         fileMenu.add(jMenuItem8);
 
         jSeparator1.setName("jSeparator1"); // NOI18N
@@ -1244,6 +1257,24 @@ public class GestionTipoCampoView extends FrameView {
         frameForm.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        //String val = JOptionPane.showInputDialog(this, "Favor ingresar el ID del formulario a abrir", "", JOptionPane.QUESTION_MESSAGE);
+        int ID = 1;
+        frameFormulario frameForm = new frameFormulario( arbolPrincipal.getModel(), ID);
+
+        frameForm.setLocationRelativeTo(GestionTipoCampoApp.getApplication().getMainFrame());
+        frameForm.setVisible(true);
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void fileMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileMenuActionPerformed
+        //String val = JOptionPane.showInputDialog(this, "Favor ingresar el ID del formulario a abrir", "", JOptionPane.QUESTION_MESSAGE);
+        int ID = 1;
+        frameFormulario frameForm = new frameFormulario( arbolPrincipal.getModel(), ID);
+
+        frameForm.setLocationRelativeTo(GestionTipoCampoApp.getApplication().getMainFrame());
+        frameForm.setVisible(true);
+    }//GEN-LAST:event_fileMenuActionPerformed
+
     public void llenarDatosReadOnly(String nombre, int tipo){
         //Trae todos los valores de la tabla TIPOCAMPO
         String valoresGlobales = buscarDatosEnBD(nombre);
@@ -1476,14 +1507,6 @@ public class GestionTipoCampoView extends FrameView {
                 pathPane.add(temp);
             }
         }
-    }
-
-    @Action
-    public void AbrirFormulario() {
-        frameFormulario frameForm = new frameFormulario( arbolPrincipal.getModel(),16 );
-
-        frameForm.setLocationRelativeTo(GestionTipoCampoApp.getApplication().getMainFrame());
-        frameForm.setVisible(true);
     }
 
 

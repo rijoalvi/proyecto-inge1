@@ -54,31 +54,35 @@ CREATE TABLE TIPOCAMPO(
   tipo int,
 );
 
+drop table LISTA
 create table LISTA(
     correlativo int not null,
     IDMiembroPorDefecto int,
+    conOrden varchar(6) NOT NULL DEFAULT 'False',
     primary key(correlativo)
 );
 
+drop table MIEMBROLISTA
 create table MIEMBROLISTA(
     correlativo int identity (1,1) NOT NULL,
     valor char(50),
     IDLista int not null,
+    numeroElemento int NOT NULL,
     primary key(correlativo)
 );
 
 drop table FORMULARIO;
 create table FORMULARIO(
-    correlativo int NOT NULL,
-    primary key(correlativo),
-    CONSTRAINT Formulario_correlativo
-        FOREIGN KEY(correlativo)		REFERENCES TIPOCAMPO(correlativo)
-            ON DELETE CASCADE
+    correlativo int identity (1,1) NOT NULL,
+    nombre varchar(20) NOT NULL,
+    descripcion varchar(150),
+    ultimaActualizacion timestamp,
+    primary key(correlativo)
 );
 
 drop table MIEMBROFORMULARIO;
 create table MIEMBROFORMULARIO(
-    correlativo int auto_increment NOT NULL,
+    correlativo int identity (1,1) NOT NULL,
     IDFormulario int NOT NULL,
     nombre varchar(50),
     valX int,
