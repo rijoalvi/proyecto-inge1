@@ -53,7 +53,7 @@ public class ConsultaFormularioSQLServer extends ConsultaFormulario{
         this.doUpdate("insert into MIEMBROFORMULARIO (IDFormulario, nombre, valX, valY, ancho, alto, tipoLetra, color, tamanoLetra, IDTipoCampo, tabIndex) values ('"+ IDFormulario +"', '"+ nombre+"', "+ valX+", "+ valY+", "+ ancho+", "+ alto+", '"+ tipoLetra+"', '"+  color+"', '"+ tamanoLetra+"', "+ IDTP +", "+tabIndex+");");
         int ID = -1;
         try { //Se busca el ID de los datos que acaba de insertar
-            ResultSet resultado = this.getResultSet("select correlativo from MIEMBROFORMULARIO where tabIndex = '" + tabIndex + "' AND IDFormulario = "+ IDFormulario+";");
+            ResultSet resultado = this.getResultSet("select correlativo from MIEMBROFORMULARIO where nombre = '" + nombre + "' AND IDFormulario = "+ IDFormulario+";");
             if (resultado.next()) {
                 ID = resultado.getInt("correlativo");
             }

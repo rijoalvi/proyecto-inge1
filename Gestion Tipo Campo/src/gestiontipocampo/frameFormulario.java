@@ -144,6 +144,7 @@ public class frameFormulario extends javax.swing.JFrame {
             int ID = Integer.parseInt(c.getName());
             IDEnUso = ID;
             //Aqui hay q guardar los nuevos valores a la BD...
+            System.out.println("acabo de soltar el id: "+ID);
             miFormulario.updatePosicion(ID, Integer.parseInt(valEjeX.getText()), Integer.parseInt(valEjeY.getText()));            
         }
     }
@@ -404,39 +405,39 @@ private void cargarMiembros() {
                 botonAgregarActionPerformed(evt);
             }
         });
-        botonAgregar.setBounds(260, 340, 80, -1);
+        botonAgregar.setBounds(260, 340, 80, 23);
         panePrincipal.add(botonAgregar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
         jLabel2.setName("jLabel2"); // NOI18N
-        jLabel2.setBounds(20, 70, -1, -1);
+        jLabel2.setBounds(20, 70, 41, 14);
         panePrincipal.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorNombreGeneral.setEditable(false);
         valorNombreGeneral.setName("valorNombreGeneral"); // NOI18N
-        valorNombreGeneral.setBounds(20, 90, 120, -1);
+        valorNombreGeneral.setBounds(20, 90, 120, 20);
         panePrincipal.add(valorNombreGeneral, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
         jLabel3.setName("jLabel3"); // NOI18N
-        jLabel3.setBounds(200, 70, -1, -1);
+        jLabel3.setBounds(200, 70, 58, 14);
         panePrincipal.add(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorNota.setEditable(false);
         valorNota.setName("valorNota"); // NOI18N
-        valorNota.setBounds(200, 90, 120, -1);
+        valorNota.setBounds(200, 90, 120, 20);
         panePrincipal.add(valorNota, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
-        jLabel1.setBounds(20, 20, -1, -1);
+        jLabel1.setBounds(20, 20, 73, 14);
         panePrincipal.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         comboTipos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Número", "Binario", "FechaHora", "Texto", "Incremental", "Jerarquia", "Lista" }));
         comboTipos.setEnabled(false);
         comboTipos.setFocusable(false);
         comboTipos.setName("comboTipos"); // NOI18N
-        comboTipos.setBounds(20, 40, 120, -1);
+        comboTipos.setBounds(20, 40, 120, 20);
         panePrincipal.add(comboTipos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneBinario.setName("paneBinario"); // NOI18N
@@ -508,33 +509,33 @@ private void cargarMiembros() {
 
         jLabel4.setText(resourceMap.getString("jLabel4.text")); // NOI18N
         jLabel4.setName("jLabel4"); // NOI18N
-        jLabel4.setBounds(10, 10, 110, -1);
+        jLabel4.setBounds(10, 10, 110, 14);
         paneNumero.add(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorNumDecimales.setEditable(false);
         valorNumDecimales.setName("valorNumDecimales"); // NOI18N
-        valorNumDecimales.setBounds(10, 30, 120, -1);
+        valorNumDecimales.setBounds(10, 30, 120, 20);
         paneNumero.add(valorNumDecimales, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel5.setText(resourceMap.getString("jLabel5.text")); // NOI18N
         jLabel5.setName("jLabel5"); // NOI18N
-        jLabel5.setBounds(200, 10, 50, -1);
+        jLabel5.setBounds(200, 10, 50, 14);
         paneNumero.add(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorNumeroMascara.setEditable(false);
         valorNumeroMascara.setName("valorNumeroMascara"); // NOI18N
-        valorNumeroMascara.setBounds(200, 30, 120, -1);
+        valorNumeroMascara.setBounds(200, 30, 120, 20);
         paneNumero.add(valorNumeroMascara, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorValorDefectoNumero.setEditable(false);
         valorValorDefectoNumero.setText(resourceMap.getString("valorValorDefectoNumero.text")); // NOI18N
         valorValorDefectoNumero.setName("valorValorDefectoNumero"); // NOI18N
-        valorValorDefectoNumero.setBounds(10, 80, 120, -1);
+        valorValorDefectoNumero.setBounds(10, 80, 120, 20);
         paneNumero.add(valorValorDefectoNumero, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel12.setText(resourceMap.getString("jLabel12.text")); // NOI18N
         jLabel12.setName("jLabel12"); // NOI18N
-        jLabel12.setBounds(10, 60, 90, -1);
+        jLabel12.setBounds(10, 60, 90, 14);
         paneNumero.add(jLabel12, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneNumero.setBounds(20, 110, 410, 200);
@@ -773,23 +774,23 @@ private void cargarMiembros() {
 
         jLabel27.setText(resourceMap.getString("jLabel27.text")); // NOI18N
         jLabel27.setName("jLabel27"); // NOI18N
-        jLabel27.setBounds(140, 80, 80, -1);
+        jLabel27.setBounds(140, 80, 80, 14);
         paneFormulario.add(jLabel27, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel28.setText(resourceMap.getString("jLabel28.text")); // NOI18N
         jLabel28.setName("jLabel28"); // NOI18N
-        jLabel28.setBounds(20, 130, 100, -1);
+        jLabel28.setBounds(20, 130, 100, 14);
         paneFormulario.add(jLabel28, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         comboTipoLetra.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Arial", "Times New Roman", "????????" }));
         comboTipoLetra.setName("comboTipoLetra"); // NOI18N
-        comboTipoLetra.setBounds(10, 100, 80, -1);
+        comboTipoLetra.setBounds(10, 100, 80, 20);
         paneFormulario.add(comboTipoLetra, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         colorDato.setEditable(false);
         colorDato.setText(resourceMap.getString("colorDato.text")); // NOI18N
         colorDato.setName("colorDato"); // NOI18N
-        colorDato.setBounds(140, 50, 60, -1);
+        colorDato.setBounds(140, 50, 60, 20);
         paneFormulario.add(colorDato, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         botonGuardar.setText(resourceMap.getString("botonGuardar.text")); // NOI18N
@@ -799,46 +800,46 @@ private void cargarMiembros() {
                 botonGuardarActionPerformed(evt);
             }
         });
-        botonGuardar.setBounds(290, 210, -1, -1);
+        botonGuardar.setBounds(290, 210, 71, 23);
         paneFormulario.add(botonGuardar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         tamanoLetra.setText(resourceMap.getString("tamanoLetra.text")); // NOI18N
         tamanoLetra.setName("tamanoLetra"); // NOI18N
-        tamanoLetra.setBounds(140, 100, 80, -1);
+        tamanoLetra.setBounds(140, 100, 80, 20);
         paneFormulario.add(tamanoLetra, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel29.setText(resourceMap.getString("jLabel29.text")); // NOI18N
         jLabel29.setName("jLabel29"); // NOI18N
-        jLabel29.setBounds(10, 80, 60, -1);
+        jLabel29.setBounds(10, 80, 60, 14);
         paneFormulario.add(jLabel29, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel30.setText(resourceMap.getString("jLabel30.text")); // NOI18N
         jLabel30.setName("jLabel30"); // NOI18N
-        jLabel30.setBounds(260, 80, 60, -1);
+        jLabel30.setBounds(260, 80, 60, 14);
         paneFormulario.add(jLabel30, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         textoDato.setName("textoDato"); // NOI18N
-        textoDato.setBounds(10, 50, 80, -1);
+        textoDato.setBounds(10, 50, 80, 20);
         paneFormulario.add(textoDato, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valEjeY.setText(resourceMap.getString("valEjeY.text")); // NOI18N
         valEjeY.setName("valEjeY"); // NOI18N
-        valEjeY.setBounds(260, 100, 50, -1);
+        valEjeY.setBounds(260, 100, 50, 20);
         paneFormulario.add(valEjeY, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valEjeX.setText(resourceMap.getString("valEjeX.text")); // NOI18N
         valEjeX.setName("valEjeX"); // NOI18N
-        valEjeX.setBounds(260, 50, 50, -1);
+        valEjeX.setBounds(260, 50, 50, 20);
         paneFormulario.add(valEjeX, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel31.setText(resourceMap.getString("jLabel31.text")); // NOI18N
         jLabel31.setName("jLabel31"); // NOI18N
-        jLabel31.setBounds(140, 30, 60, -1);
+        jLabel31.setBounds(140, 30, 60, 14);
         paneFormulario.add(jLabel31, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel32.setText(resourceMap.getString("jLabel32.text")); // NOI18N
         jLabel32.setName("jLabel32"); // NOI18N
-        jLabel32.setBounds(260, 30, 60, -1);
+        jLabel32.setBounds(260, 30, 60, 14);
         paneFormulario.add(jLabel32, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         bottonColor.setText(resourceMap.getString("bottonColor.text")); // NOI18N
@@ -848,7 +849,7 @@ private void cargarMiembros() {
                 bottonColorActionPerformed(evt);
             }
         });
-        bottonColor.setBounds(200, 50, 30, -1);
+        bottonColor.setBounds(200, 50, 30, 23);
         paneFormulario.add(bottonColor, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         botonBorrarComp.setText(resourceMap.getString("botonBorrarComp.text")); // NOI18N
@@ -858,7 +859,7 @@ private void cargarMiembros() {
                 botonBorrarCompActionPerformed(evt);
             }
         });
-        botonBorrarComp.setBounds(210, 210, 70, -1);
+        botonBorrarComp.setBounds(210, 210, 70, 23);
         paneFormulario.add(botonBorrarComp, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         botonMasAlto.setText(resourceMap.getString("botonMasAlto.text")); // NOI18N
@@ -868,7 +869,7 @@ private void cargarMiembros() {
                 botonMasAltoActionPerformed(evt);
             }
         });
-        botonMasAlto.setBounds(20, 180, 60, -1);
+        botonMasAlto.setBounds(20, 180, 60, 23);
         paneFormulario.add(botonMasAlto, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         botonMasAncho.setText(resourceMap.getString("botonMasAncho.text")); // NOI18N
@@ -878,17 +879,17 @@ private void cargarMiembros() {
                 botonMasAnchoActionPerformed(evt);
             }
         });
-        botonMasAncho.setBounds(20, 150, -1, -1);
+        botonMasAncho.setBounds(20, 150, 63, 23);
         paneFormulario.add(botonMasAncho, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel33.setText(resourceMap.getString("jLabel33.text")); // NOI18N
         jLabel33.setName("jLabel33"); // NOI18N
-        jLabel33.setBounds(10, 30, 80, -1);
+        jLabel33.setBounds(10, 30, 80, 14);
         paneFormulario.add(jLabel33, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel34.setText(resourceMap.getString("jLabel34.text")); // NOI18N
         jLabel34.setName("jLabel34"); // NOI18N
-        jLabel34.setBounds(140, 130, 100, -1);
+        jLabel34.setBounds(140, 130, 100, 14);
         paneFormulario.add(jLabel34, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         botonMenosAlto.setText(resourceMap.getString("botonMenosAlto.text")); // NOI18N
@@ -898,7 +899,7 @@ private void cargarMiembros() {
                 botonMenosAltoActionPerformed(evt);
             }
         });
-        botonMenosAlto.setBounds(140, 180, 60, -1);
+        botonMenosAlto.setBounds(140, 180, 60, 23);
         paneFormulario.add(botonMenosAlto, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         botonMenosAncho.setText(resourceMap.getString("botonMenosAncho.text")); // NOI18N
@@ -908,7 +909,7 @@ private void cargarMiembros() {
                 botonMenosAnchoActionPerformed(evt);
             }
         });
-        botonMenosAncho.setBounds(140, 150, -1, -1);
+        botonMenosAncho.setBounds(140, 150, 63, 23);
         paneFormulario.add(botonMenosAncho, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneFormulario.setBounds(10, 110, 390, 250);
@@ -921,7 +922,7 @@ private void cargarMiembros() {
                 botonAgregarEtqActionPerformed(evt);
             }
         });
-        botonAgregarEtq.setBounds(30, 10, 120, -1);
+        botonAgregarEtq.setBounds(30, 10, 120, 23);
         paneDatos.add(botonAgregarEtq, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         botonTabIndex.setText(resourceMap.getString("botonTabIndex.text")); // NOI18N
@@ -931,7 +932,7 @@ private void cargarMiembros() {
                 botonTabIndexActionPerformed(evt);
             }
         });
-        botonTabIndex.setBounds(190, 10, 180, -1);
+        botonTabIndex.setBounds(190, 10, 180, 23);
         paneDatos.add(botonTabIndex, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton3.setText(resourceMap.getString("jButton3.text")); // NOI18N
@@ -944,6 +945,11 @@ private void cargarMiembros() {
 
         botonActualizar.setText(resourceMap.getString("botonActualizar.text")); // NOI18N
         botonActualizar.setName("botonActualizar"); // NOI18N
+        botonActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonActualizarActionPerformed(evt);
+            }
+        });
 
         frameVistaPrevia.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         frameVistaPrevia.setIconifiable(true);
@@ -956,11 +962,11 @@ private void cargarMiembros() {
         frameVistaPrevia.getContentPane().setLayout(frameVistaPreviaLayout);
         frameVistaPreviaLayout.setHorizontalGroup(
             frameVistaPreviaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 492, Short.MAX_VALUE)
+            .addGap(0, 496, Short.MAX_VALUE)
         );
         frameVistaPreviaLayout.setVerticalGroup(
             frameVistaPreviaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 866, Short.MAX_VALUE)
+            .addGap(0, 898, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -977,7 +983,7 @@ private void cargarMiembros() {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(28, 28, 28)
                                 .addComponent(botonActualizar)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(paneDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(frameVistaPrevia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1020,82 +1026,82 @@ private void cargarMiembros() {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
-        //Se agrega el valor al formulario
-        String nombre = valorNombreGeneral.getText();
+        agregarCampo();
+}//GEN-LAST:event_botonAgregarActionPerformed
+
+    /**
+     * Agrega un nuevo campo al formulario
+     */
+    private void agregarCampo(){
+    //Se agrega el valor al formulario
+        String nombre = JOptionPane.showInputDialog(this, "Favor ingresar el nombre del campo a agregar", "", JOptionPane.QUESTION_MESSAGE);
+        agregarRotulo(nombre);
+        nombre = "v. "+nombre;
         //En este switch se debe crear una instancia del nuevo tipo campo a agregar al formulario
         switch(comboTipos.getSelectedIndex()){
             case 1:
                 //Numero
                 //Agrega todos los otros datos por defecto
-                IDEnUso = miFormulario.agregarMiembro("", 1, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, tabIndex++);
-                System.out.println("id nuevo: "+IDEnUso);
+                IDEnUso = miFormulario.agregarMiembro(nombre, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, tabIndex++);
                 JTextField texto = agregarTipoNumero(nombre, IDEnUso);
-                tabOrder.add((Object)(""+IDEnUso+"      "+valorNombreGeneral.getText()));
+                tabOrder.add((Object)(""+IDEnUso+"      "+nombre));
                 break;
             case 2:
                 //Binario
                 //agrega el componente 1:
-                String temp = valorOpcionBinaria1.getText();
+                String temp = valorNombreBinario1.getText();
                 //Agrega todos los otros datos por defecto
-                IDEnUso = miFormulario.agregarMiembro(temp, 1, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 2, tabIndex++);
-                System.out.println("id nuevo: "+IDEnUso);
+                IDEnUso = miFormulario.agregarMiembro(temp, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 2, tabIndex++);
                 agregarTipoBinario(temp, IDEnUso);
-                tabOrder.add((Object)(""+IDEnUso+"      "+valorNombreBinario1.getText()));
+                tabOrder.add((Object)(""+IDEnUso+"      "+temp));
 
                 //agrega el componente 2:
-                temp = valorOpcionBinaria2.getText();
-                IDEnUso = miFormulario.agregarMiembro(temp, 1, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 2, tabIndex++);
-                System.out.println("id nuevo: "+IDEnUso);
+                temp = valorNombreBinario2.getText();
+                IDEnUso = miFormulario.agregarMiembro(temp, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 2, tabIndex++);
                 agregarTipoBinario(temp, IDEnUso);
-                tabOrder.add((Object)(""+IDEnUso+"      "+valorNombreBinario2.getText()));
+                tabOrder.add((Object)(""+IDEnUso+"      "+temp));
                 break;
             case 3:
                 //Agrega todos los otros datos por defecto
-                IDEnUso = miFormulario.agregarMiembro("", 1, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, tabIndex++);
-                System.out.println("id nuevo: "+IDEnUso);
+                IDEnUso = miFormulario.agregarMiembro(nombre, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, tabIndex++);
                 //FechaHora
                 agregarTipoFechaHora(nombre, IDEnUso);
-                tabOrder.add((Object)(""+IDEnUso+"      "+valorNombreGeneral.getText()));
+                tabOrder.add((Object)(""+IDEnUso+"      "+nombre));
                 break;
             case 4:
                 //Texto
                 //Agrega todos los otros datos por defecto
-                IDEnUso = miFormulario.agregarMiembro("", 1, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, tabIndex++);
-                System.out.println("id nuevo: "+IDEnUso);
+                IDEnUso = miFormulario.agregarMiembro(nombre, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, tabIndex++);
                 agregarTipoTexto(nombre, IDEnUso);
-                tabOrder.add((Object)(""+IDEnUso+"      "+valorNombreGeneral.getText()));
+                tabOrder.add((Object)(""+IDEnUso+"      "+nombre));
                 break;
             case 5:
                 //Incremental
                 //Agrega todos los otros datos por defecto
-                IDEnUso = miFormulario.agregarMiembro("", 1, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, tabIndex++);
-                System.out.println("id nuevo: "+IDEnUso);
+                IDEnUso = miFormulario.agregarMiembro(nombre, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, tabIndex++);
                 agregarTipoIncremental(nombre, IDEnUso);
-                tabOrder.add((Object)(""+IDEnUso+"      "+valorNombreGeneral.getText()));
+                tabOrder.add((Object)(""+IDEnUso+"      "+nombre));
                 break;
             case 6:
                 //Jerarquia
                 //Agrega todos los otros datos por defecto
-                IDEnUso = miFormulario.agregarMiembro("", 1, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, tabIndex++);
-                System.out.println("id nuevo: "+IDEnUso);
+                IDEnUso = miFormulario.agregarMiembro(nombre, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, tabIndex++);
                 agregarTipoJerarquia(nombre, IDEnUso);
-                tabOrder.add((Object)(""+IDEnUso+"      "+valorNombreGeneral.getText()));
+                tabOrder.add((Object)(""+IDEnUso+"      "+nombre));
                 break;
             case 7:
                 //Lista
                 //Agrega todos los otros datos por defecto
-                IDEnUso = miFormulario.agregarMiembro("", 1, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, tabIndex++);
-                System.out.println("id nuevo: "+IDEnUso);
+                IDEnUso = miFormulario.agregarMiembro(nombre, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, tabIndex++);
                 agregarTipoLista(nombre, IDEnUso);
-                tabOrder.add((Object)(""+IDEnUso+"      "+valorNombreGeneral.getText()));
+                tabOrder.add((Object)(""+IDEnUso+"      "+nombre));
                 break;
             default:
                 break;
-        }        
-        //Se abre el pane de formulario                
+        }
+        //Se abre el pane de formulario
         llenarDatosMiembro( IDEnUso);
-}//GEN-LAST:event_botonAgregarActionPerformed
-
+    }
     /**
      * Llena los datos del componente para que el usuaro pueda modificarlos
      * @param ID ID del componente a mostrar los datos
@@ -1104,8 +1110,11 @@ private void cargarMiembros() {
         ocultarPanes();
         paneFormulario.setVisible(true);
         MiembroFormulario temp = miFormulario.getMiembro(ID);
-        System.out.println("tengo los datos del ID: "+ID);
-        textoDato.setText(temp.getNombre());
+        //osea q es de tipo etiqueta, o binario
+        if(temp.getIDTipoCampo() == 0 || temp.getIDTipoCampo() == 2)
+            textoDato.setText(temp.getNombre());
+        else
+            textoDato.setText("");
         colorDato.setForeground(new Color(temp.getColor()));
         valEjeX.setText(""+temp.getValX());
         valEjeY.setText(""+temp.getValY());
@@ -1140,7 +1149,7 @@ private void cargarMiembros() {
         jtf.addMouseListener(listener);
         jtf.addMouseMotionListener(motionListener);
         frameVistaPrevia.add( jtf );
-        jtf.setBounds(1, 1, 100, 20);
+        jtf.setBounds(10, 1, 100, 20);
         compEnUso = jtf;
         return jtf;
     }
@@ -1156,7 +1165,7 @@ private void cargarMiembros() {
         r1.addMouseListener(listener);
         r1.addMouseMotionListener(motionListener);
         frameVistaPrevia.add( r1 );
-        r1.setBounds(1, 1, 100, 20);
+        r1.setBounds(10, 1, 100, 20);
         compEnUso = r1;
         return r1;
     }
@@ -1173,7 +1182,7 @@ private void cargarMiembros() {
         jtf.addMouseListener(listener);
         jtf.addMouseMotionListener(motionListener);
         frameVistaPrevia.add( jtf );
-        jtf.setBounds(1, 1, 100, 20);
+        jtf.setBounds(10, 1, 100, 20);
         compEnUso = jtf;
     }
 
@@ -1188,7 +1197,7 @@ private void cargarMiembros() {
         jtf.addMouseListener(listener);
         jtf.addMouseMotionListener(motionListener);
         frameVistaPrevia.add( jtf );
-        jtf.setBounds(1, 1, 100, 20);
+        jtf.setBounds(10, 1, 100, 20);
         compEnUso = jtf;
     }
 
@@ -1203,7 +1212,7 @@ private void cargarMiembros() {
         jtf.addMouseListener(listener);
         jtf.addMouseMotionListener(motionListener);
         frameVistaPrevia.add( jtf );
-        jtf.setBounds(1, 1, 100, 20);
+        jtf.setBounds(10, 1, 100, 20);
         compEnUso = jtf;
     }
 
@@ -1218,7 +1227,7 @@ private void cargarMiembros() {
         jtf.addMouseListener(listener);
         jtf.addMouseMotionListener(motionListener);
         frameVistaPrevia.add( jtf );
-        jtf.setBounds(1, 1, 100, 20);
+        jtf.setBounds(100, 1, 100, 20);
         compEnUso = jtf;
     }
 
@@ -1233,16 +1242,20 @@ private void cargarMiembros() {
         jtf.addMouseListener(listener);
         jtf.addMouseMotionListener(motionListener);
         frameVistaPrevia.add( jtf );
-        jtf.setBounds(1, 1, 100, 20);
+        jtf.setBounds(10, 1, 100, 20);
         compEnUso = jtf;
     }
 
 
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
+        MiembroFormulario tmp = miFormulario.getMiembro(IDEnUso);
+        String texto = textoDato.getText();
+        //Si no es etiqueta, ni binario
+        if(tmp.getIDTipoCampo() != 0 && tmp.getIDTipoCampo() != 2)
+            texto = "";
         //Se guardan los datos en la instancia del Formulario, al igual que en la BD
-        miFormulario.upDateValoresMiembro(IDEnUso, textoDato.getText(), Integer.parseInt(valEjeX.getText()), Integer.parseInt(valEjeY.getText()), compEnUso.getWidth(), compEnUso.getHeight(), comboTipoLetra.getSelectedItem().toString() , colorDato.getForeground().getRGB() , Integer.parseInt(tamanoLetra.getText()) );
+        miFormulario.upDateValoresMiembro(IDEnUso, texto, Integer.parseInt(valEjeX.getText()), Integer.parseInt(valEjeY.getText()), compEnUso.getWidth(), compEnUso.getHeight(), comboTipoLetra.getSelectedItem().toString() , colorDato.getForeground().getRGB() , Integer.parseInt(tamanoLetra.getText()) );
         //Se actualiza el componente en el preview
-        System.out.println("ancho: "+compEnUso.getWidth()+" alto: "+ compEnUso.getHeight());
         actualizarComponente( textoDato.getText(), Integer.parseInt(valEjeX.getText()), Integer.parseInt(valEjeY.getText()), comboTipoLetra.getSelectedItem().toString() , colorDato.getForeground().getRGB() , Integer.parseInt(tamanoLetra.getText()), compEnUso.getWidth(), compEnUso.getHeight() );
         //desp de guardar se ocultan los panes
         ocultarPanes();
@@ -1264,20 +1277,17 @@ private void cargarMiembros() {
         if(componente.contains("javax.swing.JLabel"))
             ((JLabel)(compEnUso)).setText(texto);
         else{
-            //Si es un campo de texto:
-            if(componente.contains("javax.swing.JTextField"))
-               ((JTextField)(compEnUso)).setText(texto);
+            //Si es un radio
+            if(componente.contains("javax.swing.JRadioButton"))
+                ((JRadioButton)(compEnUso)).setText(texto);
             else{
-                if(componente.contains("javax.swing.JRadioButton"))
-                    ((JRadioButton)(compEnUso)).setText(texto);
+                //si es un combo
                 if(componente.contains("javax.swing.JComboBox")){
                     //hay q separar los valores...
                     //((JComboBox)(compEnUso))
                 }
             }
         }
-        //if(compEnUso)
-        //compEnUso.set
         compEnUso.setBounds(valX, valY, ancho, alto);
         //cambia color
         compEnUso.setForeground(new Color(color));
@@ -1296,23 +1306,39 @@ private void cargarMiembros() {
 
     private void botonAgregarEtqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarEtqActionPerformed
         String texto = JOptionPane.showInputDialog(this, "Favor ingresar el texto para la etiqueta", "", JOptionPane.QUESTION_MESSAGE);
-        //Agrega todos los otros datos por defecto
+        agregarRotulo(texto);
+    }//GEN-LAST:event_botonAgregarEtqActionPerformed
+
+    /**
+     * Agrega un rotulo/etiqueta nueva al formulario
+     * Llama al metodo respectivo para guardar en la BD tamb
+     */
+    private void agregarRotulo(String texto){
         //Como es etiqueta uso tabIndex -1
         IDEnUso = miFormulario.agregarMiembro(texto, 1, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 0, -1);
-        System.out.println("id nuevo: "+IDEnUso);
         agregarEtiqueta(texto, IDEnUso);
         llenarDatosMiembro(IDEnUso);
-    }//GEN-LAST:event_botonAgregarEtqActionPerformed
+    }
 
     private void botonBorrarCompActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarCompActionPerformed
         // TODO add your handling code here:
         //Se eliminan los datos en la instancia del Formulario, al igual que en la BD
         miFormulario.eliminarMiembro(IDEnUso);
         //Se elimina el componente del preview
-        compEnUso.setVisible(false);     
+        compEnUso.setVisible(false);
+        //Se elimina de la lista para el TabIndex
+        eliminarCampoTabIndex(IDEnUso);
         //desp se ocultan los panes
         ocultarPanes();
     }//GEN-LAST:event_botonBorrarCompActionPerformed
+
+    /**
+     * De la lista con los valores del tabIndex, elimina la entrada del campo
+     * @param ID
+     */
+    private void eliminarCampoTabIndex(int ID){
+
+    }
 
     private void botonMasAnchoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMasAnchoActionPerformed
         // TODO add your handling code here:
@@ -1345,6 +1371,11 @@ private void cargarMiembros() {
     private void botonTabIndexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTabIndexActionPerformed
         escogerTabIndex();
     }//GEN-LAST:event_botonTabIndexActionPerformed
+
+    private void botonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarActionPerformed
+        //Vuelve a llenar el tree view
+        llenarTreeView();
+    }//GEN-LAST:event_botonActualizarActionPerformed
 
     /**
      * Abre la ventana donde se muestran los componentes del formulario para ordenar el tab index
