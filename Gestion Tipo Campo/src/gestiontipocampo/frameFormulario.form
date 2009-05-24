@@ -26,6 +26,7 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
@@ -53,7 +54,7 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jScrollPane1" min="-2" pref="376" max="-2" attributes="0"/>
@@ -61,9 +62,9 @@
                       <Component id="botonActualizar" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="paneDatos" alignment="0" min="-2" pref="398" max="-2" attributes="0"/>
-                  <Component id="frameVistaPrevia" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="frameVistaPrevia" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="jButton3" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -97,6 +98,16 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="jButton3">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="jButton3.text"/>
+        <Property name="toolTipText" type="java.lang.String" resourceKey="jButton3.toolTipText"/>
+        <Property name="name" type="java.lang.String" value="jButton3" noResource="true"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+      </Events>
+    </Component>
     <Container class="javax.swing.JLayeredPane" name="paneDatos">
       <Properties>
         <Property name="name" type="java.lang.String" value="paneDatos" noResource="true"/>
@@ -939,7 +950,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-                  <JLayeredPaneConstraints x="140" y="80" width="80" height="-1" layer="0" position="-1"/>
+                  <JLayeredPaneConstraints x="260" y="80" width="80" height="-1" layer="0" position="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -956,15 +967,14 @@
             </Component>
             <Component class="javax.swing.JComboBox" name="comboTipoLetra">
               <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="3">
-                    <StringItem index="0" value="Arial"/>
-                    <StringItem index="1" value="Times New Roman"/>
-                    <StringItem index="2" value="????????"/>
-                  </StringArray>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new javax.swing.DefaultComboBoxModel(fonts)" type="code"/>
                 </Property>
                 <Property name="name" type="java.lang.String" value="comboTipoLetra" noResource="true"/>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="java.awt.GraphicsEnvironment grficen = GraphicsEnvironment.getLocalGraphicsEnvironment();&#xa;String[] fonts = grficen.getAvailableFontFamilyNames();"/>
+              </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
                   <JLayeredPaneConstraints x="10" y="100" width="80" height="-1" layer="0" position="-1"/>
@@ -1004,7 +1014,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-                  <JLayeredPaneConstraints x="140" y="100" width="80" height="-1" layer="0" position="-1"/>
+                  <JLayeredPaneConstraints x="260" y="100" width="80" height="-1" layer="0" position="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -1026,7 +1036,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-                  <JLayeredPaneConstraints x="260" y="80" width="60" height="-1" layer="0" position="-1"/>
+                  <JLayeredPaneConstraints x="320" y="30" width="60" height="-1" layer="0" position="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -1047,7 +1057,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-                  <JLayeredPaneConstraints x="260" y="100" width="50" height="-1" layer="0" position="-1"/>
+                  <JLayeredPaneConstraints x="320" y="50" width="50" height="-1" layer="0" position="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -1058,7 +1068,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-                  <JLayeredPaneConstraints x="260" y="50" width="50" height="-1" layer="0" position="-1"/>
+                  <JLayeredPaneConstraints x="250" y="50" width="50" height="-1" layer="0" position="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -1080,7 +1090,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-                  <JLayeredPaneConstraints x="260" y="30" width="60" height="-1" layer="0" position="-1"/>
+                  <JLayeredPaneConstraints x="240" y="30" width="60" height="-1" layer="0" position="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -1190,6 +1200,33 @@
                 </Constraint>
               </Constraints>
             </Component>
+            <Component class="javax.swing.JComboBox" name="comboEstiloLetra">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new javax.swing.DefaultComboBoxModel(new String[]{&quot;Plain&quot;, &quot;Bold&quot;, &quot;Italic&quot;, &quot;BoldItalic&quot;})" type="code"/>
+                </Property>
+                <Property name="name" type="java.lang.String" value="comboEstiloLetra" noResource="true"/>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
+                  <JLayeredPaneConstraints x="140" y="100" width="90" height="-1" layer="0" position="-1"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel35">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="jLabel35.text"/>
+                <Property name="name" type="java.lang.String" value="jLabel35" noResource="true"/>
+              </Properties>
+              <AccessibilityProperties>
+                <Property name="AccessibleContext.accessibleName" type="java.lang.String" resourceKey="jLabel35.AccessibleContext.accessibleName"/>
+              </AccessibilityProperties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
+                  <JLayeredPaneConstraints x="140" y="80" width="60" height="-1" layer="0" position="-1"/>
+                </Constraint>
+              </Constraints>
+            </Component>
           </SubComponents>
         </Container>
         <Component class="javax.swing.JButton" name="botonAgregarEtq">
@@ -1222,15 +1259,6 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="jButton3">
-      <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="jButton3.text"/>
-        <Property name="name" type="java.lang.String" value="jButton3" noResource="true"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="botonActualizar">
       <Properties>
         <Property name="text" type="java.lang.String" resourceKey="botonActualizar.text"/>
@@ -1260,7 +1288,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="898" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="846" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>

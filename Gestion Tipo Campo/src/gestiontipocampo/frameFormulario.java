@@ -3,7 +3,6 @@
  *
  * Created on 30-abr-2009, 18:16:02
  */
-
 package gestiontipocampo;
 
 import java.sql.*;
@@ -16,6 +15,7 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.*;
 import javax.swing.JColorChooser;
 import java.awt.Color;
+import java.awt.GraphicsEnvironment;
 import java.util.Iterator;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -27,23 +27,24 @@ import java.util.TreeSet;
 public class frameFormulario extends javax.swing.JFrame {
 
     /** Creates new form frameFormulario */
-    public frameFormulario( ) {
+    public frameFormulario() {
         this.setTitle("GIFT Configurador - Edición de Formularios1");
         String nombre = JOptionPane.showInputDialog(this, "Favor ingresar el nombre del formulario a crear", "", JOptionPane.QUESTION_MESSAGE);
         String descripcion = JOptionPane.showInputDialog(this, "Favor ingresar la descripcion del formulario a crear", "", JOptionPane.QUESTION_MESSAGE);
 
         initComponents();
-        miFormulario = new Formulario( nombre, descripcion );
+        postInitComponents();
+        miFormulario = new Formulario(nombre, descripcion);
         frameVistaPrevia.setResizable(false);
-        this.frameVistaPrevia.setTitle(nombre);
-        
+        frameVistaPrevia.setTitle(nombre);
+
         //Inicializa el valor de los tabOrder
         tabOrder = new TreeSet();
         tabIndex = 0;
 
         //Inicializa los recolectores de eventos del mouse
         listener = new DragMouseAdapter();
-        motionListener= new DragMouseAdapter();
+        motionListener = new DragMouseAdapter();
 
         //Inicializa el arbol para obtener nodo seleccionado
         arbolPrincipal.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
@@ -52,14 +53,15 @@ public class frameFormulario extends javax.swing.JFrame {
     }
 
     /** Creates new form frameFormulario */
-    public frameFormulario( TreeModel arbolHeredado) {
+    public frameFormulario(TreeModel arbolHeredado) {
         this.setTitle("GIFT Configurador - Edición de Formularios2");
         String nombre = JOptionPane.showInputDialog(this, "Favor ingresar el nombre del formulario a crear", "", JOptionPane.QUESTION_MESSAGE);
         String descripcion = JOptionPane.showInputDialog(this, "Favor ingresar la descripcion del formulario a crear", "", JOptionPane.QUESTION_MESSAGE);
 
         initComponents();
-       // frameVistaPrevia = new JInternalFrame(nombre, false);
-        miFormulario = new Formulario( nombre, descripcion );
+        postInitComponents();
+        // frameVistaPrevia = new JInternalFrame(nombre, false);
+        miFormulario = new Formulario(nombre, descripcion);
         frameVistaPrevia.setResizable(false);
         frameVistaPrevia.setTitle(nombre);
 
@@ -69,23 +71,24 @@ public class frameFormulario extends javax.swing.JFrame {
 
         //Inicializa los recolectores de eventos del mouse
         listener = new DragMouseAdapter();
-        motionListener= new DragMouseAdapter();
+        motionListener = new DragMouseAdapter();
 
         //Inicializa el arbol para obtener nodo seleccionado
         arbolPrincipal.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         arbolPrincipal.setModel(arbolHeredado);
-        ocultarPanes();              
+        ocultarPanes();
     }
 
     /**
      * Creates new form frameFormulario
      */
-    public frameFormulario( TreeModel arbolHeredado, int correlativo) {
+    public frameFormulario(TreeModel arbolHeredado, int correlativo) {
         this.setTitle("GIFT Configurador - Edición de Formularios con correlativo");
         miFormulario = new Formulario(correlativo);
         String nombre = miFormulario.getNombre();
         String descripcion = miFormulario.getDescripcion();
         initComponents();
+        postInitComponents();
         frameVistaPrevia.setResizable(false);
         frameVistaPrevia.setTitle(nombre);
 
@@ -95,7 +98,7 @@ public class frameFormulario extends javax.swing.JFrame {
 
         //Inicializa los recolectores de eventos del mouse
         listener = new DragMouseAdapter();
-        motionListener= new DragMouseAdapter();
+        motionListener = new DragMouseAdapter();
 
         //Inicializa el arbol para obtener nodo seleccionado
         arbolPrincipal.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
@@ -105,12 +108,12 @@ public class frameFormulario extends javax.swing.JFrame {
         cargarMiembros();
     }
 
-    
     private class DragMouseAdapter extends MouseAdapter {
+
         @Override
-        public void mousePressed(MouseEvent e){
-            System.out.print(" ");
-            JComponent c = (JComponent)e.getSource();
+        public void mousePressed(MouseEvent e) {
+            //System.out.print(" ");
+            JComponent c = (JComponent) e.getSource();
             compEnUso = c;
             //Aqui hay q mostrar los valores del componente...
             int ID = Integer.parseInt(c.getName());
@@ -120,43 +123,50 @@ public class frameFormulario extends javax.swing.JFrame {
 
         @Override
         public void mouseDragged(MouseEvent e) {
-            JComponent c = (JComponent)e.getSource();
+            JComponent c = (JComponent) e.getSource();
             maxX = frameVistaPrevia.getWidth();
             maxY = frameVistaPrevia.getHeight();
 
-            float tx = e.getX()+c.getX();
-            if(tx < 0) { tx = 0; }
-            if(tx > maxX - c.getWidth()) { tx = maxX-c.getWidth(); }
-            float ty = e.getY()+c.getY();
-            if(ty < 0) { ty = 0; }
-            if(ty > maxY-c.getHeight()) { ty = maxY-c.getHeight(); }
+            float tx = e.getX() + c.getX();
+            if (tx < 0) {
+                tx = 0;
+            }
+            if (tx > maxX - c.getWidth()) {
+                tx = maxX - c.getWidth();
+            }
+            float ty = e.getY() + c.getY();
+            if (ty < 0) {
+                ty = 0;
+            }
+            if (ty > maxY - c.getHeight()) {
+                ty = maxY - c.getHeight();
+            }
 
-            c.setBounds((int)tx, (int)ty, c.getWidth(), c.getHeight() );
-            valEjeX.setText(""+ (int)tx);
-            valEjeY.setText(""+ (int)ty);
+            c.setBounds((int) tx, (int) ty, c.getWidth(), c.getHeight());
+            valEjeX.setText("" + (int) tx);
+            valEjeY.setText("" + (int) ty);
         }
 
         @Override
-        public void mouseReleased(MouseEvent e){            
-            JComponent c = (JComponent)e.getSource();
+        public void mouseReleased(MouseEvent e) {
+            JComponent c = (JComponent) e.getSource();
             //Actualiza cual componente es el ultimo en poseer el focus
             compEnUso = c;
             int ID = Integer.parseInt(c.getName());
             IDEnUso = ID;
             //Aqui hay q guardar los nuevos valores a la BD...
-            System.out.println("acabo de soltar el id: "+ID);
-            miFormulario.updatePosicion(ID, Integer.parseInt(valEjeX.getText()), Integer.parseInt(valEjeY.getText()));            
+            //System.out.println("acabo de soltar el id: " + ID);
+            miFormulario.updatePosicion(ID, Integer.parseInt(valEjeX.getText()), Integer.parseInt(valEjeY.getText()));
         }
     }
 
-
-private void cargarMiembros() {
-            //En este switch se debe crear una instancia del nuevo tipo campo a agregar al formulario
+    private void cargarMiembros() {
+        //En este switch se debe crear una instancia del nuevo tipo campo a agregar al formulario
         SortedSet miembros = this.miFormulario.getMiembroFormularioSet();
         Iterator iterador = miembros.iterator();
 
-        for(int i=0; i<miembros.size();i++){
-            MiembroFormulario miembro = (MiembroFormulario)iterador.next();
+        for (int i = 0; i < miembros.size(); i++) {
+            MiembroFormulario miembro = (MiembroFormulario) iterador.next();
 
             String nombre = miembro.getNombre();
             int color = miembro.getColor();
@@ -167,22 +177,22 @@ private void cargarMiembros() {
             int ancho = miembro.getAncho();
             int alto = miembro.getAlto();
             String tipoLetra = miembro.getTipoLetra();
-            int valx= miembro.getValX();
-            int valy= miembro.getValY();
+            int valx = miembro.getValX();
+            int valy = miembro.getValY();
             JComponent campo;
-            switch(idTipoCampo){
+            switch (idTipoCampo) {
                 case 0:
                     //Etiqueta
                     campo = agregarEtiqueta(nombre, id);
                     llenarDatosMiembro(id);
-                    actualizarComponente( textoDato.getText(), Integer.parseInt(valEjeX.getText()), Integer.parseInt(valEjeY.getText()), comboTipoLetra.getSelectedItem().toString() , colorDato.getForeground().getRGB() , Integer.parseInt(tamanoLetra.getText()), compEnUso.getWidth(), compEnUso.getHeight() );
+                    actualizarComponente(textoDato.getText(), Integer.parseInt(valEjeX.getText()), Integer.parseInt(valEjeY.getText()), comboTipoLetra.getSelectedItem().toString(), colorDato.getForeground().getRGB(), Integer.parseInt(tamanoLetra.getText()), compEnUso.getWidth(), compEnUso.getHeight());
                     campo.setBounds(valx, valy, ancho, alto);
                     break;
                 case 1:
                     //Numero
                     campo = agregarTipoNumero(nombre, id);
                     llenarDatosMiembro(id);
-                    actualizarComponente( textoDato.getText(), Integer.parseInt(valEjeX.getText()), Integer.parseInt(valEjeY.getText()), comboTipoLetra.getSelectedItem().toString() , colorDato.getForeground().getRGB() , Integer.parseInt(tamanoLetra.getText()), compEnUso.getWidth(), compEnUso.getHeight() );
+                    actualizarComponente(textoDato.getText(), Integer.parseInt(valEjeX.getText()), Integer.parseInt(valEjeY.getText()), comboTipoLetra.getSelectedItem().toString(), colorDato.getForeground().getRGB(), Integer.parseInt(tamanoLetra.getText()), compEnUso.getWidth(), compEnUso.getHeight());
                     //campo.addMouseListener(listener);
                     //campo.addMouseMotionListener(motionListener);
                     //frameVistaPrevia.add( campo );
@@ -198,21 +208,21 @@ private void cargarMiembros() {
                     //FechaHora
                     campo = new JTextField();
                     agregarTipoFechaHora(nombre, id);
-                    campo.setName(""+IDEnUso);
+                    campo.setName("" + IDEnUso);
                     campo.addMouseListener(listener);
                     campo.addMouseMotionListener(motionListener);
-                    frameVistaPrevia.add( campo );
+                    frameVistaPrevia.add(campo);
                     campo.setBounds(valx, valy, 100, 20);
                     frameVistaPrevia.repaint();
-                   break;
+                    break;
                 case 4:
                     //Texto
                     campo = new JTextField();
                     agregarTipoTexto(nombre, id);
-                    campo.setName(""+IDEnUso);
+                    campo.setName("" + IDEnUso);
                     campo.addMouseListener(listener);
                     campo.addMouseMotionListener(motionListener);
-                    frameVistaPrevia.add( campo );
+                    frameVistaPrevia.add(campo);
                     campo.setBounds(valx, valy, 100, 20);
                     frameVistaPrevia.repaint();
                     break;
@@ -220,10 +230,10 @@ private void cargarMiembros() {
                     //Incremental
                     campo = new JTextField();
                     agregarTipoIncremental(nombre, id);
-                    campo.setName(""+IDEnUso);
+                    campo.setName("" + IDEnUso);
                     campo.addMouseListener(listener);
                     campo.addMouseMotionListener(motionListener);
-                    frameVistaPrevia.add( campo );
+                    frameVistaPrevia.add(campo);
                     campo.setBounds(valx, valy, 100, 20);
                     frameVistaPrevia.repaint();
                     break;
@@ -231,10 +241,10 @@ private void cargarMiembros() {
                     //Jerarquia
                     campo = new JTextField();
                     agregarTipoJerarquia(nombre, id);
-                    campo.setName(""+IDEnUso);
+                    campo.setName("" + IDEnUso);
                     campo.addMouseListener(listener);
                     campo.addMouseMotionListener(motionListener);
-                    frameVistaPrevia.add( campo );
+                    frameVistaPrevia.add(campo);
                     campo.setBounds(valx, valy, 100, 20);
                     frameVistaPrevia.repaint();
                     break;
@@ -242,10 +252,10 @@ private void cargarMiembros() {
                     //Lista
                     campo = new JTextField();
                     agregarTipoLista(nombre, id);
-                    campo.setName(""+IDEnUso);
+                    campo.setName("" + IDEnUso);
                     campo.addMouseListener(listener);
                     campo.addMouseMotionListener(motionListener);
-                    frameVistaPrevia.add( campo );
+                    frameVistaPrevia.add(campo);
                     campo.setBounds(valx, valy, 100, 20);
                     frameVistaPrevia.repaint();
                     break;
@@ -266,6 +276,7 @@ private void cargarMiembros() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         arbolPrincipal = new javax.swing.JTree();
+        jButton3 = new javax.swing.JButton();
         paneDatos = new javax.swing.JLayeredPane();
         panePrincipal = new javax.swing.JLayeredPane();
         botonAgregar = new javax.swing.JButton();
@@ -357,9 +368,10 @@ private void cargarMiembros() {
         jLabel34 = new javax.swing.JLabel();
         botonMenosAlto = new javax.swing.JButton();
         botonMenosAncho = new javax.swing.JButton();
+        comboEstiloLetra = new javax.swing.JComboBox();
+        jLabel35 = new javax.swing.JLabel();
         botonAgregarEtq = new javax.swing.JButton();
         botonTabIndex = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         botonActualizar = new javax.swing.JButton();
         frameVistaPrevia = new javax.swing.JInternalFrame();
 
@@ -392,12 +404,21 @@ private void cargarMiembros() {
         });
         jScrollPane1.setViewportView(arbolPrincipal);
 
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameFormulario.class);
+        jButton3.setText(resourceMap.getString("jButton3.text")); // NOI18N
+        jButton3.setToolTipText(resourceMap.getString("jButton3.toolTipText")); // NOI18N
+        jButton3.setName("jButton3"); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         paneDatos.setName("paneDatos"); // NOI18N
 
         panePrincipal.setAutoscrolls(true);
         panePrincipal.setName("panePrincipal"); // NOI18N
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameFormulario.class);
         botonAgregar.setText(resourceMap.getString("botonAgregar.text")); // NOI18N
         botonAgregar.setName("botonAgregar"); // NOI18N
         botonAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -405,39 +426,39 @@ private void cargarMiembros() {
                 botonAgregarActionPerformed(evt);
             }
         });
-        botonAgregar.setBounds(260, 340, 80, 23);
+        botonAgregar.setBounds(260, 340, 80, -1);
         panePrincipal.add(botonAgregar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
         jLabel2.setName("jLabel2"); // NOI18N
-        jLabel2.setBounds(20, 70, 41, 14);
+        jLabel2.setBounds(20, 70, -1, -1);
         panePrincipal.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorNombreGeneral.setEditable(false);
         valorNombreGeneral.setName("valorNombreGeneral"); // NOI18N
-        valorNombreGeneral.setBounds(20, 90, 120, 20);
+        valorNombreGeneral.setBounds(20, 90, 120, -1);
         panePrincipal.add(valorNombreGeneral, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
         jLabel3.setName("jLabel3"); // NOI18N
-        jLabel3.setBounds(200, 70, 58, 14);
+        jLabel3.setBounds(200, 70, -1, -1);
         panePrincipal.add(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorNota.setEditable(false);
         valorNota.setName("valorNota"); // NOI18N
-        valorNota.setBounds(200, 90, 120, 20);
+        valorNota.setBounds(200, 90, 120, -1);
         panePrincipal.add(valorNota, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
-        jLabel1.setBounds(20, 20, 73, 14);
+        jLabel1.setBounds(20, 20, -1, -1);
         panePrincipal.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         comboTipos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Número", "Binario", "FechaHora", "Texto", "Incremental", "Jerarquia", "Lista" }));
         comboTipos.setEnabled(false);
         comboTipos.setFocusable(false);
         comboTipos.setName("comboTipos"); // NOI18N
-        comboTipos.setBounds(20, 40, 120, 20);
+        comboTipos.setBounds(20, 40, 120, -1);
         panePrincipal.add(comboTipos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneBinario.setName("paneBinario"); // NOI18N
@@ -509,33 +530,33 @@ private void cargarMiembros() {
 
         jLabel4.setText(resourceMap.getString("jLabel4.text")); // NOI18N
         jLabel4.setName("jLabel4"); // NOI18N
-        jLabel4.setBounds(10, 10, 110, 14);
+        jLabel4.setBounds(10, 10, 110, -1);
         paneNumero.add(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorNumDecimales.setEditable(false);
         valorNumDecimales.setName("valorNumDecimales"); // NOI18N
-        valorNumDecimales.setBounds(10, 30, 120, 20);
+        valorNumDecimales.setBounds(10, 30, 120, -1);
         paneNumero.add(valorNumDecimales, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel5.setText(resourceMap.getString("jLabel5.text")); // NOI18N
         jLabel5.setName("jLabel5"); // NOI18N
-        jLabel5.setBounds(200, 10, 50, 14);
+        jLabel5.setBounds(200, 10, 50, -1);
         paneNumero.add(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorNumeroMascara.setEditable(false);
         valorNumeroMascara.setName("valorNumeroMascara"); // NOI18N
-        valorNumeroMascara.setBounds(200, 30, 120, 20);
+        valorNumeroMascara.setBounds(200, 30, 120, -1);
         paneNumero.add(valorNumeroMascara, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorValorDefectoNumero.setEditable(false);
         valorValorDefectoNumero.setText(resourceMap.getString("valorValorDefectoNumero.text")); // NOI18N
         valorValorDefectoNumero.setName("valorValorDefectoNumero"); // NOI18N
-        valorValorDefectoNumero.setBounds(10, 80, 120, 20);
+        valorValorDefectoNumero.setBounds(10, 80, 120, -1);
         paneNumero.add(valorValorDefectoNumero, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel12.setText(resourceMap.getString("jLabel12.text")); // NOI18N
         jLabel12.setName("jLabel12"); // NOI18N
-        jLabel12.setBounds(10, 60, 90, 14);
+        jLabel12.setBounds(10, 60, 90, -1);
         paneNumero.add(jLabel12, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneNumero.setBounds(20, 110, 410, 200);
@@ -774,7 +795,7 @@ private void cargarMiembros() {
 
         jLabel27.setText(resourceMap.getString("jLabel27.text")); // NOI18N
         jLabel27.setName("jLabel27"); // NOI18N
-        jLabel27.setBounds(140, 80, 80, 14);
+        jLabel27.setBounds(260, 80, 80, 14);
         paneFormulario.add(jLabel27, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel28.setText(resourceMap.getString("jLabel28.text")); // NOI18N
@@ -782,7 +803,9 @@ private void cargarMiembros() {
         jLabel28.setBounds(20, 130, 100, 14);
         paneFormulario.add(jLabel28, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        comboTipoLetra.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Arial", "Times New Roman", "????????" }));
+        java.awt.GraphicsEnvironment grficen = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        String[] fonts = grficen.getAvailableFontFamilyNames();
+        comboTipoLetra.setModel(new javax.swing.DefaultComboBoxModel(fonts));
         comboTipoLetra.setName("comboTipoLetra"); // NOI18N
         comboTipoLetra.setBounds(10, 100, 80, 20);
         paneFormulario.add(comboTipoLetra, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -805,7 +828,7 @@ private void cargarMiembros() {
 
         tamanoLetra.setText(resourceMap.getString("tamanoLetra.text")); // NOI18N
         tamanoLetra.setName("tamanoLetra"); // NOI18N
-        tamanoLetra.setBounds(140, 100, 80, 20);
+        tamanoLetra.setBounds(260, 100, 80, 20);
         paneFormulario.add(tamanoLetra, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel29.setText(resourceMap.getString("jLabel29.text")); // NOI18N
@@ -815,7 +838,7 @@ private void cargarMiembros() {
 
         jLabel30.setText(resourceMap.getString("jLabel30.text")); // NOI18N
         jLabel30.setName("jLabel30"); // NOI18N
-        jLabel30.setBounds(260, 80, 60, 14);
+        jLabel30.setBounds(320, 30, 60, 14);
         paneFormulario.add(jLabel30, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         textoDato.setName("textoDato"); // NOI18N
@@ -824,12 +847,12 @@ private void cargarMiembros() {
 
         valEjeY.setText(resourceMap.getString("valEjeY.text")); // NOI18N
         valEjeY.setName("valEjeY"); // NOI18N
-        valEjeY.setBounds(260, 100, 50, 20);
+        valEjeY.setBounds(320, 50, 50, 20);
         paneFormulario.add(valEjeY, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valEjeX.setText(resourceMap.getString("valEjeX.text")); // NOI18N
         valEjeX.setName("valEjeX"); // NOI18N
-        valEjeX.setBounds(260, 50, 50, 20);
+        valEjeX.setBounds(250, 50, 50, 20);
         paneFormulario.add(valEjeX, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel31.setText(resourceMap.getString("jLabel31.text")); // NOI18N
@@ -839,7 +862,7 @@ private void cargarMiembros() {
 
         jLabel32.setText(resourceMap.getString("jLabel32.text")); // NOI18N
         jLabel32.setName("jLabel32"); // NOI18N
-        jLabel32.setBounds(260, 30, 60, 14);
+        jLabel32.setBounds(240, 30, 60, 14);
         paneFormulario.add(jLabel32, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         bottonColor.setText(resourceMap.getString("bottonColor.text")); // NOI18N
@@ -912,6 +935,17 @@ private void cargarMiembros() {
         botonMenosAncho.setBounds(140, 150, 63, 23);
         paneFormulario.add(botonMenosAncho, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        comboEstiloLetra.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Plain", "Bold", "Italic", "BoldItalic"}));
+        comboEstiloLetra.setName("comboEstiloLetra"); // NOI18N
+        comboEstiloLetra.setBounds(140, 100, 90, 20);
+        paneFormulario.add(comboEstiloLetra, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel35.setText(resourceMap.getString("jLabel35.text")); // NOI18N
+        jLabel35.setName("jLabel35"); // NOI18N
+        jLabel35.setBounds(140, 80, 60, 14);
+        paneFormulario.add(jLabel35, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLabel35.getAccessibleContext().setAccessibleName(resourceMap.getString("jLabel35.AccessibleContext.accessibleName")); // NOI18N
+
         paneFormulario.setBounds(10, 110, 390, 250);
         paneDatos.add(paneFormulario, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -922,7 +956,7 @@ private void cargarMiembros() {
                 botonAgregarEtqActionPerformed(evt);
             }
         });
-        botonAgregarEtq.setBounds(30, 10, 120, 23);
+        botonAgregarEtq.setBounds(30, 10, 120, -1);
         paneDatos.add(botonAgregarEtq, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         botonTabIndex.setText(resourceMap.getString("botonTabIndex.text")); // NOI18N
@@ -932,16 +966,8 @@ private void cargarMiembros() {
                 botonTabIndexActionPerformed(evt);
             }
         });
-        botonTabIndex.setBounds(190, 10, 180, 23);
+        botonTabIndex.setBounds(190, 10, 180, -1);
         paneDatos.add(botonTabIndex, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jButton3.setText(resourceMap.getString("jButton3.text")); // NOI18N
-        jButton3.setName("jButton3"); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
 
         botonActualizar.setText(resourceMap.getString("botonActualizar.text")); // NOI18N
         botonActualizar.setName("botonActualizar"); // NOI18N
@@ -966,7 +992,7 @@ private void cargarMiembros() {
         );
         frameVistaPreviaLayout.setVerticalGroup(
             frameVistaPreviaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 898, Short.MAX_VALUE)
+            .addGap(0, 846, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -976,9 +1002,10 @@ private void cargarMiembros() {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(28, 28, 28)
@@ -995,7 +1022,7 @@ private void cargarMiembros() {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1003,7 +1030,7 @@ private void cargarMiembros() {
                         .addComponent(botonActualizar))
                     .addComponent(paneDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(frameVistaPrevia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -1011,8 +1038,111 @@ private void cargarMiembros() {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void postInitComponents() {
+    botonActualizar.setSize(79, 23);
+    botonAgregar.setSize(71, 23);
+    botonAgregarEtq.setSize(105, 23);
+    botonBorrarComp.setSize(63, 23);
+    botonGuardar.setSize(71, 23);
+    botonMasAlto.setSize(63, 23);
+    botonMasAncho.setSize(63, 23);
+    botonMenosAlto.setSize(63, 23);
+    botonMenosAncho.setSize(63, 23);
+    botonTabIndex.setSize(73, 23);
+    bottonColor.setSize(45, 23);
+    colorDato.setSize(31, 20);
+    comboCategorias.setSize(130, 20);
+    comboFormatoFecha.setSize(130, 20);
+    comboNiveles.setSize(130, 20);
+    comboTipoLetra.setSize(130, 20);
+    comboTipos.setSize(130, 20);
+    frameVistaPrevia.setSize(500, 880);
+    jButton3.setSize(63, 23);
+    jLabel1.setSize(100, 14);
+    jLabel10.setSize(100, 14);
+    jLabel11.setSize(100, 14);
+    jLabel12.setSize(100, 14);
+    jLabel13.setSize(100, 14);
+    jLabel14.setSize(100, 14);
+    jLabel15.setSize(100, 14);
+    jLabel16.setSize(100, 14);
+    jLabel17.setSize(100, 14);
+    jLabel18.setSize(100, 14);
+    jLabel19.setSize(100, 14);
+    jLabel2.setSize(100, 14);
+    jLabel20.setSize(100, 14);
+    jLabel21.setSize(100, 14);
+    jLabel22.setSize(100, 14);
+    jLabel23.setSize(100, 14);
+    jLabel24.setSize(100, 14);
+    jLabel25.setSize(100, 14);
+    jLabel26.setSize(100, 14);
+    jLabel27.setSize(100, 14);
+    jLabel28.setSize(100, 14);
+    jLabel29.setSize(100, 14);
+    jLabel3.setSize(100, 14);
+    jLabel30.setSize(100, 14);
+    jLabel31.setSize(100, 14);
+    jLabel32.setSize(100, 14);
+    jLabel33.setSize(100, 14);
+    jLabel34.setSize(100, 14);
+    jLabel4.setSize(100, 14);
+    jLabel5.setSize(100, 14);
+    jLabel6.setSize(100, 14);
+    jLabel7.setSize(100, 14);
+    jLabel8.setSize(100, 14);
+    jLabel9.setSize(100, 14);
+    jScrollPane1.setSize(121, 376);
+    labelCategorias.setSize(100, 14);
+    paneBinario.setSize(390, 210);
+    paneDatos.setSize(449, 398);
+    paneFechaHora.setSize(340, 220);
+    paneFormulario.setSize(390, 250);
+    paneIncremental.setSize(440, 190);
+    paneJerarquia.setSize(390, 250);
+    paneLista.setSize(400, 160);
+    paneNumero.setSize(410, 200);
+    panePrincipal.setSize(420, 410);
+    paneTexto.setSize(360, 220);
+    radioCategoriasNo.setSize(33, 23);
+    radioCategoriasSi.setSize(33, 23);
+    radioFechaHoraNo.setSize(33, 23);
+    radioFechaHoraSi.setSize(33, 23);
+    radioNivelesNo.setSize(33, 23);
+    radioNivelesSi.setSize(33, 23);
+    radioNomUnicoNo.setSize(33, 23);
+    radioNomUnicoSi.setSize(33, 23);
+    radioOpcionBinaria1.setSize(33, 23);
+    radioOpcionBinaria2.setSize(33, 23);
+    tamanoLetra.setSize(80, 20);
+    textoDato.setSize(80, 20);
+    valEjeX.setSize(80, 20);
+    valEjeY.setSize(80, 20);
+    valorFechaDefecto.setSize(120, 20);
+    valorIncremento.setSize(120, 20);
+    valorNombreBinario1.setSize(120, 20);
+    valorNombreBinario2.setSize(120, 20);
+    valorNombreGeneral.setSize(120, 20);
+    valorNota.setSize(120, 20);
+    valorNumDecimales.setSize(120, 20);
+    valorNumNiveles.setSize(120, 20);
+    valorNumTerminos.setSize(120, 20);
+    valorNumeroMascara.setSize(120, 20);
+    valorOpcionBinaria1.setSize(120, 20);
+    valorOpcionBinaria2.setSize(120, 20);
+    valorPorDefectoLista.setSize(120, 20);
+    valorPreaviso.setSize(120, 20);
+    valorTextoDefecto.setSize(120, 20);
+    valorTextoLargo.setSize(120, 20);
+    valorValorDefectoNumero.setSize(120, 20);
+    valorValorInicial.setSize(120, 20);
+
+    jLabel35.setSize(52, 14);
+    comboEstiloLetra.setSize(80, 20);
+    }
+
     private void paneJerarquiaComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_paneJerarquiaComponentShown
-        Modelo  miModelo = new Modelo();
+        Modelo miModelo = new Modelo();
         comboCategorias.setModel(new javax.swing.DefaultComboBoxModel(miModelo.getModeloDeCombo("select nombre, ID from TIPOCATEGORIA;")));
 }//GEN-LAST:event_paneJerarquiaComponentShown
 
@@ -1032,19 +1162,19 @@ private void cargarMiembros() {
     /**
      * Agrega un nuevo campo al formulario
      */
-    private void agregarCampo(){
-    //Se agrega el valor al formulario
+    private void agregarCampo() {
+        //Se agrega el valor al formulario
         String nombre = JOptionPane.showInputDialog(this, "Favor ingresar el nombre del campo a agregar", "", JOptionPane.QUESTION_MESSAGE);
         agregarRotulo(nombre);
-        nombre = "v. "+nombre;
+        nombre = "v. " + nombre;
         //En este switch se debe crear una instancia del nuevo tipo campo a agregar al formulario
-        switch(comboTipos.getSelectedIndex()){
+        switch (comboTipos.getSelectedIndex()) {
             case 1:
                 //Numero
                 //Agrega todos los otros datos por defecto
                 IDEnUso = miFormulario.agregarMiembro(nombre, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, tabIndex++);
                 JTextField texto = agregarTipoNumero(nombre, IDEnUso);
-                tabOrder.add((Object)(""+IDEnUso+"      "+nombre));
+                tabOrder.add((Object) ("" + IDEnUso + "      " + nombre));
                 break;
             case 2:
                 //Binario
@@ -1053,72 +1183,74 @@ private void cargarMiembros() {
                 //Agrega todos los otros datos por defecto
                 IDEnUso = miFormulario.agregarMiembro(temp, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 2, tabIndex++);
                 agregarTipoBinario(temp, IDEnUso);
-                tabOrder.add((Object)(""+IDEnUso+"      "+temp));
+                tabOrder.add((Object) ("" + IDEnUso + "      " + temp));
 
                 //agrega el componente 2:
                 temp = valorNombreBinario2.getText();
                 IDEnUso = miFormulario.agregarMiembro(temp, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 2, tabIndex++);
                 agregarTipoBinario(temp, IDEnUso);
-                tabOrder.add((Object)(""+IDEnUso+"      "+temp));
+                tabOrder.add((Object) ("" + IDEnUso + "      " + temp));
                 break;
             case 3:
                 //Agrega todos los otros datos por defecto
                 IDEnUso = miFormulario.agregarMiembro(nombre, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, tabIndex++);
                 //FechaHora
                 agregarTipoFechaHora(nombre, IDEnUso);
-                tabOrder.add((Object)(""+IDEnUso+"      "+nombre));
+                tabOrder.add((Object) ("" + IDEnUso + "      " + nombre));
                 break;
             case 4:
                 //Texto
                 //Agrega todos los otros datos por defecto
                 IDEnUso = miFormulario.agregarMiembro(nombre, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, tabIndex++);
                 agregarTipoTexto(nombre, IDEnUso);
-                tabOrder.add((Object)(""+IDEnUso+"      "+nombre));
+                tabOrder.add((Object) ("" + IDEnUso + "      " + nombre));
                 break;
             case 5:
                 //Incremental
                 //Agrega todos los otros datos por defecto
                 IDEnUso = miFormulario.agregarMiembro(nombre, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, tabIndex++);
                 agregarTipoIncremental(nombre, IDEnUso);
-                tabOrder.add((Object)(""+IDEnUso+"      "+nombre));
+                tabOrder.add((Object) ("" + IDEnUso + "      " + nombre));
                 break;
             case 6:
                 //Jerarquia
                 //Agrega todos los otros datos por defecto
                 IDEnUso = miFormulario.agregarMiembro(nombre, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, tabIndex++);
                 agregarTipoJerarquia(nombre, IDEnUso);
-                tabOrder.add((Object)(""+IDEnUso+"      "+nombre));
+                tabOrder.add((Object) ("" + IDEnUso + "      " + nombre));
                 break;
             case 7:
                 //Lista
                 //Agrega todos los otros datos por defecto
                 IDEnUso = miFormulario.agregarMiembro(nombre, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, tabIndex++);
                 agregarTipoLista(nombre, IDEnUso);
-                tabOrder.add((Object)(""+IDEnUso+"      "+nombre));
+                tabOrder.add((Object) ("" + IDEnUso + "      " + nombre));
                 break;
             default:
                 break;
         }
         //Se abre el pane de formulario
-        llenarDatosMiembro( IDEnUso);
+        llenarDatosMiembro(IDEnUso);
     }
+
     /**
      * Llena los datos del componente para que el usuaro pueda modificarlos
      * @param ID ID del componente a mostrar los datos
      */
-    private void llenarDatosMiembro(int ID){
+    private void llenarDatosMiembro(int ID) {
         ocultarPanes();
         paneFormulario.setVisible(true);
         MiembroFormulario temp = miFormulario.getMiembro(ID);
         //osea q es de tipo etiqueta, o binario
-        if(temp.getIDTipoCampo() == 0 || temp.getIDTipoCampo() == 2)
+        if (temp.getIDTipoCampo() == 0 || temp.getIDTipoCampo() == 2) {
             textoDato.setText(temp.getNombre());
-        else
+        } else {
             textoDato.setText("");
+        }
         colorDato.setForeground(new Color(temp.getColor()));
-        valEjeX.setText(""+temp.getValX());
-        valEjeY.setText(""+temp.getValY());
-        tamanoLetra.setText(""+temp.getTamanoLetra());
+        valEjeX.setText("" + temp.getValX());
+        valEjeY.setText("" + temp.getValY());
+        tamanoLetra.setText("" + temp.getTamanoLetra());
         comboTipoLetra.addItem(temp.getTipoLetra());
         comboTipoLetra.setSelectedItem(temp.getTipoLetra());
     }
@@ -1127,12 +1259,12 @@ private void cargarMiembros() {
      * Agrega al formulario un campo nuevo tipo numero
      * @param nombre
      */
-    private JLabel agregarEtiqueta(String texto, int ID){
+    private JLabel agregarEtiqueta(String texto, int ID) {
         JLabel etq = new JLabel(texto);
-        etq.setName(""+ID);
+        etq.setName("" + ID);
         etq.addMouseListener(listener);
         etq.addMouseMotionListener(motionListener);
-        frameVistaPrevia.add( etq );
+        frameVistaPrevia.add(etq);
         etq.setBounds(1, 1, 100, 20);
         compEnUso = etq;
         return etq;
@@ -1142,13 +1274,13 @@ private void cargarMiembros() {
      * Agrega al formulario un campo nuevo tipo numero
      * @param nombre
      */
-    private JTextField agregarTipoNumero(String nombre, int ID){
+    private JTextField agregarTipoNumero(String nombre, int ID) {
         //Esto es temporal!! se debe crear un objeto de numero...
         JTextField jtf = new JTextField(10);
-        jtf.setName(""+ID);
+        jtf.setName("" + ID);
         jtf.addMouseListener(listener);
         jtf.addMouseMotionListener(motionListener);
-        frameVistaPrevia.add( jtf );
+        frameVistaPrevia.add(jtf);
         jtf.setBounds(10, 1, 100, 20);
         compEnUso = jtf;
         return jtf;
@@ -1158,13 +1290,13 @@ private void cargarMiembros() {
      * Agrega al formulario el componente uno del tipo binario
      * @param nombre
      */
-    private JRadioButton agregarTipoBinario(String nombre, int ID){
+    private JRadioButton agregarTipoBinario(String nombre, int ID) {
         //Esto es temporal!! se debe crear un objeto de binario...
         JRadioButton r1 = new JRadioButton(nombre);
-        r1.setName(""+ID);
+        r1.setName("" + ID);
         r1.addMouseListener(listener);
         r1.addMouseMotionListener(motionListener);
-        frameVistaPrevia.add( r1 );
+        frameVistaPrevia.add(r1);
         r1.setBounds(10, 1, 100, 20);
         compEnUso = r1;
         return r1;
@@ -1174,14 +1306,14 @@ private void cargarMiembros() {
      * Agrega al formulario un campo nuevo tipo Fecha Hora
      * @param nombre
      */
-    private void agregarTipoFechaHora(String nombre, int ID){
+    private void agregarTipoFechaHora(String nombre, int ID) {
 
         //Esto es temporal!! se debe crear un objeto de fechahora...
         JTextField jtf = new JTextField(15);
-        jtf.setName(""+ID);
+        jtf.setName("" + ID);
         jtf.addMouseListener(listener);
         jtf.addMouseMotionListener(motionListener);
-        frameVistaPrevia.add( jtf );
+        frameVistaPrevia.add(jtf);
         jtf.setBounds(10, 1, 100, 20);
         compEnUso = jtf;
     }
@@ -1190,13 +1322,13 @@ private void cargarMiembros() {
      * Agrega al formulario un campo nuevo tipo Texto
      * @param nombre
      */
-    private void agregarTipoTexto(String nombre, int ID){
+    private void agregarTipoTexto(String nombre, int ID) {
         //Esto es temporal!! se debe crear un objeto de texto...
         JTextField jtf = new JTextField(15);
-        jtf.setName(""+ID);
+        jtf.setName("" + ID);
         jtf.addMouseListener(listener);
         jtf.addMouseMotionListener(motionListener);
-        frameVistaPrevia.add( jtf );
+        frameVistaPrevia.add(jtf);
         jtf.setBounds(10, 1, 100, 20);
         compEnUso = jtf;
     }
@@ -1205,13 +1337,13 @@ private void cargarMiembros() {
      * Agrega al formulario un campo nuevo tipo incremental
      * @param nombre
      */
-    private void agregarTipoIncremental(String nombre, int ID){
+    private void agregarTipoIncremental(String nombre, int ID) {
         //Esto es temporal!! se debe crear un objeto de incremental...
         JTextField jtf = new JTextField(15);
-        jtf.setName(""+ID);
+        jtf.setName("" + ID);
         jtf.addMouseListener(listener);
         jtf.addMouseMotionListener(motionListener);
-        frameVistaPrevia.add( jtf );
+        frameVistaPrevia.add(jtf);
         jtf.setBounds(10, 1, 100, 20);
         compEnUso = jtf;
     }
@@ -1220,13 +1352,13 @@ private void cargarMiembros() {
      * Agrega al formulario un campo nuevo tipo Jerarquia
      * @param nombre
      */
-    private void agregarTipoJerarquia(String nombre, int ID){
+    private void agregarTipoJerarquia(String nombre, int ID) {
         //Esto es temporal!! se debe crear un objeto de Jerarquia...
         JTextField jtf = new JTextField(15);
-        jtf.setName(""+ID);
+        jtf.setName("" + ID);
         jtf.addMouseListener(listener);
         jtf.addMouseMotionListener(motionListener);
-        frameVistaPrevia.add( jtf );
+        frameVistaPrevia.add(jtf);
         jtf.setBounds(100, 1, 100, 20);
         compEnUso = jtf;
     }
@@ -1235,28 +1367,28 @@ private void cargarMiembros() {
      * Agrega al formulario un campo nuevo tipo Lista
      * @param nombre
      */
-    private void agregarTipoLista(String nombre, int ID){
+    private void agregarTipoLista(String nombre, int ID) {
         //Esto es temporal!! se debe crear un objeto de Lista...
         JTextField jtf = new JTextField(15);
-        jtf.setName(""+ID);
+        jtf.setName("" + ID);
         jtf.addMouseListener(listener);
         jtf.addMouseMotionListener(motionListener);
-        frameVistaPrevia.add( jtf );
+        frameVistaPrevia.add(jtf);
         jtf.setBounds(10, 1, 100, 20);
         compEnUso = jtf;
     }
-
 
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
         MiembroFormulario tmp = miFormulario.getMiembro(IDEnUso);
         String texto = textoDato.getText();
         //Si no es etiqueta, ni binario
-        if(tmp.getIDTipoCampo() != 0 && tmp.getIDTipoCampo() != 2)
+        if (tmp.getIDTipoCampo() != 0 && tmp.getIDTipoCampo() != 2) {
             texto = "";
+        }
         //Se guardan los datos en la instancia del Formulario, al igual que en la BD
-        miFormulario.upDateValoresMiembro(IDEnUso, texto, Integer.parseInt(valEjeX.getText()), Integer.parseInt(valEjeY.getText()), compEnUso.getWidth(), compEnUso.getHeight(), comboTipoLetra.getSelectedItem().toString() , colorDato.getForeground().getRGB() , Integer.parseInt(tamanoLetra.getText()) );
+        miFormulario.upDateValoresMiembro(IDEnUso, texto, Integer.parseInt(valEjeX.getText()), Integer.parseInt(valEjeY.getText()), compEnUso.getWidth(), compEnUso.getHeight(), comboTipoLetra.getSelectedItem().toString(), colorDato.getForeground().getRGB(), Integer.parseInt(tamanoLetra.getText()));
         //Se actualiza el componente en el preview
-        actualizarComponente( textoDato.getText(), Integer.parseInt(valEjeX.getText()), Integer.parseInt(valEjeY.getText()), comboTipoLetra.getSelectedItem().toString() , colorDato.getForeground().getRGB() , Integer.parseInt(tamanoLetra.getText()), compEnUso.getWidth(), compEnUso.getHeight() );
+        actualizarComponente(textoDato.getText(), Integer.parseInt(valEjeX.getText()), Integer.parseInt(valEjeY.getText()), comboTipoLetra.getSelectedItem().toString(), colorDato.getForeground().getRGB(), Integer.parseInt(tamanoLetra.getText()), compEnUso.getWidth(), compEnUso.getHeight());
         //desp de guardar se ocultan los panes
         ocultarPanes();
     }//GEN-LAST:event_botonGuardarActionPerformed
@@ -1270,19 +1402,19 @@ private void cargarMiembros() {
      * @param color
      * @param tamanoLetra
      */
-    private void actualizarComponente( String texto, int valX, int valY, String tipoLetra, int color , int tamanoLetra, int ancho, int alto){
+    private void actualizarComponente(String texto, int valX, int valY, String tipoLetra, int color, int tamanoLetra, int ancho, int alto) {
         //hay q cambiar el tamaño!!!!!!!!!!!!!!!!!!1
-        String componente = ""+compEnUso;
+        String componente = "" + compEnUso;
         //Si es una etiqueta:
-        if(componente.contains("javax.swing.JLabel"))
-            ((JLabel)(compEnUso)).setText(texto);
-        else{
+        if (componente.contains("javax.swing.JLabel")) {
+            ((JLabel) (compEnUso)).setText(texto);
+        } else {
             //Si es un radio
-            if(componente.contains("javax.swing.JRadioButton"))
-                ((JRadioButton)(compEnUso)).setText(texto);
-            else{
+            if (componente.contains("javax.swing.JRadioButton")) {
+                ((JRadioButton) (compEnUso)).setText(texto);
+            } else {
                 //si es un combo
-                if(componente.contains("javax.swing.JComboBox")){
+                if (componente.contains("javax.swing.JComboBox")) {
                     //hay q separar los valores...
                     //((JComboBox)(compEnUso))
                 }
@@ -1293,15 +1425,15 @@ private void cargarMiembros() {
         compEnUso.setForeground(new Color(color));
     }
 
-
     private void bottonColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bottonColorActionPerformed
         Color color = Color.BLACK;
-        color = JColorChooser.showDialog( bottonColor , "Seleccione un color", color );
+        color = JColorChooser.showDialog(bottonColor, "Seleccione un color", color);
         // establecer color predeterminado, si no se devuelve un color
-        if ( color == null )
-            color = Color.BLACK;        
+        if (color == null) {
+            color = Color.BLACK;
+        }
         // cambiar color de la letra del campo de texto
-        colorDato.setForeground( color );
+        colorDato.setForeground(color);
     }//GEN-LAST:event_bottonColorActionPerformed
 
     private void botonAgregarEtqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarEtqActionPerformed
@@ -1313,7 +1445,7 @@ private void cargarMiembros() {
      * Agrega un rotulo/etiqueta nueva al formulario
      * Llama al metodo respectivo para guardar en la BD tamb
      */
-    private void agregarRotulo(String texto){
+    private void agregarRotulo(String texto) {
         //Como es etiqueta uso tabIndex -1
         IDEnUso = miFormulario.agregarMiembro(texto, 1, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 0, -1);
         agregarEtiqueta(texto, IDEnUso);
@@ -1336,36 +1468,35 @@ private void cargarMiembros() {
      * De la lista con los valores del tabIndex, elimina la entrada del campo
      * @param ID
      */
-    private void eliminarCampoTabIndex(int ID){
-
+    private void eliminarCampoTabIndex(int ID) {
     }
 
     private void botonMasAnchoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMasAnchoActionPerformed
         // TODO add your handling code here:
         compEnUso.setSize(compEnUso.getWidth() + 3, compEnUso.getHeight());
-        //hay q actualizar la instancia del componente!!!
-        //miFormulario
+    //hay q actualizar la instancia del componente!!!
+    //miFormulario
     }//GEN-LAST:event_botonMasAnchoActionPerformed
 
     private void botonMasAltoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMasAltoActionPerformed
         // TODO add your handling code here:
         compEnUso.setSize(compEnUso.getWidth(), compEnUso.getHeight() + 2);
-        //hay q actualizar la instancia del componente!!!
-        //miFormulario
+    //hay q actualizar la instancia del componente!!!
+    //miFormulario
     }//GEN-LAST:event_botonMasAltoActionPerformed
 
     private void botonMenosAnchoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMenosAnchoActionPerformed
         // TODO add your handling code here:
         compEnUso.setSize(compEnUso.getWidth() - 3, compEnUso.getHeight());
-        //hay q actualizar la instancia del componente!!!
-        //miFormulario
+    //hay q actualizar la instancia del componente!!!
+    //miFormulario
     }//GEN-LAST:event_botonMenosAnchoActionPerformed
 
     private void botonMenosAltoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMenosAltoActionPerformed
         // TODO add your handling code here:
         compEnUso.setSize(compEnUso.getWidth(), compEnUso.getHeight() - 2);
-        //hay q actualizar la instancia del componente!!!
-        //miFormulario
+    //hay q actualizar la instancia del componente!!!
+    //miFormulario
     }//GEN-LAST:event_botonMenosAltoActionPerformed
 
     private void botonTabIndexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTabIndexActionPerformed
@@ -1380,13 +1511,13 @@ private void cargarMiembros() {
     /**
      * Abre la ventana donde se muestran los componentes del formulario para ordenar el tab index
      */
-    private void escogerTabIndex(){
+    private void escogerTabIndex() {
         Object vals[] = tabOrder.toArray();
         String[] valores = new String[vals.length];
-        for(int i = 0; i< vals.length; ++i){
+        for (int i = 0; i < vals.length; ++i) {
             valores[i] = vals[i].toString();
         }
-        frameTabIndex frameTI = new frameTabIndex( valores );
+        frameTabIndex frameTI = new frameTabIndex(valores);
         frameTI.setLocationRelativeTo(GestionTipoCampoApp.getApplication().getMainFrame());
         frameTI.setVisible(true);
 
@@ -1395,22 +1526,22 @@ private void cargarMiembros() {
     /**
      * Llena el tree view
      */
-    public void llenarTreeView(){
+    public void llenarTreeView() {
         //Llena los valores del Tree View
-        String [] tiposCampo = {"Numero", "Binario", "FechaHora", "Texto", "Incremental", "Jerarquia", "Lista"};
+        String[] tiposCampo = {"Numero", "Binario", "FechaHora", "Texto", "Incremental", "Jerarquia", "Lista"};
         String valores;
-        String [] valTrim;
+        String[] valTrim;
         DefaultMutableTreeNode nodoTipoCampo;
         DefaultMutableTreeNode nodoTemp;
         DefaultMutableTreeNode raizArbol = new DefaultMutableTreeNode("Gift");
 
-        for(int k = 0; k < tiposCampo.length; k++){
+        for (int k = 0; k < tiposCampo.length; k++) {
             nodoTipoCampo = new DefaultMutableTreeNode(tiposCampo[k]);
             //Se llenan los datos con los valores que contenga la base de datos con el tipo campo:
-            valores = buscarNombreEnBD(k+1);
-           // System.out.println("valores: " + valores);
+            valores = buscarNombreEnBD(k + 1);
+            // System.out.println("valores: " + valores);
             valTrim = valores.split("\n");
-            for(int i= 0; i < valTrim.length; ++i){
+            for (int i = 0; i < valTrim.length; ++i) {
                 nodoTemp = new DefaultMutableTreeNode(valTrim[i]);
                 nodoTipoCampo.add(nodoTemp); //agrega el nodo
             }
@@ -1420,19 +1551,20 @@ private void cargarMiembros() {
         arbolPrincipal.setModel(arbolnuevo.getModel());
     }
 
-     /**
+    /**
      * Encargado de buscar el valor del nombre en la base de datos
      * @param num: Indica el tipo de campo que va a buscar
      */
-    public String buscarNombreEnBD(int num){
+    public String buscarNombreEnBD(int num) {
         ControladorBD buscador = new ControladorBD();
         String valores = "";
         try {
             ResultSet resultado = buscador.getResultSet("select * from TIPOCAMPO where tipo = '" + num + "';");
-            if(resultado != null)
+            if (resultado != null) {
                 while (resultado.next()) {
-                    valores += resultado.getObject(2).toString()+"\n";
+                    valores += resultado.getObject(2).toString() + "\n";
                 }
+            }
         } catch (SQLException e) {
             System.out.println("*SQL Exception: *" + e.toString());
         }
@@ -1442,52 +1574,45 @@ private void cargarMiembros() {
     /**
      * Muestra los panes necesarios segun lo que se vaya a mostrar
      */
-    public void abrirNodoHoja(){
+    public void abrirNodoHoja() {
 
-        DefaultMutableTreeNode node = (DefaultMutableTreeNode)arbolPrincipal.getLastSelectedPathComponent();
-        if (node != null){
+        DefaultMutableTreeNode node = (DefaultMutableTreeNode) arbolPrincipal.getLastSelectedPathComponent();
+        if (node != null) {
             String nombre = node.toString();
-            String papa = node.getParent()!=null?node.getParent().toString():"";
+            String papa = node.getParent() != null ? node.getParent().toString() : "";
             ocultarPanes();
             paneDatos.setVisible(true);
             panePrincipal.setVisible(true);
-            if( papa.equals("Numero")  ){
+            if (papa.equals("Numero")) {
                 paneNumero.setVisible(true);
                 llenarDatosReadOnly(nombre, 1);
-            }
-            else{
-                if( papa.equals("Binario")  ){
+            } else {
+                if (papa.equals("Binario")) {
                     paneBinario.setVisible(true);
                     llenarDatosReadOnly(nombre, 2);
-                }
-                else{
-                    if( papa.equals("FechaHora")  ){
+                } else {
+                    if (papa.equals("FechaHora")) {
                         paneFechaHora.setVisible(true);
                         llenarDatosReadOnly(nombre, 3);
-                    }
-                    else{
-                        if( papa.equals("Texto")  ){
+                    } else {
+                        if (papa.equals("Texto")) {
                             paneTexto.setVisible(true);
                             llenarDatosReadOnly(nombre, 4);
-                        }
-                        else{
-                            if( papa.equals("Incremental")  ){
+                        } else {
+                            if (papa.equals("Incremental")) {
                                 paneIncremental.setVisible(true);
                                 llenarDatosReadOnly(nombre, 5);
-                            }
-                            else{
-                                if( papa.equals("Jerarquia")  ){
+                            } else {
+                                if (papa.equals("Jerarquia")) {
                                     paneJerarquia.setVisible(true);
                                     llenarDatosReadOnly(nombre, 6);
-                                }
-                                else{
-                                    if( papa.equals("Lista") ){
+                                } else {
+                                    if (papa.equals("Lista")) {
                                         paneLista.setVisible(true);
                                         llenarDatosReadOnly(nombre, 7);
-                                    }
-                                    else{
+                                    } else {
                                         ocultarPanes();
-                                        //JOptionPane.showMessageDialog(null, "¡Favor seleccionar un dato hoja!", "", JOptionPane.ERROR_MESSAGE);
+                                    //JOptionPane.showMessageDialog(null, "¡Favor seleccionar un dato hoja!", "", JOptionPane.ERROR_MESSAGE);
                                     }
                                 }
                             }
@@ -1501,7 +1626,7 @@ private void cargarMiembros() {
     /**
      * Oculta todos los panes
      */
-    public void ocultarPanes(){       
+    public void ocultarPanes() {
         panePrincipal.setVisible(false);
         paneBinario.setVisible(false);
         paneFechaHora.setVisible(false);
@@ -1510,7 +1635,7 @@ private void cargarMiembros() {
         paneNumero.setVisible(false);
         paneJerarquia.setVisible(false);
         paneLista.setVisible(false);
-        paneFormulario.setVisible(false);        
+        paneFormulario.setVisible(false);
     }
 
     /**
@@ -1518,89 +1643,89 @@ private void cargarMiembros() {
      * @param nombre
      * @param tipo
      */
-    public void llenarDatosReadOnly(String nombre, int tipo){
+    public void llenarDatosReadOnly(String nombre, int tipo) {
         //Trae todos los valores de la tabla TIPOCAMPO
         String valoresGlobales = buscarDatosEnBD(nombre);
-        String [] valoresSeparados = valoresGlobales.split(";");
+        String[] valoresSeparados = valoresGlobales.split(";");
         String valoresEspecificos = buscarPorTipoEnBD(Integer.parseInt(valoresSeparados[0]), tipo);
-        String [] valoresEspSep = valoresEspecificos.split(";");
+        String[] valoresEspSep = valoresEspecificos.split(";");
         comboTipos.setSelectedIndex(tipo);
         valorNombreGeneral.setText(valoresSeparados[1]);
         valorNota.setText(valoresSeparados[2]);
-        switch(tipo){
+        switch (tipo) {
             //numero
-            case(1):
+            case (1):
                 valorNumDecimales.setText(valoresEspSep[1]);
                 valorNumeroMascara.setText(valoresEspSep[2]);
                 valorValorDefectoNumero.setText(valoresEspSep[3]);
                 break;
             //binario
-            case(2):
+            case (2):
                 valorNombreBinario1.setText(valoresEspSep[1]);
                 valorOpcionBinaria1.setText(valoresEspSep[2]);
                 valorNombreBinario2.setText(valoresEspSep[3]);
                 valorOpcionBinaria2.setText(valoresEspSep[4]);
-                if(valoresEspSep[5].equals("true")){
+                if (valoresEspSep[5].equals("true")) {
                     radioOpcionBinaria1.setSelected(true);
                     radioOpcionBinaria2.setSelected(false);
-                }else{
+                } else {
                     radioOpcionBinaria1.setSelected(false);
                     radioOpcionBinaria2.setSelected(true);
                 }
                 break;
             //FechaHora
-            case(3):
+            case (3):
                 //comboFormatoFecha.setSelectedItem(valoresEspSep[1]);
                 valorFechaDefecto.setText(valoresEspSep[2]);
-                if( valoresEspSep[3].equals("true") ){
+                if (valoresEspSep[3].equals("true")) {
                     radioFechaHoraSi.setSelected(true);
                     radioFechaHoraNo.setSelected(false);
-                }else{
+                } else {
                     radioFechaHoraSi.setSelected(false);
                     radioFechaHoraNo.setSelected(true);
                 }
                 valorPreaviso.setText(valoresEspSep[4]);
                 break;
             //Texto
-            case(4):
+            case (4):
                 valorTextoDefecto.setText(valoresEspSep[1]);
                 valorTextoLargo.setText(valoresEspSep[2]);
                 break;
             //Incremental
-            case(5):
+            case (5):
                 valorValorInicial.setText(valoresEspSep[1]);
                 valorIncremento.setText(valoresEspSep[2]);
                 break;
             //Jerarquia
-            case(6):
-                if(valoresEspSep[3].equalsIgnoreCase("true")){
+            case (6):
+                if (valoresEspSep[3].equalsIgnoreCase("true")) {
                     this.radioNomUnicoSi.setSelected(false);
                     this.radioNomUnicoNo.setSelected(true);
-                }else{
+                } else {
                     this.radioNomUnicoSi.setSelected(true);
                     this.radioNomUnicoNo.setSelected(false);
                 }
                 this.valorNumTerminos.setText(valoresEspSep[4]);
                 this.valorNumNiveles.setText(valoresEspSep[5]);
-                if(valoresEspSep[8].equalsIgnoreCase("true")){
+                if (valoresEspSep[8].equalsIgnoreCase("true")) {
                     this.radioCategoriasSi.setSelected(true);
                     this.radioCategoriasNo.setSelected(false);
-                }else{
+                } else {
                     this.radioCategoriasSi.setSelected(false);
                     this.radioCategoriasNo.setSelected(true);
                 }
-                if(valoresEspSep[9].equalsIgnoreCase("true")){
+                if (valoresEspSep[9].equalsIgnoreCase("true")) {
                     this.radioNivelesSi.setSelected(true);
                     this.radioNivelesNo.setSelected(false);
-                }else{
+                } else {
                     this.radioNivelesSi.setSelected(false);
                     this.radioNivelesNo.setSelected(true);
                 }
                 //this.comboCategorias.setSelectedIndex(Integer.parseInt(valoresEspSep[10]));
                 break;
             //Lista
-            case(7):
-                valoresEspSep[1] = buscarMiembroLista( Integer.parseInt(valoresEspSep[1]));
+            case (7):
+                valoresEspSep[1] = buscarMiembroLista(Integer.parseInt(valoresEspSep[1]));
                 this.valorPorDefectoLista.setText(valoresEspSep[1].trim());
                 break;
 
@@ -1613,12 +1738,12 @@ private void cargarMiembros() {
      * Encargado de buscar los valores TIPOCAMPO segun el nombre en la base de datos
      * @param nombre: Indica el nombre del tipo de campo que va a buscar
      */
-    public String buscarDatosEnBD(String nombre){
+    public String buscarDatosEnBD(String nombre) {
         ControladorBD buscador = new ControladorBD();
         String valores = "";
         try {
             ResultSet resultado = buscador.getResultSet("select * from TIPOCAMPO where nombre = '" + nombre + "';");
-            if(resultado.next()){
+            if (resultado.next()) {
                 valores += resultado.getObject(1).toString() + ";";
                 valores += resultado.getObject(2).toString() + ";";
                 valores += resultado.getObject(3).toString() + ";";
@@ -1635,12 +1760,12 @@ private void cargarMiembros() {
      * Encargado de buscar los valores TIPOCAMPO segun el nombre en la base de datos
      * @param nombre: Indica el nombre del tipo de campo que va a buscar
      */
-    public String getIDTipoCampo(String nombre){
+    public String getIDTipoCampo(String nombre) {
         ControladorBD buscador = new ControladorBD();
         String valores = "";
         try {
             ResultSet resultado = buscador.getResultSet("select correlativo from TIPOCAMPO where nombre = '" + nombre + "';");
-            if(resultado.next()){
+            if (resultado.next()) {
                 valores += resultado.getObject("correlativo").toString();
             }
         } catch (SQLException e) {
@@ -1654,15 +1779,15 @@ private void cargarMiembros() {
      * @param ID: Indica el ID del campo que va a buscar
      * @param tipo: Indica el tipo de campo que va a buscar
      */
-    public String buscarPorTipoEnBD(int ID, int tipo){
+    public String buscarPorTipoEnBD(int ID, int tipo) {
         ControladorBD buscador = new ControladorBD();
-        String [] tiposCampo = {"NUMERO", "BINARIO", "FECHAHORA", "TEXTO", "INCREMENTAL", "JERARQUIA", "LISTA"};
+        String[] tiposCampo = {"NUMERO", "BINARIO", "FECHAHORA", "TEXTO", "INCREMENTAL", "JERARQUIA", "LISTA"};
         String valores = "";
         try {
-            ResultSet resultado = buscador.getResultSet("select * from " + tiposCampo[tipo-1] + " where correlativo = "+ID +";");
-            if(resultado.next()){
-                for(int i = 1; i<=resultado.getMetaData().getColumnCount(); ++i){
-                    valores += resultado.getObject(i)!=null?resultado.getObject(i).toString() + ";":";";
+            ResultSet resultado = buscador.getResultSet("select * from " + tiposCampo[tipo - 1] + " where correlativo = " + ID + ";");
+            if (resultado.next()) {
+                for (int i = 1; i <= resultado.getMetaData().getColumnCount(); ++i) {
+                    valores += resultado.getObject(i) != null ? resultado.getObject(i).toString() + ";" : ";";
                 }
             }
         } catch (SQLException e) {
@@ -1676,12 +1801,12 @@ private void cargarMiembros() {
      * @param ID: Indica el ID del campo que va a buscar
      * @param tipo: Indica el tipo de campo que va a buscar
      */
-    public String buscarMiembroLista(int ID){
+    public String buscarMiembroLista(int ID) {
         ControladorBD buscador = new ControladorBD();
         String valores = "";
         try {
             ResultSet resultado = buscador.getResultSet("select valor from MIEMBROLISTA where correlativo = " + ID + ";");
-            if(resultado.next()){
+            if (resultado.next()) {
                 valores += resultado.getObject("valor").toString();
             }
         } catch (SQLException e) {
@@ -1691,17 +1816,26 @@ private void cargarMiembros() {
     }
 
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 new frameFormulario().setVisible(true);
             }
         });
     }
 
+    @org.jdesktop.application.Action
+    public void testFontSelect() {
+        java.awt.GraphicsEnvironment test = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        String[] fonts = test.getAvailableFontFamilyNames();
+        for (int i = 0; i < fonts.length; i++) {
+            System.out.println(fonts[i]);
+        }
 
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTree arbolPrincipal;
     private javax.swing.JButton botonActualizar;
@@ -1717,6 +1851,7 @@ private void cargarMiembros() {
     private javax.swing.JButton bottonColor;
     private javax.swing.JTextField colorDato;
     private javax.swing.JComboBox comboCategorias;
+    private javax.swing.JComboBox comboEstiloLetra;
     private javax.swing.JComboBox comboFormatoFecha;
     private javax.swing.JComboBox comboNiveles;
     private javax.swing.JComboBox comboTipoLetra;
@@ -1751,6 +1886,7 @@ private void cargarMiembros() {
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
