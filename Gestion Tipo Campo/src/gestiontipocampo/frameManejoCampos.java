@@ -924,6 +924,7 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         int ID = 0;
         try { //Primero se busca en la base de datos si ya existe este campo
             ResultSet resultado = conexionBD.getResultSet("select correlativo from TIPOCAMPO where nombre = '" + this.valorNombreGeneral.getText() + "'");
+            //
             if (resultado.next()) {
                 ID = resultado.getInt("correlativo");
                 existe = true;
