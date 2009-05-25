@@ -63,6 +63,13 @@ public abstract class ConsultaFormulario extends ControladorBD{
     public abstract void updatePosicion(int ID, int valX, int valY);
 
     /**
+     * Actualiza el tab index
+     * @param ID
+     * @param tab
+     */
+    public abstract void updateTabIndex(int ID, int tab);
+
+    /**
      * Modifica el nombre del formulario
      * @param nombre
      * @param ID

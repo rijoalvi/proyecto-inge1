@@ -1259,7 +1259,7 @@ public class GestionTipoCampoView extends FrameView {
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         //String val = JOptionPane.showInputDialog(this, "Favor ingresar el ID del formulario a abrir", "", JOptionPane.QUESTION_MESSAGE);
-        int ID = 1;
+        int ID = 12;
         frameFormulario frameForm = new frameFormulario( arbolPrincipal.getModel(), ID);
 
         frameForm.setLocationRelativeTo(GestionTipoCampoApp.getApplication().getMainFrame());

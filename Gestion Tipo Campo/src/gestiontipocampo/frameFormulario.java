@@ -15,10 +15,9 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.*;
 import javax.swing.JColorChooser;
 import java.awt.Color;
+import java.awt.FocusTraversalPolicy;
 import java.awt.GraphicsEnvironment;
-import java.util.Iterator;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.*;
 
 /**
  *
@@ -39,7 +38,6 @@ public class frameFormulario extends javax.swing.JFrame {
         frameVistaPrevia.setTitle(nombre);
 
         //Inicializa el valor de los tabOrder
-        tabOrder = new TreeSet();
         tabIndex = 0;
 
         //Inicializa los recolectores de eventos del mouse
@@ -66,7 +64,6 @@ public class frameFormulario extends javax.swing.JFrame {
         frameVistaPrevia.setTitle(nombre);
 
         //Inicializa el valor de los tabOrder
-        tabOrder = new TreeSet();
         tabIndex = 0;
 
         //Inicializa los recolectores de eventos del mouse
@@ -93,7 +90,6 @@ public class frameFormulario extends javax.swing.JFrame {
         frameVistaPrevia.setTitle(nombre);
 
         //Inicializa el valor de los tabOrder
-        tabOrder = new TreeSet();
         tabIndex = 0;
 
         //Inicializa los recolectores de eventos del mouse
@@ -155,8 +151,7 @@ public class frameFormulario extends javax.swing.JFrame {
             int ID = Integer.parseInt(c.getName());
             IDEnUso = ID;
             //Aqui hay q guardar los nuevos valores a la BD...
-            //System.out.println("acabo de soltar el id: " + ID);
-            miFormulario.updatePosicion(ID, Integer.parseInt(valEjeX.getText()), Integer.parseInt(valEjeY.getText()));
+            miFormulario.updatePosicion(ID, Integer.parseInt(valEjeX.getText()), Integer.parseInt(valEjeY.getText()));            
         }
     }
 
@@ -1039,106 +1034,106 @@ public class frameFormulario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void postInitComponents() {
-    botonActualizar.setSize(79, 23);
-    botonAgregar.setSize(71, 23);
-    botonAgregarEtq.setSize(105, 23);
-    botonBorrarComp.setSize(63, 23);
-    botonGuardar.setSize(71, 23);
-    botonMasAlto.setSize(63, 23);
-    botonMasAncho.setSize(63, 23);
-    botonMenosAlto.setSize(63, 23);
-    botonMenosAncho.setSize(63, 23);
-    botonTabIndex.setSize(73, 23);
-    bottonColor.setSize(45, 23);
-    colorDato.setSize(31, 20);
-    comboCategorias.setSize(130, 20);
-    comboFormatoFecha.setSize(130, 20);
-    comboNiveles.setSize(130, 20);
-    comboTipoLetra.setSize(130, 20);
-    comboTipos.setSize(130, 20);
-    frameVistaPrevia.setSize(500, 880);
-    jButton3.setSize(63, 23);
-    jLabel1.setSize(100, 14);
-    jLabel10.setSize(100, 14);
-    jLabel11.setSize(100, 14);
-    jLabel12.setSize(100, 14);
-    jLabel13.setSize(100, 14);
-    jLabel14.setSize(100, 14);
-    jLabel15.setSize(100, 14);
-    jLabel16.setSize(100, 14);
-    jLabel17.setSize(100, 14);
-    jLabel18.setSize(100, 14);
-    jLabel19.setSize(100, 14);
-    jLabel2.setSize(100, 14);
-    jLabel20.setSize(100, 14);
-    jLabel21.setSize(100, 14);
-    jLabel22.setSize(100, 14);
-    jLabel23.setSize(100, 14);
-    jLabel24.setSize(100, 14);
-    jLabel25.setSize(100, 14);
-    jLabel26.setSize(100, 14);
-    jLabel27.setSize(100, 14);
-    jLabel28.setSize(100, 14);
-    jLabel29.setSize(100, 14);
-    jLabel3.setSize(100, 14);
-    jLabel30.setSize(100, 14);
-    jLabel31.setSize(100, 14);
-    jLabel32.setSize(100, 14);
-    jLabel33.setSize(100, 14);
-    jLabel34.setSize(100, 14);
-    jLabel4.setSize(100, 14);
-    jLabel5.setSize(100, 14);
-    jLabel6.setSize(100, 14);
-    jLabel7.setSize(100, 14);
-    jLabel8.setSize(100, 14);
-    jLabel9.setSize(100, 14);
-    jScrollPane1.setSize(121, 376);
-    labelCategorias.setSize(100, 14);
-    paneBinario.setSize(390, 210);
-    paneDatos.setSize(449, 398);
-    paneFechaHora.setSize(340, 220);
-    paneFormulario.setSize(390, 250);
-    paneIncremental.setSize(440, 190);
-    paneJerarquia.setSize(390, 250);
-    paneLista.setSize(400, 160);
-    paneNumero.setSize(410, 200);
-    panePrincipal.setSize(420, 410);
-    paneTexto.setSize(360, 220);
-    radioCategoriasNo.setSize(33, 23);
-    radioCategoriasSi.setSize(33, 23);
-    radioFechaHoraNo.setSize(33, 23);
-    radioFechaHoraSi.setSize(33, 23);
-    radioNivelesNo.setSize(33, 23);
-    radioNivelesSi.setSize(33, 23);
-    radioNomUnicoNo.setSize(33, 23);
-    radioNomUnicoSi.setSize(33, 23);
-    radioOpcionBinaria1.setSize(33, 23);
-    radioOpcionBinaria2.setSize(33, 23);
-    tamanoLetra.setSize(80, 20);
-    textoDato.setSize(80, 20);
-    valEjeX.setSize(80, 20);
-    valEjeY.setSize(80, 20);
-    valorFechaDefecto.setSize(120, 20);
-    valorIncremento.setSize(120, 20);
-    valorNombreBinario1.setSize(120, 20);
-    valorNombreBinario2.setSize(120, 20);
-    valorNombreGeneral.setSize(120, 20);
-    valorNota.setSize(120, 20);
-    valorNumDecimales.setSize(120, 20);
-    valorNumNiveles.setSize(120, 20);
-    valorNumTerminos.setSize(120, 20);
-    valorNumeroMascara.setSize(120, 20);
-    valorOpcionBinaria1.setSize(120, 20);
-    valorOpcionBinaria2.setSize(120, 20);
-    valorPorDefectoLista.setSize(120, 20);
-    valorPreaviso.setSize(120, 20);
-    valorTextoDefecto.setSize(120, 20);
-    valorTextoLargo.setSize(120, 20);
-    valorValorDefectoNumero.setSize(120, 20);
-    valorValorInicial.setSize(120, 20);
+        botonActualizar.setSize(79, 23);
+        botonAgregar.setSize(71, 23);
+        botonAgregarEtq.setSize(105, 23);
+        botonBorrarComp.setSize(63, 23);
+        botonGuardar.setSize(71, 23);
+        botonMasAlto.setSize(63, 23);
+        botonMasAncho.setSize(63, 23);
+        botonMenosAlto.setSize(63, 23);
+        botonMenosAncho.setSize(63, 23);
+        botonTabIndex.setSize(73, 23);
+        bottonColor.setSize(45, 23);
+        colorDato.setSize(31, 20);
+        comboCategorias.setSize(130, 20);
+        comboFormatoFecha.setSize(130, 20);
+        comboNiveles.setSize(130, 20);
+        comboTipoLetra.setSize(130, 20);
+        comboTipos.setSize(130, 20);
+        frameVistaPrevia.setSize(500, 880);
+        jButton3.setSize(63, 23);
+        jLabel1.setSize(100, 14);
+        jLabel10.setSize(100, 14);
+        jLabel11.setSize(100, 14);
+        jLabel12.setSize(100, 14);
+        jLabel13.setSize(100, 14);
+        jLabel14.setSize(100, 14);
+        jLabel15.setSize(100, 14);
+        jLabel16.setSize(100, 14);
+        jLabel17.setSize(100, 14);
+        jLabel18.setSize(100, 14);
+        jLabel19.setSize(100, 14);
+        jLabel2.setSize(100, 14);
+        jLabel20.setSize(100, 14);
+        jLabel21.setSize(100, 14);
+        jLabel22.setSize(100, 14);
+        jLabel23.setSize(100, 14);
+        jLabel24.setSize(100, 14);
+        jLabel25.setSize(100, 14);
+        jLabel26.setSize(100, 14);
+        jLabel27.setSize(100, 14);
+        jLabel28.setSize(100, 14);
+        jLabel29.setSize(100, 14);
+        jLabel3.setSize(100, 14);
+        jLabel30.setSize(100, 14);
+        jLabel31.setSize(100, 14);
+        jLabel32.setSize(100, 14);
+        jLabel33.setSize(100, 14);
+        jLabel34.setSize(100, 14);
+        jLabel4.setSize(100, 14);
+        jLabel5.setSize(100, 14);
+        jLabel6.setSize(100, 14);
+        jLabel7.setSize(100, 14);
+        jLabel8.setSize(100, 14);
+        jLabel9.setSize(100, 14);
+        jScrollPane1.setSize(121, 376);
+        labelCategorias.setSize(100, 14);
+        paneBinario.setSize(390, 210);
+        paneDatos.setSize(449, 398);
+        paneFechaHora.setSize(340, 220);
+        paneFormulario.setSize(390, 250);
+        paneIncremental.setSize(440, 190);
+        paneJerarquia.setSize(390, 250);
+        paneLista.setSize(400, 160);
+        paneNumero.setSize(410, 200);
+        panePrincipal.setSize(420, 410);
+        paneTexto.setSize(360, 220);
+        radioCategoriasNo.setSize(33, 23);
+        radioCategoriasSi.setSize(33, 23);
+        radioFechaHoraNo.setSize(33, 23);
+        radioFechaHoraSi.setSize(33, 23);
+        radioNivelesNo.setSize(33, 23);
+        radioNivelesSi.setSize(33, 23);
+        radioNomUnicoNo.setSize(33, 23);
+        radioNomUnicoSi.setSize(33, 23);
+        radioOpcionBinaria1.setSize(33, 23);
+        radioOpcionBinaria2.setSize(33, 23);
+        tamanoLetra.setSize(80, 20);
+        textoDato.setSize(80, 20);
+        valEjeX.setSize(80, 20);
+        valEjeY.setSize(80, 20);
+        valorFechaDefecto.setSize(120, 20);
+        valorIncremento.setSize(120, 20);
+        valorNombreBinario1.setSize(120, 20);
+        valorNombreBinario2.setSize(120, 20);
+        valorNombreGeneral.setSize(120, 20);
+        valorNota.setSize(120, 20);
+        valorNumDecimales.setSize(120, 20);
+        valorNumNiveles.setSize(120, 20);
+        valorNumTerminos.setSize(120, 20);
+        valorNumeroMascara.setSize(120, 20);
+        valorOpcionBinaria1.setSize(120, 20);
+        valorOpcionBinaria2.setSize(120, 20);
+        valorPorDefectoLista.setSize(120, 20);
+        valorPreaviso.setSize(120, 20);
+        valorTextoDefecto.setSize(120, 20);
+        valorTextoLargo.setSize(120, 20);
+        valorValorDefectoNumero.setSize(120, 20);
+        valorValorInicial.setSize(120, 20);
 
-    jLabel35.setSize(52, 14);
-    comboEstiloLetra.setSize(80, 20);
+        jLabel35.setSize(52, 14);
+        comboEstiloLetra.setSize(80, 20);
     }
 
     private void paneJerarquiaComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_paneJerarquiaComponentShown
@@ -1174,57 +1169,49 @@ public class frameFormulario extends javax.swing.JFrame {
                 //Agrega todos los otros datos por defecto
                 IDEnUso = miFormulario.agregarMiembro(nombre, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, tabIndex++);
                 JTextField texto = agregarTipoNumero(nombre, IDEnUso);
-                tabOrder.add((Object) ("" + IDEnUso + "      " + nombre));
                 break;
             case 2:
                 //Binario
                 //agrega el componente 1:
                 String temp = valorNombreBinario1.getText();
                 //Agrega todos los otros datos por defecto
-                IDEnUso = miFormulario.agregarMiembro(temp, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 2, tabIndex++);
+                IDEnUso = miFormulario.agregarMiembro(nombre+" " +temp, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 2, tabIndex++);
                 agregarTipoBinario(temp, IDEnUso);
-                tabOrder.add((Object) ("" + IDEnUso + "      " + temp));
-
+                
                 //agrega el componente 2:
                 temp = valorNombreBinario2.getText();
-                IDEnUso = miFormulario.agregarMiembro(temp, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 2, tabIndex++);
+                IDEnUso = miFormulario.agregarMiembro(nombre+" " +temp, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 2, tabIndex++);
                 agregarTipoBinario(temp, IDEnUso);
-                tabOrder.add((Object) ("" + IDEnUso + "      " + temp));
                 break;
             case 3:
                 //Agrega todos los otros datos por defecto
                 IDEnUso = miFormulario.agregarMiembro(nombre, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, tabIndex++);
                 //FechaHora
                 agregarTipoFechaHora(nombre, IDEnUso);
-                tabOrder.add((Object) ("" + IDEnUso + "      " + nombre));
                 break;
             case 4:
                 //Texto
                 //Agrega todos los otros datos por defecto
                 IDEnUso = miFormulario.agregarMiembro(nombre, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, tabIndex++);
                 agregarTipoTexto(nombre, IDEnUso);
-                tabOrder.add((Object) ("" + IDEnUso + "      " + nombre));
                 break;
             case 5:
                 //Incremental
                 //Agrega todos los otros datos por defecto
                 IDEnUso = miFormulario.agregarMiembro(nombre, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, tabIndex++);
                 agregarTipoIncremental(nombre, IDEnUso);
-                tabOrder.add((Object) ("" + IDEnUso + "      " + nombre));
                 break;
             case 6:
                 //Jerarquia
                 //Agrega todos los otros datos por defecto
                 IDEnUso = miFormulario.agregarMiembro(nombre, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, tabIndex++);
                 agregarTipoJerarquia(nombre, IDEnUso);
-                tabOrder.add((Object) ("" + IDEnUso + "      " + nombre));
                 break;
             case 7:
                 //Lista
                 //Agrega todos los otros datos por defecto
                 IDEnUso = miFormulario.agregarMiembro(nombre, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, tabIndex++);
                 agregarTipoLista(nombre, IDEnUso);
-                tabOrder.add((Object) ("" + IDEnUso + "      " + nombre));
                 break;
             default:
                 break;
@@ -1458,18 +1445,9 @@ public class frameFormulario extends javax.swing.JFrame {
         miFormulario.eliminarMiembro(IDEnUso);
         //Se elimina el componente del preview
         compEnUso.setVisible(false);
-        //Se elimina de la lista para el TabIndex
-        eliminarCampoTabIndex(IDEnUso);
         //desp se ocultan los panes
         ocultarPanes();
     }//GEN-LAST:event_botonBorrarCompActionPerformed
-
-    /**
-     * De la lista con los valores del tabIndex, elimina la entrada del campo
-     * @param ID
-     */
-    private void eliminarCampoTabIndex(int ID) {
-    }
 
     private void botonMasAnchoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMasAnchoActionPerformed
         // TODO add your handling code here:
@@ -1512,15 +1490,61 @@ public class frameFormulario extends javax.swing.JFrame {
      * Abre la ventana donde se muestran los componentes del formulario para ordenar el tab index
      */
     private void escogerTabIndex() {
-        Object vals[] = tabOrder.toArray();
-        String[] valores = new String[vals.length];
-        for (int i = 0; i < vals.length; ++i) {
-            valores[i] = vals[i].toString();
+        SortedSet miembros = miFormulario.getMiembroFormularioSet();
+        String[] valores = new String[miembros.size()];
+        Iterator iterador = miembros.iterator();
+        int k = 0;
+        for (int i = 0; i < miembros.size(); i++) {
+            MiembroFormulario miembro = (MiembroFormulario) iterador.next();
+            int ID = miembro.getID();
+            String nombre = miembro.getNombre();
+            int IDTipoCampo = miembro.getIDTipoCampo();
+            //Mientras no sea una etiqueta
+            if(IDTipoCampo != 0){
+                valores[k] = ID+"      " + nombre;
+                ++k;
+            }
         }
-        frameTabIndex frameTI = new frameTabIndex(valores);
+        numCampos = k;
+        frameTabIndex frameTI = new frameTabIndex(this, valores);
         frameTI.setLocationRelativeTo(GestionTipoCampoApp.getApplication().getMainFrame());
         frameTI.setVisible(true);
+    }
 
+    /**
+     * Abre la ventana donde se muestran los componentes del formulario para ordenar el tab index
+     */
+    public void cambioTabIndex(String[] valores) {
+        for (int i = 0; i < numCampos; i++) {
+            String id = (valores[i].split(" "))[0];
+            int ID = Integer.parseInt(id);
+            miFormulario.updateTabIndex(ID, i);
+        }
+        actualizarTabIndex(valores);
+    }
+
+    public void actualizarTabIndex(String[] valores){
+        Object[] componentes = frameVistaPrevia.getComponents();
+        String idAnt = (valores[0].split(" "))[0];
+        for (int i = 1; i < numCampos; i++) {
+            String id = (valores[i].split(" "))[0];
+
+            //busca entre todos los componentes, se hace -1 porq el ultimo no tiene N.F.C.
+            for(int k = 0; k < componentes.length-1; ++k){
+                JComponent cmp = (JComponent)componentes[k];
+                if( cmp.getName().equalsIgnoreCase(id) ){
+                    System.out.println("sig: "+id);
+                    for(int j = 0; j < componentes.length; ++j){
+                        JComponent cmp2 = (JComponent)componentes[j];
+                        if( cmp2.getName().equalsIgnoreCase(idAnt) ){
+                            System.out.println("ant: "+idAnt);
+                            cmp2.setNextFocusableComponent(cmp);
+                        }
+                    }
+                }
+            }
+            idAnt = id;
+        }
     }
 
     /**
@@ -1947,6 +1971,6 @@ public class frameFormulario extends javax.swing.JFrame {
     public Formulario miFormulario;
     public int IDEnUso;
     public JComponent compEnUso;
-    public SortedSet tabOrder;
     public int tabIndex;
+    private int numCampos;
 }

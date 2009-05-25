@@ -97,6 +97,15 @@ public class ConsultaFormularioMySQL extends ConsultaFormulario{
     }
 
     /**
+     * Actualiza el tab index
+     * @param ID
+     * @param tab
+     */
+    public void updateTabIndex(int ID, int tab){
+        this.doUpdate("UPDATE MIEMBROFORMULARIO set tabIndex = " +tab+ " WHERE correlativo = " + ID + ";");
+    }
+
+    /**
      * Modifica el nombre del formulario
      * @param nombre
      * @param ID

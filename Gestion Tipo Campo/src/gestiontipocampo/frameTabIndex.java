@@ -19,15 +19,28 @@ import javax.swing.DefaultListModel;
  */
 public class frameTabIndex extends javax.swing.JFrame {
 
-    /** Creates new form frameTabIndex */
-    public frameTabIndex(String [] valores) {
+    /**
+     * Creates new form frameTabIndex
+     */
+    public frameTabIndex( ) {
+        initComponents();
+        listModel = new DefaultListModel();
+        jList1.setModel(listModel);
+    }
+
+    /**
+     * Creates new form frameTabIndex
+     */
+    public frameTabIndex(frameFormulario parent, String [] valores) {
         initComponents();
 
         listModel = new DefaultListModel();
+        listModel.removeAllElements();
         for(int i = 0; i < valores.length; ++i){
             listModel.addElement(valores[i]);
         }
         jList1.setModel(listModel);
+        frameForm = parent;
     }
 
     /** This method is called from within the constructor to
@@ -43,9 +56,9 @@ public class frameTabIndex extends javax.swing.JFrame {
         jList1 = new javax.swing.JList();
         jLabel1 = new javax.swing.JLabel();
         botonSubir = new javax.swing.JButton();
-        Bajar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        botonBajar = new javax.swing.JButton();
+        botonAceptar = new javax.swing.JButton();
+        botonCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setName("Form"); // NOI18N
@@ -67,27 +80,27 @@ public class frameTabIndex extends javax.swing.JFrame {
             }
         });
 
-        Bajar.setText(resourceMap.getString("Bajar.text")); // NOI18N
-        Bajar.setName("Bajar"); // NOI18N
-        Bajar.addActionListener(new java.awt.event.ActionListener() {
+        botonBajar.setText(resourceMap.getString("botonBajar.text")); // NOI18N
+        botonBajar.setName("botonBajar"); // NOI18N
+        botonBajar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BajarActionPerformed(evt);
+                botonBajarActionPerformed(evt);
             }
         });
 
-        jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
-        jButton1.setName("jButton1"); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        botonAceptar.setText(resourceMap.getString("botonAceptar.text")); // NOI18N
+        botonAceptar.setName("botonAceptar"); // NOI18N
+        botonAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                botonAceptarActionPerformed(evt);
             }
         });
 
-        jButton2.setText(resourceMap.getString("jButton2.text")); // NOI18N
-        jButton2.setName("jButton2"); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        botonCancelar.setText(resourceMap.getString("botonCancelar.text")); // NOI18N
+        botonCancelar.setName("botonCancelar"); // NOI18N
+        botonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                botonCancelarActionPerformed(evt);
             }
         });
 
@@ -102,13 +115,13 @@ public class frameTabIndex extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jButton1)
+                                .addComponent(botonAceptar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton2))
+                                .addComponent(botonCancelar))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Bajar)
+                            .addComponent(botonBajar)
                             .addComponent(botonSubir))))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
@@ -125,15 +138,15 @@ public class frameTabIndex extends javax.swing.JFrame {
                         .addGap(88, 88, 88)
                         .addComponent(botonSubir)
                         .addGap(35, 35, 35)
-                        .addComponent(Bajar)))
+                        .addComponent(botonBajar)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addComponent(botonAceptar)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)
+                        .addComponent(botonCancelar)
                         .addContainerGap())))
         );
 
@@ -148,43 +161,49 @@ public class frameTabIndex extends javax.swing.JFrame {
         jList1.setSelectedIndex(index-1);
     }//GEN-LAST:event_botonSubirActionPerformed
 
-    private void BajarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BajarActionPerformed
+    private void botonBajarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBajarActionPerformed
         int index = jList1.getSelectedIndex();
         Object tmp = listModel.get(index);
         listModel.remove(index);
         listModel.add(index+1, tmp);
         jList1.setSelectedIndex(index+1);
-    }//GEN-LAST:event_BajarActionPerformed
+}//GEN-LAST:event_botonBajarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+}//GEN-LAST:event_botonCancelarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
         //debe enviarse los datos de vuelta...
+        int size = listModel.size();
+        String[] valores = new String[size];
+        for(int i = 0; i< size; ++i){
+            valores[i] = (String)listModel.getElementAt(i);
+        }
+        frameForm.cambioTabIndex(valores);
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+}//GEN-LAST:event_botonAceptarActionPerformed
 
     /**
     * @param args the command line arguments
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                String[] tmp = {"1", "2"};
-                new frameTabIndex(tmp).setVisible(true);
+            public void run() {                
+                new frameTabIndex().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Bajar;
+    private javax.swing.JButton botonAceptar;
+    private javax.swing.JButton botonBajar;
+    private javax.swing.JButton botonCancelar;
     private javax.swing.JButton botonSubir;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
     public DefaultListModel listModel;
+    private frameFormulario frameForm;
 }

@@ -159,6 +159,22 @@ public class Formulario{
         miembrosFormulario.add(datoNuevo);
     }
 
+    /**
+     * Modifica el valor del tabIndex
+     * @param ID
+     * @param tab
+     */
+    public void updateTabIndex(int ID, int tab){
+        //modifica en la BD el dato
+        formBD.updateTabIndex(ID, tab);
+        MiembroFormulario tmp = getMiembro(ID);
+        //borra el miembro viejo
+        miembrosFormulario.remove(tmp);
+        MiembroFormulario datoNuevo = new MiembroFormulario(ID, tmp.getID(), tmp.getNombre(), tmp.getValX(), tmp.getValY(), tmp.getAncho(), tmp.getAlto(), tmp.getTipoLetra(), tmp.getColor(), tmp.getTamanoLetra(), tmp.getIDTipoCampo(), tab);
+        //agrega el nuevo con los valores nuevos
+        miembrosFormulario.add(datoNuevo);
+    }
+
     private int getIDTipoCampo( int ID){
         int IDTP = -1;
         Object[] vecMiembros = miembrosFormulario.toArray();        
@@ -210,6 +226,10 @@ public class Formulario{
      */
     public String getDescripcion() {
         return this.descripcion;
+    }
+
+    public int getCount() {
+        return this.miembrosFormulario.size();
     }
 
     /**
