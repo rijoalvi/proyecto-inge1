@@ -1258,21 +1258,23 @@ public class GestionTipoCampoView extends FrameView {
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        frameFormulario frameForm = null;
+        SeleccionFormulario seleccionarForm = new SeleccionFormulario(frameForm,arbolPrincipal);
+        seleccionarForm.setVisible(true);
+        seleccionarForm.setLocationRelativeTo(GestionTipoCampoApp.getApplication().getMainFrame());
+        seleccionarForm.llenarTabla("");
+      //  frameForm.setLocationRelativeTo(GestionTipoCampoApp.getApplication().getMainFrame());
+//        frameForm.setVisible(true);
         //String val = JOptionPane.showInputDialog(this, "Favor ingresar el ID del formulario a abrir", "", JOptionPane.QUESTION_MESSAGE);
-        int ID = 12;
+       /* int ID = 12;
         frameFormulario frameForm = new frameFormulario( arbolPrincipal.getModel(), ID);
 
         frameForm.setLocationRelativeTo(GestionTipoCampoApp.getApplication().getMainFrame());
-        frameForm.setVisible(true);
+        frameForm.setVisible(true);*/
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void fileMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileMenuActionPerformed
-        //String val = JOptionPane.showInputDialog(this, "Favor ingresar el ID del formulario a abrir", "", JOptionPane.QUESTION_MESSAGE);
-        int ID = 1;
-        frameFormulario frameForm = new frameFormulario( arbolPrincipal.getModel(), ID);
 
-        frameForm.setLocationRelativeTo(GestionTipoCampoApp.getApplication().getMainFrame());
-        frameForm.setVisible(true);
     }//GEN-LAST:event_fileMenuActionPerformed
 
     public void llenarDatosReadOnly(String nombre, int tipo){

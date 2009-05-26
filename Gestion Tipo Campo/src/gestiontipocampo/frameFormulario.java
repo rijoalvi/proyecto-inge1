@@ -81,13 +81,10 @@ public class frameFormulario extends javax.swing.JFrame {
      */
     public frameFormulario(TreeModel arbolHeredado, int correlativo) {
         this.setTitle("GIFT Configurador - Edición de Formularios con correlativo");
-        miFormulario = new Formulario(correlativo);
-        String nombre = miFormulario.getNombre();
-        String descripcion = miFormulario.getDescripcion();
         initComponents();
         postInitComponents();
-        frameVistaPrevia.setResizable(false);
-        frameVistaPrevia.setTitle(nombre);
+        
+        
 
         //Inicializa el valor de los tabOrder
         tabIndex = 0;
@@ -100,7 +97,16 @@ public class frameFormulario extends javax.swing.JFrame {
         arbolPrincipal.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         arbolPrincipal.setModel(arbolHeredado);
         ocultarPanes();
+        cargarFormulario(correlativo);
+        
+    }
 
+    void cargarFormulario(int correlativo) {
+        miFormulario = new Formulario(correlativo);
+        String nombre = miFormulario.getNombre();
+        String descripcion = miFormulario.getDescripcion();
+        frameVistaPrevia.setResizable(false);
+        frameVistaPrevia.setTitle(nombre);
         cargarMiembros();
     }
 
