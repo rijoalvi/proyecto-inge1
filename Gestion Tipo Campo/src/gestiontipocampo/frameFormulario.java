@@ -16,6 +16,7 @@ import javax.swing.*;
 import javax.swing.JColorChooser;
 import java.awt.Color;
 import java.awt.FocusTraversalPolicy;
+import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.util.*;
 
@@ -186,14 +187,14 @@ public class frameFormulario extends javax.swing.JFrame {
                     //Etiqueta
                     campo = agregarEtiqueta(nombre, id);
                     llenarDatosMiembro(id);
-                    actualizarComponente(textoDato.getText(), Integer.parseInt(valEjeX.getText()), Integer.parseInt(valEjeY.getText()), comboTipoLetra.getSelectedItem().toString(), colorDato.getForeground().getRGB(), Integer.parseInt(tamanoLetra.getText()), compEnUso.getWidth(), compEnUso.getHeight());
+                    actualizarComponente(textoDato.getText(), Integer.parseInt(valEjeX.getText()), Integer.parseInt(valEjeY.getText()), comboTipoLetra.getSelectedItem().toString(), colorDato.getForeground().getRGB(), Integer.parseInt(tamanoLetra.getText()), compEnUso.getWidth(), compEnUso.getHeight(), comboEstiloLetra.getSelectedItem().toString());
                     campo.setBounds(valx, valy, ancho, alto);
                     break;
                 case 1:
                     //Numero
                     campo = agregarTipoNumero(nombre, id);
                     llenarDatosMiembro(id);
-                    actualizarComponente(textoDato.getText(), Integer.parseInt(valEjeX.getText()), Integer.parseInt(valEjeY.getText()), comboTipoLetra.getSelectedItem().toString(), colorDato.getForeground().getRGB(), Integer.parseInt(tamanoLetra.getText()), compEnUso.getWidth(), compEnUso.getHeight());
+                    actualizarComponente(textoDato.getText(), Integer.parseInt(valEjeX.getText()), Integer.parseInt(valEjeY.getText()), comboTipoLetra.getSelectedItem().toString(), colorDato.getForeground().getRGB(), Integer.parseInt(tamanoLetra.getText()), compEnUso.getWidth(), compEnUso.getHeight(), comboEstiloLetra.getSelectedItem().toString());
                     //campo.addMouseListener(listener);
                     //campo.addMouseMotionListener(motionListener);
                     //frameVistaPrevia.add( campo );
@@ -1173,7 +1174,7 @@ public class frameFormulario extends javax.swing.JFrame {
             case 1:
                 //Numero
                 //Agrega todos los otros datos por defecto
-                IDEnUso = miFormulario.agregarMiembro(nombre, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, tabIndex++);
+                IDEnUso = miFormulario.agregarMiembro(nombre, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, tabIndex++, "Plain");
                 JTextField texto = agregarTipoNumero(nombre, IDEnUso);
                 break;
             case 2:
@@ -1181,42 +1182,42 @@ public class frameFormulario extends javax.swing.JFrame {
                 //agrega el componente 1:
                 String temp = valorNombreBinario1.getText();
                 //Agrega todos los otros datos por defecto
-                IDEnUso = miFormulario.agregarMiembro(nombre+" " +temp, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 2, tabIndex++);
+                IDEnUso = miFormulario.agregarMiembro(nombre+" " +temp, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 2, tabIndex++, "Plain");
                 agregarTipoBinario(temp, IDEnUso);
                 
                 //agrega el componente 2:
                 temp = valorNombreBinario2.getText();
-                IDEnUso = miFormulario.agregarMiembro(nombre+" " +temp, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 2, tabIndex++);
+                IDEnUso = miFormulario.agregarMiembro(nombre+" " +temp, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 2, tabIndex++, "Plain");
                 agregarTipoBinario(temp, IDEnUso);
                 break;
             case 3:
                 //Agrega todos los otros datos por defecto
-                IDEnUso = miFormulario.agregarMiembro(nombre, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, tabIndex++);
+                IDEnUso = miFormulario.agregarMiembro(nombre, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, tabIndex++, "Plain");
                 //FechaHora
                 agregarTipoFechaHora(nombre, IDEnUso);
                 break;
             case 4:
                 //Texto
                 //Agrega todos los otros datos por defecto
-                IDEnUso = miFormulario.agregarMiembro(nombre, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, tabIndex++);
+                IDEnUso = miFormulario.agregarMiembro(nombre, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, tabIndex++, "Plain");
                 agregarTipoTexto(nombre, IDEnUso);
                 break;
             case 5:
                 //Incremental
                 //Agrega todos los otros datos por defecto
-                IDEnUso = miFormulario.agregarMiembro(nombre, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, tabIndex++);
+                IDEnUso = miFormulario.agregarMiembro(nombre, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, tabIndex++, "Plain");
                 agregarTipoIncremental(nombre, IDEnUso);
                 break;
             case 6:
                 //Jerarquia
                 //Agrega todos los otros datos por defecto
-                IDEnUso = miFormulario.agregarMiembro(nombre, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, tabIndex++);
+                IDEnUso = miFormulario.agregarMiembro(nombre, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, tabIndex++, "Plain");
                 agregarTipoJerarquia(nombre, IDEnUso);
                 break;
             case 7:
                 //Lista
                 //Agrega todos los otros datos por defecto
-                IDEnUso = miFormulario.agregarMiembro(nombre, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, tabIndex++);
+                IDEnUso = miFormulario.agregarMiembro(nombre, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 1, tabIndex++, "Plain");
                 agregarTipoLista(nombre, IDEnUso);
                 break;
             default:
@@ -1244,8 +1245,9 @@ public class frameFormulario extends javax.swing.JFrame {
         valEjeX.setText("" + temp.getValX());
         valEjeY.setText("" + temp.getValY());
         tamanoLetra.setText("" + temp.getTamanoLetra());
-        comboTipoLetra.addItem(temp.getTipoLetra());
+        //comboTipoLetra.addItem(temp.getTipoLetra());
         comboTipoLetra.setSelectedItem(temp.getTipoLetra());
+        comboEstiloLetra.setSelectedItem(temp.getEstiloLetra());
     }
 
     /**
@@ -1259,6 +1261,7 @@ public class frameFormulario extends javax.swing.JFrame {
         etq.addMouseMotionListener(motionListener);
         frameVistaPrevia.add(etq);
         etq.setBounds(1, 1, 100, 20);
+        etq.setFont(Font.decode("Arial-Plain-12"));
         compEnUso = etq;
         return etq;
     }
@@ -1275,6 +1278,7 @@ public class frameFormulario extends javax.swing.JFrame {
         jtf.addMouseMotionListener(motionListener);
         frameVistaPrevia.add(jtf);
         jtf.setBounds(10, 1, 100, 20);
+        jtf.setFont(Font.decode("Arial-Plain-12"));
         compEnUso = jtf;
         return jtf;
     }
@@ -1291,6 +1295,7 @@ public class frameFormulario extends javax.swing.JFrame {
         r1.addMouseMotionListener(motionListener);
         frameVistaPrevia.add(r1);
         r1.setBounds(10, 1, 100, 20);
+        r1.setFont(Font.decode("Arial-Plain-12"));
         compEnUso = r1;
         return r1;
     }
@@ -1308,6 +1313,7 @@ public class frameFormulario extends javax.swing.JFrame {
         jtf.addMouseMotionListener(motionListener);
         frameVistaPrevia.add(jtf);
         jtf.setBounds(10, 1, 100, 20);
+        jtf.setFont(Font.decode("Arial-Plain-12"));
         compEnUso = jtf;
     }
 
@@ -1323,6 +1329,7 @@ public class frameFormulario extends javax.swing.JFrame {
         jtf.addMouseMotionListener(motionListener);
         frameVistaPrevia.add(jtf);
         jtf.setBounds(10, 1, 100, 20);
+        jtf.setFont(Font.decode("Arial-Plain-12"));
         compEnUso = jtf;
     }
 
@@ -1338,6 +1345,7 @@ public class frameFormulario extends javax.swing.JFrame {
         jtf.addMouseMotionListener(motionListener);
         frameVistaPrevia.add(jtf);
         jtf.setBounds(10, 1, 100, 20);
+        jtf.setFont(Font.decode("Arial-Plain-12"));
         compEnUso = jtf;
     }
 
@@ -1353,6 +1361,7 @@ public class frameFormulario extends javax.swing.JFrame {
         jtf.addMouseMotionListener(motionListener);
         frameVistaPrevia.add(jtf);
         jtf.setBounds(100, 1, 100, 20);
+        jtf.setFont(Font.decode("Arial-Plain-12"));
         compEnUso = jtf;
     }
 
@@ -1368,6 +1377,7 @@ public class frameFormulario extends javax.swing.JFrame {
         jtf.addMouseMotionListener(motionListener);
         frameVistaPrevia.add(jtf);
         jtf.setBounds(10, 1, 100, 20);
+        jtf.setFont(Font.decode("Arial-Plain-12"));
         compEnUso = jtf;
     }
 
@@ -1379,9 +1389,9 @@ public class frameFormulario extends javax.swing.JFrame {
             texto = "";
         }
         //Se guardan los datos en la instancia del Formulario, al igual que en la BD
-        miFormulario.upDateValoresMiembro(IDEnUso, texto, Integer.parseInt(valEjeX.getText()), Integer.parseInt(valEjeY.getText()), compEnUso.getWidth(), compEnUso.getHeight(), comboTipoLetra.getSelectedItem().toString(), colorDato.getForeground().getRGB(), Integer.parseInt(tamanoLetra.getText()));
+        miFormulario.upDateValoresMiembro(IDEnUso, texto, Integer.parseInt(valEjeX.getText()), Integer.parseInt(valEjeY.getText()), compEnUso.getWidth(), compEnUso.getHeight(), comboTipoLetra.getSelectedItem().toString(), colorDato.getForeground().getRGB(), Integer.parseInt(tamanoLetra.getText()), comboEstiloLetra.getSelectedItem().toString());
         //Se actualiza el componente en el preview
-        actualizarComponente(textoDato.getText(), Integer.parseInt(valEjeX.getText()), Integer.parseInt(valEjeY.getText()), comboTipoLetra.getSelectedItem().toString(), colorDato.getForeground().getRGB(), Integer.parseInt(tamanoLetra.getText()), compEnUso.getWidth(), compEnUso.getHeight());
+        actualizarComponente(textoDato.getText(), Integer.parseInt(valEjeX.getText()), Integer.parseInt(valEjeY.getText()), comboTipoLetra.getSelectedItem().toString(), colorDato.getForeground().getRGB(), Integer.parseInt(tamanoLetra.getText()), compEnUso.getWidth(), compEnUso.getHeight(), comboEstiloLetra.getSelectedItem().toString());
         //desp de guardar se ocultan los panes
         ocultarPanes();
     }//GEN-LAST:event_botonGuardarActionPerformed
@@ -1395,7 +1405,7 @@ public class frameFormulario extends javax.swing.JFrame {
      * @param color
      * @param tamanoLetra
      */
-    private void actualizarComponente(String texto, int valX, int valY, String tipoLetra, int color, int tamanoLetra, int ancho, int alto) {
+    private void actualizarComponente(String texto, int valX, int valY, String tipoLetra, int color, int tamanoLetra, int ancho, int alto, String estiloLetra) {
         //hay q cambiar el tamaño!!!!!!!!!!!!!!!!!!1
         String componente = "" + compEnUso;
         //Si es una etiqueta:
@@ -1414,6 +1424,7 @@ public class frameFormulario extends javax.swing.JFrame {
             }
         }
         compEnUso.setBounds(valX, valY, ancho, alto);
+        compEnUso.setFont(Font.decode(tipoLetra + ' ' + estiloLetra + ' ' + tamanoLetra));
         //cambia color
         compEnUso.setForeground(new Color(color));
     }
@@ -1440,7 +1451,7 @@ public class frameFormulario extends javax.swing.JFrame {
      */
     private void agregarRotulo(String texto) {
         //Como es etiqueta uso tabIndex -1
-        IDEnUso = miFormulario.agregarMiembro(texto, 1, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 0, -1);
+        IDEnUso = miFormulario.agregarMiembro(texto, 1, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 0, -1, "Plain");
         agregarEtiqueta(texto, IDEnUso);
         llenarDatosMiembro(IDEnUso);
     }
@@ -1857,15 +1868,6 @@ public class frameFormulario extends javax.swing.JFrame {
         });
     }
 
-    @org.jdesktop.application.Action
-    public void testFontSelect() {
-        java.awt.GraphicsEnvironment test = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        String[] fonts = test.getAvailableFontFamilyNames();
-        for (int i = 0; i < fonts.length; i++) {
-            System.out.println(fonts[i]);
-        }
-
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTree arbolPrincipal;
     private javax.swing.JButton botonActualizar;

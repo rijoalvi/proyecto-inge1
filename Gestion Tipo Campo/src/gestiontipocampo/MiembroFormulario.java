@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package gestiontipocampo;
 
 /**
@@ -23,19 +22,19 @@ public class MiembroFormulario implements Comparable {
     private int tamanoLetra;
     private int IDTipoCampo;
     private int tabIndex;
+    private String estiloLetra;
 
     ///Constructor por omision
-    public MiembroFormulario(){
-
+    public MiembroFormulario() {
     }
 
-   ///Constructor que recibe nada mas el ID
-    public MiembroFormulario( int ID){
+    ///Constructor que recibe nada mas el ID
+    public MiembroFormulario(int ID) {
         this.correlativo = ID;
     }
 
     ///Constructor que recibe parametros de inicialización
-    public MiembroFormulario(int ID, int IDForm, String nombre, int valX, int valY, int ancho, int alto, String tipoLetra, int color, int tamanoLetra, int IDTipoC, int tabIndex){
+    public MiembroFormulario(int ID, int IDForm, String nombre, int valX, int valY, int ancho, int alto, String tipoLetra, int color, int tamanoLetra, int IDTipoC, int tabIndex, String estiloLetra) {
         this.correlativo = ID;
         this.IDFormulario = IDForm;
         this.nombre = nombre;
@@ -48,20 +47,27 @@ public class MiembroFormulario implements Comparable {
         this.tamanoLetra = tamanoLetra;
         this.IDTipoCampo = IDTipoC;
         this.tabIndex = tabIndex;
+        this.estiloLetra = estiloLetra;
     }
 
-   public int compareTo(Object o) {
-        if(this.correlativo == ((MiembroFormulario)o).correlativo){
-            return 0;
+    /**
+     * Compara dos miembroFormulario y devuelve 0 si tienen el correlativo igual
+     * @param o miembroFormulario a comparar
+     * @return 0 - tienen el mismo correlativo, 1 - tiene el correlativo diferente
+     */
+    public int compareTo(Object o) {
+        int retorno = 1;
+        if (this.correlativo == ((MiembroFormulario) o).correlativo) {
+            retorno = 0;
         }
-        return 1;
+        return retorno;
     }
 
     /**
      * Se indica el nombre del miembro
      * @param y
      */
-    public void setNombre(String name){
+    public void setNombre(String name) {
         nombre = name;
     }
 
@@ -69,7 +75,7 @@ public class MiembroFormulario implements Comparable {
      * Se indica la posicion en X del miembro
      * @param x
      */
-    public void setValX(int x){
+    public void setValX(int x) {
         valX = x;
     }
 
@@ -77,91 +83,107 @@ public class MiembroFormulario implements Comparable {
      * Se indica la posicion en Y del miembro
      * @param y
      */
-    public void setValY(int y){
+    public void setValY(int y) {
         valY = y;
+    }
+
+    /**
+     * Se indica el estilo de letra
+     * @param estilo Posibles valores son (Plain, Bold, Italic, BoldItalic)
+     */
+    public void setEstiloLetra(String estilo){
+        estiloLetra = estilo;
     }
 
     /**
      * Indica el correlativo(ID) del miembro
      */
-    public int getID( ){
+    public int getID() {
         return correlativo;
     }
 
     /**
      * Indica el ID del tipo campo del miembro
      */
-    public int getIDTipoCampo( ){
+    public int getIDTipoCampo() {
         return IDTipoCampo;
     }
 
     /**
      * Indica la posicion en X del miembro
      */
-    public int getValX( ){
+    public int getValX() {
         return valX;
     }
 
     /**
      * Indica la posicion en X del miembro
      */
-    public int getValY( ){
+    public int getValY() {
         return valY;
     }
 
     /**
      * Indica el ancho del miembro
      */
-    public int getAncho( ){
+    public int getAncho() {
         return ancho;
     }
 
     /**
      * Indica el alto del miembro
      */
-    public int getAlto( ){
+    public int getAlto() {
         return alto;
     }
 
     /**
      * Devuelve el valor del nombre
      */
-    public String getNombre( ){
+    public String getNombre() {
         return nombre;
     }
 
     /**
      * Indica el ID del formulario al cual pertenece el miembro
      */
-    public int getIDFormulario( ){
+    public int getIDFormulario() {
         return IDFormulario;
     }
 
     /**
      * Indica el tamaño de letra del miembro
      */
-    public int getTamanoLetra( ){
+    public int getTamanoLetra() {
         return tamanoLetra;
     }
 
     /**
      * Indica el color del miembro
      */
-    public int getColor( ){
+    public int getColor() {
         return color;
     }
 
     /**
      * Devuelve el tipo de Letra
      */
-    public String getTipoLetra( ){
+    public String getTipoLetra() {
         return tipoLetra;
     }
 
     /**
      * Devuelve tab index
      */
-    public int getTabIndex( ){
+    public int getTabIndex() {
         return tabIndex;
+    }
+
+    /**
+     * Devuelve estilo de letra
+     * @return
+     */
+    public String getEstiloLetra(){
+        return estiloLetra;
     }
 }

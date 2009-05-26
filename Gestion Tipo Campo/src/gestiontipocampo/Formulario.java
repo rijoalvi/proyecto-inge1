@@ -43,7 +43,7 @@ public class Formulario{
     public Formulario( int correlativo) {
         this.correlativo = correlativo;
         buscador = new ControladorBD();
-        formBD = buscador.getConsultaFormulario();;
+        formBD = buscador.getConsultaFormulario();
         Vector datos = this.formBD.obtenerDatosFormulario(correlativo);
         nombre =  datos.get(0).toString();
         descripcion =  datos.get(1).toString();
@@ -76,7 +76,8 @@ public class Formulario{
                                                                 Integer.parseInt(miembros.get(indice++).toString()),
                                                                 Integer.parseInt(miembros.get(indice++).toString()),
                                                                 Integer.parseInt(miembros.get(indice++).toString()),
-                                                                Integer.parseInt(miembros.get(indice++).toString()));
+                                                                Integer.parseInt(miembros.get(indice++).toString()),
+                                                                miembros.get(indice++).toString());
             miembrosFormulario.add(datoNuevo);
         }
     }
@@ -98,11 +99,11 @@ public class Formulario{
      * @param color
      * @param tamañoLetra
      */
-    public int agregarMiembro(String nombre, int valX, int valY, int ancho, int alto, String tipoLetra, int color, int tamanoLetra, int IDTP, int tabIndex){
+    public int agregarMiembro(String nombre, int valX, int valY, int ancho, int alto, String tipoLetra, int color, int tamanoLetra, int IDTP, int tabIndex, String estiloLetra){
         //agrega en la BD el dato nuevo
-        int ID = formBD.agregarMiembro(this.correlativo, nombre, valX, valY, ancho, alto, tipoLetra, color, tamanoLetra, IDTP, tabIndex);
+        int ID = formBD.agregarMiembro(this.correlativo, nombre, valX, valY, ancho, alto, tipoLetra, color, tamanoLetra, IDTP, tabIndex, estiloLetra);
         //crea una instancia del miembro
-        MiembroFormulario datoNuevo = new MiembroFormulario(ID, this.correlativo, nombre, valX, valY, ancho, alto, tipoLetra, color, tamanoLetra, IDTP, tabIndex);
+        MiembroFormulario datoNuevo = new MiembroFormulario(ID, this.correlativo, nombre, valX, valY, ancho, alto, tipoLetra, color, tamanoLetra, IDTP, tabIndex, estiloLetra);
         miembrosFormulario.add(datoNuevo);
         return ID;
     }
@@ -130,14 +131,14 @@ public class Formulario{
      * @param tamanoLetra
      * @param IDTP
      */
-    public void upDateValoresMiembro(int ID, String nombre, int valX, int valY, int ancho, int alto, String tipoLetra, int color, int tamanoLetra){
+    public void upDateValoresMiembro(int ID, String nombre, int valX, int valY, int ancho, int alto, String tipoLetra, int color, int tamanoLetra, String estiloLetra){
         int IDTP = getIDTipoCampo(ID);
         MiembroFormulario tmp = getMiembro(ID);
         //agrega en la BD el dato nuevo
-        formBD.updateMiembro(ID, nombre, valX, valY, ancho, alto, tipoLetra, color, tamanoLetra, IDTP, tmp.getTabIndex());
+        formBD.updateMiembro(ID, nombre, valX, valY, ancho, alto, tipoLetra, color, tamanoLetra, IDTP, tmp.getTabIndex(), estiloLetra);
         //borra el miembro viejo
         miembrosFormulario.remove( tmp );
-        MiembroFormulario datoNuevo = new MiembroFormulario(ID, this.correlativo, nombre, valX, valY, ancho, alto, tipoLetra, color, tamanoLetra, IDTP, tmp.getTabIndex());
+        MiembroFormulario datoNuevo = new MiembroFormulario(ID, this.correlativo, nombre, valX, valY, ancho, alto, tipoLetra, color, tamanoLetra, IDTP, tmp.getTabIndex(), estiloLetra);
         //agrega el nuevo con los valores nuevos
         miembrosFormulario.add(datoNuevo);
     }
@@ -154,7 +155,7 @@ public class Formulario{
         //borra el miembro viejo
         MiembroFormulario tmp = getMiembro(ID);
         miembrosFormulario.remove(tmp);
-        MiembroFormulario datoNuevo = new MiembroFormulario(ID, tmp.getID(), tmp.getNombre(), valX, valY, tmp.getAncho(), tmp.getAlto(), tmp.getTipoLetra(), tmp.getColor(), tmp.getTamanoLetra(), tmp.getIDTipoCampo(), tmp.getTabIndex());
+        MiembroFormulario datoNuevo = new MiembroFormulario(ID, tmp.getID(), tmp.getNombre(), valX, valY, tmp.getAncho(), tmp.getAlto(), tmp.getTipoLetra(), tmp.getColor(), tmp.getTamanoLetra(), tmp.getIDTipoCampo(), tmp.getTabIndex(), tmp.getEstiloLetra());
         //agrega el nuevo con los valores nuevos
         miembrosFormulario.add(datoNuevo);
     }
@@ -170,7 +171,7 @@ public class Formulario{
         MiembroFormulario tmp = getMiembro(ID);
         //borra el miembro viejo
         miembrosFormulario.remove(tmp);
-        MiembroFormulario datoNuevo = new MiembroFormulario(ID, tmp.getID(), tmp.getNombre(), tmp.getValX(), tmp.getValY(), tmp.getAncho(), tmp.getAlto(), tmp.getTipoLetra(), tmp.getColor(), tmp.getTamanoLetra(), tmp.getIDTipoCampo(), tab);
+        MiembroFormulario datoNuevo = new MiembroFormulario(ID, tmp.getID(), tmp.getNombre(), tmp.getValX(), tmp.getValY(), tmp.getAncho(), tmp.getAlto(), tmp.getTipoLetra(), tmp.getColor(), tmp.getTamanoLetra(), tmp.getIDTipoCampo(), tab, tmp.getEstiloLetra());
         //agrega el nuevo con los valores nuevos
         miembrosFormulario.add(datoNuevo);
     }

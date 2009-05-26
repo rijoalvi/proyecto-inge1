@@ -8,7 +8,6 @@
  *
  * Created on 25/05/2009, 03:04:57 PM
  */
-
 package gestiontipocampo;
 
 import java.sql.ResultSet;
@@ -21,7 +20,9 @@ import javax.swing.table.DefaultTableModel;
  * @author ea63183
  */
 public class SeleccionFormulario extends javax.swing.JFrame {
+
     frameFormulario madre;
+
     /** Creates new form SeleccionFormulario */
     public SeleccionFormulario() {
         initComponents();
@@ -30,7 +31,7 @@ public class SeleccionFormulario extends javax.swing.JFrame {
     public SeleccionFormulario(frameFormulario frameMadre, JTree arbolPrincipal) {
         initComponents();
         madre = frameMadre;
-        this.arbolPrincipal=arbolPrincipal;
+        this.arbolPrincipal = arbolPrincipal;
     }
 
     /** This method is called from within the constructor to
@@ -137,16 +138,14 @@ public class SeleccionFormulario extends javax.swing.JFrame {
 }//GEN-LAST:event_botonOKActionPerformed
 
     private void tablaBusquedaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaBusquedaMouseClicked
-        if(evt.getClickCount()==2){
+        if (evt.getClickCount() == 2) {
             realizarBusqueda();
             this.dispose();
         }
     }//GEN-LAST:event_tablaBusquedaMouseClicked
 
     private void tablaBusquedaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaBusquedaMouseEntered
-
 }//GEN-LAST:event_tablaBusquedaMouseEntered
-
 
     public void llenarTabla(String argumentoBusqueda) {
         ControladorBD miPrueba = new ControladorBD();
@@ -154,14 +153,14 @@ public class SeleccionFormulario extends javax.swing.JFrame {
         modelo = (DefaultTableModel) tablaBusqueda.getModel();
 
         Object[] fila = new Object[4];
- //       madre.setVisible(false);
+        //       madre.setVisible(false);
         try {
-            ResultSet resultado = miPrueba.getResultSet("select * from FORMULARIO where nombre like '%"+argumentoBusqueda+"%' or descripcion like '%"+argumentoBusqueda+"%';");
+            ResultSet resultado = miPrueba.getResultSet("select * from FORMULARIO where nombre like '%" + argumentoBusqueda + "%' or descripcion like '%" + argumentoBusqueda + "%';");
             while (resultado.next()) {
-                    for(int i=0;i<4;i++){
-                        fila[i] = resultado.getObject(i+1).toString();
-                    }
-                    modelo.addRow(fila);
+                for (int i = 0; i < 4; i++) {
+                    fila[i] = resultado.getObject(i + 1).toString();
+                }
+                modelo.addRow(fila);
             }
             tablaBusqueda.setModel(modelo);
 
@@ -170,26 +169,26 @@ public class SeleccionFormulario extends javax.swing.JFrame {
         }
     }
 
-    public void realizarBusqueda(){
+    public void realizarBusqueda() {
         int filaSeleccionada = tablaBusqueda.getSelectedRow();
 
         //JOptionPane.showMessageDialog(null, filaSeleccionada);
-        if(filaSeleccionada != -1){
+        if (filaSeleccionada != -1) {
 
             int llave = Integer.parseInt(tablaBusqueda.getModel().getValueAt(filaSeleccionada, 0).toString());
-            madre =  new frameFormulario( arbolPrincipal.getModel(),llave);
+            madre = new frameFormulario(arbolPrincipal.getModel(), llave);
             madre.setVisible(true);
 
-            
+
         }
     }
 
-
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 new SeleccionFormulario().setVisible(true);
             }

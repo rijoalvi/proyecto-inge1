@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package gestiontipocampo;
 
 import java.sql.*;
@@ -13,7 +12,7 @@ import java.util.Vector;
  *
  * @author Alberto
  */
-public class ConsultaFormularioMySQL extends ConsultaFormulario{
+public class ConsultaFormularioMySQL extends ConsultaFormulario {
 
     /**
      * Guarda un nuevo formulario en la BD
@@ -21,7 +20,7 @@ public class ConsultaFormularioMySQL extends ConsultaFormulario{
      * @param descripcion
      * @return el ID del formulario creado
      */
-    public int guardaFormulario(String nombre, String descripcion){
+    public int guardaFormulario(String nombre, String descripcion) {
         int ID = -1;
         //Guarda en FORMULARIO
         this.doUpdate("Insert Into FORMULARIO (nombre, descripcion) VALUES ('" + nombre + "', '" + descripcion + "')");
@@ -49,11 +48,11 @@ public class ConsultaFormularioMySQL extends ConsultaFormulario{
      * @param IDTP
      * @return El ID del nuevo miembro
      */
-    public int agregarMiembro(int IDFormulario, String nombre, int valX, int valY, int ancho, int alto, String tipoLetra, int color, int tamanoLetra, int IDTP, int tabIndex){
-        this.doUpdate("insert into MIEMBROFORMULARIO (IDFormulario, nombre, valX, valY, ancho, alto, tipoLetra, color, tamanoLetra, IDTipoCampo, tabIndex) values ('"+ IDFormulario +"', '"+ nombre+"', "+ valX+", "+ valY+", "+ ancho+", "+ alto+", '"+ tipoLetra+"', '"+  color+"', '"+ tamanoLetra+"', "+ IDTP +", "+tabIndex+");");
+    public int agregarMiembro(int IDFormulario, String nombre, int valX, int valY, int ancho, int alto, String tipoLetra, int color, int tamanoLetra, int IDTP, int tabIndex, String estiloLetra) {
+        this.doUpdate("insert into MIEMBROFORMULARIO (IDFormulario, nombre, valX, valY, ancho, alto, tipoLetra, color, tamanoLetra, IDTipoCampo, tabIndex, estiloLetra) values ('" + IDFormulario + "', '" + nombre + "', " + valX + ", " + valY + ", " + ancho + ", " + alto + ", '" + tipoLetra + "', '" + color + "', '" + tamanoLetra + "', " + IDTP + ", " + tabIndex + ", '" + estiloLetra + "');");
         int ID = -1;
         try { //Se busca el ID de los datos que acaba de insertar
-            ResultSet resultado = this.getResultSet("select correlativo from MIEMBROFORMULARIO where nombre = '" + nombre + "' AND IDFormulario = "+ IDFormulario+";");
+            ResultSet resultado = this.getResultSet("select correlativo from MIEMBROFORMULARIO where nombre = '" + nombre + "' AND IDFormulario = " + IDFormulario + ";");
             if (resultado.next()) {
                 ID = resultado.getInt("correlativo");
             }
@@ -68,7 +67,7 @@ public class ConsultaFormularioMySQL extends ConsultaFormulario{
      * @param ID
      */
     public void borrarMiembro(int ID) {
-        this.doUpdate("delete from MIEMBROFORMULARIO where correlativo = " + ID +";");
+        this.doUpdate("delete from MIEMBROFORMULARIO where correlativo = " + ID + ";");
     }
 
     /**
@@ -82,8 +81,8 @@ public class ConsultaFormularioMySQL extends ConsultaFormulario{
      * @param tamanoLetra
      * @param IDTP
      */
-    public void updateMiembro(int ID, String nombre, int valX, int valY, int ancho, int alto, String tipoLetra, int color, int tamanoLetra, int IDTP, int tabIndex){
-        this.doUpdate("UPDATE MIEMBROFORMULARIO set nombre = '"+ nombre +"', valX = " +valX+ ", valY = "+valY+", ancho = " +ancho+ ", alto = "+ alto + ", tipoLetra = '"+ tipoLetra+ "', color = "+color+", tamanoLetra = "+ tamanoLetra +", IDTipoCampo = "+ IDTP+ ", tabIndex = "+tabIndex+" WHERE correlativo = " + ID +";");
+    public void updateMiembro(int ID, String nombre, int valX, int valY, int ancho, int alto, String tipoLetra, int color, int tamanoLetra, int IDTP, int tabIndex, String estiloLetra) {
+        this.doUpdate("UPDATE MIEMBROFORMULARIO set nombre = '" + nombre + "', valX = " + valX + ", valY = " + valY + ", ancho = " + ancho + ", alto = " + alto + ", tipoLetra = '" + tipoLetra + "', color = " + color + ", tamanoLetra = " + tamanoLetra + ", IDTipoCampo = " + IDTP + ", tabIndex = " + tabIndex + ", estiloLetra = '" + estiloLetra + "' WHERE correlativo = " + ID + ";");
     }
 
     /**
@@ -92,8 +91,8 @@ public class ConsultaFormularioMySQL extends ConsultaFormulario{
      * @param valX
      * @param valY
      */
-    public void updatePosicion(int ID, int valX, int valY){
-        this.doUpdate("UPDATE MIEMBROFORMULARIO set valX = " +valX+ ", valY = "+valY+ " WHERE correlativo = " + ID + ";");
+    public void updatePosicion(int ID, int valX, int valY) {
+        this.doUpdate("UPDATE MIEMBROFORMULARIO set valX = " + valX + ", valY = " + valY + " WHERE correlativo = " + ID + ";");
     }
 
     /**
@@ -101,8 +100,8 @@ public class ConsultaFormularioMySQL extends ConsultaFormulario{
      * @param ID
      * @param tab
      */
-    public void updateTabIndex(int ID, int tab){
-        this.doUpdate("UPDATE MIEMBROFORMULARIO set tabIndex = " +tab+ " WHERE correlativo = " + ID + ";");
+    public void updateTabIndex(int ID, int tab) {
+        this.doUpdate("UPDATE MIEMBROFORMULARIO set tabIndex = " + tab + " WHERE correlativo = " + ID + ";");
     }
 
     /**
@@ -110,8 +109,8 @@ public class ConsultaFormularioMySQL extends ConsultaFormulario{
      * @param nombre
      * @param ID
      */
-    public void modificarNombre(String nombre, int ID){
-        this.doUpdate("UPDATE MIEMBROFORMULARIO set nombre = '"+ nombre +" WHERE correlativo = " + ID + ";");
+    public void modificarNombre(String nombre, int ID) {
+        this.doUpdate("UPDATE MIEMBROFORMULARIO set nombre = '" + nombre + " WHERE correlativo = " + ID + ";");
     }
 
     /**
@@ -119,8 +118,8 @@ public class ConsultaFormularioMySQL extends ConsultaFormulario{
      * @param descp
      * @param ID
      */
-    public void modificarDescripcion(String descp, int ID){
-        this.doUpdate("UPDATE MIEMBROFORMULARIO set descripcion = '"+ descp +" WHERE correlativo = " + ID + ";");
+    public void modificarDescripcion(String descp, int ID) {
+        this.doUpdate("UPDATE MIEMBROFORMULARIO set descripcion = '" + descp + " WHERE correlativo = " + ID + ";");
     }
 
     /**
@@ -128,13 +127,13 @@ public class ConsultaFormularioMySQL extends ConsultaFormulario{
      * @param correlativo
      * @return Vector con los datos del formulario en este orden: nombre, descripcion, ultimaActualizacion
      */
-    public Vector obtenerDatosFormulario(int correlativo){
-        String consulta = "Select nombre,descripcion,ultimaActualizacion From Formulario Where correlativo = " + correlativo;
+    public Vector obtenerDatosFormulario(int correlativo) {
+        String consulta = "Select nombre, descripcion, ultimaActualizacion From FORMULARIO Where correlativo = " + correlativo;
         Vector campos = new Vector();
         campos.add("nombre");
         campos.add("descripcion");
         campos.add("ultimaActualizacion");
-        Map<String, String> mapaDatos = this.getResultSetMap(consulta,campos);
+        Map<String, String> mapaDatos = this.getResultSetMap(consulta, campos);
         campos.clear();
         campos.add(mapaDatos.get("nombre"));
         campos.add(mapaDatos.get("descripcion"));
@@ -149,14 +148,14 @@ public class ConsultaFormularioMySQL extends ConsultaFormulario{
      * @param correlativoFormulario
      * @return
      */
-    public Vector obtenerMiembros(int correlativoFormulario){
+    public Vector obtenerMiembros(int correlativoFormulario) {
         Vector miembros = new Vector();
         //ID, this.correlativo, nombre, valX, valY, tipoLetra, color, tamanoLetra, IDTP
-        String consulta = "Select correlativo,nombre,valX,valY,tipoLetra,color,tamanoLetra,IDTipoCampo From MIEMBROFORMULARIO Where IDFormulario = " + correlativoFormulario;
+        String consulta = "Select correlativo,nombre,valX,valY,ancho,alto,tipoLetra,color,tamanoLetra,IDTipoCampo,tabIndex,estiloLetra From MIEMBROFORMULARIO Where IDFormulario = " + correlativoFormulario;
         ResultSet resultado = this.getResultSet(consulta);
 
 
-         try {
+        try {
             while (resultado.next()) {
                 miembros.add(resultado.getObject("correlativo"));
                 miembros.add(resultado.getObject("nombre"));
@@ -169,11 +168,12 @@ public class ConsultaFormularioMySQL extends ConsultaFormulario{
                 miembros.add(resultado.getObject("tamanoLetra"));
                 miembros.add(resultado.getObject("IDTipoCampo"));
                 miembros.add(resultado.getObject("tabIndex"));
+                miembros.add(resultado.getObject("estiloLetra"));
 
 
-                /*for (int i = 0; i < campos.size(); i++) {
-                    miMapa.put(campos.get(i).toString(), result.getObject(campos.get(i).toString()).toString());
-                }*/
+            /*for (int i = 0; i < campos.size(); i++) {
+            miMapa.put(campos.get(i).toString(), result.getObject(campos.get(i).toString()).toString());
+            }*/
             /*  miMapa.put("correlativo",resultado.getObject("correlativo").toString());
             miMapa.put("nombre",resultado.getObject("nombre").toString());
             miMapa.put("descripcion",resultado.getObject("descripcion").toString());
@@ -204,5 +204,4 @@ public class ConsultaFormularioMySQL extends ConsultaFormulario{
         miembros.add(mapaDatos.get("nombre"));*/
         return miembros;
     }
-
 }

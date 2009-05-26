@@ -49,11 +49,11 @@ public class ConsultaFormularioSQLServer extends ConsultaFormulario{
      * @param IDTP
      * @return El ID del nuevo miembro
      */
-    public int agregarMiembro(int IDFormulario, String nombre, int valX, int valY, int ancho, int alto, String tipoLetra, int color, int tamanoLetra, int IDTP, int tabIndex){
-        this.doUpdate("insert into MIEMBROFORMULARIO (IDFormulario, nombre, valX, valY, ancho, alto, tipoLetra, color, tamanoLetra, IDTipoCampo, tabIndex) values ('"+ IDFormulario +"', '"+ nombre+"', "+ valX+", "+ valY+", "+ ancho+", "+ alto+", '"+ tipoLetra+"', '"+  color+"', '"+ tamanoLetra+"', "+ IDTP +", "+tabIndex+");");
+    public int agregarMiembro(int IDFormulario, String nombre, int valX, int valY, int ancho, int alto, String tipoLetra, int color, int tamanoLetra, int IDTP, int tabIndex, String estiloLetra) {
+        this.doUpdate("insert into MIEMBROFORMULARIO (IDFormulario, nombre, valX, valY, ancho, alto, tipoLetra, color, tamanoLetra, IDTipoCampo, tabIndex, estiloLetra) values ('" + IDFormulario + "', '" + nombre + "', " + valX + ", " + valY + ", " + ancho + ", " + alto + ", '" + tipoLetra + "', '" + color + "', '" + tamanoLetra + "', " + IDTP + ", " + tabIndex + ", '" + estiloLetra + "');");
         int ID = -1;
         try { //Se busca el ID de los datos que acaba de insertar
-            ResultSet resultado = this.getResultSet("select correlativo from MIEMBROFORMULARIO where nombre = '" + nombre + "' AND IDFormulario = "+ IDFormulario+";");
+            ResultSet resultado = this.getResultSet("select correlativo from MIEMBROFORMULARIO where nombre = '" + nombre + "' AND IDFormulario = " + IDFormulario + ";");
             if (resultado.next()) {
                 ID = resultado.getInt("correlativo");
             }
@@ -82,8 +82,8 @@ public class ConsultaFormularioSQLServer extends ConsultaFormulario{
      * @param tamanoLetra
      * @param IDTP
      */
-    public void updateMiembro(int ID, String nombre, int valX, int valY, int ancho, int alto, String tipoLetra, int color, int tamanoLetra, int IDTP, int tabIndex){
-        this.doUpdate("UPDATE MIEMBROFORMULARIO set nombre = '"+ nombre +"', valX = " +valX+ ", valY = "+valY+", ancho = " +ancho+ ", alto = "+ alto + ", tipoLetra = '"+ tipoLetra+ "', color = "+color+", tamanoLetra = "+ tamanoLetra +", IDTipoCampo = "+ IDTP+ ", tabIndex = "+tabIndex+" WHERE correlativo = " + ID +";");
+    public void updateMiembro(int ID, String nombre, int valX, int valY, int ancho, int alto, String tipoLetra, int color, int tamanoLetra, int IDTP, int tabIndex, String estiloLetra) {
+        this.doUpdate("UPDATE MIEMBROFORMULARIO set nombre = '" + nombre + "', valX = " + valX + ", valY = " + valY + ", ancho = " + ancho + ", alto = " + alto + ", tipoLetra = '" + tipoLetra + "', color = " + color + ", tamanoLetra = " + tamanoLetra + ", IDTipoCampo = " + IDTP + ", tabIndex = " + tabIndex + ", estiloLetra = '" + estiloLetra + "' WHERE correlativo = " + ID + ";");
     }
 
     /**
@@ -129,7 +129,7 @@ public class ConsultaFormularioSQLServer extends ConsultaFormulario{
      * @return Vector con los datos del formulario en este orden: nombre, descripcion, ultimaActualizacion
      */
     public Vector obtenerDatosFormulario(int correlativo){
-        String consulta = "Select nombre,descripcion,ultimaActualizacion From Formulario Where correlativo = " + correlativo;
+        String consulta = "Select nombre, descripcion, ultimaActualizacion From FORMULARIO Where correlativo = " + correlativo;
         Vector campos = new Vector();
         campos.add("nombre");
         campos.add("descripcion");
@@ -152,7 +152,7 @@ public class ConsultaFormularioSQLServer extends ConsultaFormulario{
     public Vector obtenerMiembros(int correlativoFormulario){
         Vector miembros = new Vector();
         //ID, this.correlativo, nombre, valX, valY, tipoLetra, color, tamanoLetra, IDTP
-        String consulta = "Select correlativo,nombre,valX,valY,ancho, alto, tipoLetra, color, tamanoLetra, IDTipoCampo, tabIndex From MIEMBROFORMULARIO Where IDFormulario = " + correlativoFormulario;
+        String consulta = "Select correlativo,nombre,valX,valY,ancho, alto, tipoLetra, color, tamanoLetra, IDTipoCampo, tabIndex, estiloLetra From MIEMBROFORMULARIO Where IDFormulario = " + correlativoFormulario;
         ResultSet resultado = this.getResultSet(consulta);
 
 
@@ -169,6 +169,7 @@ public class ConsultaFormularioSQLServer extends ConsultaFormulario{
                 miembros.add(resultado.getObject("tamanoLetra"));
                 miembros.add(resultado.getObject("IDTipoCampo"));
                 miembros.add(resultado.getObject("tabIndex"));
+                miembros.add(resultado.getObject("estiloLetra"));
 
 
                 /*for (int i = 0; i < campos.size(); i++) {
