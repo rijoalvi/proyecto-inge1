@@ -159,17 +159,17 @@ public class ConsultaFormularioSQLServer extends ConsultaFormulario{
          try {
             while (resultado.next()) {
                 miembros.add(resultado.getObject("correlativo"));
-                miembros.add(resultado.getObject("nombre"));
+                miembros.add(resultado.getObject("nombre").toString().trim());
                 miembros.add(resultado.getObject("valX"));
                 miembros.add(resultado.getObject("valY"));
                 miembros.add(resultado.getObject("ancho"));
                 miembros.add(resultado.getObject("alto"));
-                miembros.add(resultado.getObject("tipoLetra"));
+                miembros.add(resultado.getObject("tipoLetra").toString().trim());
                 miembros.add(resultado.getObject("color"));
                 miembros.add(resultado.getObject("tamanoLetra"));
                 miembros.add(resultado.getObject("IDTipoCampo"));
                 miembros.add(resultado.getObject("tabIndex"));
-                miembros.add(resultado.getObject("estiloLetra"));
+                miembros.add(resultado.getObject("estiloLetra").toString().trim());
 
 
                 /*for (int i = 0; i < campos.size(); i++) {
