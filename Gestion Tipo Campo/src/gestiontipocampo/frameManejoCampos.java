@@ -705,39 +705,39 @@ public class frameManejoCampos extends javax.swing.JFrame {
      */
     private boolean hayCamposSinLlenar() {
         boolean alerta = false;
-        if (this.valorNombreGeneral.getText().isEmpty() || this.valorNota.getText().isEmpty()) {
+        if (this.valorNombreGeneral.getText().length()  == 0 || this.valorNota.getText().length()  == 0) {
             alerta = true;
         }
         switch (comboTipos.getSelectedIndex()) {
             case NUMERO: //HashCode para Número
-                if (this.valorNumDecimales.getText().isEmpty() ||
-                        this.valorNumeroMascara.getText().isEmpty() ||
-                        this.valorValorDefectoNumero.getText().isEmpty()) {
+                if (this.valorNumDecimales.getText().length()  == 0 ||
+                        this.valorNumeroMascara.getText().length()  == 0 ||
+                        this.valorValorDefectoNumero.getText().length()  == 0) {
                     alerta = true;
                 }
                 break;
             case INCREMENTAL: //HashCode para Incremental
-                if (this.valorIncremento.getText().isEmpty() || this.valorValorInicial.getText().isEmpty()) {
+                if (this.valorIncremento.getText().length()  == 0 || this.valorValorInicial.getText().length()  == 0) {
                     alerta = true;
                 }
                 break;
             case FECHAHORA: //HashCode para FechaHora
-                if (this.valorFechaDefecto.getText().isEmpty() ||
-                        this.valorPreaviso.getText().isEmpty()) {
+                if (this.valorFechaDefecto.getText().length()  == 0 ||
+                        this.valorPreaviso.getText().length()  == 0) {
                     alerta = true;
                 }
                 break;
             case TEXTO: //HashCode para Texto
-                if (this.valorTextoLargo.getText().isEmpty() ||
-                        this.valorTextoDefecto.getText().isEmpty()) {
+                if (this.valorTextoLargo.getText().length()  == 0 ||
+                        this.valorTextoDefecto.getText().length()  == 0) {
                     alerta = true;
                 }
                 break;
             case BINARIO: //HashCode para Binario
-                if (this.valorNombreBinario1.getText().isEmpty() ||
-                        this.valorNombreBinario2.getText().isEmpty() ||
-                        this.valorOpcionBinaria1.getText().isEmpty() ||
-                        this.valorOpcionBinaria2.getText().isEmpty()) {
+                if (this.valorNombreBinario1.getText().length()  == 0 ||
+                        this.valorNombreBinario2.getText().length()  == 0 ||
+                        this.valorOpcionBinaria1.getText().length()  == 0 ||
+                        this.valorOpcionBinaria2.getText().length()  == 0) {
                     alerta = true;
                 }
                 break;

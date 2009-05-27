@@ -106,81 +106,81 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setEnabled(false);
         jLabel1.setName("jLabel1"); // NOI18N
-        jLabel1.setBounds(10, 310, 110, 14);
+        jLabel1.setBounds(10, 310, 110, -1);
         paneDatosNodo.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
         jLabel2.setEnabled(false);
         jLabel2.setName("jLabel2"); // NOI18N
-        jLabel2.setBounds(10, 10, 60, 14);
+        jLabel2.setBounds(10, 10, 60, -1);
         paneDatosNodo.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
         jLabel3.setEnabled(false);
         jLabel3.setName("jLabel3"); // NOI18N
-        jLabel3.setBounds(10, 110, 90, 14);
+        jLabel3.setBounds(10, 110, 90, -1);
         paneDatosNodo.add(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel4.setText(resourceMap.getString("jLabel4.text")); // NOI18N
         jLabel4.setEnabled(false);
         jLabel4.setName("jLabel4"); // NOI18N
-        jLabel4.setBounds(10, 160, 90, 14);
+        jLabel4.setBounds(10, 160, 90, -1);
         paneDatosNodo.add(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel5.setText(resourceMap.getString("jLabel5.text")); // NOI18N
         jLabel5.setEnabled(false);
         jLabel5.setName("jLabel5"); // NOI18N
-        jLabel5.setBounds(10, 210, 160, 14);
+        jLabel5.setBounds(10, 210, 160, -1);
         paneDatosNodo.add(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel6.setText(resourceMap.getString("jLabel6.text")); // NOI18N
         jLabel6.setEnabled(false);
         jLabel6.setName("jLabel6"); // NOI18N
-        jLabel6.setBounds(10, 260, 140, 14);
+        jLabel6.setBounds(10, 260, 140, -1);
         paneDatosNodo.add(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valFechaModifNodo.setText(resourceMap.getString("valFechaModifNodo.text")); // NOI18N
         valFechaModifNodo.setEnabled(false);
         valFechaModifNodo.setName("valFechaModifNodo"); // NOI18N
-        valFechaModifNodo.setBounds(10, 230, 100, 20);
+        valFechaModifNodo.setBounds(10, 230, 100, -1);
         paneDatosNodo.add(valFechaModifNodo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valNombreNodo.setEnabled(false);
         valNombreNodo.setName("valNombreNodo"); // NOI18N
-        valNombreNodo.setBounds(10, 30, 100, 20);
+        valNombreNodo.setBounds(10, 30, 100, -1);
         paneDatosNodo.add(valNombreNodo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valNumNivelNodo.setEnabled(false);
         valNumNivelNodo.setName("valNumNivelNodo"); // NOI18N
-        valNumNivelNodo.setBounds(10, 130, 100, 20);
+        valNumNivelNodo.setBounds(10, 130, 100, -1);
         paneDatosNodo.add(valNumNivelNodo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valFechaCreacionNodo.setEnabled(false);
         valFechaCreacionNodo.setName("valFechaCreacionNodo"); // NOI18N
-        valFechaCreacionNodo.setBounds(10, 180, 100, 20);
+        valFechaCreacionNodo.setBounds(10, 180, 100, -1);
         paneDatosNodo.add(valFechaCreacionNodo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         comboCategoriaNodo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboCategoriaNodo.setEnabled(false);
         comboCategoriaNodo.setName("comboCategoriaNodo"); // NOI18N
-        comboCategoriaNodo.setBounds(10, 330, 100, 20);
+        comboCategoriaNodo.setBounds(10, 330, 100, -1);
         paneDatosNodo.add(comboCategoriaNodo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         comboNivelNodo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboNivelNodo.setEnabled(false);
         comboNivelNodo.setName("comboNivelNodo"); // NOI18N
-        comboNivelNodo.setBounds(10, 280, 100, 20);
+        comboNivelNodo.setBounds(10, 280, 100, -1);
         paneDatosNodo.add(comboNivelNodo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel7.setText(resourceMap.getString("jLabel7.text")); // NOI18N
         jLabel7.setEnabled(false);
         jLabel7.setName("jLabel7"); // NOI18N
-        jLabel7.setBounds(10, 60, 90, 14);
+        jLabel7.setBounds(10, 60, 90, -1);
         paneDatosNodo.add(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valDescripcionNodo.setEnabled(false);
         valDescripcionNodo.setName("valDescripcionNodo"); // NOI18N
-        valDescripcionNodo.setBounds(10, 80, 210, 20);
+        valDescripcionNodo.setBounds(10, 80, 210, -1);
         paneDatosNodo.add(valDescripcionNodo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneDatosNodo.setBounds(180, 0, 230, 390);
@@ -234,6 +234,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         paneFondo.add(paneLista, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         ButtonPane.setName("ButtonPane"); // NOI18N
+        ButtonPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         botonBuscar.setText(resourceMap.getString("botonBuscar.text")); // NOI18N
         botonBuscar.setName("botonBuscar"); // NOI18N
@@ -242,6 +243,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
                 botonBuscarActionPerformed(evt);
             }
         });
+        ButtonPane.add(botonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, -1, -1));
 
         BotonAgregarTermino.setText(resourceMap.getString("BotonAgregarTermino.text")); // NOI18N
         BotonAgregarTermino.setName("BotonAgregarTermino"); // NOI18N
@@ -250,13 +252,16 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
                 BotonAgregarTerminoActionPerformed(evt);
             }
         });
+        ButtonPane.add(BotonAgregarTermino, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, -1));
 
         fieldBusqueda.setText(resourceMap.getString("fieldBusqueda.text")); // NOI18N
         fieldBusqueda.setName("fieldBusqueda"); // NOI18N
+        ButtonPane.add(fieldBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 60, -1));
 
         labelBusqueda.setLabelFor(fieldBusqueda);
         labelBusqueda.setText(resourceMap.getString("labelBusqueda.text")); // NOI18N
         labelBusqueda.setName("labelBusqueda"); // NOI18N
+        ButtonPane.add(labelBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 50, -1));
 
         botonCerrar.setText(resourceMap.getString("botonCerrar.text")); // NOI18N
         botonCerrar.setName("botonCerrar"); // NOI18N
@@ -265,6 +270,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
                 botonCerrarActionPerformed(evt);
             }
         });
+        ButtonPane.add(botonCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
 
         botonListarSubarbol.setText(resourceMap.getString("botonListarSubarbol.text")); // NOI18N
         botonListarSubarbol.setName("botonListarSubarbol"); // NOI18N
@@ -273,6 +279,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
                 botonListarSubarbolActionPerformed(evt);
             }
         });
+        ButtonPane.add(botonListarSubarbol, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, -1, -1));
 
         botonListarHijos.setText(resourceMap.getString("botonListarHijos.text")); // NOI18N
         botonListarHijos.setName("botonListarHijos"); // NOI18N
@@ -281,6 +288,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
                 botonListarHijosActionPerformed(evt);
             }
         });
+        ButtonPane.add(botonListarHijos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
 
         botonExcluir.setText(resourceMap.getString("botonExcluir.text")); // NOI18N
         botonExcluir.setName("botonExcluir"); // NOI18N
@@ -289,6 +297,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
                 botonExcluirActionPerformed(evt);
             }
         });
+        ButtonPane.add(botonExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, -1, -1));
 
         botonModificar.setText(resourceMap.getString("botonModificar.text")); // NOI18N
         botonModificar.setName("botonModificar"); // NOI18N
@@ -297,6 +306,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
                 botonModificarActionPerformed(evt);
             }
         });
+        ButtonPane.add(botonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
 
         botonContarTerminos.setText(resourceMap.getString("botonContarTerminos.text")); // NOI18N
         botonContarTerminos.setName("botonContarTerminos"); // NOI18N
@@ -305,54 +315,9 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
                 botonContarTerminosActionPerformed(evt);
             }
         });
+        ButtonPane.add(botonContarTerminos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
 
-        javax.swing.GroupLayout ButtonPaneLayout = new javax.swing.GroupLayout(ButtonPane);
-        ButtonPane.setLayout(ButtonPaneLayout);
-        ButtonPaneLayout.setHorizontalGroup(
-            ButtonPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ButtonPaneLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(ButtonPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BotonAgregarTermino, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
-                    .addComponent(botonModificar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
-                    .addComponent(botonExcluir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ButtonPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(botonListarHijos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonContarTerminos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonListarSubarbol, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(fieldBusqueda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
-                    .addComponent(labelBusqueda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
-                    .addComponent(botonCerrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
-                    .addComponent(botonBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        ButtonPaneLayout.setVerticalGroup(
-            ButtonPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ButtonPaneLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(BotonAgregarTermino)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonModificar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonExcluir)
-                .addGap(18, 18, 18)
-                .addComponent(botonContarTerminos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonListarHijos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonListarSubarbol)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                .addComponent(labelBusqueda)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fieldBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonBuscar)
-                .addGap(52, 52, 52)
-                .addComponent(botonCerrar)
-                .addContainerGap())
-        );
-
-        ButtonPane.setBounds(430, 0, 131, 400);
+        ButtonPane.setBounds(430, 0, -1, 400);
         paneFondo.add(ButtonPane, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         getContentPane().add(paneFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 580, 430));

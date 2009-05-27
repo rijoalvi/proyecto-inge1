@@ -26,7 +26,6 @@ public class SeleccionFormulario extends javax.swing.JFrame {
     /** Creates new form SeleccionFormulario */
     public SeleccionFormulario() {
         initComponents();
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     }
 
     public SeleccionFormulario(frameFormulario frameMadre, JTree arbolPrincipal) {

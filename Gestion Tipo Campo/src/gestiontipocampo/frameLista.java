@@ -1,4 +1,4 @@
-/*
+        /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -126,69 +126,40 @@ public class frameLista extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 300, 210));
 
         LabelPanel.setName("LabelPanel"); // NOI18N
+        LabelPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameLista.class);
         etiquetaNombreLista.setText(resourceMap.getString("etiquetaNombreLista.text")); // NOI18N
         etiquetaNombreLista.setName("etiquetaNombreLista"); // NOI18N
+        LabelPanel.add(etiquetaNombreLista, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
 
         jLabel1.setFont(resourceMap.getFont("jLabel1.font")); // NOI18N
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
+        LabelPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
 
         jLabel2.setFont(resourceMap.getFont("jLabel2.font")); // NOI18N
         jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
         jLabel2.setName("jLabel2"); // NOI18N
+        LabelPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, -1, -1));
 
         etiquetaDescripcionLista.setText(resourceMap.getString("etiquetaDescripcionLista.text")); // NOI18N
         etiquetaDescripcionLista.setName("etiquetaDescripcionLista"); // NOI18N
+        LabelPanel.add(etiquetaDescripcionLista, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, -1, -1));
 
         nombreMiembroPorDefecto.setText(resourceMap.getString("nombreMiembroPorDefecto.text")); // NOI18N
         nombreMiembroPorDefecto.setName("nombreMiembroPorDefecto"); // NOI18N
+        LabelPanel.add(nombreMiembroPorDefecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, -1, -1));
 
         jLabel3.setFont(resourceMap.getFont("jLabel3.font")); // NOI18N
         jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
         jLabel3.setName("jLabel3"); // NOI18N
+        LabelPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, -1, -1));
 
-        javax.swing.GroupLayout LabelPanelLayout = new javax.swing.GroupLayout(LabelPanel);
-        LabelPanel.setLayout(LabelPanelLayout);
-        LabelPanelLayout.setHorizontalGroup(
-            LabelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(LabelPanelLayout.createSequentialGroup()
-                .addGroup(LabelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(etiquetaNombreLista)
-                    .addComponent(jLabel1))
-                .addGap(32, 32, 32)
-                .addGroup(LabelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(etiquetaDescripcionLista))
-                .addGap(47, 47, 47)
-                .addGroup(LabelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nombreMiembroPorDefecto)
-                    .addComponent(jLabel3))
-                .addContainerGap(110, Short.MAX_VALUE))
-        );
-        LabelPanelLayout.setVerticalGroup(
-            LabelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(LabelPanelLayout.createSequentialGroup()
-                .addGroup(LabelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(LabelPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(etiquetaDescripcionLista))
-                    .addGroup(LabelPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(5, 5, 5)
-                        .addComponent(etiquetaNombreLista))
-                    .addGroup(LabelPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nombreMiembroPorDefecto)))
-                .addContainerGap(15, Short.MAX_VALUE))
-        );
-
-        getContentPane().add(LabelPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+        getContentPane().add(LabelPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 330, 40));
 
         ButtonPanel.setName("ButtonPanel"); // NOI18N
+        ButtonPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         botonAgregar.setText(resourceMap.getString("botonAgregar.text")); // NOI18N
         botonAgregar.setEnabled(false);
@@ -203,6 +174,8 @@ public class frameLista extends javax.swing.JFrame {
                 botonAgregarActionPerformed(evt);
             }
         });
+        ButtonPanel.add(botonAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, -1, -1));
+        botonAgregar.getAccessibleContext().setAccessibleName(resourceMap.getString("jButton1.AccessibleContext.accessibleName")); // NOI18N
 
         botonBorrar.setText(resourceMap.getString("botonBorrar.text")); // NOI18N
         botonBorrar.setEnabled(false);
@@ -212,6 +185,7 @@ public class frameLista extends javax.swing.JFrame {
                 botonBorrarActionPerformed(evt);
             }
         });
+        ButtonPanel.add(botonBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, -1, -1));
 
         botonPorDefecto.setText(resourceMap.getString("botonPorDefecto.text")); // NOI18N
         botonPorDefecto.setEnabled(false);
@@ -221,6 +195,7 @@ public class frameLista extends javax.swing.JFrame {
                 botonPorDefectoMouseClicked(evt);
             }
         });
+        ButtonPanel.add(botonPorDefecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, -1, -1));
 
         botonSalir.setText(resourceMap.getString("botonSalir.text")); // NOI18N
         botonSalir.setName("botonSalir"); // NOI18N
@@ -229,6 +204,7 @@ public class frameLista extends javax.swing.JFrame {
                 botonSalirMouseClicked(evt);
             }
         });
+        ButtonPanel.add(botonSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, -1, -1));
 
         campoEntrada.setText(resourceMap.getString("campoEntrada.text")); // NOI18N
         campoEntrada.setName("campoEntrada"); // NOI18N
@@ -249,45 +225,14 @@ public class frameLista extends javax.swing.JFrame {
                 campoEntradaKeyTyped(evt);
             }
         });
+        ButtonPanel.add(campoEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, -1));
 
-        javax.swing.GroupLayout ButtonPanelLayout = new javax.swing.GroupLayout(ButtonPanel);
-        ButtonPanel.setLayout(ButtonPanelLayout);
-        ButtonPanelLayout.setHorizontalGroup(
-            ButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ButtonPanelLayout.createSequentialGroup()
-                .addGroup(ButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(campoEntrada, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, ButtonPanelLayout.createSequentialGroup()
-                        .addComponent(botonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonBorrar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonPorDefecto, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonSalir)))
-                .addGap(243, 243, 243))
-        );
-        ButtonPanelLayout.setVerticalGroup(
-            ButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ButtonPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(campoEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                .addGroup(ButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonAgregar)
-                    .addComponent(botonBorrar)
-                    .addComponent(botonPorDefecto)
-                    .addComponent(botonSalir))
-                .addContainerGap())
-        );
-
-        botonAgregar.getAccessibleContext().setAccessibleName(resourceMap.getString("jButton1.AccessibleContext.accessibleName")); // NOI18N
-
-        getContentPane().add(ButtonPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, -1, -1));
+        getContentPane().add(ButtonPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 320, 60));
 
         SidePanel.setMaximumSize(new java.awt.Dimension(43, 137));
         SidePanel.setMinimumSize(new java.awt.Dimension(43, 137));
         SidePanel.setName("SidePanel"); // NOI18N
+        SidePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getActionMap(frameLista.class, this);
         botonTop.setAction(actionMap.get("botonPrimeroAccion")); // NOI18N
@@ -298,65 +243,34 @@ public class frameLista extends javax.swing.JFrame {
                 botonTopActionPerformed(evt);
             }
         });
+        SidePanel.add(botonTop, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 30, -1));
 
         botonUp.setAction(actionMap.get("botonSubirAccion")); // NOI18N
         botonUp.setText(resourceMap.getString("botonUp.text")); // NOI18N
         botonUp.setName("botonUp"); // NOI18N
+        SidePanel.add(botonUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 30, -1));
 
         botonDown.setAction(actionMap.get("botonBajarAccion")); // NOI18N
         botonDown.setText(resourceMap.getString("botonDown.text")); // NOI18N
         botonDown.setName("botonDown"); // NOI18N
+        SidePanel.add(botonDown, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 30, -1));
 
         botonBottom.setAction(actionMap.get("botonUltimoAccion")); // NOI18N
         botonBottom.setText(resourceMap.getString("botonBottom.text")); // NOI18N
         botonBottom.setName("botonBottom"); // NOI18N
+        SidePanel.add(botonBottom, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 30, -1));
 
-        javax.swing.GroupLayout SidePanelLayout = new javax.swing.GroupLayout(SidePanel);
-        SidePanel.setLayout(SidePanelLayout);
-        SidePanelLayout.setHorizontalGroup(
-            SidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(SidePanelLayout.createSequentialGroup()
-                .addGroup(SidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(botonBottom, javax.swing.GroupLayout.Alignment.LEADING, 0, 0, Short.MAX_VALUE)
-                    .addComponent(botonDown, javax.swing.GroupLayout.Alignment.LEADING, 0, 0, Short.MAX_VALUE)
-                    .addComponent(botonUp, javax.swing.GroupLayout.Alignment.LEADING, 0, 0, Short.MAX_VALUE)
-                    .addComponent(botonTop, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, Short.MAX_VALUE))
-                .addContainerGap(17, Short.MAX_VALUE))
-        );
-        SidePanelLayout.setVerticalGroup(
-            SidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(SidePanelLayout.createSequentialGroup()
-                .addComponent(botonTop)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonUp)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonDown)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonBottom)
-                .addContainerGap())
-        );
-
-        getContentPane().add(SidePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, -1, -1));
+        getContentPane().add(SidePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, 50, 150));
         SidePanel.getAccessibleContext().setAccessibleDescription(resourceMap.getString("SidePanel.AccessibleContext.accessibleDescription")); // NOI18N
 
         panelBotonPersonalizado.setName("panelBotonPersonalizado"); // NOI18N
-
-        javax.swing.GroupLayout panelBotonPersonalizadoLayout = new javax.swing.GroupLayout(panelBotonPersonalizado);
-        panelBotonPersonalizado.setLayout(panelBotonPersonalizadoLayout);
-        panelBotonPersonalizadoLayout.setHorizontalGroup(
-            panelBotonPersonalizadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 63, Short.MAX_VALUE)
-        );
-        panelBotonPersonalizadoLayout.setVerticalGroup(
-            panelBotonPersonalizadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 36, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(panelBotonPersonalizado, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        panelBotonPersonalizado.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         botonPersonalizado.setAction(actionMap.get("botonOrdenPersonalizado")); // NOI18N
         botonPersonalizado.setName("botonPersonalizado"); // NOI18N
-        getContentPane().add(botonPersonalizado, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 210, 28, -1));
+        panelBotonPersonalizado.add(botonPersonalizado, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 30, 30));
+
+        getContentPane().add(panelBotonPersonalizado, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, 30, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

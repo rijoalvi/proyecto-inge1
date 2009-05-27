@@ -962,7 +962,7 @@ public class frameFormulario extends javax.swing.JFrame {
                 botonAgregarEtqActionPerformed(evt);
             }
         });
-        botonAgregarEtq.setBounds(30, 10, 120, 23);
+        botonAgregarEtq.setBounds(30, 10, 120, -1);
         paneDatos.add(botonAgregarEtq, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         botonTabIndex.setText(resourceMap.getString("botonTabIndex.text")); // NOI18N
@@ -972,7 +972,7 @@ public class frameFormulario extends javax.swing.JFrame {
                 botonTabIndexActionPerformed(evt);
             }
         });
-        botonTabIndex.setBounds(190, 10, 180, 23);
+        botonTabIndex.setBounds(190, 10, 180, -1);
         paneDatos.add(botonTabIndex, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         getContentPane().add(paneDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, 460, 640));
@@ -992,18 +992,7 @@ public class frameFormulario extends javax.swing.JFrame {
         frameVistaPrevia.setMaximumSize(new java.awt.Dimension(49800, 67800));
         frameVistaPrevia.setName("frameVistaPrevia"); // NOI18N
         frameVistaPrevia.setVisible(true);
-
-        javax.swing.GroupLayout frameVistaPreviaLayout = new javax.swing.GroupLayout(frameVistaPrevia.getContentPane());
-        frameVistaPrevia.getContentPane().setLayout(frameVistaPreviaLayout);
-        frameVistaPreviaLayout.setHorizontalGroup(
-            frameVistaPreviaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 420, Short.MAX_VALUE)
-        );
-        frameVistaPreviaLayout.setVerticalGroup(
-            frameVistaPreviaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 685, Short.MAX_VALUE)
-        );
-
+        frameVistaPrevia.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(frameVistaPrevia, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 0, 430, 720));
 
         pack();
