@@ -96,6 +96,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setName("Form"); // NOI18N
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         paneFondo.setName("paneFondo"); // NOI18N
 
@@ -199,10 +200,10 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(arbolJerarquia);
 
-        jScrollPane1.setBounds(0, 0, 160, 400);
+        jScrollPane1.setBounds(10, 10, 150, 390);
         paneTree.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        paneTree.setBounds(0, 0, 310, 400);
+        paneTree.setBounds(0, 0, 160, 400);
         paneFondo.add(paneTree, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneLista.setName("paneLista"); // NOI18N
@@ -354,22 +355,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         ButtonPane.setBounds(430, 0, 131, 400);
         paneFondo.add(ButtonPane, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(paneFondo, javax.swing.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(paneFondo, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        getContentPane().add(paneFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 580, 430));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

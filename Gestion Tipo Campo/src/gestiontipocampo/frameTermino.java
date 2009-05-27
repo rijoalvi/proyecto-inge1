@@ -58,25 +58,32 @@ public class frameTermino extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setName("Form"); // NOI18N
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameTermino.class);
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
 
         campoNombre.setText(resourceMap.getString("campoNombre.text")); // NOI18N
         campoNombre.setName("campoNombre"); // NOI18N
+        getContentPane().add(campoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 100, -1));
 
         jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
         jLabel2.setName("jLabel2"); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, -1, -1));
 
         campoDescripcion.setText(resourceMap.getString("campoDescripcion.text")); // NOI18N
         campoDescripcion.setName("campoDescripcion"); // NOI18N
+        getContentPane().add(campoDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 200, 20));
 
         comboCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboCategoria.setName("comboCategoria"); // NOI18N
+        getContentPane().add(comboCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 110, -1));
 
         labelCategoria.setText(resourceMap.getString("labelCategoria.text")); // NOI18N
         labelCategoria.setName("labelCategoria"); // NOI18N
+        getContentPane().add(labelCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
 
         botonCancelar.setText(resourceMap.getString("botonCancelar.text")); // NOI18N
         botonCancelar.setName("botonCancelar"); // NOI18N
@@ -85,6 +92,7 @@ public class frameTermino extends javax.swing.JFrame {
                 botonCancelarActionPerformed(evt);
             }
         });
+        getContentPane().add(botonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, -1, -1));
 
         botonAceptar.setText(resourceMap.getString("botonAceptar.text")); // NOI18N
         botonAceptar.setName("botonAceptar"); // NOI18N
@@ -93,56 +101,7 @@ public class frameTermino extends javax.swing.JFrame {
                 botonAceptarActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelCategoria)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel1)
-                                    .addGap(42, 42, 42))
-                                .addComponent(campoNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE))
-                            .addComponent(comboCategoria, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(botonCancelar)
-                                .addGap(18, 18, 18)
-                                .addComponent(botonAceptar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(campoDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE))))))
-                .addContainerGap(54, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(labelCategoria)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonCancelar)
-                    .addComponent(botonAceptar))
-                .addContainerGap())
-        );
+        getContentPane().add(botonAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

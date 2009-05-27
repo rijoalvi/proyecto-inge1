@@ -26,6 +26,7 @@ public class SeleccionFormulario extends javax.swing.JFrame {
     /** Creates new form SeleccionFormulario */
     public SeleccionFormulario() {
         initComponents();
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     }
 
     public SeleccionFormulario(frameFormulario frameMadre, JTree arbolPrincipal) {
@@ -50,6 +51,7 @@ public class SeleccionFormulario extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("Form"); // NOI18N
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(SeleccionFormulario.class);
         botonCancelar.setText(resourceMap.getString("botonCancelar.text")); // NOI18N
@@ -59,6 +61,7 @@ public class SeleccionFormulario extends javax.swing.JFrame {
                 botonCancelarActionPerformed(evt);
             }
         });
+        getContentPane().add(botonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, 80, 20));
 
         botonOK.setText(resourceMap.getString("botonOK.text")); // NOI18N
         botonOK.setName("botonOK"); // NOI18N
@@ -67,6 +70,7 @@ public class SeleccionFormulario extends javax.swing.JFrame {
                 botonOKActionPerformed(evt);
             }
         });
+        getContentPane().add(botonOK, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 290, 80, 20));
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
@@ -97,33 +101,7 @@ public class SeleccionFormulario extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tablaBusqueda);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(299, 299, 299)
-                        .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(botonOK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonOK)
-                    .addComponent(botonCancelar))
-                .addGap(51, 51, 51))
-        );
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 470, 260));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

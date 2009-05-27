@@ -38,6 +38,9 @@ public class frameComandos extends javax.swing.JFrame {
         labelDescripcion = new javax.swing.JLabel();
         fieldDescripcion = new javax.swing.JTextField();
         mainPane = new javax.swing.JLayeredPane();
+        paneComandosFaciles = new javax.swing.JLayeredPane();
+        labelSeleccionFormulario = new javax.swing.JLabel();
+        comboSeleccionFormulario = new javax.swing.JComboBox();
         paneComandoMascara = new javax.swing.JLayeredPane();
         paneDivisionAccion = new javax.swing.JLayeredPane();
         paneAccionCombo = new javax.swing.JLayeredPane();
@@ -58,38 +61,55 @@ public class frameComandos extends javax.swing.JFrame {
         comboCampoFinal = new javax.swing.JComboBox();
         labelCondFinal = new javax.swing.JLabel();
         botonAgregarAccion = new javax.swing.JButton();
-        paneComandosFaciles = new javax.swing.JLayeredPane();
-        labelSeleccionFormulario = new javax.swing.JLabel();
-        comboSeleccionFormulario = new javax.swing.JComboBox();
         botonCancelar = new javax.swing.JButton();
         botonAceptar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("Form"); // NOI18N
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelNombre.setLabelFor(fieldNombre);
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameComandos.class);
         labelNombre.setText(resourceMap.getString("labelNombre.text")); // NOI18N
         labelNombre.setName("labelNombre"); // NOI18N
+        getContentPane().add(labelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
         fieldNombre.setText(resourceMap.getString("fieldNombre.text")); // NOI18N
         fieldNombre.setName("fieldNombre"); // NOI18N
+        getContentPane().add(fieldNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 250, -1));
 
         labelTipo.setLabelFor(comboTipo);
         labelTipo.setText(resourceMap.getString("labelTipo.text")); // NOI18N
         labelTipo.setName("labelTipo"); // NOI18N
+        getContentPane().add(labelTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, -1, -1));
 
         comboTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboTipo.setName("comboTipo"); // NOI18N
+        getContentPane().add(comboTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, -1, -1));
 
         labelDescripcion.setLabelFor(fieldDescripcion);
         labelDescripcion.setText(resourceMap.getString("labelDescripcion.text")); // NOI18N
         labelDescripcion.setName("labelDescripcion"); // NOI18N
+        getContentPane().add(labelDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, -1, -1));
 
         fieldDescripcion.setText(resourceMap.getString("fieldDescripcion.text")); // NOI18N
         fieldDescripcion.setName("fieldDescripcion"); // NOI18N
+        getContentPane().add(fieldDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 60, 180, 80));
 
         mainPane.setName("mainPane"); // NOI18N
+
+        paneComandosFaciles.setName("paneComandosFaciles"); // NOI18N
+
+        labelSeleccionFormulario.setLabelFor(comboSeleccionFormulario);
+        labelSeleccionFormulario.setText(resourceMap.getString("labelSeleccionFormulario.text")); // NOI18N
+        labelSeleccionFormulario.setName("labelSeleccionFormulario"); // NOI18N
+        labelSeleccionFormulario.setBounds(10, 10, 180, 14);
+        paneComandosFaciles.add(labelSeleccionFormulario, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        comboSeleccionFormulario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboSeleccionFormulario.setName("comboSeleccionFormulario"); // NOI18N
+        comboSeleccionFormulario.setBounds(10, 30, 180, 20);
+        paneComandosFaciles.add(comboSeleccionFormulario, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneComandoMascara.setName("paneComandoMascara"); // NOI18N
 
@@ -99,7 +119,7 @@ public class frameComandos extends javax.swing.JFrame {
 
         comboAccion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboAccion.setName("comboAccion"); // NOI18N
-        comboAccion.setBounds(0, 0, 150, 20);
+        comboAccion.setBounds(0, 0, 150, -1);
         paneAccionCombo.add(comboAccion, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneAccionCombo.setBounds(0, 0, 150, 50);
@@ -109,7 +129,7 @@ public class frameComandos extends javax.swing.JFrame {
 
         fieldAccion.setText(resourceMap.getString("fieldAccion.text")); // NOI18N
         fieldAccion.setName("fieldAccion"); // NOI18N
-        fieldAccion.setBounds(0, 0, 150, 20);
+        fieldAccion.setBounds(0, 0, 150, -1);
         paneAccionField.add(fieldAccion, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneAccionField.setBounds(0, 0, 160, 50);
@@ -146,7 +166,7 @@ public class frameComandos extends javax.swing.JFrame {
 
         comboEfecto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboEfecto.setName("comboEfecto"); // NOI18N
-        comboEfecto.setBounds(0, 0, 150, 20);
+        comboEfecto.setBounds(0, 0, 150, -1);
         paneEfectoCombo.add(comboEfecto, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneEfectoCombo.setBounds(0, 0, 150, 50);
@@ -155,7 +175,7 @@ public class frameComandos extends javax.swing.JFrame {
         paneEfectoField.setName("paneEfectoField"); // NOI18N
 
         fieldEfecto.setName("fieldEfecto"); // NOI18N
-        fieldEfecto.setBounds(0, 0, 150, 20);
+        fieldEfecto.setBounds(0, 0, 150, -1);
         paneEfectoField.add(fieldEfecto, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneEfectoField.setBounds(0, 0, 160, 50);
@@ -191,83 +211,21 @@ public class frameComandos extends javax.swing.JFrame {
         botonAgregarAccion.setBounds(563, 210, 110, 23);
         paneComandoMascara.add(botonAgregarAccion, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        paneComandoMascara.setBounds(10, 20, 680, 240);
-        mainPane.add(paneComandoMascara, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        paneComandoMascara.setBounds(0, 0, 680, 260);
+        paneComandosFaciles.add(paneComandoMascara, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        paneComandosFaciles.setName("paneComandosFaciles"); // NOI18N
-
-        labelSeleccionFormulario.setLabelFor(comboSeleccionFormulario);
-        labelSeleccionFormulario.setText(resourceMap.getString("labelSeleccionFormulario.text")); // NOI18N
-        labelSeleccionFormulario.setName("labelSeleccionFormulario"); // NOI18N
-        labelSeleccionFormulario.setBounds(10, 10, 180, 14);
-        paneComandosFaciles.add(labelSeleccionFormulario, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        comboSeleccionFormulario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        comboSeleccionFormulario.setName("comboSeleccionFormulario"); // NOI18N
-        comboSeleccionFormulario.setBounds(10, 30, 180, 20);
-        paneComandosFaciles.add(comboSeleccionFormulario, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        paneComandosFaciles.setBounds(20, 30, 680, 220);
+        paneComandosFaciles.setBounds(20, 30, 680, 250);
         mainPane.add(paneComandosFaciles, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        getContentPane().add(mainPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 710, 290));
 
         botonCancelar.setText(resourceMap.getString("botonCancelar.text")); // NOI18N
         botonCancelar.setName("botonCancelar"); // NOI18N
+        getContentPane().add(botonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 490, -1, -1));
 
         botonAceptar.setText(resourceMap.getString("botonAceptar.text")); // NOI18N
         botonAceptar.setName("botonAceptar"); // NOI18N
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(mainPane, javax.swing.GroupLayout.DEFAULT_SIZE, 721, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labelNombre)
-                                    .addComponent(fieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(45, 45, 45)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labelTipo)
-                                    .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(57, 57, 57)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labelDescripcion)
-                                    .addComponent(fieldDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(botonAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(48, 48, 48))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelNombre)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelTipo)
-                            .addComponent(labelDescripcion))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(fieldDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mainPane, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonCancelar)
-                    .addComponent(botonAceptar))
-                .addContainerGap(15, Short.MAX_VALUE))
-        );
+        getContentPane().add(botonAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 490, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

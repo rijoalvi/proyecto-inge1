@@ -100,6 +100,7 @@ public class frameLista extends javax.swing.JFrame {
                 formComponentShown(evt);
             }
         });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
@@ -121,6 +122,8 @@ public class frameLista extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(lista);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 300, 210));
 
         LabelPanel.setName("LabelPanel"); // NOI18N
 
@@ -182,6 +185,8 @@ public class frameLista extends javax.swing.JFrame {
                         .addComponent(nombreMiembroPorDefecto)))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
+
+        getContentPane().add(LabelPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         ButtonPanel.setName("ButtonPanel"); // NOI18N
 
@@ -278,6 +283,8 @@ public class frameLista extends javax.swing.JFrame {
 
         botonAgregar.getAccessibleContext().setAccessibleName(resourceMap.getString("jButton1.AccessibleContext.accessibleName")); // NOI18N
 
+        getContentPane().add(ButtonPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, -1, -1));
+
         SidePanel.setMaximumSize(new java.awt.Dimension(43, 137));
         SidePanel.setMinimumSize(new java.awt.Dimension(43, 137));
         SidePanel.setName("SidePanel"); // NOI18N
@@ -329,63 +336,27 @@ public class frameLista extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        panelBotonPersonalizado.setName("panelBotonPersonalizado"); // NOI18N
+        getContentPane().add(SidePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, -1, -1));
+        SidePanel.getAccessibleContext().setAccessibleDescription(resourceMap.getString("SidePanel.AccessibleContext.accessibleDescription")); // NOI18N
 
-        botonPersonalizado.setAction(actionMap.get("botonOrdenPersonalizado")); // NOI18N
-        botonPersonalizado.setName("botonPersonalizado"); // NOI18N
+        panelBotonPersonalizado.setName("panelBotonPersonalizado"); // NOI18N
 
         javax.swing.GroupLayout panelBotonPersonalizadoLayout = new javax.swing.GroupLayout(panelBotonPersonalizado);
         panelBotonPersonalizado.setLayout(panelBotonPersonalizadoLayout);
         panelBotonPersonalizadoLayout.setHorizontalGroup(
             panelBotonPersonalizadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBotonPersonalizadoLayout.createSequentialGroup()
-                .addComponent(botonPersonalizado, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+            .addGap(0, 63, Short.MAX_VALUE)
         );
         panelBotonPersonalizadoLayout.setVerticalGroup(
             panelBotonPersonalizadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBotonPersonalizadoLayout.createSequentialGroup()
-                .addComponent(botonPersonalizado)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 36, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LabelPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(SidePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(panelBotonPersonalizado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(26, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(ButtonPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
-                        .addContainerGap())))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(LabelPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(SidePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(panelBotonPersonalizado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-                .addComponent(ButtonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        getContentPane().add(panelBotonPersonalizado, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        SidePanel.getAccessibleContext().setAccessibleDescription(resourceMap.getString("SidePanel.AccessibleContext.accessibleDescription")); // NOI18N
+        botonPersonalizado.setAction(actionMap.get("botonOrdenPersonalizado")); // NOI18N
+        botonPersonalizado.setName("botonPersonalizado"); // NOI18N
+        getContentPane().add(botonPersonalizado, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 210, 28, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

@@ -59,18 +59,23 @@ public class frameManejoCategorias extends javax.swing.JFrame {
                 formComponentShown(evt);
             }
         });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
         listInstanciasCategorias.setName("listInstanciasCategorias"); // NOI18N
         jScrollPane1.setViewportView(listInstanciasCategorias);
 
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 130, 220));
+
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameManejoCategorias.class);
         labelNombreCategoria.setText(resourceMap.getString("labelNombreCategoria.text")); // NOI18N
         labelNombreCategoria.setName("labelNombreCategoria"); // NOI18N
+        getContentPane().add(labelNombreCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, -1, -1));
 
         labelElementos.setText(resourceMap.getString("labelElementos.text")); // NOI18N
         labelElementos.setName("labelElementos"); // NOI18N
+        getContentPane().add(labelElementos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
 
         botonAgregarElemento.setText(resourceMap.getString("botonAgregarElemento.text")); // NOI18N
         botonAgregarElemento.setName("botonAgregarElemento"); // NOI18N
@@ -84,6 +89,7 @@ public class frameManejoCategorias extends javax.swing.JFrame {
                 botonAgregarElementoActionPerformed(evt);
             }
         });
+        getContentPane().add(botonAgregarElemento, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 60, 120, -1));
 
         botonAceptar.setText(resourceMap.getString("botonAceptar.text")); // NOI18N
         botonAceptar.setName("botonAceptar"); // NOI18N
@@ -92,6 +98,7 @@ public class frameManejoCategorias extends javax.swing.JFrame {
                 botonAceptarActionPerformed(evt);
             }
         });
+        getContentPane().add(botonAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 320, -1, -1));
 
         botonCancelar.setText(resourceMap.getString("botonCancelar.text")); // NOI18N
         botonCancelar.setName("botonCancelar"); // NOI18N
@@ -100,6 +107,7 @@ public class frameManejoCategorias extends javax.swing.JFrame {
                 botonCancelarActionPerformed(evt);
             }
         });
+        getContentPane().add(botonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, -1, -1));
 
         botonBorrarElemento.setText(resourceMap.getString("botonBorrarElemento.text")); // NOI18N
         botonBorrarElemento.setName("botonBorrarElemento"); // NOI18N
@@ -108,6 +116,7 @@ public class frameManejoCategorias extends javax.swing.JFrame {
                 botonBorrarElementoActionPerformed(evt);
             }
         });
+        getContentPane().add(botonBorrarElemento, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, 120, -1));
 
         botonModificarElemento.setText(resourceMap.getString("botonModificarElemento.text")); // NOI18N
         botonModificarElemento.setName("botonModificarElemento"); // NOI18N
@@ -116,58 +125,7 @@ public class frameManejoCategorias extends javax.swing.JFrame {
                 botonModificarElementoActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(labelElementos))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(102, 102, 102)
-                        .addComponent(labelNombreCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(103, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(119, Short.MAX_VALUE)
-                .addComponent(botonAceptar)
-                .addGap(18, 18, 18)
-                .addComponent(botonCancelar)
-                .addGap(117, 117, 117))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(botonBorrarElemento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonAgregarElemento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonModificarElemento))
-                .addGap(18, 18, 18))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelNombreCategoria)
-                .addGap(15, 15, 15)
-                .addComponent(labelElementos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(botonAgregarElemento)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonModificarElemento)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonBorrarElemento)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonAceptar)
-                    .addComponent(botonCancelar))
-                .addGap(20, 20, 20))
-        );
+        getContentPane().add(botonModificarElemento, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, 120, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

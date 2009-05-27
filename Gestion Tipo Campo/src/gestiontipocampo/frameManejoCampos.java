@@ -163,6 +163,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        botonBorrar1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         valorBusqueda = new javax.swing.JTextField();
@@ -235,21 +236,21 @@ public class frameManejoCampos extends javax.swing.JFrame {
         botonBorrar = new javax.swing.JButton();
         botonCerrar = new javax.swing.JButton();
         comboTipos = new javax.swing.JComboBox();
-        botonGuardar1 = new javax.swing.JButton();
-        botonGuardarComo1 = new javax.swing.JButton();
-        botonBorrar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameManejoCampos.class);
         setTitle(resourceMap.getString("Form.title")); // NOI18N
         setMinimumSize(new java.awt.Dimension(200, 200));
         setName("Form"); // NOI18N
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
 
         jLabel20.setText(resourceMap.getString("jLabel20.text")); // NOI18N
         jLabel20.setName("jLabel20"); // NOI18N
+        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, -1, -1));
 
         valorBusqueda.setName("valorBusqueda"); // NOI18N
         valorBusqueda.addActionListener(new java.awt.event.ActionListener() {
@@ -257,6 +258,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 valorBusquedaActionPerformed(evt);
             }
         });
+        getContentPane().add(valorBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 40, 140, -1));
 
         botonBusqueda.setText(resourceMap.getString("botonBusqueda.text")); // NOI18N
         botonBusqueda.setName("botonBusqueda"); // NOI18N
@@ -265,16 +267,21 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 botonBusquedaActionPerformed(evt);
             }
         });
+        getContentPane().add(botonBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 40, -1, -1));
 
         jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
         jLabel2.setName("jLabel2"); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
 
         jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
         jLabel3.setName("jLabel3"); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, -1, -1));
 
         valorNombreGeneral.setName("valorNombreGeneral"); // NOI18N
+        getContentPane().add(valorNombreGeneral, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 130, -1));
 
         valorNota.setName("valorNota"); // NOI18N
+        getContentPane().add(valorNota, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 210, -1));
 
         panePrincipal.setAutoscrolls(true);
         panePrincipal.setName("panePrincipal"); // NOI18N
@@ -642,6 +649,8 @@ public class frameManejoCampos extends javax.swing.JFrame {
         paneLista.setBounds(0, 0, 530, 160);
         panePrincipal.add(paneLista, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        getContentPane().add(panePrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 560, 160));
+
         botonGuardar.setText(resourceMap.getString("botonGuardar.text")); // NOI18N
         botonGuardar.setName("botonGuardar"); // NOI18N
         botonGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -649,6 +658,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 botonGuardarActionPerformed(evt);
             }
         });
+        getContentPane().add(botonGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 340, -1, -1));
 
         botonGuardarComo.setText(resourceMap.getString("botonGuardarComo.text")); // NOI18N
         botonGuardarComo.setName("botonGuardarComo"); // NOI18N
@@ -657,6 +667,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 botonGuardarComoActionPerformed(evt);
             }
         });
+        getContentPane().add(botonGuardarComo, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 340, -1, -1));
 
         botonBorrar.setText(resourceMap.getString("botonBorrar.text")); // NOI18N
         botonBorrar.setName("botonBorrar"); // NOI18N
@@ -665,6 +676,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 botonBorrarActionPerformed(evt);
             }
         });
+        getContentPane().add(botonBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, -1, -1));
 
         botonCerrar.setText(resourceMap.getString("botonCerrar.text")); // NOI18N
         botonCerrar.setName("botonCerrar"); // NOI18N
@@ -673,6 +685,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 botonCerrarActionPerformed(evt);
             }
         });
+        getContentPane().add(botonCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 340, -1, -1));
 
         comboTipos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Número", "Binario", "FechaHora", "Texto", "Incremental", "Jerarquía", "Lista" }));
         comboTipos.setName("comboTipos"); // NOI18N
@@ -681,81 +694,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 comboTiposActionPerformed(evt);
             }
         });
-
-        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(188, Short.MAX_VALUE)
-                        .add(botonBorrar)
-                        .add(18, 18, 18)
-                        .add(botonGuardarComo)
-                        .add(18, 18, 18)
-                        .add(botonGuardar)
-                        .add(18, 18, 18)
-                        .add(botonCerrar))
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .add(25, 25, 25)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(layout.createSequentialGroup()
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(jLabel2)
-                                    .add(valorNombreGeneral, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 100, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                                .add(63, 63, 63)
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(jLabel3)
-                                    .add(valorNota, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 199, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                            .add(layout.createSequentialGroup()
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(jLabel1)
-                                    .add(comboTipos, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 95, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 214, Short.MAX_VALUE)
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(layout.createSequentialGroup()
-                                        .add(valorBusqueda, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 105, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                        .add(14, 14, 14)
-                                        .add(botonBusqueda))
-                                    .add(jLabel20)))))
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .add(panePrincipal, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel20)
-                    .add(jLabel1))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(valorBusqueda, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(botonBusqueda)
-                    .add(comboTipos, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(15, 15, 15)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(layout.createSequentialGroup()
-                        .add(jLabel2)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(valorNombreGeneral, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(layout.createSequentialGroup()
-                        .add(jLabel3)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(valorNota, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(panePrincipal, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 162, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(11, 11, 11)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(botonGuardar)
-                    .add(botonGuardarComo)
-                    .add(botonBorrar)
-                    .add(botonCerrar))
-                .addContainerGap())
-        );
+        getContentPane().add(comboTipos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -1456,9 +1395,7 @@ private void comboCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JButton botonBusqueda;
     private javax.swing.JButton botonCerrar;
     private javax.swing.JButton botonGuardar;
-    private javax.swing.JButton botonGuardar1;
     private javax.swing.JButton botonGuardarComo;
-    private javax.swing.JButton botonGuardarComo1;
     private javax.swing.JComboBox comboCategorias;
     private javax.swing.JComboBox comboFormatoFecha;
     private javax.swing.JComboBox comboNiveles;

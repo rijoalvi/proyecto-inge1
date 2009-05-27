@@ -51,18 +51,23 @@ public class frameConexiones extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameConexiones.class);
         setTitle(resourceMap.getString("Form.title")); // NOI18N
+        setBounds(new java.awt.Rectangle(0, 0, 700, 300));
         setName("Form"); // NOI18N
+        setResizable(false);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
             }
         });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblConexion1.setText(resourceMap.getString("lblConexion1.text")); // NOI18N
         lblConexion1.setName("lblConexion1"); // NOI18N
+        getContentPane().add(lblConexion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, -1, -1));
 
         lblConexion2.setText(resourceMap.getString("lblConexion2.text")); // NOI18N
         lblConexion2.setName("lblConexion2"); // NOI18N
+        getContentPane().add(lblConexion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, -1, -1));
 
         jRadioButton1.setText(resourceMap.getString("opt1.text")); // NOI18N
         jRadioButton1.setEnabled(false);
@@ -77,6 +82,8 @@ public class frameConexiones extends javax.swing.JFrame {
                 jRadioButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, -1, -1));
+        jRadioButton1.getAccessibleContext().setAccessibleName(resourceMap.getString("opt1.AccessibleContext.accessibleName")); // NOI18N
 
         jRadioButton2.setText(resourceMap.getString("opt2.text")); // NOI18N
         jRadioButton2.setEnabled(false);
@@ -86,6 +93,8 @@ public class frameConexiones extends javax.swing.JFrame {
                 jRadioButton2MouseClicked(evt);
             }
         });
+        getContentPane().add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, -1, -1));
+        jRadioButton2.getAccessibleContext().setAccessibleName(resourceMap.getString("opt2.AccessibleContext.accessibleName")); // NOI18N
 
         btnEstablecerConexion.setText(resourceMap.getString("btnEstablecerConexion.text")); // NOI18N
         btnEstablecerConexion.setName("btnEstablecerConexion"); // NOI18N
@@ -94,6 +103,7 @@ public class frameConexiones extends javax.swing.JFrame {
                 btnEstablecerConexionMouseClicked(evt);
             }
         });
+        getContentPane().add(btnEstablecerConexion, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 200, -1, -1));
 
         btnRefrescar.setText(resourceMap.getString("btnRefrescar.text")); // NOI18N
         btnRefrescar.setName("btnRefrescar"); // NOI18N
@@ -102,56 +112,12 @@ public class frameConexiones extends javax.swing.JFrame {
                 btnRefrescarMouseClicked(evt);
             }
         });
+        getContentPane().add(btnRefrescar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 200, -1, -1));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblConexion1)
-                                    .addComponent(jRadioButton1))
-                                .addGap(82, 82, 82)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jRadioButton2)
-                                    .addComponent(lblConexion2)))
-                            .addComponent(btnRefrescar))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnEstablecerConexion))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 593, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblConexion2)
-                    .addComponent(lblConexion1))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
-                .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEstablecerConexion)
-                    .addComponent(btnRefrescar))
-                .addContainerGap())
-        );
-
-        jRadioButton1.getAccessibleContext().setAccessibleName(resourceMap.getString("opt1.AccessibleContext.accessibleName")); // NOI18N
-        jRadioButton2.getAccessibleContext().setAccessibleName(resourceMap.getString("opt2.AccessibleContext.accessibleName")); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
